@@ -139,10 +139,18 @@ python -m aeronav_db.build \
   --ourairports-csv ./airports.csv
 ```
 
-The build is **deterministic** — rows are sorted and the database is `VACUUM`ed,
-so identical inputs produce a byte-identical file. That is what makes the
-published checksum meaningful: it changes when the data changes, not when the
-build ran.
+The build is **deterministic for a given SQLite version** — rows are sorted and
+the database is `VACUUM`ed, so rebuilding from identical inputs on the same
+machine produces a byte-identical file.
+
+It is **not** byte-identical across SQLite versions. The file header records the
+library version that last wrote it, and page layout differs slightly between
+releases: the same data built under SQLite 3.45.1 and 3.53.1 differs in ~17.7 KB
+of a 7.6 MB file while every table matches row for row. So a checksum change
+means *"this file differs"*, not always *"the data changed"* — if the runner
+image bumps SQLite, one cycle will publish a new checksum for unchanged data and
+consumers will re-download once. Harmless, but worth knowing before you treat
+the checksum as a content fingerprint.
 
 ### Tests
 

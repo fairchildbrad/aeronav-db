@@ -17,10 +17,12 @@ or copyleft encumbrance):
 Merge rule: **NASR wins inside US airspace, OurAirports provides the global
 fallback** — the national AIS is authoritative within its own jurisdiction.
 
-The build is deterministic: rows are sorted and the database is VACUUMed, so
-identical inputs produce a byte-identical file. That is what makes the published
-checksum meaningful and lets consumers detect "actually changed" rather than
-"rebuilt".
+The build is deterministic for a given SQLite version: rows are sorted and the
+database is VACUUMed, so rebuilding from identical inputs on the same machine
+gives a byte-identical file. Across SQLite versions it is not -- page layout and
+the version field in the file header differ, so the same data can produce a
+different checksum. A checksum change therefore means "this file differs", not
+necessarily "the data changed". See README.md.
 
 Usage::
 
