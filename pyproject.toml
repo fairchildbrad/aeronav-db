@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aeronav-db"
+version = "0.1.0"
+description = "A public-domain aeronautical database (airports, NAVAIDs, fixes), rebuilt every AIRAC cycle"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9.0",
+  "ruff>=0.5,<1.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["aeronav_db*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = ["dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

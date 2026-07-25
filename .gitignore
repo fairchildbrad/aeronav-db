@@ -1,0 +1,9 @@
+# Build output. Releases carry the database; the repo does not.
+dist/
+
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/

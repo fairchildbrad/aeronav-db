@@ -1,0 +1,146 @@
+name: Build navigation database
+
+# Weekly check, build on a new cycle. The FAA publishes NASR every 28 days, but
+# not always exactly on schedule and not always mirrored the same day, so we
+# poll weekly and ask "is there a cycle newer than what we last released?"
+# rather than trying to predict the date.
+on:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays, 06:17 UTC
+  workflow_dispatch:
+    inputs:
+      cycle:
+        description: "AIRAC cycle to build (YYYY-MM-DD). Blank = newest in force."
+        required: false
+        type: string
+      force:
+        description: "Rebuild even if this cycle was already released."
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-navigation-database
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Is there a new cycle?
+    runs-on: ubuntu-latest
+    outputs:
+      cycle: ${{ steps.decide.outputs.cycle }}
+      should_build: ${{ steps.decide.outputs.should_build }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve the target cycle
+        id: target
+        run: |
+          if [ -n "${{ inputs.cycle }}" ]; then
+            echo "cycle=${{ inputs.cycle }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "cycle=$(python -m aeronav_db.cycle --latest-available)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Compare against the last release
+        id: decide
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cycle="${{ steps.target.outputs.cycle }}"
+          released="$(gh release view --json tagName --jq .tagName 2>/dev/null || true)"
+          echo "target cycle:   $cycle"
+          echo "last released:  ${released:-<none>}"
+          if [ "${{ inputs.force }}" = "true" ]; then
+            echo "forced rebuild requested"
+            should_build=true
+          elif [ "$released" = "cycle-$cycle" ]; then
+            echo "already released; nothing to do"
+            should_build=false
+          else
+            should_build=true
+          fi
+          echo "cycle=$cycle" >> "$GITHUB_OUTPUT"
+          echo "should_build=$should_build" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build, verify, publish
+    needs: check
+    if: needs.check.outputs.should_build == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      # The builder's own tests run before it is trusted to produce a release.
+      - name: Test
+        run: |
+          ruff check .
+          pytest -q
+
+      - name: Build
+        run: python -m aeronav_db.build --cycle "${{ needs.check.outputs.cycle }}"
+
+      # The publish gate. Consumers update themselves unattended, so a broken
+      # build must die here rather than propagate.
+      - name: Verify
+        run: python -m aeronav_db.verify dist/navigation.sqlite3
+
+      - name: Checksum
+        working-directory: dist
+        run: sha256sum navigation.sqlite3 > navigation.sqlite3.sha256
+
+      - name: Summarize
+        run: |
+          {
+            echo "### AIRAC ${{ needs.check.outputs.cycle }}"
+            echo '```json'
+            cat dist/manifest.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cycle="${{ needs.check.outputs.cycle }}"
+          tag="cycle-$cycle"
+          notes="$(python - <<'PY'
+          import json
+          m = json.load(open("dist/manifest.json"))
+          c = m["counts"]
+          print(f"AIRAC cycle **{m['airac_cycle']}**, built {m['built_at']}.\n")
+          print(f"- airports: {c['airports']:,}")
+          print(f"- fixes: {c['fixes']:,}")
+          print(f"- navaids: {c['navaids']:,}")
+          print(f"- sha256: `{m['database']['sha256']}`\n")
+          print(f"Sources: {m['sources']}\n")
+          print("Stable URLs for consumers:\n")
+          print("- `https://github.com/${{ github.repository }}/releases/latest/download/manifest.json`")
+          print("- `https://github.com/${{ github.repository }}/releases/latest/download/navigation.sqlite3`")
+          PY
+          )"
+          # Re-releasing the same tag (a forced rebuild) replaces the assets.
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release delete "$tag" --yes --cleanup-tag
+          fi
+          gh release create "$tag" \
+            dist/navigation.sqlite3 \
+            dist/navigation.sqlite3.sha256 \
+            dist/manifest.json \
+            --title "AIRAC $cycle" \
+            --notes "$notes" \
+            --latest
