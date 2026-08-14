@@ -1,14 +1,17 @@
 # aeronav-db
 
-A public-domain aeronautical database — **airports, NAVAIDs, and named fixes** —
+A public-domain aeronautical database — **airports, NAVAIDs, named fixes,
+airways, and ARTCC/FIR boundaries** —
 compiled into a single SQLite file and rebuilt automatically every AIRAC cycle.
 
 One file, no API key, no licence to read, works offline.
 
 ```
-airports   35,305 codes   IATA + ICAO + FAA identifiers
-fixes      70,031         US named fixes / 5-letter name codes
-navaids     1,629         US VOR / VORTAC / NDB / TACAN
+airports    35,302 codes   IATA + ICAO + FAA identifiers
+fixes       70,056         US named fixes / 5-letter name codes
+navaids      1,629         US VOR / VORTAC / NDB / TACAN
+airways      1,515         US low/high routes, 19,247 ordered points
+boundaries      54         ARTCC and FIR rings, 2,687 ordered points
 ```
 
 > **Not for navigation.** This is a convenience dataset for software that needs
@@ -53,15 +56,19 @@ differ.** The manifest is tiny, so a client can check often and download rarely.
 
 ```json
 {
-  "schema_version": "1",
-  "airac_cycle": "2026-07-09",
-  "built_at": "2026-07-25T20:44:50+00:00",
+  "schema_version": "2",
+  "airac_cycle": "2026-08-06",
+  "built_at": "2026-08-13T22:41:07+00:00",
   "database": {
     "filename": "navigation.sqlite3",
-    "size_bytes": 7577600,
-    "sha256": "97b2e441..."
+    "size_bytes": 9506816,
+    "sha256": "422b3eec..."
   },
-  "counts": { "airports": 35305, "fixes": 70031, "navaids": 1629 },
+  "counts": {
+    "airports": 35302, "fixes": 70056, "navaids": 1629,
+    "airways": 1515, "airway_points": 19247,
+    "boundaries": 54, "boundary_points": 2687
+  },
   "sources": "FAA NASR 28-Day Subscription (public domain); OurAirports (CC0 public domain)"
 }
 ```
@@ -76,6 +83,17 @@ SELECT lat, lon, name, source FROM airports WHERE code = 'KDFW';
 -- does not assume it, because a future cycle could change that.
 SELECT lat, lon, artcc_low FROM fixes WHERE fix_id = 'BOSOX';
 
+-- One airway, in order, ready to draw. Points that could not be placed come
+-- back with NULL coordinates rather than being skipped, so a consumer can
+-- break the line there instead of drawing a wrong straight segment.
+SELECT seq, point_id, lat, lon FROM airway_points
+WHERE awy_id = 'V1' AND location = 'C' ORDER BY seq;
+
+-- One boundary ring, in order.
+SELECT lat, lon FROM boundary_points
+WHERE boundary_id = 'ZAB' AND kind = 'ARTCC' AND altitude = 'HIGH'
+ORDER BY seq;
+
 -- Which cycle is this?
 SELECT value FROM metadata WHERE key = 'airac_cycle';
 ```
@@ -86,6 +104,16 @@ SELECT value FROM metadata WHERE key = 'airac_cycle';
 airports(code PRIMARY KEY, lat, lon, name, kind, code_type, source)
 navaids (ident, nav_type, name, lat, lon, frequency, source)   -- indexed on ident
 fixes   (fix_id, lat, lon, use_code, artcc_high, artcc_low, state_code, source)
+
+airways        (awy_id, location, designation, regulatory, point_count, source)
+                 -- PRIMARY KEY (awy_id, location)
+airway_points  (awy_id, location, seq, point_id, point_type, lat, lon,
+                 artcc, state_code)  -- PRIMARY KEY (awy_id, location, seq)
+
+boundaries     (boundary_id, name, kind, altitude, point_count, source)
+                 -- PRIMARY KEY (boundary_id, kind, altitude)
+boundary_points(boundary_id, kind, altitude, seq, lat, lon, description)
+
 metadata(key PRIMARY KEY, value)
 ```
 
@@ -95,6 +123,26 @@ which layer answered. `code_type` is `iata`, `icao`, or `faa`.
 Airports are keyed one row per code, so an airport with both an IATA and an ICAO
 code appears twice with the same coordinates. That makes lookup a primary-key hit
 regardless of which code system the caller has.
+
+Airways and boundaries are ordered geometry, so each is two tables: one naming
+the feature, one row per point along it. Read them with `ORDER BY seq`.
+
+`location` is part of an airway's identity because NASR scopes airway
+identifiers regionally — `C`, `A` for Alaska, `H` for Hawaii — so the same
+identifier can name two different airways. `C` is not CONUS-only: it also
+carries the Pacific oceanic routes worked by Oakland, Guam and Honolulu.
+
+Boundary `altitude` (`LOW`, `HIGH`, `UNLIMITED`) is part of a boundary's
+identity too, because one centre publishes a different ring for each stratum.
+`kind` is `ARTCC` for US domestic centres and `FIR`, `CTA/FIR`, `CTA` or `UTA`
+for the international ones.
+
+NASR publishes airway points by name with no coordinates. Resolution against
+`navaids` and `fixes` happens once at build time, because it needs
+disambiguation rules and getting it wrong puts an airway across the wrong part
+of the country. In the current cycle 169 of 19,247 points (0.9%) do not
+resolve; those rows are kept with NULL `lat`/`lon` so the gap is visible rather
+than silently closed.
 
 ## How the automation works
 

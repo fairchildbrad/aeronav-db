@@ -15,15 +15,35 @@ from __future__ import annotations
 import sqlite3
 from pathlib import Path
 
-REQUIRED_TABLES = {"airports", "navaids", "fixes", "metadata"}
+REQUIRED_TABLES = {
+    "airports",
+    "navaids",
+    "fixes",
+    "airways",
+    "airway_points",
+    "boundaries",
+    "boundary_points",
+    "metadata",
+}
 
 # Floors, not targets. Current build: ~35,300 airports, ~1,600 navaids,
-# ~70,000 fixes.
+# ~70,000 fixes, ~1,500 airways over ~19,000 points, 54 boundaries over
+# ~2,700 points.
 MINIMUM_ROWS = {
     "airports": 25_000,
     "navaids": 1_000,
     "fixes": 50_000,
+    "airways": 1_000,
+    "airway_points": 15_000,
+    "boundaries": 40,
+    "boundary_points": 2_000,
 }
+
+# Airway points are resolved by name against navaids and fixes, so this is the
+# check that matters most for airways: a rename or a column shift upstream
+# would leave the tables full but the geometry empty. The current build leaves
+# 169 of 19,247 unplaced (0.9%).
+MAXIMUM_UNPLACED_AIRWAY_FRACTION = 0.05
 
 # Codes that must resolve in any usable build, spanning both source layers and
 # both code systems. If these are missing, something is structurally wrong.
@@ -37,6 +57,12 @@ CANARY_AIRPORTS = {
     "SYD": (-33.9, 151.2),
 }
 CANARY_TOLERANCE_DEGREES = 0.5
+
+# One airway and one boundary whose real-world geometry is well known, to prove
+# the ordered geometry survived the build and not just the row counts. V1
+# begins at the Craig VORTAC on the Florida coast; ZAB is Albuquerque Center.
+CANARY_AIRWAY = ("V1", "C", "CRG", (30.3, -81.5))
+CANARY_BOUNDARY = ("ZAB", "ARTCC", "HIGH", (28.0, 38.5, -115.0, -99.0))
 
 
 def verify_database(path: Path) -> list[str]:
@@ -124,6 +150,116 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
                 f"canary airport {code} is at ({lat}, {lon}), "
                 f"expected near ({expected_lat}, {expected_lon})"
             )
+
+    problems.extend(_inspect_airways(connection))
+    problems.extend(_inspect_boundaries(connection))
+    return problems
+
+
+def _inspect_airways(connection: sqlite3.Connection) -> list[str]:
+    problems: list[str] = []
+
+    total, unplaced = connection.execute(
+        "SELECT count(*), sum(lat IS NULL) FROM airway_points"
+    ).fetchone()
+    if total:
+        fraction = (unplaced or 0) / total
+        if fraction > MAXIMUM_UNPLACED_AIRWAY_FRACTION:
+            problems.append(
+                f"airway points without coordinates: {unplaced} of {total} "
+                f"({fraction:.1%}), expected at most "
+                f"{MAXIMUM_UNPLACED_AIRWAY_FRACTION:.0%}"
+            )
+
+    # Every airway must have geometry, and every point must belong to a
+    # declared airway. Either failing means the two tables disagree.
+    orphans = connection.execute(
+        "SELECT count(*) FROM airway_points p LEFT JOIN airways a "
+        "ON a.awy_id = p.awy_id AND a.location = p.location "
+        "WHERE a.awy_id IS NULL"
+    ).fetchone()[0]
+    if orphans:
+        problems.append(f"airway points belonging to no airway: {orphans}")
+
+    empty = connection.execute(
+        "SELECT count(*) FROM airways a WHERE NOT EXISTS "
+        "(SELECT 1 FROM airway_points p "
+        "WHERE p.awy_id = a.awy_id AND p.location = a.location)"
+    ).fetchone()[0]
+    if empty:
+        problems.append(f"airways with no points: {empty}")
+
+    awy_id, location, first_point, (lat, lon) = CANARY_AIRWAY
+    row = connection.execute(
+        "SELECT point_id, lat, lon FROM airway_points "
+        "WHERE awy_id = ? AND location = ? ORDER BY seq LIMIT 1",
+        (awy_id, location),
+    ).fetchone()
+    if row is None:
+        problems.append(f"canary airway {awy_id} does not resolve")
+    elif row[0] != first_point:
+        problems.append(
+            f"canary airway {awy_id} starts at {row[0]}, expected {first_point}"
+        )
+    elif (
+        row[1] is None
+        or abs(row[1] - lat) > CANARY_TOLERANCE_DEGREES
+        or abs(row[2] - lon) > CANARY_TOLERANCE_DEGREES
+    ):
+        problems.append(
+            f"canary airway {awy_id} starts at ({row[1]}, {row[2]}), "
+            f"expected near ({lat}, {lon})"
+        )
+    return problems
+
+
+def _inspect_boundaries(connection: sqlite3.Connection) -> list[str]:
+    problems: list[str] = []
+
+    # FIR rings are the reason this table exists for non-US-domestic use; a
+    # build carrying only ARTCC rings has lost half the point.
+    kinds = dict(
+        connection.execute("SELECT kind, count(*) FROM boundaries GROUP BY kind")
+    )
+    if not kinds.get("ARTCC"):
+        problems.append("no ARTCC boundaries")
+    if not any(kind for kind in kinds if "FIR" in kind):
+        problems.append(f"no FIR boundaries; kinds present: {sorted(kinds)}")
+
+    orphans = connection.execute(
+        "SELECT count(*) FROM boundary_points p LEFT JOIN boundaries b "
+        "ON b.boundary_id = p.boundary_id AND b.kind = p.kind "
+        "AND b.altitude = p.altitude WHERE b.boundary_id IS NULL"
+    ).fetchone()[0]
+    if orphans:
+        problems.append(f"boundary points belonging to no boundary: {orphans}")
+
+    # A ring needs at least three points to enclose anything.
+    degenerate = connection.execute(
+        "SELECT count(*) FROM boundaries WHERE point_count < 3"
+    ).fetchone()[0]
+    if degenerate:
+        problems.append(f"boundaries with fewer than three points: {degenerate}")
+
+    boundary_id, kind, altitude, (min_lat, max_lat, min_lon, max_lon) = CANARY_BOUNDARY
+    row = connection.execute(
+        "SELECT min(lat), max(lat), min(lon), max(lon), count(*) "
+        "FROM boundary_points WHERE boundary_id = ? AND kind = ? AND altitude = ?",
+        (boundary_id, kind, altitude),
+    ).fetchone()
+    if not row or not row[4]:
+        problems.append(f"canary boundary {boundary_id} does not resolve")
+    elif not (
+        min_lat <= row[0]
+        and row[1] <= max_lat
+        and min_lon <= row[2]
+        and row[3] <= max_lon
+    ):
+        problems.append(
+            f"canary boundary {boundary_id} spans "
+            f"({row[0]}, {row[1]}, {row[2]}, {row[3]}), expected within "
+            f"({min_lat}, {max_lat}, {min_lon}, {max_lon})"
+        )
     return problems
 
 

@@ -188,6 +188,182 @@ def test_navaids_and_fixes_parse() -> None:
     assert fixes[0][1] == 42.201886
 
 
+# --- Airways and boundaries -----------------------------------------------
+
+
+def awy_segment(**overrides) -> dict[str, str]:
+    row = {
+        "AWY_ID": "V1",
+        "AWY_LOCATION": "C",
+        "POINT_SEQ": "10",
+        "FROM_POINT": "CRG",
+        "FROM_PT_TYPE": "VORTAC",
+        "ARTCC": "ZJX",
+        "STATE_CODE": "FL",
+    }
+    row.update(overrides)
+    return row
+
+
+def awy_base(**overrides) -> dict[str, str]:
+    row = {
+        "AWY_ID": "V1",
+        "AWY_LOCATION": "C",
+        "AWY_DESIGNATION": "V",
+        "REGULATORY": "N",
+    }
+    row.update(overrides)
+    return row
+
+
+CRG_NAVAID = ("CRG", "VORTAC", "CRAIG", 30.338879, -81.509927, "114.5", "nasr")
+BOSOX_FIX = ("BOSOX", 42.201886, -70.9, "RP", "ZBW", "ZBW", "MA", "nasr")
+
+
+def test_airway_points_resolve_against_navaids_and_fixes() -> None:
+    segments = [
+        awy_segment(),
+        awy_segment(
+            POINT_SEQ="20", FROM_POINT="BOSOX", FROM_PT_TYPE="RP", STATE_CODE="MA"
+        ),
+    ]
+
+    airways, points, unresolved = build.build_airways(
+        [awy_base()], segments, [CRG_NAVAID], [BOSOX_FIX]
+    )
+
+    assert unresolved == 0
+    assert [point[3] for point in points] == ["CRG", "BOSOX"]
+    assert points[0][5] == 30.338879
+    assert points[1][5] == 42.201886
+    assert airways[0][4] == 2
+
+
+def test_an_unresolvable_airway_point_is_kept_with_no_coordinates() -> None:
+    """Dropping it instead would silently join the points either side."""
+    segments = [
+        awy_segment(),
+        awy_segment(POINT_SEQ="20", FROM_POINT="NOSUCH", FROM_PT_TYPE=""),
+        awy_segment(
+            POINT_SEQ="30", FROM_POINT="BOSOX", FROM_PT_TYPE="RP", STATE_CODE="MA"
+        ),
+    ]
+
+    _, points, unresolved = build.build_airways(
+        [awy_base()], segments, [CRG_NAVAID], [BOSOX_FIX]
+    )
+
+    assert unresolved == 1
+    assert len(points) == 3
+    assert points[1][3] == "NOSUCH"
+    assert points[1][5] is None
+    assert points[1][6] is None
+
+
+def test_a_navaid_typed_point_prefers_the_navaid_of_the_same_name() -> None:
+    """Some names exist as both a navaid and a fix, in different places."""
+    decoy_fix = ("CRG", 44.0, -93.0, "RP", "ZMP", "ZMP", "MN", "nasr")
+
+    _, points, _ = build.build_airways(
+        [awy_base()], [awy_segment()], [CRG_NAVAID], [decoy_fix]
+    )
+
+    assert points[0][5] == 30.338879
+
+
+def test_a_duplicated_fix_name_is_disambiguated_by_state() -> None:
+    fixes = [
+        ("TWINS", 44.0, -93.0, "RP", "ZMP", "ZMP", "MN", "nasr"),
+        ("TWINS", 30.0, -95.0, "RP", "ZHU", "ZHU", "TX", "nasr"),
+    ]
+    segment = awy_segment(FROM_POINT="TWINS", FROM_PT_TYPE="RP", STATE_CODE="TX")
+
+    _, points, _ = build.build_airways([awy_base()], [segment], [], fixes)
+
+    assert points[0][5] == 30.0
+
+
+def test_airways_without_segments_are_not_carried_into_the_database() -> None:
+    airways, points, _ = build.build_airways(
+        [awy_base(), awy_base(AWY_ID="V999")], [awy_segment()], [CRG_NAVAID], []
+    )
+
+    assert [airway[0] for airway in airways] == ["V1"]
+    assert len(points) == 1
+
+
+def test_the_same_identifier_in_two_regions_stays_two_airways() -> None:
+    segments = [
+        awy_segment(),
+        awy_segment(
+            AWY_LOCATION="A",
+            FROM_POINT="BOSOX",
+            FROM_PT_TYPE="RP",
+            STATE_CODE="MA",
+        ),
+    ]
+
+    airways, _, _ = build.build_airways(
+        [awy_base(), awy_base(AWY_LOCATION="A")],
+        segments,
+        [CRG_NAVAID],
+        [BOSOX_FIX],
+    )
+
+    assert [(airway[0], airway[1]) for airway in airways] == [
+        ("V1", "A"),
+        ("V1", "C"),
+    ]
+
+
+def arb_segment(**overrides) -> dict[str, str]:
+    row = {
+        "LOCATION_ID": "ZAB",
+        "LOCATION_NAME": "ALBUQUERQUE",
+        "TYPE": "ARTCC",
+        "ALTITUDE": "HIGH",
+        "POINT_SEQ": "10",
+        "LAT_DECIMAL": "35.766667",
+        "LONG_DECIMAL": "-111.841667",
+        "BNDRY_PT_DESCRIP": "",
+    }
+    row.update(overrides)
+    return row
+
+
+def test_boundary_rings_are_grouped_and_ordered() -> None:
+    segments = [
+        arb_segment(POINT_SEQ="30", LAT_DECIMAL="31.5", LONG_DECIMAL="-103.0"),
+        arb_segment(POINT_SEQ="10"),
+        arb_segment(POINT_SEQ="20", LAT_DECIMAL="35.7", LONG_DECIMAL="-110.233333"),
+    ]
+
+    boundaries, points = build.build_boundaries(segments)
+
+    assert [point[3] for point in points] == [10, 20, 30]
+    assert boundaries == [("ZAB", "ALBUQUERQUE", "ARTCC", "HIGH", 3, "nasr")]
+
+
+def test_altitude_strata_are_separate_boundaries() -> None:
+    """One centre publishes distinct low, high and unlimited rings."""
+    segments = [arb_segment(ALTITUDE="HIGH"), arb_segment(ALTITUDE="LOW")]
+
+    boundaries, _ = build.build_boundaries(segments)
+
+    assert [boundary[3] for boundary in boundaries] == ["HIGH", "LOW"]
+
+
+def test_fir_rings_are_kept_alongside_artcc_rings() -> None:
+    segments = [
+        arb_segment(),
+        arb_segment(LOCATION_ID="ZAK", TYPE="FIR", ALTITUDE="UNLIMITED"),
+    ]
+
+    boundaries, _ = build.build_boundaries(segments)
+
+    assert {boundary[2] for boundary in boundaries} == {"ARTCC", "FIR"}
+
+
 # --- Output ---------------------------------------------------------------
 
 
@@ -198,7 +374,11 @@ def test_write_database_is_queryable_and_carries_metadata(tmp_path) -> None:
         build.build_airports([ourairports_row()], [nasr_row()]),
         build.build_navaids([]),
         build.build_fixes([]),
-        {"airac_cycle": "2026-07-09", "schema_version": "1", "sources": "test"},
+        [],
+        [],
+        [],
+        [],
+        {"airac_cycle": "2026-07-09", "schema_version": "2", "sources": "test"},
     )
 
     connection = sqlite3.connect(f"file:{database}?mode=ro", uri=True)
@@ -220,8 +400,12 @@ def test_build_is_deterministic(tmp_path) -> None:
         build.build_airports([ourairports_row()], [nasr_row()]),
         build.build_navaids([]),
         build.build_fixes([]),
+        [],
+        [],
+        [],
+        [],
     )
-    metadata = {"airac_cycle": "2026-07-09", "schema_version": "1", "sources": "test"}
+    metadata = {"airac_cycle": "2026-07-09", "schema_version": "2", "sources": "test"}
 
     first = tmp_path / "first.sqlite3"
     second = tmp_path / "second.sqlite3"
@@ -239,7 +423,11 @@ def test_manifest_describes_the_database(tmp_path) -> None:
         build.build_airports([ourairports_row()], [nasr_row()]),
         [],
         [],
-        {"airac_cycle": "2026-07-09", "schema_version": "1", "sources": "test"},
+        [],
+        [],
+        [],
+        [],
+        {"airac_cycle": "2026-07-09", "schema_version": "2", "sources": "test"},
     )
 
     manifest = build.write_manifest(
@@ -250,6 +438,10 @@ def test_manifest_describes_the_database(tmp_path) -> None:
             "airport_count": "2",
             "navaid_count": "0",
             "fix_count": "0",
+            "airway_count": "0",
+            "airway_point_count": "0",
+            "boundary_count": "0",
+            "boundary_point_count": "0",
             "sources": "test",
         },
     )

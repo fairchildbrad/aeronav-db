@@ -19,6 +19,23 @@ GOOD_AIRPORTS = [
 ]
 
 
+# The canary airway and boundary the gate looks for, with enough real geometry
+# to satisfy it. V1 starts at the Craig VORTAC; ZAB is Albuquerque Center.
+GOOD_AIRWAY_POINTS = [
+    ("V1", "C", 10, "CRG", "VORTAC", 30.338879, -81.509927, "ZJX", "FL"),
+    ("V1", "C", 20, "LLIPS", "RP", 30.666936, -81.371744, "ZJX", "FL"),
+    ("V1", "C", 30, "OCNOP", "RP", 30.862219, -81.289061, "ZJX", "FL"),
+]
+GOOD_BOUNDARY_POINTS = [
+    ("ZAB", "ARTCC", "HIGH", 10, 35.766667, -111.841667, None),
+    ("ZAB", "ARTCC", "HIGH", 20, 35.7, -110.233333, None),
+    ("ZAB", "ARTCC", "HIGH", 30, 31.5, -103.0, None),
+    ("ZAK", "FIR", "UNLIMITED", 10, 40.0, -140.0, None),
+    ("ZAK", "FIR", "UNLIMITED", 20, 30.0, -140.0, None),
+    ("ZAK", "FIR", "UNLIMITED", 30, 30.0, -150.0, None),
+]
+
+
 def build_database(
     path,
     *,
@@ -27,6 +44,11 @@ def build_database(
     ourairports_filler=13_000,
     navaids=1_200,
     fixes=60_000,
+    airways=1_100,
+    airway_points=None,
+    unplaced_airway_points=0,
+    boundaries=None,
+    boundary_points=None,
     metadata=None,
     size_padding=1_200_000,
 ):
@@ -39,6 +61,15 @@ def build_database(
             lon REAL, frequency TEXT, source TEXT);
         CREATE TABLE fixes (fix_id TEXT, lat REAL, lon REAL, use_code TEXT,
             artcc_high TEXT, artcc_low TEXT, state_code TEXT, source TEXT);
+        CREATE TABLE airways (awy_id TEXT, location TEXT, designation TEXT,
+            regulatory TEXT, point_count INTEGER, source TEXT);
+        CREATE TABLE airway_points (awy_id TEXT, location TEXT, seq INTEGER,
+            point_id TEXT, point_type TEXT, lat REAL, lon REAL, artcc TEXT,
+            state_code TEXT);
+        CREATE TABLE boundaries (boundary_id TEXT, name TEXT, kind TEXT,
+            altitude TEXT, point_count INTEGER, source TEXT);
+        CREATE TABLE boundary_points (boundary_id TEXT, kind TEXT,
+            altitude TEXT, seq INTEGER, lat REAL, lon REAL, description TEXT);
         CREATE TABLE metadata (key TEXT PRIMARY KEY, value TEXT);
         CREATE TABLE padding (blob BLOB);
         """
@@ -73,11 +104,71 @@ def build_database(
         [(f"FIX{i:05d}", 40.0, -100.0, "RP", "ZNY", "ZNY", "NY", "nasr")
          for i in range(fixes)],
     )
+    points = (
+        GOOD_AIRWAY_POINTS if airway_points is None else airway_points
+    ) + [
+        # Filler segments on their own airways, so the point-count floor is met
+        # without the canary airway growing an implausible number of points.
+        (f"J{i}", "C", seq, f"PT{i:05d}_{seq}", "RP", 40.0, -100.0, "ZNY", "NY")
+        for i in range(max(0, airways - 1))
+        for seq in range(10, 160, 10)
+    ] + [
+        ("UNPLACED", "C", seq, f"GAP{seq}", None, None, None, None, None)
+        for seq in range(unplaced_airway_points)
+    ]
+    connection.executemany(
+        "INSERT INTO airway_points VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", points
+    )
+    # Every point must belong to a declared airway or the gate reports orphans.
+    declared = {(row[0], row[1]) for row in points}
+    connection.executemany(
+        "INSERT INTO airways VALUES (?, ?, ?, ?, ?, ?)",
+        [
+            (
+                awy_id,
+                location,
+                "V",
+                "N",
+                sum(1 for row in points if (row[0], row[1]) == (awy_id, location)),
+                "nasr",
+            )
+            for awy_id, location in sorted(declared)
+        ],
+    )
+
+    rings = GOOD_BOUNDARY_POINTS if boundary_points is None else boundary_points
+    rings = rings + [
+        (f"Z{i:02d}", "ARTCC", "LOW", seq, 40.0, -100.0, None)
+        for i in range(40)
+        for seq in range(10, 610, 10)
+    ]
+    connection.executemany(
+        "INSERT INTO boundary_points VALUES (?, ?, ?, ?, ?, ?, ?)", rings
+    )
+    ring_keys = {(row[0], row[1], row[2]) for row in rings}
+    connection.executemany(
+        "INSERT INTO boundaries VALUES (?, ?, ?, ?, ?, ?)",
+        boundaries
+        if boundaries is not None
+        else [
+            (
+                boundary_id,
+                "filler",
+                kind,
+                altitude,
+                sum(1 for row in rings if (row[0], row[1], row[2]) == key),
+                "nasr",
+            )
+            for key in sorted(ring_keys)
+            for boundary_id, kind, altitude in (key,)
+        ],
+    )
+
     connection.executemany(
         "INSERT INTO metadata VALUES (?, ?)",
         (metadata or {
             "airac_cycle": "2026-07-09",
-            "schema_version": "1",
+            "schema_version": "2",
             "sources": "FAA NASR; OurAirports",
         }).items(),
     )
@@ -127,6 +218,7 @@ def test_a_truncated_database_is_reported(tmp_path) -> None:
         ({"fixes": 10}, "fixes"),
         ({"navaids": 10}, "navaids"),
         ({"nasr_filler": 10, "ourairports_filler": 10}, "airports"),
+        ({"airways": 2}, "airway_points"),
     ],
 )
 def test_empty_or_thin_tables_are_reported(tmp_path, kwargs, expected) -> None:
@@ -143,6 +235,75 @@ def test_losing_a_whole_source_layer_is_reported(tmp_path) -> None:
     )
 
     assert any("ourairports" in problem for problem in verify_database(database))
+
+
+def test_airway_points_that_mostly_fail_to_resolve_are_reported(tmp_path) -> None:
+    """The failure mode unique to airways.
+
+    Airway points carry names, not coordinates, so a NASR column rename leaves
+    every table full and correctly shaped while the geometry is entirely
+    absent. Row counts cannot see it; this is the check that can.
+    """
+    database = build_database(
+        tmp_path / "navigation.sqlite3", unplaced_airway_points=10_000
+    )
+
+    assert any(
+        "without coordinates" in problem for problem in verify_database(database)
+    )
+
+
+def test_airway_points_belonging_to_no_airway_are_reported(tmp_path) -> None:
+    database = build_database(
+        tmp_path / "navigation.sqlite3",
+        airway_points=GOOD_AIRWAY_POINTS
+        + [("GHOST", "C", 10, "NOWHR", "RP", 40.0, -100.0, "ZNY", "NY")],
+    )
+    connection = sqlite3.connect(database)
+    connection.execute("DELETE FROM airways WHERE awy_id = 'GHOST'")
+    connection.commit()
+    connection.close()
+
+    assert any(
+        "belonging to no airway" in problem for problem in verify_database(database)
+    )
+
+
+def test_a_canary_airway_starting_in_the_wrong_place_is_reported(tmp_path) -> None:
+    """V1 rerouted from Florida into Kansas -- a plausible-looking mis-resolve."""
+    moved = [(*GOOD_AIRWAY_POINTS[0][:5], 38.0, -98.0, "ZKC", "KS")]
+    database = build_database(
+        tmp_path / "navigation.sqlite3",
+        airway_points=moved + list(GOOD_AIRWAY_POINTS[1:]),
+    )
+
+    assert any("canary airway" in problem for problem in verify_database(database))
+
+
+def test_losing_the_fir_boundaries_is_reported(tmp_path) -> None:
+    """ARTCC rings alone would still meet every row-count floor."""
+    artcc_only = [row for row in GOOD_BOUNDARY_POINTS if row[1] != "FIR"]
+    database = build_database(
+        tmp_path / "navigation.sqlite3", boundary_points=artcc_only
+    )
+
+    assert any("no FIR boundaries" in problem for problem in verify_database(database))
+
+
+def test_a_boundary_ring_too_small_to_enclose_anything_is_reported(
+    tmp_path,
+) -> None:
+    database = build_database(tmp_path / "navigation.sqlite3")
+    connection = sqlite3.connect(database)
+    connection.execute(
+        "UPDATE boundaries SET point_count = 2 WHERE boundary_id = 'ZAB'"
+    )
+    connection.commit()
+    connection.close()
+
+    assert any(
+        "fewer than three points" in problem for problem in verify_database(database)
+    )
 
 
 def test_a_missing_canary_airport_is_reported(tmp_path) -> None:
