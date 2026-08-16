@@ -227,12 +227,26 @@ degrees/minutes/seconds fields and do not need to be applied again.
 
 ## Scope
 
-Deliberately **not** included:
+**If a public-domain source publishes it and it belongs on a map, it goes in.**
+This database exists to be consumed by other software, so the consumer decides
+what it needs — a layer is not left out because some callers will ignore it.
+Tables are additive and independent, so an unused layer costs a reader nothing
+but the bytes it occupies.
 
-- **Airways, SIDs/STARs, and approach procedures.** The FAA publishes these, but
-  the coded procedures (CIFP) need ARINC 424 parsing that is its own project.
+Not in yet, in rough order of intent:
+
+- **SIDs, STARs, and approach procedures.** The FAA publishes these in the CIFP,
+  but the coded procedures need ARINC 424 parsing — a substantially larger
+  reader than the CSV layers here, and the reason they are not in already. It is
+  a matter of effort, not scope.
+- **Runways.** Both sources carry them; a straightforward next layer.
+
+The one real boundary is **licensing**, and it is not a consumer's call to make:
+
 - **European en-route fixes.** Eurocontrol's Free Route Airspace points list is
-  the obvious next layer, but its terms are development/non-operational, unlike
-  the two public-domain sources here. Adding it would put a licensing asterisk on
-  an otherwise unencumbered database.
-- **Airspace boundaries.** Different shape of data; belongs in its own dataset.
+  the obvious next layer geographically, but its terms are
+  development/non-operational, unlike the two public-domain sources here.
+  Adding it would put a licensing asterisk on an otherwise unencumbered
+  database, which would cost every consumer something — including the ones that
+  never query a European fix. That trade only goes the other way if the data
+  ships as a separate, clearly-labelled artifact.
