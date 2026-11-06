@@ -140,10 +140,13 @@ jobs:
           if gh release view "$tag" >/dev/null 2>&1; then
             gh release delete "$tag" --yes --cleanup-tag
           fi
+          # LICENSE ships as an asset because most consumers fetch the release
+          # assets and never see the repo -- the terms have to travel with the data.
           gh release create "$tag" \
             dist/navigation.sqlite3 \
             dist/navigation.sqlite3.sha256 \
             dist/manifest.json \
+            LICENSE \
             --title "AIRAC $cycle" \
             --notes "$notes" \
             --latest

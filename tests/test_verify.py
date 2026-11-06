@@ -16,6 +16,25 @@ GOOD_AIRPORTS = [
     ("LHR", 51.470748, -0.459909, "Heathrow", "large_airport", "iata", "ourairports"),
     ("EGLL", 51.470748, -0.459909, "Heathrow", "large_airport", "icao", "ourairports"),
     ("SYD", -33.946098, 151.177002, "Sydney", "large_airport", "iata", "ourairports"),
+    # Foreign IATA codes that collide with a US FAA local identifier -- the
+    # class of bug that put Punta Cana in Georgia and Dublin in Pennsylvania.
+    ("PUJ", 18.567093, -68.364558, "Punta Cana", "large_airport", "iata",
+     "ourairports"),
+    ("DUB", 53.421333, -6.270075, "Dublin", "large_airport", "iata", "ourairports"),
+    ("CPT", -33.96480, 18.601700, "Cape Town", "large_airport", "iata", "ourairports"),
+    ("AUH", 24.433001, 54.651100, "Zayed Intl", "large_airport", "iata", "ourairports"),
+]
+
+
+# The canary navaids the gate looks for, one per source layer. `BIG` is here
+# twice on purpose: the same identifier in Alaska and outside London, which is
+# the case a position-based consumer has to survive.
+GOOD_NAVAIDS = [
+    ("CRG", "VORTAC", "CRAIG", 30.338879, -81.513611, "114.5", "nasr"),
+    ("BIG", "VORTAC", "BIG DELTA", 64.0044, -145.716, "114.9", "nasr"),
+    ("BIG", "VOR/DME", "Biggin", 51.3308, 0.034811, "115.1", "ourairports"),
+    ("LAM", "VOR/DME", "Lambourne", 51.646, 0.151666, "115.6", "ourairports"),
+    ("NTM", "VOR/DME", "Nattenheim", 50.0158, 6.531789, "115.3", "ourairports"),
 ]
 
 
@@ -43,6 +62,8 @@ def build_database(
     nasr_filler=13_000,
     ourairports_filler=13_000,
     navaids=1_200,
+    ourairports_navaids=6_000,
+    canary_navaids=None,
     fixes=60_000,
     airways=1_100,
     airway_points=None,
@@ -97,7 +118,10 @@ def build_database(
     connection.executemany(
         "INSERT INTO navaids VALUES (?, ?, ?, ?, ?, ?, ?)",
         [(f"V{i}", "VOR", "filler", 40.0, -100.0, "112.3", "nasr")
-         for i in range(navaids)],
+         for i in range(navaids)]
+        + [(f"W{i}", "VOR/DME", "filler", 50.0, 10.0, "112.3", "ourairports")
+           for i in range(ourairports_navaids)]
+        + (GOOD_NAVAIDS if canary_navaids is None else canary_navaids),
     )
     connection.executemany(
         "INSERT INTO fixes VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -170,6 +194,8 @@ def build_database(
             "airac_cycle": "2026-07-09",
             "schema_version": "2",
             "sources": "FAA NASR; OurAirports",
+            "licence": "Public domain.",
+            "disclaimer": "NOT FOR NAVIGATION.",
         }).items(),
     )
     if size_padding:
@@ -205,6 +231,8 @@ def test_a_truncated_database_is_reported(tmp_path) -> None:
         nasr_filler=0,
         ourairports_filler=0,
         navaids=0,
+        ourairports_navaids=0,
+        canary_navaids=[],
         fixes=0,
         size_padding=0,
     )
@@ -323,6 +351,23 @@ def test_a_canary_airport_in_the_wrong_place_is_reported(tmp_path) -> None:
     database = build_database(tmp_path / "navigation.sqlite3", airports=swapped)
 
     assert any("DFW" in problem for problem in verify_database(database))
+
+
+def test_a_database_without_the_terms_is_rejected(tmp_path) -> None:
+    """The .sqlite3 is fetched on its own, so it is the only place most
+    consumers will ever see the licence or the not-for-navigation warning.
+    A build that stopped writing them must not reach a release."""
+    path = build_database(
+        tmp_path / "no_terms.sqlite3",
+        metadata={
+            "airac_cycle": "2026-08-06",
+            "schema_version": "2",
+            "sources": "FAA NASR; OurAirports",
+        },
+    )
+    problems = verify_database(path)
+    assert any("licence" in p for p in problems)
+    assert any("disclaimer" in p for p in problems)
 
 
 def test_missing_metadata_is_reported(tmp_path) -> None:

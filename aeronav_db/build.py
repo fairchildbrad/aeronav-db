@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Compile the aeronav navigation database from its upstream sources.
 
-Sources (both 100% public domain, so the compiled database carries no licensing
-or copyleft encumbrance):
+Sources (both public domain, so the compiled database carries no licensing or
+copyleft encumbrance):
 
 * **FAA NASR 28-Day Subscription** — the official source of truth for US
   airspace, published on the 28-day AIRAC cycle. A work of the US Government,
@@ -12,9 +12,12 @@ or copyleft encumbrance):
   navaids), ``FIX_BASE.csv`` (~70k named fixes / 5LNCs), ``AWY_BASE.csv`` and
   ``AWY_SEG_ALT.csv`` (~1.5k airways over ~19k points), and ``ARB_SEG.csv``
   (ARTCC and FIR boundary rings).
-* **OurAirports** — nightly global CSV dumps released under CC0. Supplies the
-  worldwide layer NASR does not cover, and is the only one of the two that
-  carries IATA codes.
+* **OurAirports** — nightly global CSV dumps. Supplies the worldwide layer NASR
+  does not cover, and is the only one of the two that carries IATA codes. We
+  read ``airports.csv`` and ``navaids.csv``. The publisher's own wording is
+  "All data is released to the Public Domain": a dedication, not a named
+  instrument, and not one that speaks for the provenance of what OurAirports
+  itself aggregated. See the licence note in ``LICENSE`` and README.md.
 
 Merge rule: **NASR wins inside US airspace, OurAirports provides the global
 fallback** — the national AIS is authoritative within its own jurisdiction.
@@ -40,6 +43,7 @@ import csv
 import hashlib
 import io
 import json
+import math
 import re
 import sqlite3
 import sys
@@ -53,6 +57,42 @@ from aeronav_db.cycle import BROWSER_USER_AGENT, latest_available_cycle, nasr_ur
 _BROWSER_UA = BROWSER_USER_AGENT
 
 OURAIRPORTS_URL = "https://davidmegginson.github.io/ourairports-data/airports.csv"
+OURAIRPORTS_NAVAIDS_URL = (
+    "https://davidmegginson.github.io/ourairports-data/navaids.csv"
+)
+
+# Terms travel *inside* the database. A consumer fetches navigation.sqlite3
+# from the releases URL and never sees this repo, so a licence that lives only
+# in LICENSE reaches nobody who actually holds the data.
+#
+# The wording is deliberately not "CC0". OurAirports says "All data is released
+# to the Public Domain" -- a dedication, not a named instrument -- and claiming
+# CC0 on their behalf would assert a stronger, more specific grant than the one
+# they made.
+SOURCES = (
+    "FAA NASR 28-Day Subscription (US Government work, public domain); "
+    "OurAirports (publisher dedicates to the public domain)"
+)
+
+LICENCE = (
+    "Public domain. No attribution, royalty, or copyleft obligation. "
+    "The FAA NASR layer is a work of the US Government (17 USC 105). The "
+    "OurAirports layer is published under its dedication of all data to the "
+    "public domain; OurAirports aggregates from sources including the "
+    "discontinued NGA DAFIF and community contributors, and does not state "
+    "those sources' own status, so this layer rests on the publisher's "
+    "dedication rather than on a chain this build can verify. Users in "
+    "jurisdictions recognising database rights distinct from copyright (e.g. "
+    "EU Directive 96/9/EC) should make their own assessment. The `source` "
+    "column on every row records which layer it came from."
+)
+
+DISCLAIMER = (
+    "NOT FOR NAVIGATION. This is a convenience dataset for putting markers on "
+    "a map. It is not a certified navigation database, is not quality-assured "
+    "for flight, and must not be used as a primary source for operational "
+    "decisions. No warranty of accuracy or fitness for any purpose."
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DIST_DIR = REPO_ROOT / "dist"
@@ -205,6 +245,58 @@ NAVAID_POINT_TYPES = frozenset(
     {"VORTAC", "VOR/DME", "VOR", "NDB", "NDB/DME", "DME", "TACAN"}
 )
 
+# OurAirports spells the combined aids with a hyphen; NASR uses a slash. The
+# navaid table has to speak one vocabulary or a consumer filtering on
+# `nav_type` gets a different answer either side of the US border, so
+# OurAirports types are translated into NASR's spelling on the way in.
+OURAIRPORTS_NAV_TYPES = {
+    "VOR-DME": "VOR/DME",
+    "NDB-DME": "NDB/DME",
+}
+
+# ISO country codes NASR is the national AIS for. OurAirports also carries
+# these, but its US layer retains aids the FAA has since decommissioned -- the
+# VOR MON programme and the NDB drawdown have removed well over a thousand --
+# and a decommissioned navaid that still resolves is worse than one that is
+# missing. Inside this jurisdiction NASR is taken as both authoritative and
+# complete, so the OurAirports rows are dropped wholesale rather than merged.
+NASR_JURISDICTION = frozenset({"US", "PR", "VI", "GU", "AS", "MP", "UM"})
+
+# How close two same-named navaids must be to be judged the same physical aid.
+# One degree is ~60 NM, comfortably wider than the disagreement between two
+# surveys of one station and far tighter than the spacing between unrelated
+# aids that happen to share an identifier (which are typically continents
+# apart). Used only outside NASR_JURISDICTION, where NASR carries a handful of
+# Canadian, Bahamian and Mexican border aids that OurAirports also lists.
+SAME_NAVAID_DEGREES = 1.0
+
+
+# How close two airport records must be to be judged the same physical field.
+# NASR is the national AIS for US airspace; it is NOT authoritative about which
+# airport owns a globally-assigned IATA code. A three-letter FAA local
+# identifier collides with a foreign IATA code often -- 512 times in the
+# 2026-08-06 cycle -- and when it does, the two records are not one airport
+# described twice, they are two different airports sharing three letters.
+# Displacing on that collision put Dublin at DUBOIS MUNI, Cape Town at CLEBURNE
+# RGNL and Punta Cana at a field in Georgia. 25 NM comfortably exceeds the
+# disagreement between two surveys of one aerodrome and is far tighter than the
+# separation between unrelated fields that happen to share a code.
+SAME_AIRPORT_NM = 25.0
+
+EARTH_RADIUS_NM = 3440.065
+
+
+def _distance_nm(first: tuple[float, float], second: tuple[float, float]) -> float:
+    """Great-circle distance in nautical miles."""
+    lat1, lat2 = math.radians(first[0]), math.radians(second[0])
+    delta_lat = lat2 - lat1
+    delta_lon = math.radians(second[1] - first[1])
+    half_chord = (
+        math.sin(delta_lat / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(delta_lon / 2) ** 2
+    )
+    return 2 * EARTH_RADIUS_NM * math.asin(math.sqrt(half_chord))
+
 
 def _download(url: str, description: str) -> bytes:
     print(f"downloading {description} ...", flush=True)
@@ -300,10 +392,16 @@ def build_airports(
         if existing is None:
             chosen[code] = candidate
             return
-        # NASR always displaces OurAirports for the same code: inside US
-        # airspace the national AIS is the source of truth.
+        # NASR displaces OurAirports for the same code -- but only when the two
+        # records plausibly describe the same field. Inside US airspace the
+        # national AIS is the source of truth about an airport; it is not the
+        # source of truth about who owns a three-letter code worldwide. When
+        # the two sit far apart they are different airports sharing an
+        # identifier, and the IATA assignment keeps the code (the NASR field
+        # stays reachable by its ICAO id, which it offers separately).
         if authoritative and existing[7] != "nasr":
-            chosen[code] = candidate
+            if _distance_nm((lat, lon), (existing[2], existing[3])) <= SAME_AIRPORT_NM:
+                chosen[code] = candidate
             return
         if authoritative == (existing[7] == "nasr") and candidate[:2] < existing[:2]:
             chosen[code] = candidate
@@ -384,10 +482,49 @@ def build_airports(
     ]
 
 
+NavaidRow = tuple[str, str | None, str | None, float, float, str | None, str]
+
+
+def _ourairports_frequency(khz: str | None, nav_type: str) -> str | None:
+    """OurAirports kHz -> the units NASR publishes for the same kind of aid.
+
+    NASR gives VHF navaids in MHz (``113.9``) and NDBs in kHz (``341``), and
+    the two layers have to agree or a consumer cannot compare or display a
+    frequency without first knowing which source a row came from. OurAirports
+    is uniformly kHz, so only the VHF aids are rescaled.
+    """
+    text = (khz or "").strip()
+    if not text:
+        return None
+    try:
+        value = float(text)
+    except ValueError:
+        return None
+    if value <= 0:
+        return None
+    if nav_type.startswith("NDB"):
+        return str(int(value)) if value.is_integer() else text
+    # VHF/UHF: 114500 kHz -> "114.5", 116850 -> "116.85". Trailing zeros are
+    # trimmed to match NASR's own formatting, but never past one decimal.
+    return f"{value / 1000:.3f}".rstrip("0").rstrip(".") or None
+
+
 def build_navaids(
     nasr_rows: list[dict[str, str]],
-) -> list[tuple[str, str | None, str | None, float, float, str | None, str]]:
-    navaids = []
+    ourairports_rows: list[dict[str, str]] | None = None,
+) -> list[NavaidRow]:
+    """Merge the global OurAirports navaid layer under authoritative NASR.
+
+    Same rule as `build_airports`: the national AIS wins inside its own
+    jurisdiction. Unlike airports there is no single key to merge on -- the
+    table deliberately holds several rows per identifier, because a 2-3 letter
+    navaid ident is reused all over the world and a consumer disambiguates by
+    position. So dropping duplicates is done in two passes: everything
+    OurAirports lists inside `NASR_JURISDICTION` is discarded outright, and
+    what remains is discarded only where it names a NASR aid standing in
+    roughly the same place.
+    """
+    navaids: list[NavaidRow] = []
     for row in nasr_rows:
         ident = (row.get("NAV_ID") or "").strip().upper()
         if not ident:
@@ -407,6 +544,43 @@ def build_navaids(
                 "nasr",
             )
         )
+
+    # ident -> NASR positions, used for the proximity test below.
+    nasr_positions: dict[str, list[tuple[float, float]]] = {}
+    for ident, _type, _name, lat, lon, _freq, _source in navaids:
+        nasr_positions.setdefault(ident, []).append((lat, lon))
+
+    for row in ourairports_rows or []:
+        ident = (row.get("ident") or "").strip().upper()
+        if not ident:
+            continue
+        if (row.get("iso_country") or "").strip().upper() in NASR_JURISDICTION:
+            continue
+        coords = _parse_coordinates(row.get("latitude_deg"), row.get("longitude_deg"))
+        if coords is None:
+            continue
+        lat, lon = coords
+        if any(
+            abs(lat - known_lat) <= SAME_NAVAID_DEGREES
+            and abs(lon - known_lon) <= SAME_NAVAID_DEGREES
+            for known_lat, known_lon in nasr_positions.get(ident, ())
+        ):
+            continue
+
+        raw_type = (row.get("type") or "").strip().upper()
+        nav_type = OURAIRPORTS_NAV_TYPES.get(raw_type, raw_type) or None
+        navaids.append(
+            (
+                ident,
+                nav_type,
+                (row.get("name") or "").strip() or None,
+                lat,
+                lon,
+                _ourairports_frequency(row.get("frequency_khz"), raw_type),
+                "ourairports",
+            )
+        )
+
     navaids.sort(key=lambda entry: (entry[0], entry[3], entry[4]))
     return navaids
 
@@ -771,6 +945,7 @@ def build(
     cycle: str | None = None,
     nasr_zip_path: str | None = None,
     ourairports_csv_path: str | None = None,
+    ourairports_navaids_csv_path: str | None = None,
     output: Path = OUTPUT_PATH,
     manifest: Path = MANIFEST_PATH,
 ) -> dict[str, object]:
@@ -790,11 +965,24 @@ def build(
         ourairports_raw = _download(OURAIRPORTS_URL, "OurAirports airports.csv")
     ourairports_rows = _read_csv(ourairports_raw)
 
+    if ourairports_navaids_csv_path:
+        ourairports_navaids_raw = Path(ourairports_navaids_csv_path).read_bytes()
+    else:
+        ourairports_navaids_raw = _download(
+            OURAIRPORTS_NAVAIDS_URL, "OurAirports navaids.csv"
+        )
+    ourairports_navaid_rows = _read_csv(ourairports_navaids_raw)
+
     airports = build_airports(ourairports_rows, nasr["APT_BASE.csv"])
-    navaids = build_navaids(nasr["NAV_BASE.csv"])
+    navaids = build_navaids(nasr["NAV_BASE.csv"], ourairports_navaid_rows)
     fixes = build_fixes(nasr["FIX_BASE.csv"])
+    # US airways name US navaids, so they are resolved against the NASR layer
+    # alone. Letting the worldwide layer into the index would let a foreign
+    # aid sharing a 3-letter ident sort ahead of the right one and move an
+    # airway point overseas.
+    nasr_navaids = [row for row in navaids if row[6] == "nasr"]
     airways, airway_points, unresolved = build_airways(
-        nasr["AWY_BASE.csv"], nasr["AWY_SEG_ALT.csv"], navaids, fixes
+        nasr["AWY_BASE.csv"], nasr["AWY_SEG_ALT.csv"], nasr_navaids, fixes
     )
     boundaries, boundary_points = build_boundaries(nasr["ARB_SEG.csv"])
 
@@ -808,8 +996,9 @@ def build(
         "airway_point_count": str(len(airway_points)),
         "boundary_count": str(len(boundaries)),
         "boundary_point_count": str(len(boundary_points)),
-        "sources": "FAA NASR 28-Day Subscription (public domain); "
-        "OurAirports (CC0 public domain)",
+        "sources": SOURCES,
+        "licence": LICENCE,
+        "disclaimer": DISCLAIMER,
         "generator": "aeronav_db.build",
         "schema_version": SCHEMA_VERSION,
     }
@@ -829,7 +1018,7 @@ def build(
 
     print(f"wrote {output} ({output.stat().st_size / 1e6:.1f} MB)")
     print(f"  airports:   {len(airports)} ({nasr_airports} from NASR)")
-    print(f"  navaids:    {len(navaids)}")
+    print(f"  navaids:    {len(navaids)} ({len(nasr_navaids)} from NASR)")
     print(f"  fixes:      {len(fixes)}")
     print(
         f"  airways:    {len(airways)} "
@@ -855,6 +1044,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--nasr-zip", help="Local 28-day NASR subscription zip.")
     parser.add_argument("--ourairports-csv", help="Local OurAirports airports.csv.")
+    parser.add_argument(
+        "--ourairports-navaids-csv", help="Local OurAirports navaids.csv."
+    )
     parser.add_argument("--output", default=str(OUTPUT_PATH))
     parser.add_argument("--manifest", default=str(MANIFEST_PATH))
     args = parser.parse_args(argv)
@@ -863,6 +1055,7 @@ def main(argv: list[str] | None = None) -> int:
         cycle=args.cycle,
         nasr_zip_path=args.nasr_zip,
         ourairports_csv_path=args.ourairports_csv,
+        ourairports_navaids_csv_path=args.ourairports_navaids_csv,
         output=Path(args.output),
         manifest=Path(args.manifest),
     )

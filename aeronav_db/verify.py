@@ -26,12 +26,12 @@ REQUIRED_TABLES = {
     "metadata",
 }
 
-# Floors, not targets. Current build: ~35,300 airports, ~1,600 navaids,
+# Floors, not targets. Current build: ~35,300 airports, ~9,700 navaids,
 # ~70,000 fixes, ~1,500 airways over ~19,000 points, 54 boundaries over
 # ~2,700 points.
 MINIMUM_ROWS = {
     "airports": 25_000,
-    "navaids": 1_000,
+    "navaids": 7_000,
     "fixes": 50_000,
     "airways": 1_000,
     "airway_points": 15_000,
@@ -55,8 +55,29 @@ CANARY_AIRPORTS = {
     "LHR": (51.5, -0.5),
     "EGLL": (51.5, -0.5),
     "SYD": (-33.9, 151.2),
+    # Foreign IATA codes that collide with a US FAA local identifier. Each of
+    # these silently resolved to a US field thousands of miles away until the
+    # 2026-08-22 fix, because a NASR record displaced the IATA row on a shared
+    # three-letter code. They are canaries precisely because the failure is
+    # invisible until somebody flies there: the row exists, the name looks
+    # plausible, and only the coordinates are wrong.
+    "PUJ": (18.6, -68.4),  # Punta Cana -- was PAULDING NORTHWEST ATLANTA, GA
+    "DUB": (53.4, -6.3),  # Dublin -- was DUBOIS MUNI, PA
+    "CPT": (-34.0, 18.6),  # Cape Town -- was CLEBURNE RGNL, TX
+    "AUH": (24.4, 54.7),  # Abu Dhabi -- was AURORA MUNI, OR
 }
 CANARY_TOLERANCE_DEGREES = 0.5
+
+# Navaids that must resolve, spanning both source layers. A navaid identifier
+# is only 2-3 characters and is reused worldwide -- `BIG` is a VORTAC in
+# Alaska, a VOR/DME in Turkey and another outside London -- so each of these
+# asserts that *some* row for the identifier stands in the right place, which
+# is what a consumer disambiguating by position needs to be true.
+CANARY_NAVAIDS = {
+    "CRG": (30.3, -81.5),  # Craig VORTAC, Florida -- NASR
+    "LAM": (51.6, 0.2),  # Lambourne VOR/DME, England -- OurAirports
+    "NTM": (50.0, 6.5),  # Nattenheim VOR/DME, Germany -- OurAirports
+}
 
 # One airway and one boundary whose real-world geometry is well known, to prove
 # the ordered geometry survived the build and not just the row counts. V1
@@ -115,21 +136,35 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
             problems.append(f"{table}: {count} rows, expected at least {minimum}")
 
     metadata = dict(connection.execute("SELECT key, value FROM metadata"))
-    for key in ("airac_cycle", "schema_version", "sources"):
+    # `licence` and `disclaimer` are required, not optional: for a consumer who
+    # fetched the bare .sqlite3 they are the only copy of the terms in existence.
+    for key in (
+        "airac_cycle",
+        "schema_version",
+        "sources",
+        "licence",
+        "disclaimer",
+    ):
         if not metadata.get(key):
             problems.append(f"metadata is missing {key}")
 
-    # Both source layers must be present: a build that silently lost NASR
-    # would still look healthy on row counts alone.
-    sources = dict(
-        connection.execute("SELECT source, count(*) FROM airports GROUP BY source")
-    )
-    for source in ("nasr", "ourairports"):
-        if sources.get(source, 0) < 5_000:
-            problems.append(
-                f"airports from {source}: {sources.get(source, 0)}, "
-                "expected at least 5000"
+    # Both source layers must be present in both merged tables: a build that
+    # silently lost one would still look healthy on row counts alone.
+    for table, floors in (
+        ("airports", {"nasr": 5_000, "ourairports": 5_000}),
+        ("navaids", {"nasr": 1_000, "ourairports": 5_000}),
+    ):
+        sources = dict(
+            connection.execute(
+                f"SELECT source, count(*) FROM {table} GROUP BY source"  # noqa: S608
             )
+        )
+        for source, minimum in floors.items():
+            if sources.get(source, 0) < minimum:
+                problems.append(
+                    f"{table} from {source}: {sources.get(source, 0)}, "
+                    f"expected at least {minimum}"
+                )
 
     for code, (expected_lat, expected_lon) in CANARY_AIRPORTS.items():
         row = connection.execute(
@@ -149,6 +184,23 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
             problems.append(
                 f"canary airport {code} is at ({lat}, {lon}), "
                 f"expected near ({expected_lat}, {expected_lon})"
+            )
+
+    for ident, (expected_lat, expected_lon) in CANARY_NAVAIDS.items():
+        rows = connection.execute(
+            "SELECT lat, lon FROM navaids WHERE ident = ?", (ident,)
+        ).fetchall()
+        if not rows:
+            problems.append(f"canary navaid {ident} does not resolve")
+            continue
+        if not any(
+            abs(lat - expected_lat) <= CANARY_TOLERANCE_DEGREES
+            and abs(lon - expected_lon) <= CANARY_TOLERANCE_DEGREES
+            for lat, lon in rows
+        ):
+            problems.append(
+                f"canary navaid {ident} has no row near "
+                f"({expected_lat}, {expected_lon}); got {rows}"
             )
 
     problems.extend(_inspect_airways(connection))
