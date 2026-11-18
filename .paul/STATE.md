@@ -17,7 +17,7 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 
 Milestone: v0.2 Airport identity & history
 Phase: 2 of 3 (History backfill + first schema-3 release), planning
-Plan: 02-01 complete (02-01-SUMMARY.md); seed sha256 c6c09037…, dist/backfill/seed.sqlite3
+Plan: 02-02 complete (02-02-SUMMARY.md); CI chaining prepared on the branch, nothing published
 Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
 Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
 
@@ -53,7 +53,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - (resolved 2026-11-18) Timezone: operator "V0.2 and build it now". It's a later phase of v0.2, using a self-maintained country→region→override table of IANA zones, no polygons.
 
 ### Blockers/Concerns
-- DO NOT MERGE feat/airport-identity to main before Phase 2's CI chaining: the main workflow's flagless build is now refused (by design)
+- DO NOT MERGE feat/airport-identity to main except via docs/RELEASE-RUNBOOK.md (after Phase 3, operator-confirmed): merging switches CI to schema 3
 - Process: from 01-02 on, the plan goes to the operator for approval and then the audit runs (sqwkd routing, 2026-11-18). 01-01 ran under "V0.2 and build it now", with the audit skipped.
 - RELEASE GATE: no schema-3 release before the Phase 2 backfill (it would re-mint ids)
 - The build becomes chained (it needs release N-1). A forced rebuild of cycle N must use N-1, not the latest release.
@@ -63,8 +63,8 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 Last session: 2026-11-07
 Stopped at: 01-02 loop closed; SUMMARY sent to sqwkd
-Next action: /paul:plan 02-02 (CI chaining + first release from the seed; operator confirms the release) and 02-03 (older source)
-Resume file: .paul/phases/02-history-backfill/02-01-SUMMARY.md
+Next action: /paul:plan 02-03 (older source search), then Phase 3 timezones; first release via docs/RELEASE-RUNBOOK.md (operator-confirmed)
+Resume file: .paul/phases/02-history-backfill/02-02-SUMMARY.md
 
 ---
 *STATE.md — Updated after every significant action*

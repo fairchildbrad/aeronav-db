@@ -305,6 +305,19 @@ after the checks pass, so a refused build leaves the old file untouched. Each
 file records `previous_cycle` and `previous_db_sha256`, so its parent can be
 traced.
 
+In CI, `python -m aeronav_db.chain previous --cycle N` picks the previous file:
+the newest schema-3 release before N, or the pinned seed (`identity/seed.json`)
+for the first schema-3 release. A forced rebuild of N therefore chains from
+N-1. The chain step refuses:
+- a hash mismatch;
+- a skipped cycle, unless `allow_gap` is set;
+- a rebuild of N after a newer schema-3 release exists.
+
+**Trust model:** until GitHub immutable releases are enabled, CI trusts a
+release's manifest and its `.sha256` asset. The backstop is the one-hop lineage
+check: the previous file's own parent hash must match the release or seed
+before it.
+
 ## How the automation works
 
 A weekly job asks the FAA whether a cycle newer than the last release is being

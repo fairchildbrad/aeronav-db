@@ -1019,6 +1019,10 @@ def write_manifest(
         },
         "sources": metadata["sources"],
         "history_start": metadata.get("history_start", ""),
+        "previous": {
+            "cycle": metadata.get("previous_cycle", ""),
+            "sha256": metadata.get("previous_db_sha256", ""),
+        },
     }
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(
