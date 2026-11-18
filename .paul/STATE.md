@@ -16,10 +16,10 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 ## Current Position
 
 Milestone: v0.2 Airport identity & history
-Phase: 1 of 3 (Identity engine + schema 3), complete
-Plan: 01-02 complete (01-02-SUMMARY.md)
+Phase: 2 of 3 (History backfill + first schema-3 release), planning
+Plan: 02-01 complete (02-01-SUMMARY.md); seed sha256 c6c09037…, dist/backfill/seed.sqlite3
 Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
-Last activity: 2026-11-18. 01-02 applied + unified; real 2-cycle chain verified
+Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
 
 Progress:
 - Milestone: [███░░░░░░░] 33%
@@ -47,12 +47,13 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - 2026-11-18: sqwkd approved the gate fix + audit fixes ("the gate fix is OK, and so are the audit fixes. Apply 01-02.")
 - 2026-11-18: NASR COUNTRY_CODE 'AN' maps to ISO successors BQ/CW/SX; an ICAO code derived from the ident yields to an explicit icao_code (both found by AC-6 on real data)
 
+- 2026-11-18: Sticky OurAirports↔NASR attachment adopted. Operator, verbatim: "Agree with our airports record matching.  Proceed with phase 2"
+
 ### Deferred Issues
 - (resolved 2026-11-18) Timezone: operator "V0.2 and build it now". It's a later phase of v0.2, using a self-maintained country→region→override table of IANA zones, no polygons.
 
 ### Blockers/Concerns
 - DO NOT MERGE feat/airport-identity to main before Phase 2's CI chaining: the main workflow's flagless build is now refused (by design)
-- Phase 2 decision: sticky OurAirports↔NASR attachment while sources disagree on codes (avoids a spurious id that later becomes an alias)
 - Process: from 01-02 on, the plan goes to the operator for approval and then the audit runs (sqwkd routing, 2026-11-18). 01-01 ran under "V0.2 and build it now", with the audit skipped.
 - RELEASE GATE: no schema-3 release before the Phase 2 backfill (it would re-mint ids)
 - The build becomes chained (it needs release N-1). A forced rebuild of cycle N must use N-1, not the latest release.
@@ -62,8 +63,8 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 Last session: 2026-11-07
 Stopped at: 01-02 loop closed; SUMMARY sent to sqwkd
-Next action: /paul:plan Phase 2 (backfill + CI chaining + first schema-3 release); send the final DDL to cv-aviation
-Resume file: .paul/phases/01-identity-engine/01-02-SUMMARY.md
+Next action: /paul:plan 02-02 (CI chaining + first release from the seed; operator confirms the release) and 02-03 (older source)
+Resume file: .paul/phases/02-history-backfill/02-01-SUMMARY.md
 
 ---
 *STATE.md — Updated after every significant action*

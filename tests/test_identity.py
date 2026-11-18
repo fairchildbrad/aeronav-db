@@ -306,3 +306,54 @@ def test_an_ident_derived_icao_yields_to_an_explicit_icao_code():
     )
     assert old.codes == ()
     assert new.codes == (("iata", "ZAT"), ("icao", "ZPZT"))
+
+
+# --- 02-01 AC-1: sticky attachment ----------------------------------------------
+
+LAT, LON = 26.68, -80.10
+
+
+def test_staggered_rename_keeps_one_id_without_an_alias():
+    """NASR renames PBI -> DJT a cycle before OurAirports does. The known
+    pairing (site 03555. <-> OurAirports 3766) holds while the codes disagree."""
+    s1, s2, s3 = run(
+        (C1, [nasr("03555.", "PBI", "KPBI", lat=LAT, lon=LON),
+              oa("3766", iata="PBI", icao="KPBI", lat=LAT, lon=LON)]),
+        (C2, [nasr("03555.", "DJT", "KDJT", lat=LAT, lon=LON),
+              oa("3766", iata="PBI", icao="KPBI", lat=LAT, lon=LON)]),
+        (C3, [nasr("03555.", "DJT", "KDJT", lat=LAT, lon=LON),
+              oa("3766", iata="DJT", icao="KDJT", lat=LAT, lon=LON)]),
+    )
+    assert len(s3.identities) == 1 and s3.aliases == ()
+    airport = only_id(s3, "faa", "DJT", C3)
+    assert only_id(s3, "iata", "PBI", C2) == airport  # OurAirports' IATA, kept
+    assert lookup(s3, "icao", "KPBI", C2) == []  # NASR is authoritative for ICAO
+    assert only_id(s3, "iata", "DJT", C3) == airport
+
+
+def test_not_sticky_when_out_of_range():
+    s1, s2 = run(
+        (C1, [nasr("1.", "AAA", "KAAA"), oa("5", iata="AAA", icao="KAAA")]),
+        (C2, [nasr("1.", "AAB", "KAAB"), oa("5", iata="AAA", lat=45.0)]),
+    )
+    assert len(s2.identities) == 2
+
+
+def test_not_sticky_when_the_row_now_shares_a_code_with_another_field():
+    s1, s2 = run(
+        (C1, [nasr("1.", "AAA", "KAAA"), nasr("2.", "BBB", "KBBB", lat=35.1),
+              oa("5", iata="AAA", icao="KAAA")]),
+        (C2, [nasr("1.", "AAC", "KAAC"), nasr("2.", "BBB", "KBBB", lat=35.1),
+              oa("5", iata="BBB", icao="KBBB", lat=35.1)]),
+    )
+    bbb = only_id(s2, "faa", "BBB", C2)
+    assert only_id(s2, "iata", "BBB", C2) == bbb
+
+
+def test_a_standalone_ourairports_row_never_takes_a_code_nasr_assigns():
+    """2024-04-18: OurAirports moved a duplicate of KCPF to 0,0, ident intact."""
+    s1 = run((C1, [nasr("07191.1", "CPF", "KCPF"),
+                   oa("348516", icao="KCPF", lat=0.004, lon=0.008)]))[0]
+    assert len(s1.identities) == 2
+    assert len(lookup(s1, "icao", "KCPF", C1)) == 1
+    assert lookup(s1, "icao", "KCPF", C1) == lookup(s1, "faa", "CPF", C1)

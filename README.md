@@ -275,6 +275,18 @@ What the file guarantees, and `verify` enforces:
   pointing at the survivor. An alias never points at another alias.
 - `match_basis` records how the identity was matched in its most recent cycle.
 
+### Where the history comes from
+
+The history is replayed, cycle by cycle, through the same engine the weekly
+build uses (`python -m aeronav_db.backfill`). It starts at the earliest cycle in
+the FAA's NASR archive, 2020-03-26, and reads all three formats the archive has
+used: fixed-width text, per-subject CSV and single CSV. OurAirports history
+comes from its public git mirror, which starts on 2021-11-02. So
+`history_start` is the first NASR cycle, and `history_start_ourairports` is the
+first cycle with non-US data. `backfill_sources` records, for every cycle, the
+sha256 of the exact FAA file parsed and the OurAirports commit, so any id can be
+traced to the bytes that created it.
+
 ### The chained build
 
 Each file is built from the cycle's sources **and the previous cycle's file**,

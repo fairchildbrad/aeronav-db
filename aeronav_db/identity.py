@@ -183,7 +183,41 @@ class _Entity:
         return sorted((s, c, src) for (s, c), src in found.items())
 
 
-def _group(observations: list[Observation]) -> list[_Entity]:
+def _can_pair(row: Observation, candidate: _Entity) -> bool:
+    """Country gate and distance for attaching an OurAirports row to a NASR
+    record. Inside US jurisdiction any NASR record may be the partner;
+    outside it only one NASR lists in the same country (NASR carries some
+    Canadian, Bahamian, Micronesian... fields)."""
+    country = row.iso_country or ""
+    nasr_country = candidate.nasr.iso_country or ""  # type: ignore[union-attr]
+    same_country = country in NASR_JURISDICTION or (
+        country != ""
+        and (
+            country == nasr_country
+            or country in NASR_LEGACY_COUNTRIES.get(nasr_country, ())
+        )
+    )
+    return (
+        same_country
+        and candidate.ourairports is None
+        and _distance_nm(
+            (row.lat, row.lon), (candidate.primary.lat, candidate.primary.lon)
+        )
+        <= SAME_AIRPORT_NM
+    )
+
+
+def _group(
+    observations: list[Observation],
+    sticky: dict[str, tuple[str, str]] | None = None,
+) -> list[_Entity]:
+    """Pair OurAirports rows with the NASR record of the same field.
+
+    ``sticky`` maps an OurAirports id to the NASR site key it was paired with
+    before. That pairing holds while the two sources disagree on codes (NASR
+    renamed PBI -> DJT a cycle before OurAirports did), as long as the row
+    shares no code with any NASR record and still passes the gate.
+    """
     nasr = sorted(
         (o for o in observations if o.source == "nasr"),
         key=lambda o: (o.nasr_site_no or "", o.nasr_site_type or ""),
@@ -194,34 +228,26 @@ def _group(observations: list[Observation]) -> list[_Entity]:
     )
     entities = [_Entity(o, None) for o in nasr]
     by_code: dict[str, list[_Entity]] = defaultdict(list)
+    by_site: dict[tuple[str, str], _Entity] = {}
     for entity in entities:
         for _, code in entity.nasr.codes:  # type: ignore[union-attr]
             by_code[code.upper()].append(entity)
+        by_site[(entity.nasr.nasr_site_no or "", entity.nasr.nasr_site_type or "")] = (  # type: ignore[union-attr]
+            entity
+        )
 
     for row in ourairports:
         partner = None
-        country = row.iso_country or ""
-        for _, code in row.codes:
-            for candidate in by_code.get(code.upper(), []):
-                # Inside US jurisdiction any NASR record may be the partner.
-                # Outside it, only one NASR lists in the same country (NASR
-                # carries some Canadian, Bahamian, Micronesian... fields).
-                nasr_country = candidate.nasr.iso_country or ""  # type: ignore[union-attr]
-                same_country = country in NASR_JURISDICTION or (
-                    country != ""
-                    and (
-                        country == nasr_country
-                        or country in NASR_LEGACY_COUNTRIES.get(nasr_country, ())
-                    )
-                )
-                if same_country and candidate.ourairports is None and _distance_nm(
-                    (row.lat, row.lon),
-                    (candidate.primary.lat, candidate.primary.lon),
-                ) <= SAME_AIRPORT_NM:
-                    partner = candidate
-                    break
-            if partner is not None:
+        shares = [c for _, code in row.codes for c in by_code.get(code.upper(), [])]
+        for candidate in shares:
+            if _can_pair(row, candidate):
+                partner = candidate
                 break
+        if partner is None and not shares and sticky:
+            site = sticky.get(row.ourairports_id or "")
+            candidate = by_site.get(site) if site else None
+            if candidate is not None and _can_pair(row, candidate):
+                partner = candidate
         if partner is not None:
             partner.ourairports = row
         else:
@@ -278,7 +304,12 @@ def apply_cycle(
     def free(airport_id: str | None) -> str | None:
         return airport_id if airport_id and airport_id not in claimed else None
 
-    for entity in _group(observations):
+    sticky = {
+        identity.ourairports_id: (identity.nasr_site_no, identity.nasr_site_type or "")
+        for _, identity in sorted(live.items())
+        if identity.ourairports_id and identity.nasr_site_no
+    }
+    for entity in _group(observations, sticky):
         candidates: list[tuple[str, str]] = []
         if entity.nasr is not None:
             row = entity.nasr
@@ -351,8 +382,22 @@ def apply_cycle(
 
     # Code intervals: closed ones are carried untouched; open ones close when
     # the airport no longer holds the code (or is absent, or was merged away).
+    # NASR is authoritative for the FAA and ICAO codes it assigns: a
+    # standalone OurAirports row claiming one of them this cycle (2024-04: a
+    # row marked "(Duplicate)" and moved to 0,0 still carried ident KCPF)
+    # does not get it.
+    nasr_assigned = {
+        (scheme, code.upper())
+        for entity in matched.values()
+        if entity.nasr is not None
+        for scheme, code in entity.nasr.codes
+    }
     wanted = {
-        airport: {(s, c): src for s, c, src in entity.codes()}
+        airport: {
+            (s, c): src
+            for s, c, src in entity.codes()
+            if entity.nasr is not None or (s, c) not in nasr_assigned
+        }
         for airport, entity in matched.items()
     }
     codes: list[CodeInterval] = []
