@@ -155,7 +155,7 @@ SELECT value FROM metadata WHERE key = 'airac_cycle';
 ### Schema
 
 ```sql
-airports(code PRIMARY KEY, lat, lon, name, kind, code_type, source)
+airports(code PRIMARY KEY, lat, lon, name, kind, code_type, source, airport_id)
 navaids (ident, nav_type, name, lat, lon, frequency, source)   -- indexed on ident
 fixes   (fix_id, lat, lon, use_code, artcc_high, artcc_low, state_code, source)
 
@@ -172,7 +172,9 @@ metadata(key PRIMARY KEY, value)
 ```
 
 `source` is `nasr` or `ourairports` on every row, so a consumer can always tell
-which layer answered. `code_type` is `iata`, `icao`, or `faa`.
+which layer answered. `code_type` is `iata`, `icao`, or `faa`; an FAA
+identifier is `faa` even when it is three letters. `airport_id` is the
+airport's permanent id (next section).
 
 `metadata` carries `licence` and `disclaimer` alongside the cycle and counts, so
 the terms and the not-for-navigation warning travel **inside** the file. A
@@ -220,6 +222,77 @@ of the country. In the current cycle 169 of 19,247 points (0.9%) do not
 resolve; those rows are kept with NULL `lat`/`lon` so the gap is visible rather
 than silently closed.
 
+## Airport identity and history
+
+*Schema 3. Not yet released: the first schema-3 release follows the archive
+backfill, so the ids it carries are the ones history starts from.*
+
+Codes change: Palm Beach went from PBI to DJT, and FAA identifiers are
+reassigned. A stored code says nothing about which airport it meant last year.
+Every airport therefore gets a permanent id: `AP` plus seven digits
+(`AP0003340`). It is compared case-insensitively, it is never renamed, reused or
+removed, and it carries the source keys (NASR site number, OurAirports id) as
+attributes, not as identity.
+
+```sql
+airport_identity(airport_id PK, nasr_site_no, nasr_site_type, ourairports_id,
+                 name, lat, lon, kind, iso_country, source_status,
+                 first_cycle, last_seen_cycle, in_current_cycle, match_basis,
+                 tz, tz_basis)            -- tz columns NULL until the timezone phase
+airport_codes   (airport_id, scheme, code, source, effective_date, valid_to)
+                 -- scheme: faa | icao | iata; valid_to exclusive, NULL = held now
+airport_presence(airport_id, effective_date, valid_to)
+airport_aliases (alias_id PK, airport_id, effective_date, reason)
+```
+
+Which airport did IATA `PBI` mean on 2026-08-01?
+
+```sql
+SELECT COALESCE(a.airport_id, c.airport_id) AS airport_id
+FROM airport_codes c LEFT JOIN airport_aliases a ON a.alias_id = c.airport_id
+WHERE c.scheme = 'iata' AND c.code = 'PBI'
+  AND c.effective_date <= '2026-08-01'
+  AND (c.valid_to IS NULL OR '2026-08-01' < c.valid_to);
+```
+
+What the file guarantees, and `verify` enforces:
+
+- **Append-only history.** A closed interval never changes. A new cycle can only
+  close intervals that are still open, at its own date, and open new ones.
+- **Dates are cycle dates.** `effective_date` is the AIRAC cycle in which a
+  change first appears in the chain, not the day it happened in the world.
+  Nothing before `metadata.history_start` is known.
+- **Absent is not closed.** An airport missing from a cycle gets a gap in
+  `airport_presence` and holds no codes during it; `source_status` changes only
+  when a source says so (NASR CI/CP, OurAirports `closed`). If it comes back,
+  it comes back under the same id.
+- **One holder per FAA or ICAO code at a time.** A build that would give two
+  airports the same open FAA or ICAO code is refused. IATA codes may genuinely
+  repeat worldwide; `verify` reports how many do (0 in the 2026-10-29 data),
+  and a consumer disambiguates by position.
+- **Aliases are one hop.** When two ids turn out to be one airport, the lower
+  survives; the other keeps its history and gets one `airport_aliases` row
+  pointing at the survivor. An alias never points at another alias.
+- `match_basis` records how the identity was matched in its most recent cycle.
+
+### The chained build
+
+Each file is built from the cycle's sources **and the previous cycle's file**,
+which is where ids and history come from:
+
+```bash
+python -m aeronav_db.build --cycle 2026-10-29 --previous-db prev/navigation.sqlite3
+python -m aeronav_db.verify dist/navigation.sqlite3 --previous prev/navigation.sqlite3
+```
+
+Without `--previous-db` the build refuses, unless `--bootstrap` says to start a
+new history (which mints every id anew). It also refuses a previous file that is
+not schema 3, is not an earlier cycle, fails its own invariants, or is the output
+path itself. The output is written beside the target and renamed into place only
+after the checks pass, so a refused build leaves the old file untouched. Each
+file records `previous_cycle` and `previous_db_sha256`, so its parent can be
+traced.
+
 ## How the automation works
 
 A weekly job asks the FAA whether a cycle newer than the last release is being
@@ -250,8 +323,8 @@ releases, so cloning stays cheap and history stays free of binaries.
 ```bash
 pip install -e ".[dev]"
 
-python -m aeronav_db.build                    # newest in-force cycle
-python -m aeronav_db.build --cycle 2026-08-06
+python -m aeronav_db.build --bootstrap        # newest cycle, new id history
+python -m aeronav_db.build --cycle 2026-08-06 --previous-db prev.sqlite3
 python -m aeronav_db.verify dist/navigation.sqlite3
 ```
 
@@ -262,7 +335,8 @@ cached copy:
 python -m aeronav_db.build \
   --nasr-zip ./28DaySubscription_Effective_2026-08-06.zip \
   --ourairports-csv ./airports.csv \
-  --ourairports-navaids-csv ./navaids.csv
+  --ourairports-navaids-csv ./navaids.csv \
+  --bootstrap
 ```
 
 The build is **deterministic for a given SQLite version** — rows are sorted and

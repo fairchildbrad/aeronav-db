@@ -2,7 +2,9 @@
 
 import sqlite3
 
-from aeronav_db import build
+from aeronav_db import build, identity
+
+CYCLE = "2026-07-09"
 
 
 def ourairports_row(**overrides) -> dict[str, str]:
@@ -15,6 +17,7 @@ def ourairports_row(**overrides) -> dict[str, str]:
         "iso_country": "US",
         "icao_code": "KDFW",
         "iata_code": "DFW",
+        "id": "3384",
     }
     row.update(overrides)
     return row
@@ -22,6 +25,8 @@ def ourairports_row(**overrides) -> dict[str, str]:
 
 def nasr_row(**overrides) -> dict[str, str]:
     row = {
+        "SITE_NO": "04479.",
+        "COUNTRY_CODE": "US",
         "ARPT_ID": "DFW",
         "ICAO_ID": "KDFW",
         "ARPT_NAME": "DALLAS-FORT WORTH INTL",
@@ -32,6 +37,19 @@ def nasr_row(**overrides) -> dict[str, str]:
     }
     row.update(overrides)
     return row
+
+
+def identified(ourairports_rows, nasr_rows, cycle=CYCLE, state=None):
+    """Airports rows with their airport_id, and the identity state, as the
+    build produces them."""
+    state = identity.apply_cycle(
+        state or identity.IdentityState.empty(),
+        cycle,
+        identity.nasr_observations(nasr_rows)
+        + identity.ourairports_observations(ourairports_rows),
+    )
+    keyed = build.build_airports_keyed(ourairports_rows, nasr_rows)
+    return build.assign_airport_ids(keyed, state), state
 
 
 def as_dict(rows) -> dict[str, tuple]:
@@ -586,16 +604,18 @@ def test_fir_rings_are_kept_alongside_artcc_rings() -> None:
 
 def test_write_database_is_queryable_and_carries_metadata(tmp_path) -> None:
     database = tmp_path / "navigation.sqlite3"
+    airports, state = identified([ourairports_row()], [nasr_row()])
     build.write_database(
         database,
-        build.build_airports([ourairports_row()], [nasr_row()]),
+        airports,
         build.build_navaids([]),
         build.build_fixes([]),
         [],
         [],
         [],
         [],
-        {"airac_cycle": "2026-07-09", "schema_version": "2", "sources": "test"},
+        {"airac_cycle": "2026-07-09", "schema_version": "3", "sources": "test"},
+        state,
     )
 
     connection = sqlite3.connect(f"file:{database}?mode=ro", uri=True)
@@ -613,8 +633,9 @@ def test_write_database_is_queryable_and_carries_metadata(tmp_path) -> None:
 def test_build_is_deterministic(tmp_path) -> None:
     """Identical inputs must give a byte-identical file, or the published
     checksum tells consumers nothing about whether the data changed."""
+    airports, state = identified([ourairports_row()], [nasr_row()])
     rows = (
-        build.build_airports([ourairports_row()], [nasr_row()]),
+        airports,
         build.build_navaids([]),
         build.build_fixes([]),
         [],
@@ -622,12 +643,12 @@ def test_build_is_deterministic(tmp_path) -> None:
         [],
         [],
     )
-    metadata = {"airac_cycle": "2026-07-09", "schema_version": "2", "sources": "test"}
+    metadata = {"airac_cycle": "2026-07-09", "schema_version": "3", "sources": "test"}
 
     first = tmp_path / "first.sqlite3"
     second = tmp_path / "second.sqlite3"
-    build.write_database(first, *rows, metadata)
-    build.write_database(second, *rows, metadata)
+    build.write_database(first, *rows, metadata, state)
+    build.write_database(second, *rows, metadata, state)
 
     assert build.sha256_of(first) == build.sha256_of(second)
 
@@ -635,16 +656,18 @@ def test_build_is_deterministic(tmp_path) -> None:
 def test_manifest_describes_the_database(tmp_path) -> None:
     database = tmp_path / "navigation.sqlite3"
     manifest_path = tmp_path / "manifest.json"
+    airports, state = identified([ourairports_row()], [nasr_row()])
     build.write_database(
         database,
-        build.build_airports([ourairports_row()], [nasr_row()]),
+        airports,
         [],
         [],
         [],
         [],
         [],
         [],
-        {"airac_cycle": "2026-07-09", "schema_version": "2", "sources": "test"},
+        {"airac_cycle": "2026-07-09", "schema_version": "3", "sources": "test"},
+        state,
     )
 
     manifest = build.write_manifest(

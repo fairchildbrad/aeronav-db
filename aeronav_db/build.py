@@ -103,7 +103,10 @@ MANIFEST_PATH = DIST_DIR / "manifest.json"
 # consumer can refuse a database it does not understand.
 #
 # 2: added airways, airway_points, boundaries and boundary_points.
-SCHEMA_VERSION = "2"
+# 3: permanent airport identity: airport_identity, airport_codes,
+#    airport_presence, airport_aliases; airports.airport_id; a NASR identifier
+#    is labelled code_type 'faa' (it was guessed as 'iata' when 3 letters).
+SCHEMA_VERSION = "3"
 
 IATA_RE = re.compile(r"^[A-Z]{3}$")
 ICAO_RE = re.compile(r"^[A-Z]{4}$")
@@ -133,6 +136,55 @@ NASR_SITE_TYPES = {
     "H": ("heliport", 5),
 }
 
+# Permanent airport identity (schema 3). Rows are never deleted; a closed
+# interval never changes. See aeronav_db/identity.py for the rules.
+IDENTITY_SCHEMA = """
+CREATE TABLE airport_identity (
+    airport_id       TEXT PRIMARY KEY COLLATE NOCASE
+                     CHECK (airport_id GLOB 'AP[0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+    nasr_site_no     TEXT,
+    nasr_site_type   TEXT,
+    ourairports_id   TEXT,
+    name             TEXT,
+    lat              REAL NOT NULL,
+    lon              REAL NOT NULL,
+    kind             TEXT,
+    iso_country      TEXT,
+    source_status    TEXT NOT NULL,
+    first_cycle      TEXT NOT NULL,
+    last_seen_cycle  TEXT NOT NULL,
+    in_current_cycle INTEGER NOT NULL,
+    match_basis      TEXT NOT NULL,
+    tz               TEXT,
+    tz_basis         TEXT
+);
+
+CREATE TABLE airport_codes (
+    airport_id     TEXT NOT NULL COLLATE NOCASE REFERENCES airport_identity(airport_id),
+    scheme         TEXT NOT NULL CHECK (scheme IN ('faa', 'icao', 'iata')),
+    code           TEXT NOT NULL COLLATE NOCASE,
+    source         TEXT NOT NULL,
+    effective_date TEXT NOT NULL,
+    valid_to       TEXT,
+    PRIMARY KEY (airport_id, scheme, code, effective_date)
+);
+CREATE INDEX airport_codes_by_code ON airport_codes (scheme, code, effective_date);
+
+CREATE TABLE airport_presence (
+    airport_id     TEXT NOT NULL COLLATE NOCASE REFERENCES airport_identity(airport_id),
+    effective_date TEXT NOT NULL,
+    valid_to       TEXT,
+    PRIMARY KEY (airport_id, effective_date)
+);
+
+CREATE TABLE airport_aliases (
+    alias_id       TEXT PRIMARY KEY COLLATE NOCASE,
+    airport_id     TEXT NOT NULL COLLATE NOCASE REFERENCES airport_identity(airport_id),
+    effective_date TEXT NOT NULL,
+    reason         TEXT NOT NULL
+);
+"""
+
 SCHEMA = """
 CREATE TABLE airports (
     code       TEXT PRIMARY KEY,
@@ -141,7 +193,8 @@ CREATE TABLE airports (
     name       TEXT,
     kind       TEXT,
     code_type  TEXT NOT NULL,
-    source     TEXT NOT NULL
+    source     TEXT NOT NULL,
+    airport_id TEXT NOT NULL COLLATE NOCASE REFERENCES airport_identity(airport_id)
 );
 
 CREATE TABLE navaids (
@@ -237,7 +290,7 @@ CREATE TABLE metadata (
     key        TEXT PRIMARY KEY,
     value      TEXT NOT NULL
 );
-"""
+""" + IDENTITY_SCHEMA
 
 # NASR point types that name a radio navaid rather than a named fix. Used to
 # decide which table to resolve an airway point against first.
@@ -372,8 +425,29 @@ def build_airports(
 
     Returns rows of ``(code, lat, lon, name, kind, code_type, source)``.
     """
-    # code -> (priority, tie_break, lat, lon, name, kind, code_type, source)
-    chosen: dict[str, tuple[int, str, float, float, str | None, str, str, str]] = {}
+    return [row[:7] for row in build_airports_keyed(ourairports_rows, nasr_rows)]
+
+
+def nasr_source_key(row: dict[str, str]) -> tuple[str, str, str]:
+    return (
+        "nasr",
+        (row.get("SITE_NO") or "").strip(),
+        (row.get("SITE_TYPE_CODE") or "").strip().upper(),
+    )
+
+
+def ourairports_source_key(row: dict[str, str]) -> tuple[str, str]:
+    return ("ourairports", (row.get("id") or "").strip())
+
+
+def build_airports_keyed(
+    ourairports_rows: list[dict[str, str]], nasr_rows: list[dict[str, str]]
+) -> list[tuple]:
+    """``build_airports`` plus, last in each row, the source record's key
+    (``nasr_source_key`` / ``ourairports_source_key``), so a row can be tied
+    to its permanent airport id. The merge itself is identical."""
+    # code -> (priority, tie_break, lat, lon, name, kind, code_type, source, key)
+    chosen: dict[str, tuple] = {}
 
     def offer(
         code: str,
@@ -386,9 +460,12 @@ def build_airports(
         code_type: str,
         source: str,
         authoritative: bool,
+        key: tuple,
     ) -> None:
         existing = chosen.get(code)
-        candidate = (priority, tie_break, lat, lon, name, kind, code_type, source)
+        candidate = (
+            priority, tie_break, lat, lon, name, kind, code_type, source, key
+        )
         if existing is None:
             chosen[code] = candidate
             return
@@ -425,7 +502,7 @@ def build_airports(
         if has_iata:
             offer(
                 iata, priority, ident, lat, lon, name, airport_type, "iata",
-                "ourairports", authoritative=False,
+                "ourairports", authoritative=False, key=ourairports_source_key(row),
             )
         icao = next(
             (
@@ -441,7 +518,7 @@ def build_airports(
         if icao is not None:
             offer(
                 icao, priority, ident, lat, lon, name, airport_type, "icao",
-                "ourairports", authoritative=False,
+                "ourairports", authoritative=False, key=ourairports_source_key(row),
             )
 
     # --- US layer: FAA NASR (FAA LID + ICAO), authoritative ---------------
@@ -463,20 +540,21 @@ def build_airports(
         tie_break = faa_lid or icao_id
 
         if FAA_LID_RE.match(faa_lid):
-            code_type = "iata" if IATA_RE.match(faa_lid) else "faa"
+            # An FAA location identifier is an FAA code even when it is three
+            # letters; whether IATA uses the same letters is IATA's business.
             offer(
-                faa_lid, priority, tie_break, lat, lon, name, kind, code_type,
-                "nasr", authoritative=True,
+                faa_lid, priority, tie_break, lat, lon, name, kind, "faa",
+                "nasr", authoritative=True, key=nasr_source_key(row),
             )
         if ICAO_RE.match(icao_id):
             offer(
                 icao_id, priority, tie_break, lat, lon, name, kind, "icao",
-                "nasr", authoritative=True,
+                "nasr", authoritative=True, key=nasr_source_key(row),
             )
 
     return [
-        (code, lat, lon, name, kind, code_type, source)
-        for code, (_, _, lat, lon, name, kind, code_type, source) in sorted(
+        (code, lat, lon, name, kind, code_type, source, key)
+        for code, (_, _, lat, lon, name, kind, code_type, source, key) in sorted(
             chosen.items()
         )
     ]
@@ -832,7 +910,13 @@ def write_database(
     boundaries: list[tuple],
     boundary_points: list[tuple],
     metadata: dict[str, str],
+    identity_state=None,
 ) -> None:
+    """Write a fresh database at ``path``. ``airports`` rows carry their
+    airport_id last; ``identity_state`` (an identity.IdentityState) fills the
+    identity tables."""
+    from aeronav_db.identity import dump_state
+
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists():
         path.unlink()
@@ -840,10 +924,12 @@ def write_database(
     connection = sqlite3.connect(path)
     try:
         connection.executescript(SCHEMA)
+        if identity_state is not None:
+            dump_state(connection, identity_state)
         connection.executemany(
             "INSERT INTO airports "
-            "(code, lat, lon, name, kind, code_type, source) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "(code, lat, lon, name, kind, code_type, source, airport_id) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             airports,
         )
         connection.executemany(
@@ -932,6 +1018,7 @@ def write_manifest(
             "boundary_points": int(metadata["boundary_point_count"]),
         },
         "sources": metadata["sources"],
+        "history_start": metadata.get("history_start", ""),
     }
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(
@@ -948,8 +1035,17 @@ def build(
     ourairports_navaids_csv_path: str | None = None,
     output: Path = OUTPUT_PATH,
     manifest: Path = MANIFEST_PATH,
+    previous_db: Path | None = None,
+    bootstrap: bool = False,
 ) -> dict[str, object]:
+    from aeronav_db import identity
+
     resolved_cycle = cycle or latest_available_cycle().isoformat()
+    # The chain input is checked before any source is read: a wrong PREV
+    # would re-mint or fork ids that consumers already store.
+    previous_state, previous_meta, previous_sha = _load_previous(
+        previous_db, bootstrap, output, resolved_cycle
+    )
 
     if nasr_zip_path:
         nasr_zip = Path(nasr_zip_path).read_bytes()
@@ -973,7 +1069,14 @@ def build(
         )
     ourairports_navaid_rows = _read_csv(ourairports_navaids_raw)
 
-    airports = build_airports(ourairports_rows, nasr["APT_BASE.csv"])
+    keyed_airports = build_airports_keyed(ourairports_rows, nasr["APT_BASE.csv"])
+    state = identity.apply_cycle(
+        previous_state,
+        resolved_cycle,
+        identity.nasr_observations(nasr["APT_BASE.csv"])
+        + identity.ourairports_observations(ourairports_rows),
+    )
+    airports = assign_airport_ids(keyed_airports, state)
     navaids = build_navaids(nasr["NAV_BASE.csv"], ourairports_navaid_rows)
     fixes = build_fixes(nasr["FIX_BASE.csv"])
     # US airways name US navaids, so they are resolved against the NASR layer
@@ -1001,10 +1104,18 @@ def build(
         "disclaimer": DISCLAIMER,
         "generator": "aeronav_db.build",
         "schema_version": SCHEMA_VERSION,
+        "airport_id_next": str(state.next_id),
+        "history_start": previous_meta.get("history_start", resolved_cycle),
+        "previous_cycle": previous_meta.get("airac_cycle", ""),
+        "previous_db_sha256": previous_sha,
     }
 
+    # Written beside the output and renamed into place only once the identity
+    # invariants hold, so a failed build never leaves a half-written file and
+    # never replaces a good one.
+    staging = output.with_name(output.name + ".partial")
     write_database(
-        output,
+        staging,
         airports,
         navaids,
         fixes,
@@ -1013,7 +1124,16 @@ def build(
         boundaries,
         boundary_points,
         metadata,
+        state,
     )
+    problems = _check_staged(staging, previous_db)
+    if problems:
+        staging.unlink()
+        raise BuildError(
+            "identity invariants failed; nothing written:\n  - "
+            + "\n  - ".join(problems)
+        )
+    staging.replace(output)
     document = write_manifest(manifest, output, metadata)
 
     print(f"wrote {output} ({output.stat().st_size / 1e6:.1f} MB)")
@@ -1028,6 +1148,95 @@ def build(
     print(f"  AIRAC:      {resolved_cycle}")
     print(f"  sha256:   {document['database']['sha256']}")  # type: ignore[index]
     return document
+
+
+class BuildError(Exception):
+    """The build refused to produce a file. The message says why."""
+
+
+def assign_airport_ids(keyed_airports: list[tuple], state) -> list[tuple]:
+    """Replace each row's source key with its permanent airport_id. A row that
+    maps to no current identity, or to more than one, fails the build."""
+    from aeronav_db.identity import current_key_index
+
+    index = current_key_index(state)
+    rows, unmapped = [], []
+    for row in keyed_airports:
+        airport_id = index.get(row[7])
+        if airport_id is None:
+            unmapped.append((row[0], row[7]))
+            continue
+        rows.append((*row[:7], airport_id))
+    if unmapped:
+        raise BuildError(
+            f"{len(unmapped)} airports rows map to no airport id: {unmapped[:10]}"
+        )
+    return rows
+
+
+def _load_previous(
+    previous_db: Path | None, bootstrap: bool, output: Path, cycle: str
+):
+    """(state, metadata, sha256) of the previous cycle's file, or an empty
+    state when bootstrapping. Refuses anything that could fork the ids."""
+    from aeronav_db.identity import IdentityState, load_state
+    from aeronav_db.verify import check_identity, sha256_file
+
+    if previous_db is None:
+        if not bootstrap:
+            raise BuildError(
+                "no --previous-db: pass the previous cycle's database, or "
+                "--bootstrap to start a new id history (this mints every id anew)"
+            )
+        return IdentityState.empty(), {}, ""
+    if bootstrap:
+        raise BuildError("--bootstrap and --previous-db are mutually exclusive")
+    if not previous_db.is_file():
+        raise BuildError(f"previous database does not exist: {previous_db}")
+    if previous_db.resolve() == output.resolve():
+        raise BuildError(
+            "--previous-db is the output file; the build would overwrite the "
+            "history it extends"
+        )
+    previous_sha = sha256_file(previous_db)
+    try:
+        connection = sqlite3.connect(f"file:{previous_db}?mode=ro", uri=True)
+        try:
+            metadata = dict(connection.execute("SELECT key, value FROM metadata"))
+            if metadata.get("schema_version") != SCHEMA_VERSION:
+                raise BuildError(
+                    f"previous database is schema {metadata.get('schema_version')}, "
+                    f"not {SCHEMA_VERSION}"
+                )
+            problems, _ = check_identity(connection)
+            if problems:
+                raise BuildError(
+                    "previous database fails its identity invariants:\n  - "
+                    + "\n  - ".join(problems)
+                )
+            state = load_state(connection)
+        finally:
+            connection.close()
+    except sqlite3.Error as error:
+        raise BuildError(f"cannot read previous database: {error}") from error
+    if not state.last_cycle or state.last_cycle >= cycle:
+        raise BuildError(
+            f"previous database is cycle {state.last_cycle}; it must precede {cycle}"
+        )
+    return state, metadata, previous_sha
+
+
+def _check_staged(staging: Path, previous_db: Path | None) -> list[str]:
+    from aeronav_db.verify import check_identity, verify_chain
+
+    connection = sqlite3.connect(f"file:{staging}?mode=ro", uri=True)
+    try:
+        problems, _ = check_identity(connection)
+    finally:
+        connection.close()
+    if previous_db is not None:
+        problems.extend(verify_chain(staging, previous_db))
+    return problems
 
 
 def nasr_url_for(cycle: str) -> str:
@@ -1049,16 +1258,33 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--output", default=str(OUTPUT_PATH))
     parser.add_argument("--manifest", default=str(MANIFEST_PATH))
+    parser.add_argument(
+        "--previous-db",
+        help="The previous cycle's database; airport ids and history carry on "
+        "from it. Required unless --bootstrap.",
+    )
+    parser.add_argument(
+        "--bootstrap",
+        action="store_true",
+        help="Start a new airport id history (mints every id). Only for the "
+        "first file of a chain.",
+    )
     args = parser.parse_args(argv)
 
-    build(
-        cycle=args.cycle,
-        nasr_zip_path=args.nasr_zip,
-        ourairports_csv_path=args.ourairports_csv,
-        ourairports_navaids_csv_path=args.ourairports_navaids_csv,
-        output=Path(args.output),
-        manifest=Path(args.manifest),
-    )
+    try:
+        build(
+            cycle=args.cycle,
+            nasr_zip_path=args.nasr_zip,
+            ourairports_csv_path=args.ourairports_csv,
+            ourairports_navaids_csv_path=args.ourairports_navaids_csv,
+            output=Path(args.output),
+            manifest=Path(args.manifest),
+            previous_db=Path(args.previous_db) if args.previous_db else None,
+            bootstrap=args.bootstrap,
+        )
+    except BuildError as error:
+        print(f"BUILD REFUSED: {error}", file=sys.stderr)
+        return 2
     return 0
 
 

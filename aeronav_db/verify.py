@@ -12,7 +12,9 @@ not to police normal cycle-to-cycle variation.
 
 from __future__ import annotations
 
+import hashlib
 import sqlite3
+from datetime import date
 from pathlib import Path
 
 REQUIRED_TABLES = {
@@ -24,7 +26,25 @@ REQUIRED_TABLES = {
     "boundaries",
     "boundary_points",
     "metadata",
+    "airport_identity",
+    "airport_codes",
+    "airport_presence",
+    "airport_aliases",
 }
+
+IDENTITY_METADATA = (
+    "airport_id_next",
+    "history_start",
+    "previous_cycle",
+    "previous_db_sha256",
+)
+AIRPORT_ID_GLOB = "AP[0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+CYCLE_DAYS = 28
+# One airport, reachable by both its IATA and ICAO code: the PBI -> DJT rename
+# was the case that made the permanent id necessary. Either spelling may be
+# current (sources switched at different cycles), but on any date the field's
+# IATA and ICAO codes must name the same, single airport_id.
+CANARY_IDENTITY = {"iata": ("DJT", "PBI"), "icao": ("KDJT", "KPBI")}
 
 # Floors, not targets. Current build: ~35,300 airports, ~9,700 navaids,
 # ~70,000 fixes, ~1,500 airways over ~19,000 points, 54 boundaries over
@@ -205,7 +225,267 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
 
     problems.extend(_inspect_airways(connection))
     problems.extend(_inspect_boundaries(connection))
+    identity_problems, _ = check_identity(connection)
+    problems.extend(identity_problems)
+    cycle = metadata.get("airac_cycle", "")
+    holders = [
+        set().union(*(_held_on(connection, scheme, code, cycle) for code in codes))
+        for scheme, codes in CANARY_IDENTITY.items()
+    ]
+    if any(len(h) != 1 for h in holders) or holders[0] != holders[1]:
+        problems.append(
+            "canary identity: IATA DJT/PBI and ICAO KDJT/KPBI do not resolve "
+            f"to one airport_id on {cycle}: {holders}"
+        )
     return problems
+
+
+def _held_on(connection: sqlite3.Connection, scheme: str, code: str, day: str):
+    return {
+        row[0]
+        for row in connection.execute(
+            "SELECT COALESCE(a.airport_id, c.airport_id) FROM airport_codes c "
+            "LEFT JOIN airport_aliases a ON a.alias_id = c.airport_id "
+            "WHERE c.scheme = ? AND c.code = ? AND c.effective_date <= ? "
+            "AND (c.valid_to IS NULL OR ? < c.valid_to)",
+            (scheme, code, day, day),
+        )
+    }
+
+
+def check_identity(connection: sqlite3.Connection) -> tuple[list[str], list[str]]:
+    """Schema-3 identity invariants that hold for a single file.
+
+    Returns (problems, notes). Notes are reported but never fail the build.
+    """
+    problems: list[str] = []
+    notes: list[str] = []
+    metadata = dict(connection.execute("SELECT key, value FROM metadata"))
+    for key in IDENTITY_METADATA:
+        if key not in metadata:
+            problems.append(f"metadata is missing {key}")
+    cycle = metadata.get("airac_cycle", "")
+
+    def count(sql: str, *args) -> int:
+        return connection.execute(sql, args).fetchone()[0]
+
+    bad_ids = count(
+        "SELECT count(*) FROM (SELECT airport_id AS i FROM airport_identity "
+        "UNION ALL SELECT alias_id FROM airport_aliases "
+        "UNION ALL SELECT airport_id FROM airport_aliases) "
+        "WHERE i IS NULL OR i NOT GLOB ?",
+        AIRPORT_ID_GLOB,
+    )
+    if bad_ids:
+        problems.append(f"{bad_ids} airport ids break the AP+7 digit shape")
+
+    highest = connection.execute(
+        "SELECT max(CAST(substr(airport_id, 3) AS INTEGER)) FROM airport_identity"
+    ).fetchone()[0]
+    try:
+        next_id = int(metadata.get("airport_id_next", ""))
+    except ValueError:
+        problems.append("metadata airport_id_next is not a number")
+    else:
+        if highest is not None and next_id <= highest:
+            problems.append(
+                f"airport_id_next {next_id} is not above the highest id {highest}"
+            )
+
+    # Referential integrity: SQLite does not enforce foreign keys by default.
+    for table in ("airport_codes", "airport_presence", "airport_aliases", "airports"):
+        orphans = count(
+            f"SELECT count(*) FROM {table} t WHERE t.airport_id IS NULL "  # noqa: S608
+            "OR NOT EXISTS (SELECT 1 FROM airport_identity i "
+            "WHERE i.airport_id = t.airport_id)"
+        )
+        if orphans:
+            problems.append(f"{table}: {orphans} rows name no airport_identity row")
+    orphan_aliases = count(
+        "SELECT count(*) FROM airport_aliases a WHERE NOT EXISTS "
+        "(SELECT 1 FROM airport_identity i WHERE i.airport_id = a.alias_id)"
+    )
+    if orphan_aliases:
+        problems.append(f"{orphan_aliases} alias ids are not airport identities")
+
+    chained = count(
+        "SELECT count(*) FROM airport_aliases a "
+        "JOIN airport_aliases b ON b.alias_id = a.airport_id"
+    )
+    if chained:
+        problems.append(f"{chained} aliases point at another alias (not one hop)")
+
+    mismatched = count(
+        "SELECT count(*) FROM airport_identity i WHERE i.in_current_cycle != "
+        "EXISTS (SELECT 1 FROM airport_presence p "
+        "WHERE p.airport_id = i.airport_id AND p.valid_to IS NULL)"
+    )
+    if mismatched:
+        problems.append(
+            f"{mismatched} identities: in_current_cycle disagrees with presence"
+        )
+
+    backwards = count(
+        "SELECT count(*) FROM (SELECT effective_date e, valid_to v FROM airport_codes "
+        "UNION ALL SELECT effective_date, valid_to FROM airport_presence) "
+        "WHERE v IS NOT NULL AND (v <= e OR v > ?)",
+        cycle,
+    )
+    if backwards:
+        problems.append(
+            f"{backwards} intervals end before they start or after the cycle"
+        )
+
+    # One holder per FAA / ICAO code at any time.
+    for scheme in ("faa", "icao"):
+        doubled = connection.execute(
+            "SELECT code, count(*) FROM airport_codes WHERE scheme = ? "
+            "AND valid_to IS NULL GROUP BY code HAVING count(*) > 1 ORDER BY code",
+            (scheme,),
+        ).fetchall()
+        if doubled:
+            problems.append(
+                f"{len(doubled)} {scheme} codes held by more than one airport now: "
+                f"{[code for code, _ in doubled[:10]]}"
+            )
+        overlapping = connection.execute(
+            "SELECT DISTINCT a.code FROM airport_codes a JOIN airport_codes b "
+            "ON a.scheme = b.scheme AND a.code = b.code "
+            "AND (a.airport_id, a.effective_date) < (b.airport_id, b.effective_date) "
+            "WHERE a.scheme = ? "
+            "AND a.effective_date < COALESCE(b.valid_to, '9999-12-31') "
+            "AND b.effective_date < COALESCE(a.valid_to, '9999-12-31') "
+            "ORDER BY a.code",
+            (scheme,),
+        ).fetchall()
+        if overlapping:
+            problems.append(
+                f"{len(overlapping)} {scheme} codes have overlapping intervals: "
+                f"{[row[0] for row in overlapping[:10]]}"
+            )
+
+    shared_iata = count(
+        "SELECT count(*) FROM (SELECT code FROM airport_codes "
+        "WHERE scheme = 'iata' AND valid_to IS NULL "
+        "GROUP BY code HAVING count(DISTINCT airport_id) > 1)"
+    )
+    notes.append(f"IATA codes held by more than one present airport: {shared_iata}")
+
+    previous_cycle = metadata.get("previous_cycle") or ""
+    if previous_cycle and cycle:
+        try:
+            gap = (date.fromisoformat(cycle) - date.fromisoformat(previous_cycle)).days
+        except ValueError:
+            problems.append(f"bad previous_cycle {previous_cycle!r}")
+        else:
+            if gap != CYCLE_DAYS:
+                notes.append(
+                    f"WARNING: previous_cycle {previous_cycle} is {gap} days before "
+                    f"{cycle}, not {CYCLE_DAYS}: a cycle was skipped and its "
+                    "changes are dated to this one"
+                )
+    return problems, notes
+
+
+def _rows(connection: sqlite3.Connection, sql: str) -> set[tuple]:
+    return set(connection.execute(sql).fetchall())
+
+
+def check_chain(
+    new: sqlite3.Connection, previous: sqlite3.Connection, previous_sha256: str
+) -> list[str]:
+    """What cycle N may and may not do to cycle N-1's history."""
+    problems: list[str] = []
+    new_meta = dict(new.execute("SELECT key, value FROM metadata"))
+    old_meta = dict(previous.execute("SELECT key, value FROM metadata"))
+    cycle, old_cycle = new_meta.get("airac_cycle", ""), old_meta.get("airac_cycle", "")
+    if not old_cycle < cycle:
+        problems.append(f"cycle {cycle} does not follow previous {old_cycle}")
+    if new_meta.get("previous_cycle") != old_cycle:
+        problems.append(
+            f"previous_cycle {new_meta.get('previous_cycle')!r} is not {old_cycle!r}"
+        )
+    if new_meta.get("previous_db_sha256") != previous_sha256:
+        problems.append("previous_db_sha256 does not match the previous file")
+    if new_meta.get("history_start") != old_meta.get("history_start"):
+        problems.append("history_start changed")
+    try:
+        if int(new_meta["airport_id_next"]) < int(old_meta["airport_id_next"]):
+            problems.append("airport_id_next went backwards")
+    except (KeyError, ValueError):
+        problems.append("airport_id_next missing or not a number")
+
+    old_ids = _rows(previous, "SELECT airport_id FROM airport_identity")
+    new_ids = _rows(new, "SELECT airport_id FROM airport_identity")
+    if old_ids - new_ids:
+        problems.append(f"{len(old_ids - new_ids)} previous airport ids are missing")
+    old_aliases = _rows(previous, "SELECT alias_id FROM airport_aliases")
+    if old_aliases - _rows(new, "SELECT alias_id FROM airport_aliases"):
+        problems.append("a previous alias is no longer an alias")
+
+    for table, key_columns, date_index in (
+        ("airport_codes", "airport_id, scheme, code, effective_date, source", 3),
+        ("airport_presence", "airport_id, effective_date", 1),
+    ):
+        sql = f"SELECT {key_columns}, valid_to FROM {table}"  # noqa: S608
+        old_rows, new_rows = _rows(previous, sql), _rows(new, sql)
+        closed = {r for r in old_rows if r[-1] is not None}
+        if closed - new_rows:
+            problems.append(
+                f"{table}: {len(closed - new_rows)} closed intervals "
+                "changed or vanished"
+            )
+        new_by_key = {r[:-1]: r[-1] for r in new_rows}
+        for row in old_rows - closed:
+            if row[:-1] not in new_by_key:
+                problems.append(f"{table}: open interval {row[:-1]} vanished")
+            elif new_by_key[row[:-1]] not in (None, cycle):
+                problems.append(
+                    f"{table}: open interval {row[:-1]} closed at "
+                    f"{new_by_key[row[:-1]]}, not {cycle}"
+                )
+        old_keys = {r[:-1] for r in old_rows}
+        backdated = [
+            r for r in new_rows if r[:-1] not in old_keys and r[date_index] != cycle
+        ]
+        if backdated:
+            problems.append(
+                f"{table}: {len(backdated)} new intervals not dated {cycle}"
+            )
+    return problems
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_chain(path: Path, previous: Path) -> list[str]:
+    try:
+        new = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+        old = sqlite3.connect(f"file:{previous}?mode=ro", uri=True)
+    except sqlite3.Error as error:
+        return [f"cannot open database: {error}"]
+    try:
+        return check_chain(new, old, sha256_file(previous))
+    except sqlite3.Error as error:
+        return [f"cannot read database: {error}"]
+    finally:
+        new.close()
+        old.close()
+
+
+def identity_notes(path: Path) -> list[str]:
+    connection = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    try:
+        return check_identity(connection)[1]
+    except sqlite3.Error:
+        return []
+    finally:
+        connection.close()
 
 
 def _inspect_airways(connection: sqlite3.Connection) -> list[str]:
@@ -321,9 +601,17 @@ def main(argv: list[str] | None = None) -> int:
 
     parser = argparse.ArgumentParser(description="Verify a built database.")
     parser.add_argument("path", help="Path to navigation.sqlite3")
+    parser.add_argument(
+        "--previous",
+        help="The previous cycle's file: check that history was only extended.",
+    )
     args = parser.parse_args(argv)
 
     problems = verify_database(Path(args.path))
+    if args.previous:
+        problems.extend(verify_chain(Path(args.path), Path(args.previous)))
+    for note in identity_notes(Path(args.path)) if Path(args.path).exists() else []:
+        print(note)
     if problems:
         print("VERIFICATION FAILED")
         for problem in problems:

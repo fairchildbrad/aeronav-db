@@ -273,3 +273,36 @@ def test_lookup_is_case_insensitive_and_may_return_several():
                    oa("2", iata="ABC", country="AU", lat=-33.0, lon=151.0)]))[0]
     assert len(lookup(s1, "IATA", "abc", C1)) == 2
     assert lookup(s1, "iata", "ABC", "2026-01-01") == []
+
+
+def test_ourairports_attaches_to_a_nasr_field_in_the_same_foreign_country():
+    """NASR lists some non-US fields (CYAM, MYNN...). The OurAirports row for
+    the same field attaches when the countries match, so the ICAO code has one
+    holder; a different country still never attaches."""
+    field = dataclasses.replace(nasr("50000.", "CYAM", "CYAM"), iso_country="CA")
+    same = run((C1, [field, oa("1657", iata="YAM", icao="CYAM", country="CA")]))[0]
+    assert len(same.identities) == 1
+    other = run((C1, [field, oa("1657", iata="YAM", icao="CYAM", country="BS")]))[0]
+    assert len(other.identities) == 2
+
+
+def test_nasr_legacy_country_an_matches_its_iso_successors():
+    """NASR still files Sint Maarten (TNCM) under 'AN'; OurAirports uses SX."""
+    field = dataclasses.replace(nasr("90875.", "TNCM", "TNCM"), iso_country="AN")
+    state = run((C1, [field, oa("6406", iata="SXM", icao="TNCM", country="SX")]))[0]
+    assert len(state.identities) == 1
+
+
+def test_an_ident_derived_icao_yields_to_an_explicit_icao_code():
+    from aeronav_db.identity import ourairports_observations
+
+    def row(oa_id, ident, icao_code, iata):
+        return {"id": oa_id, "ident": ident, "type": "medium_airport",
+                "name": ident, "latitude_deg": "27.2", "longitude_deg": "103.7",
+                "iso_country": "CN", "icao_code": icao_code, "iata_code": iata}
+
+    old, new = ourairports_observations(
+        [row("32740", "ZPZT", "", ""), row("525773", "CN-0421", "ZPZT", "ZAT")]
+    )
+    assert old.codes == ()
+    assert new.codes == (("iata", "ZAT"), ("icao", "ZPZT"))

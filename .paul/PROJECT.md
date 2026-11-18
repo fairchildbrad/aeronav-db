@@ -65,6 +65,7 @@ Software gets a free, offline, public-domain aviation reference it can update un
 | airport_id format is opaque text with a prefix ("AP000123"), case-insensitive, never renamed. Merges go through airport_aliases, at most one hop. | cv-aviation's choice: the id is embedded in CV entity keys and must not look like a row number or a source code | 2026-11-07 | Active |
 | Code intervals carry an `effective_date` set to the AIRAC cycle date | Operator: "use the cycle date for the change date, not necessarily 'first published in cycle N' but an 'effetive_date' field" | 2026-11-07 | Active |
 | History depth: "Use the archives to fill in as much history as you can then attempt to locate another histoical source to fill in more history." | Operator, verbatim | 2026-11-07 | Active |
+| airport_id is AP + 7 digits ("AP0000123"). Operator's answer to "6 or 7", relayed by sqwkd: "7" | Room for growth past 999,999; OurAirports alone has about 86k rows | 2026-11-18 | Active |
 | Timezones are in v0.2, as a later phase. Operator: "V0.2 and build it now" | No public-domain IANA boundaries exist; a hand-maintained table needs no polygons | 2026-11-18 | Active |
 | Leaving the dataset means "absent from cycle N", not "closed", unless a source says closed | cv-aviation point 3; 98 operational NASR fields vanished between 2026-07 and 2026-10 with no closure status | 2026-11-06 | Active |
 

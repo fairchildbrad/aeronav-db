@@ -27,16 +27,33 @@ Guarantees, which verify also enforces on the published file:
 from __future__ import annotations
 
 import re
+import sqlite3
 from collections import defaultdict
 from dataclasses import dataclass, field
 
-from aeronav_db.build import NASR_JURISDICTION, SAME_AIRPORT_NM, _distance_nm
+from aeronav_db.build import (
+    FAA_LID_RE,
+    IATA_RE,
+    ICAO_RE,
+    NASR_JURISDICTION,
+    NASR_SITE_TYPES,
+    SAME_AIRPORT_NM,
+    _distance_nm,
+    _parse_coordinates,
+    nasr_source_key,
+    ourairports_source_key,
+)
 
 ID_RE = re.compile(r"^AP\d{7}$")
 # A corrected NASR site number is accepted as the same field only when the FAA
 # identifier is unchanged and the reference point has barely moved.
 SITE_CORRECTION_NM = 1.0
 SCHEMES = ("faa", "icao", "iata")
+# NASR COUNTRY_CODE values that are not current ISO 3166-1 codes, and the ISO
+# codes that replaced them. Measured 2026-11-18 over the 2026-07-09 and
+# 2026-10-29 cycles: 'AN' (Netherlands Antilles, dissolved 2010) is the only
+# one (TNCE, TNCM); OurAirports files those fields under BQ and SX.
+NASR_LEGACY_COUNTRIES = {"AN": frozenset({"BQ", "CW", "SX"})}
 
 
 def format_id(number: int) -> str:
@@ -183,17 +200,28 @@ def _group(observations: list[Observation]) -> list[_Entity]:
 
     for row in ourairports:
         partner = None
-        if (row.iso_country or "") in NASR_JURISDICTION:
-            for _, code in row.codes:
-                for candidate in by_code.get(code.upper(), []):
-                    if candidate.ourairports is None and _distance_nm(
-                        (row.lat, row.lon),
-                        (candidate.primary.lat, candidate.primary.lon),
-                    ) <= SAME_AIRPORT_NM:
-                        partner = candidate
-                        break
-                if partner is not None:
+        country = row.iso_country or ""
+        for _, code in row.codes:
+            for candidate in by_code.get(code.upper(), []):
+                # Inside US jurisdiction any NASR record may be the partner.
+                # Outside it, only one NASR lists in the same country (NASR
+                # carries some Canadian, Bahamian, Micronesian... fields).
+                nasr_country = candidate.nasr.iso_country or ""  # type: ignore[union-attr]
+                same_country = country in NASR_JURISDICTION or (
+                    country != ""
+                    and (
+                        country == nasr_country
+                        or country in NASR_LEGACY_COUNTRIES.get(nasr_country, ())
+                    )
+                )
+                if same_country and candidate.ourairports is None and _distance_nm(
+                    (row.lat, row.lon),
+                    (candidate.primary.lat, candidate.primary.lon),
+                ) <= SAME_AIRPORT_NM:
+                    partner = candidate
                     break
+            if partner is not None:
+                break
         if partner is not None:
             partner.ourairports = row
         else:
@@ -389,4 +417,213 @@ def lookup(state: IdentityState, scheme: str, code: str, date: str) -> list[str]
             and interval.effective_date <= date
             and (interval.valid_to is None or date < interval.valid_to)
         }
+    )
+
+
+# --- Observations from the raw source rows ---------------------------------
+
+NASR_STATUS = {
+    "O": "operational",
+    "CI": "closed_indefinitely",
+    "CP": "closed_permanently",
+}
+
+
+def nasr_observations(rows: list[dict[str, str]]) -> list[Observation]:
+    """Every APT_BASE row with coordinates, closed ones included: a closure is
+    something the source says, and history should record it."""
+    observations = []
+    for row in rows:
+        coords = _parse_coordinates(row.get("LAT_DECIMAL"), row.get("LONG_DECIMAL"))
+        if coords is None:
+            continue
+        status_code = (row.get("ARPT_STATUS") or "").strip().upper()
+        if status_code not in NASR_STATUS:
+            # Never guess a status; a new FAA code needs a decision.
+            raise ValueError(f"unknown NASR ARPT_STATUS {status_code!r}")
+        _, site_no, site_type = nasr_source_key(row)
+        faa = (row.get("ARPT_ID") or "").strip().upper()
+        icao = (row.get("ICAO_ID") or "").strip().upper()
+        codes = ([("faa", faa)] if FAA_LID_RE.match(faa) else []) + (
+            [("icao", icao)] if ICAO_RE.match(icao) else []
+        )
+        observations.append(
+            Observation(
+                source="nasr",
+                nasr_site_no=site_no,
+                nasr_site_type=site_type,
+                ourairports_id=None,
+                codes=tuple(codes),
+                lat=coords[0],
+                lon=coords[1],
+                name=(row.get("ARPT_NAME") or "").strip() or None,
+                kind=NASR_SITE_TYPES.get(site_type, ("unknown", 6))[0],
+                source_status=NASR_STATUS[status_code],
+                iso_country=(row.get("COUNTRY_CODE") or "").strip().upper() or None,
+            )
+        )
+    return observations
+
+
+def ourairports_observations(rows: list[dict[str, str]]) -> list[Observation]:
+    """The same OurAirports rows the airports layer uses (an IATA code, or a
+    large/medium airport), with the same ICAO derivation, except that an ICAO
+    code taken from the ident gives way to a row that states that code in
+    icao_code. (2026-07-08: the old Zhaotong field, ident ZPZT, no icao_code;
+    the new one, icao_code ZPZT.)"""
+    explicit = {
+        (row.get("icao_code") or "").strip().upper() for row in rows
+    } - {""}
+    observations = []
+    for row in rows:
+        airport_type = (row.get("type") or "").strip()
+        iata = (row.get("iata_code") or "").strip().upper()
+        has_iata = bool(IATA_RE.match(iata))
+        if not has_iata and airport_type not in {"large_airport", "medium_airport"}:
+            continue
+        coords = _parse_coordinates(row.get("latitude_deg"), row.get("longitude_deg"))
+        if coords is None:
+            continue
+        ident = (row.get("ident") or "").strip().upper()
+        stated = (row.get("icao_code") or "").strip().upper()
+        if ICAO_RE.match(stated):
+            icao = stated
+        elif ICAO_RE.match(ident) and ident not in explicit:
+            icao = ident
+        else:
+            icao = None
+        codes = ([("iata", iata)] if has_iata else []) + (
+            [("icao", icao)] if icao else []
+        )
+        observations.append(
+            Observation(
+                source="ourairports",
+                nasr_site_no=None,
+                nasr_site_type=None,
+                ourairports_id=ourairports_source_key(row)[1],
+                codes=tuple(codes),
+                lat=coords[0],
+                lon=coords[1],
+                name=(row.get("name") or "").strip() or None,
+                kind=airport_type or None,
+                source_status="closed" if airport_type == "closed" else "operational",
+                iso_country=(row.get("iso_country") or "").strip().upper() or None,
+            )
+        )
+    return observations
+
+
+def current_key_index(state: IdentityState) -> dict[tuple, str]:
+    """Source key -> airport id, over identities seen in the latest cycle.
+
+    A key claimed by two current identities is ambiguous and raises: an
+    airports row must map to exactly one id, never to a guess.
+    """
+    aliased = {a.alias_id for a in state.aliases}
+    index: dict[tuple, str] = {}
+    ambiguous: set[tuple] = set()
+    for airport_id, identity in state.identities.items():
+        if identity.last_seen_cycle != state.last_cycle or airport_id in aliased:
+            continue
+        keys = []
+        if identity.nasr_site_no is not None:
+            keys.append(("nasr", identity.nasr_site_no, identity.nasr_site_type or ""))
+        if identity.ourairports_id is not None:
+            keys.append(("ourairports", identity.ourairports_id))
+        for key in keys:
+            if key in index and index[key] != airport_id:
+                ambiguous.add(key)
+            index[key] = airport_id
+    for key in ambiguous:
+        index.pop(key)
+    return index
+
+
+# --- Persistence -------------------------------------------------------------
+
+_IDENTITY_COLUMNS = (
+    "airport_id, nasr_site_no, nasr_site_type, ourairports_id, name, lat, lon, "
+    "kind, source_status, iso_country, first_cycle, last_seen_cycle, match_basis"
+)
+
+
+def load_state(connection: sqlite3.Connection) -> IdentityState:
+    """Read a schema-3 file's identity tables back into an IdentityState."""
+    metadata = dict(connection.execute("SELECT key, value FROM metadata"))
+    identities = {
+        row[0]: Identity(*row)
+        for row in connection.execute(
+            f"SELECT {_IDENTITY_COLUMNS} FROM airport_identity ORDER BY airport_id"  # noqa: S608
+        )
+    }
+    codes = tuple(
+        sorted(
+            CodeInterval(*row)
+            for row in connection.execute(
+                "SELECT airport_id, scheme, code, effective_date, valid_to, source "
+                "FROM airport_codes"
+            )
+        )
+    )
+    presence = tuple(
+        sorted(
+            Presence(*row)
+            for row in connection.execute(
+                "SELECT airport_id, effective_date, valid_to FROM airport_presence"
+            )
+        )
+    )
+    aliases = tuple(
+        sorted(
+            Alias(*row)
+            for row in connection.execute(
+                "SELECT alias_id, airport_id, effective_date, reason "
+                "FROM airport_aliases"
+            )
+        )
+    )
+    return IdentityState(
+        identities=identities,
+        codes=codes,
+        presence=presence,
+        aliases=aliases,
+        next_id=int(metadata["airport_id_next"]),
+        last_cycle=metadata["airac_cycle"],
+    )
+
+
+def dump_state(connection: sqlite3.Connection, state: IdentityState) -> None:
+    """Write the identity tables. ``in_current_cycle`` is derived: last seen
+    in this state's cycle."""
+    connection.executemany(
+        f"INSERT INTO airport_identity ({_IDENTITY_COLUMNS}, in_current_cycle) "  # noqa: S608
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+            (
+                i.airport_id, i.nasr_site_no, i.nasr_site_type, i.ourairports_id,
+                i.name, i.lat, i.lon, i.kind, i.source_status, i.iso_country,
+                i.first_cycle, i.last_seen_cycle, i.match_basis,
+                int(i.last_seen_cycle == state.last_cycle),
+            )
+            for i in sorted(state.identities.values(), key=lambda i: i.airport_id)
+        ],
+    )
+    connection.executemany(
+        "INSERT INTO airport_codes "
+        "(airport_id, scheme, code, effective_date, valid_to, source) "
+        "VALUES (?, ?, ?, ?, ?, ?)",
+        [
+            (c.airport_id, c.scheme, c.code, c.effective_date, c.valid_to, c.source)
+            for c in state.codes
+        ],
+    )
+    connection.executemany(
+        "INSERT INTO airport_presence (airport_id, effective_date, valid_to) "
+        "VALUES (?, ?, ?)",
+        [(p.airport_id, p.effective_date, p.valid_to) for p in state.presence],
+    )
+    connection.executemany(
+        "INSERT INTO airport_aliases (alias_id, airport_id, effective_date, reason) "
+        "VALUES (?, ?, ?, ?)",
+        [(a.alias_id, a.airport_id, a.effective_date, a.reason) for a in state.aliases],
     )

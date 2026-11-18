@@ -14,7 +14,7 @@ Give airports a permanent identity and a dated code history, so long-lived recor
 Status: In progress
 Phases: 0 of 3 complete
 
-**Release gate:** no schema-3 release ships until Phase 2's backfill has run. A backfill run after release would mint different ids, and cv-aviation was promised ids are never renamed.
+**Release gate:** no schema-3 release ships until Phase 2's backfill has run. A backfill run after release would mint different ids, and cv-aviation was promised ids are never renamed. Timezones are also a release prerequisite. Operator, 2026-11-18: "Keep what we have and publish to cv-aviation with the time zones" (routed by sqwkd). The first schema-3 release therefore follows Phases 1, 2 and 3.
 
 ## Phases
 
@@ -30,14 +30,16 @@ Phases: 0 of 3 complete
 **Goal:** a cycle-to-cycle identity engine and the schema-3 tables, written by a chained build and guarded by verify.
 **Plans:**
 - [x] 01-01: aeronav_db/identity.py, a pure engine (match, mint, intervals, aliases) with tests
-- [ ] 01-02: wire into build/schema/verify, add the --previous-db chain input, send the DDL to cv-aviation, update the README
+- [x] 01-02: wire into build/schema/verify, add the --previous-db chain input, send the DDL to cv-aviation, update the README
 
 ### Phase 2: History backfill + first schema-3 release
 **Goal:** run the chain from the oldest reachable NASR archive (≥2021-12) to the current cycle, paired with OurAirports git snapshots; look for a source older than that; publish the first schema-3 release; switch CI to chain from the prior release.
 **Research:** Likely (archive depth, an older public-domain source)
+**cv-aviation requests (2026-11-18 review of 01-02):** verification reports whether (iata, code, date) is unique among airports present on that date. If it isn't, add a tie-break source attribute that works without a position (e.g. OurAirports scheduled_service). Note: their logbook data goes back to 2019-09, which is before the NASR archives start (2021-12); they will fall back to the earliest row and mark that link as assumed.
 
 ### Phase 3: IANA timezones
 **Goal:** add an airport tz column from a hand-maintained country→region→override CSV, validated against tzdata zone1970.tab and the US Chart Supplement offsets.
+**cv-aviation requirement:** tz is never guessed. tz_basis 'country' is allowed only for single-zone countries. An airport in a multi-zone country that the region/override rules can't place gets tz NULL.
 
 ---
 *Roadmap created: 2026-11-07*
