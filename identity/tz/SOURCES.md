@@ -68,3 +68,6 @@ NWT Time Regulations R-090-2026 (UTC-6 year-round, in force 2026-08-21). justice
 
 ## Yukon: Interpretation Act and OIC 2020/125
 RSY 2002 c125 s.33; OIC 2020/125 (UTC-7 year-round) returned 403 at yukon.ca and laws.yukon.ca; cited via tzdata's quote (deviation). Zone split: Commissioner's Order 1967/59 (138°W) as quoted verbatim in tzdata. CGNDB YT sha256 `ef8cfc441ab5940b840e093e81741bbd13977e0f39c64954a5f8f72a65bcc5c5`.
+
+## tzdata australasia, southamerica, europe, asia, backward
+Vendored from the same tzdata2026f.tar.gz (sha256 above) for 03-03: named anomalies and zone histories for AU, BR, RU and ID; `backward` for link names (e.g. Australia/Canberra).
