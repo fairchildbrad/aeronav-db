@@ -37,7 +37,7 @@ Operator 2026-11-19: "Finish all of the plan-03 before release". The release run
     - BR rules done (0c37247).
   Remaining:
     - BR AM DONE 393dbf2: IBGE centroids, not seats (the API gives none); 8 Manaus overrides; Tabatinga in UBD. sqwkd R1 (South Kurils quoted) and R2 (only a shared zone may map to no region, with a test) DONE 2a695ec. Optional: Rosstat OKTMO for the 20 Sakha airports.
-    - BR PA via the Xingu's range in PA (IBGE BC250 or ANA), else option (b).
+    - BR PA: candidates are the ANA 'rios principais' shapefile (SNIRH metadata record a01764d3-...; SAD69) and IBGE BHB250. Each needs a minimal shapefile reader (no GIS library is installed); not yet fetched. Asked sqwkd. b44f7e3 records the AM centroid bound and carries R2 to 03-04 in ROADMAP. SUMMARY 'carried forward': the R2 check.
     - Then: canaries (YSSY YBBN YPPH YPAD YBHI SBGR SBEG SBBE SBRB SBFN UUEE UNNT UHWW UEEE UHPP WIII WADD WAJJ WIOO), the build from the seed (tz3b inputs), verify, gate, AC-3a lint, CFS-like check (none: Q2 with the operator), README L4 (add Eucla), SUMMARY, unify.
   SUMMARY must also record:
     - AC-2's check is opt-in per mapped country (CA MX BR AU ID RU mapped); it caught RU-SA and RU-SAK; the other 26 countries are mapped in 03-04.
