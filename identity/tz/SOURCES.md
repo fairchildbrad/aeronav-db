@@ -74,3 +74,14 @@ Vendored from the same tzdata2026f.tar.gz (sha256 above) for 03-03: named anomal
 
 ## Brazil: Decreto 2.784/1913, Lei 11.662/2008, Lei 12.876/2013
 planalto.gov.br resets connections from the automated client (2026-11-19); not worked around. Cited via tzdata 2026f `southamerica`, which quotes Lei 11.662/2008, gives each zone's state list, names east/west Pará and Amazonas places, and gives the Tabatinga-Porto Acre great-circle line (Lei 12.876/2013) as the Amazonas division. Deviation: no statute text or hash.
+
+## Australia
+- ACT Standard Time and Summer Time Act 1972: https://www.legislation.act.gov.au/DownloadFile/a/1972-34/current/RTF/1972-34.RTF, sha256 `832237f15ccdcb2e411e659ee133475b6691c089bc85538771a116a9df0463c0`.
+- SA Standard Time Act 2009: https://www.legislation.sa.gov.au/_legislation-documents/lz/c/a/standard-time-act-2009/current/2009.4.un.rtf, sha256 `49c7ab7b35790c96fc92fddfa2f19ec4b974d511fcc62dc14907a2ca28800050`.
+- WA Standard Time Act 2005 s.4: https://www.legislation.wa.gov.au/legislation/prod/filestore.nsf/FileURL/mrdoc_5122.htm/$FILE/Standard%20Time%20Act%202005%20-%20%5B00-00-02%5D.html, sha256 `e64efe2d60fd40c52a4fa8ed1bea27507806d08c96be53129e78ee7f2553026f`.
+- Qld Standard Time Act 1894: https://www.legislation.qld.gov.au/view/pdf/inforce/current/act-1894-014, sha256 `e29917b4416dc6fd3fc355b7253f7a1d2177e7d28ca09bff99950d3756466534`. Text not extractable with our tools, so it is cited via tzdata.
+- Blocked or unavailable, so cited via tzdata `australasia` (deviation):
+  - NSW Standard Time Act 1987 (legislation.nsw.gov.au and AustLII return 403);
+  - Tas (404);
+  - Vic and NT (landing pages only).
+- Positions: OurAirports airport coordinates (public domain) are the only position evidence. No Australian gazetteer is used: Geoscience Australia's is CC-BY.

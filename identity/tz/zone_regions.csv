@@ -50,3 +50,16 @@ BR,America/Boa_Vista,BR-RR,zone1970.tab 'Roraima'; tzdata 2026f southamerica zon
 BR,America/Manaus,BR-AM,zone1970.tab 'Amazonas (east)'; tzdata 2026f southamerica zone heading
 BR,America/Eirunepe,BR-AM,zone1970.tab 'Amazonas (west)'; tzdata 2026f southamerica zone heading
 BR,America/Rio_Branco,BR-AC,zone1970.tab 'Acre'; tzdata 2026f southamerica zone heading
+AU,Australia/Lord_Howe,AU-NSW,zone1970.tab 'Lord Howe Island'
+AU,Antarctica/Macquarie,AU-TAS,zone1970.tab 'Macquarie Island'
+AU,Australia/Hobart,AU-TAS,zone1970.tab 'Tasmania'
+AU,Australia/Melbourne,AU-VIC,zone1970.tab 'Victoria'
+AU,Australia/Sydney,AU-NSW AU-ACT,zone1970.tab 'New South Wales (most areas)'; ACT via tzdata backward Australia/Canberra link
+AU,Australia/Broken_Hill,AU-NSW,zone1970.tab 'New South Wales (Yancowinna)'
+AU,Australia/Brisbane,AU-QLD,zone1970.tab 'Queensland (most areas)'
+AU,Australia/Lindeman,AU-QLD,zone1970.tab 'Queensland (Whitsunday Islands)'
+AU,Australia/Adelaide,AU-SA,zone1970.tab 'South Australia'
+AU,Australia/Darwin,AU-NT,zone1970.tab 'Northern Territory'
+AU,Australia/Perth,AU-WA,zone1970.tab 'Western Australia (most areas)'
+AU,Australia/Eucla,AU-WA,zone1970.tab 'Western Australia (Eucla)'
+AU,Asia/Tokyo,AU-WA,zone1970.tab 'Eyre Bird Observatory'
