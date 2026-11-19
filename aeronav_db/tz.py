@@ -67,6 +67,59 @@ class Rules:
     rules: dict[tuple[str, str, str], str] = field(default_factory=dict)
     overrides: dict[str, str] = field(default_factory=dict)
     partial: set[tuple[str, str]] = field(default_factory=set)
+    zone_regions: dict[str, dict[str, set[str]]] = field(default_factory=dict)
+
+    def _load_zone_regions(self, path: Path) -> None:
+        """Which ISO regions each zone covers, per country (03-03 AC-2).
+
+        zone1970.tab comments name places in free text ("Lena River"), so the
+        regions each zone covers are written out here with their source. A
+        country is checked once it has rows: every one of its zones needs a
+        row, and a region that two or more zones cover must be listed in
+        partial_regions.csv. Rules for the country must then agree (see
+        _check_zone_regions)."""
+        if not path.exists():
+            return
+        with open(path, newline="", encoding="utf-8") as handle:
+            for row in csv.DictReader(handle):
+                country = row["iso_country"].strip().upper()
+                zone = row["zone"].strip()
+                regions = set(row["regions"].split())
+                where = f"zone_regions.csv {(country, zone)}"
+                if zone not in self.zones.get(country, []):
+                    raise TzRulesError(f"{where}: not a {country} zone in zone1970.tab")
+                if not (row.get("source") or "").strip():
+                    raise TzRulesError(f"{where}: cite a source")
+                if not regions or any(not r.startswith(f"{country}-") for r in regions):
+                    raise TzRulesError(f"{where}: regions must be ISO 3166-2")
+                mapped = self.zone_regions.setdefault(country, {})
+                if zone in mapped:
+                    raise TzRulesError(f"{where}: listed twice")
+                mapped[zone] = regions
+        for country, mapped in self.zone_regions.items():
+            missing = sorted(set(self.zones[country]) - set(mapped))
+            if missing:
+                raise TzRulesError(
+                    f"zone_regions.csv: {country} is mapped, but not {missing}")
+            covering: dict[str, list[str]] = {}
+            for zone, regions in mapped.items():
+                for region in regions:
+                    covering.setdefault(region, []).append(zone)
+            for region, found in sorted(covering.items()):
+                if len(found) > 1 and (country, region) not in self.partial:
+                    raise TzRulesError(
+                        f"partial_regions.csv: {region} is covered by {sorted(found)} "
+                        "(zone_regions.csv); list it as partial")
+
+    def _check_zone_regions(self) -> None:
+        for (country, region, _county), tz in self.rules.items():
+            mapped = self.zone_regions.get(country)
+            if mapped is None or tz == SPLIT or region == ANY:
+                continue
+            if region not in mapped.get(tz, set()):
+                raise TzRulesError(
+                    f"rules.csv {(country, region, _county)}: zone_regions.csv does "
+                    f"not give {tz} any part of {region}")
 
     def _load_partial(self, path: Path, comments: dict[str, str]) -> None:
         """Regions split between zones. Every non-US zone whose zone1970.tab
@@ -116,6 +169,7 @@ class Rules:
         zones, comments = load_zone_tab(directory / "zone1970.tab")
         loaded = cls(zones)
         loaded._load_partial(directory / "partial_regions.csv", comments)
+        loaded._load_zone_regions(directory / "zone_regions.csv")
         with open(directory / "rules.csv", newline="", encoding="utf-8") as handle:
             for row in csv.DictReader(handle):
                 loaded._add_rule(row, comments)
@@ -125,6 +179,7 @@ class Rules:
                 for row in csv.DictReader(handle):
                     loaded._add_override(row)
         loaded._check_splits()
+        loaded._check_zone_regions()
         return loaded
 
     def _add_rule(self, row: dict[str, str], comments: dict[str, str]) -> None:

@@ -28,8 +28,11 @@ PARTIAL = (
 )
 
 
-def make(tmp_path, rules, overrides="", partial=PARTIAL):
+def make(tmp_path, rules, overrides="", partial=PARTIAL, zone_regions=None):
     (tmp_path / "zone1970.tab").write_text(TAB)
+    if zone_regions is not None:
+        (tmp_path / "zone_regions.csv").write_text(
+            "iso_country,zone,regions,source\n" + zone_regions)
     (tmp_path / "partial_regions.csv").write_text(
         "iso_country,region,zones,tzdata_quote\n" + partial)
     (tmp_path / "rules.csv").write_text("iso_country,region,county,tz,note\n" + rules)
@@ -168,3 +171,29 @@ def test_gate(tmp_path):
     (tmp_path / "unplaced_by_design.csv").write_text(
         "airport_id,reason\nAP2,no official source places it; searched DOF\n")
     assert tz.gate(str(db), str(oa), tmp_path)[0]
+
+
+MX_MAP = (
+    "MX,America/Mexico_City,MX-CMX MX-NAY,law\n"
+    "MX,America/Mazatlan,MX-SIN MX-NAY,law\n"
+    "MX,America/Bahia_Banderas,MX-NAY,law\n"
+)
+
+
+def test_zone_regions_map_is_checked_once_a_country_has_rows(tmp_path):
+    rules = make(tmp_path, GOOD + "MX,MX-SIN,*,America/Mazatlan,law\n",
+                 zone_regions=MX_MAP)
+    assert rules.zone_regions["MX"]["America/Mazatlan"] == {"MX-SIN", "MX-NAY"}
+
+
+@pytest.mark.parametrize("zone_regions, extra, message", [
+    (MX_MAP.replace("MX,America/Bahia_Banderas,MX-NAY,law\n", ""), "",
+     "is mapped, but not"),
+    (MX_MAP + "MX,America/Mazatlan,MX-SON,law\n", "", "listed twice"),
+    (MX_MAP.replace("MX-CMX MX-NAY", "MX-CMX MX-SIN"), "", "MX-SIN is covered"),
+    (MX_MAP.replace(",law\n", ",\n", 1), "", "cite a source"),
+    (MX_MAP, "MX,MX-SIN,*,America/Mexico_City,law\n", "does not give"),
+])
+def test_zone_regions_refusals(tmp_path, zone_regions, extra, message):
+    with pytest.raises(tz.TzRulesError, match=message):
+        make(tmp_path, GOOD + extra, zone_regions=zone_regions)
