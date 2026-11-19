@@ -22,3 +22,8 @@ IANA tzdata 2026f `northamerica` (public domain), vendored beside zone1970.tab f
 
 ## Ontario Time Act
 R.S.O. 1990, c. T.9, s. 2(1)-(2): east of 90°W Eastern, west Central; no named exceptions. https://www.ontario.ca/laws/statute/90t09 (fetched 2026-11-19).
+
+## CGNDB (Ontario)
+Canadian Geographical Names Database, Ontario CSV (Natural Resources Canada, Open Government Licence - Canada). Used only as evidence of a place's longitude in notes; no rows are copied.
+- URL: https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_csv_eng/cgn_on_csv_eng.zip (Last-Modified 2026-11-18), sha256 `bfee1cc93e6caf31db377045bb076bce8809d26cc9793aa08bd8b15d4fa112bc`
+- O1 margin: easternmost anomaly named in northamerica is the Big Trout Lake area (lake FAIIZ at 90.007W; "extending east of 90°W"). Others: Pickle Lake FDZLA 90.140W, Mishkeegogamang FOBRY 90.229W, Upsala FCZHV 90.498W, Atikokan FAEBC 91.622W. Margin to 85.5W ≈ 4.5°, so the 85W cut-off holds.
