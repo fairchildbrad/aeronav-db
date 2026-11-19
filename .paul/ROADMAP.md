@@ -46,7 +46,7 @@ Phases: 0 of 3 complete
 **Operator, 2026-11-19 (routed by sqwkd), verbatim:** "Finish all of the plan-03 before release". Phase 3 done is the release gate, defined in 03-02 AC-1 (`python -m aeronav_db.tz gate`).
 - [x] 03-02: gate and mechanism (per-region partial guard, municipality key), then MX and CA. MX 102/102; CA 410/504 present, scheduled 242 placed + 33 unplaced_by_design + 0 unlisted. Unified 2026-11-19 (03-02-SUMMARY.md)
 - [ ] 03-03: AU, BR, RU, ID
-- [ ] 03-04: the other 26 multi-zone countries (AQ NULL by design)
+- [ ] 03-04: the other 26 multi-zone countries (AQ NULL by design). Carried from 03-03 (sqwkd R2): AC "a zone with no rows for country X is allowed only if zone_regions maps it to a region of another country listed for it in zone1970; test included", due when UA is mapped
 - [ ] 03-05: US scheduled-service remainder via the Chart Supplement; closing gate run
 **cv-aviation requirement:** tz is never guessed. tz_basis 'country' is allowed only for single-zone countries. An airport in a multi-zone country that the region/override rules can't place gets tz NULL.
 
