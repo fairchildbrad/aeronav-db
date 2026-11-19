@@ -36,7 +36,7 @@ Operator 2026-11-19: "Finish all of the plan-03 before release". The release run
     - RU done (73e9548; 20 Sakha scheduled airports in UBD; RU-SA and RU-SAK caught by the zone_regions check).
     - BR rules done (0c37247).
   Remaining:
-    - BR AM via IBGE seat coordinates (Tabatinga and Porto Acre), with Tabatinga to UBD.
+    - BR AM DONE 393dbf2: IBGE centroids, not seats (the API gives none); 8 Manaus overrides; Tabatinga in UBD. sqwkd R1 (South Kurils quoted) and R2 (only a shared zone may map to no region, with a test) DONE 2a695ec. Optional: Rosstat OKTMO for the 20 Sakha airports.
     - BR PA via the Xingu's range in PA (IBGE BC250 or ANA), else option (b).
     - Then: canaries (YSSY YBBN YPPH YPAD YBHI SBGR SBEG SBBE SBRB SBFN UUEE UNNT UHWW UEEE UHPP WIII WADD WAJJ WIOO), the build from the seed (tz3b inputs), verify, gate, AC-3a lint, CFS-like check (none: Q2 with the operator), README L4 (add Eucla), SUMMARY, unify.
   SUMMARY must also record:
