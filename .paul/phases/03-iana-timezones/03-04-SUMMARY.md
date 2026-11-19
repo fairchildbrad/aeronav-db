@@ -2,7 +2,7 @@
 phase: 03-iana-timezones
 plan: 04
 type: summary
-status: draft
+status: complete
 description: "The other 26 multi-zone countries, Kosovo and the AN successors placed from zone1970 and tzdata; the tz gate on the seed build prints US lines only, and zone_regions.csv now maps every multi-zone country except US and AQ."
 about: "aeronav-db"
 tags: [timezone, iana, argentina, china, greenland, polynesia, crimea, uzbekistan]
@@ -11,16 +11,16 @@ relatedTo: [03-04-PLAN.md, 03-03-SUMMARY.md]
 
 # 03-04 Summary: the other multi-zone countries
 
-DRAFT for sqwkd's check before unify.
+Checked by sqwkd 2026-11-19, verbatim: "sqwkd review of the 03-04 SUMMARY (2916455, code ef949cc): OK to unify after three fixes." The three fixes (Labuan, the TNCM count, the CY note wording) are applied below; the build was re-run.
 
 ## Build (AC-1, AC-7)
 - **Inputs:** 2026-10-29 built from the seed (e92fa5fe…) with the tz4 inputs.
-- **Output:** sha256 3d49a6e4…, at scratchpad tz5/navigation.sqlite3.
-- **`verify --previous`:** exits 0. All canaries pass, including the 25 new ones. Present 27,226: placed 26,426 (03-03: 24,894), unplaced 800.
+- **Output:** sha256 2418b7a5…, at scratchpad tz5/navigation.sqlite3.
+- **`verify --previous`:** exits 0. All canaries pass, including the 25 new ones. Present 27,226: placed 26,425 (03-03: 24,894), unplaced 801.
 - **`tz gate`:** exits 1, with only US lines left (03-05):
 
   ```
-  present 27226, placed 26426, NULL 800
+  present 27226, placed 26425, NULL 801
   FAIL item 1: US has 3 airports with multi_zone_country
   FAIL item 2: US has 63 scheduled airports unplaced and unlisted
   ```
@@ -46,7 +46,7 @@ Columns: present, placed, NULL, then scheduled-service airports split into place
 | KZ | 35 | 34 | 1 | 23 | 1 | 0 |
 | MH | 42 | 42 | 0 | 16 | 0 | 0 |
 | MN | 25 | 21 | 4 | 11 | 2 | 0 |
-| MY | 60 | 60 | 0 | 34 | 0 | 0 |
+| MY | 60 | 59 | 1 | 33 | 1 | 0 |
 | NZ | 59 | 59 | 0 | 28 | 0 | 0 |
 | PF | 51 | 13 | 38 | 11 | 27 | 0 |
 | PG | 345 | 345 | 0 | 37 | 0 | 0 |
@@ -57,7 +57,7 @@ Columns: present, placed, NULL, then scheduled-service airports split into place
 | VN | 29 | 1 | 28 | 1 | 21 | 0 |
 | XK | 1 | 1 | 0 | 1 | 0 | 0 |
 
-TNCE and TNCM (NASR "AN") now place; both count under BQ in this build. The SX canary TNCM → America/Puerto_Rico passes. Why TNCM counts under BQ wasn't investigated: it is an identity matter, out of scope here. AQ stays NULL by design.
+TNCE and TNCM (NASR "AN") now place. Checked on tz5: placement_inputs gives BQ (BQ-SE) for TNCE and SX for TNCM, and both resolve on the country basis to America/Puerto_Rico. Identity's iso_country for both stays "AN" (AP0019780, AP0019781). That is an open Phase 1 issue, recorded in STATE.md. The draft's "count under BQ" was a misreading: the BQ row in the table covers two other airports. AQ stays NULL by design.
 
 ## AC results
 | AC | Result |
@@ -110,7 +110,7 @@ TNCE and TNCM (NASR "AN") now place; both count under BQ in this build. The SX c
   - **GL:** named places Pituffik → Thule, Ittoqqortoormiit → Scoresbysund and Danmarkshavn; the Nuuk residual has S2 boxes. Neerlerit Inaat (BGCO) is 0.68° from Ittoqqortoormiit, so it goes to unplaced_by_design (R1).
   - **NZ:** NZ-WGN is SPLIT with Chatham as a named place (OurAirports files NZCI under WGN). Paraparaumu has a blank municipality and is placed by an override.
   - **MN:** Zavkhan and Govi-Altai are SPLIT because tzdata records two configurations. ZMAT and ZMDN go to unplaced_by_design.
-  - **MY:** Labuan → Kuching, via tzdata's "# Malaysia (eastern)" heading (R1).
+  - **MY:** Labuan (MY-15) is SPLIT, and WBKL goes to unplaced_by_design (sqwkd). zone1970 names only "Sabah, Sarawak", and tzdata doesn't state Labuan's history. sqwkd notes, from recollection and not source-checked, that Labuan may have followed Singapore before 1946. The draft's Labuan → Kuching inference was reverted.
   - **MH:** 11 NASR-only atolls are placed by overrides. Dyess AAF → Kwajalein; the others → Tarawa.
   - **XK:** BKPR → Belgrade, from tzdata europe's Kosovo heading.
   - **UA:** Kharkiv has no region in OurAirports and is placed by an override.
@@ -120,7 +120,7 @@ TNCE and TNCM (NASR "AN") now place; both count under BQ in this build. The SX c
 2. **D2:** UZ reverses the Q2 ruling (above). sqwkd is telling the operator.
 3. **tzdata-only citations:** no national statute was fetched for any 03-04 country; SOURCES.md says so.
 4. **PF:** Légifrance returned 403; it wasn't worked around.
-5. **CY:** the 03-01 ISO-coded partial rows were removed (above).
+5. **CY:** the 03-01 ISO-coded partial rows were removed (above). Every note that relies on OurAirports' CY codes now says the numbering differs from ISO 3166-2:CY.
 
 ## Carried forward
 - To 03-05: whether US stays in `ZONE_REGIONS_EXEMPT` when the gate closes (sqwkd D1).

@@ -16,26 +16,26 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 ## Current Position
 
 Milestone: v0.2 Airport identity & history
-Phase: 3 of 3 (IANA timezones). 03-01, 03-02 and 03-03 unified; 03-04 and 03-05 remain.
+Phase: 3 of 3 (IANA timezones). 03-01 to 03-04 unified; 03-05 remains.
 Plan: 03-03 unified 2026-11-19 (.paul/phases/03-iana-timezones/03-03-SUMMARY.md). sqwkd, verbatim: "sqwkd check of 03-03: OK. Unify."
   Build of record: scratchpad tz4/navigation.sqlite3, sha256 05e6892a…, same inputs as tz3b (seed e92fa5fe…, NASR/OurAirports/navaids 2026-10-29). Placed 24,894, unplaced 2,332. tz gate exit 1 only for 03-04/05 countries.
   Patterns carried into 03-04 (as for 03-03, plus): zone_regions.csv mapping per country with the AC-2 check; R1 (where zones agree today, the zone whose history matches); S2 mainland exception; L4 list now Labrador + Eucla (Crimea joins in 03-04).
   Scratch tools add: scripts/{au_rows,xingu}.py.
   Optional: Rosstat OKTMO for the 20 Sakha airports. Q2 (ERSA/AIPs as a check) is the operator's decision.
 Operator 2026-11-19: "Finish all of the plan-03 before release". The release runbook is not started.
-Status: 03-04 PLAN approved 2026-11-19 by cv-aviation and sqwkd (rulings recorded in the plan: Q1 Xinjiang → Shanghai via overrides; Q2 name-cited only for CD/UZ, VN Bến Hải only if tzdata states it; Q3 Crimea precedent, PS per-place; Q4 timeboxed PF search). APPLY done (5c837d2, ef949cc): gate on tz5 build (sha256 3d49a6e4…) prints US lines only; SUMMARY draft with sqwkd. Next: on sqwkd's OK, unify 03-04, then /paul:plan 03-05 (include: does US stay in ZONE_REGIONS_EXEMPT).
+Status: 03-04 PLAN approved 2026-11-19 by cv-aviation and sqwkd (rulings recorded in the plan: Q1 Xinjiang → Shanghai via overrides; Q2 name-cited only for CD/UZ, VN Bến Hải only if tzdata states it; Q3 Crimea precedent, PS per-place; Q4 timeboxed PF search). 03-04 unified 2026-11-19 (sqwkd OK after three fixes). Build of record: scratchpad tz5/navigation.sqlite3, sha256 2418b7a5…; placed 26,425, unplaced 801; gate prints US lines only. Next: /paul:plan 03-05 (US remainder + closing gate; must decide whether US stays in ZONE_REGIONS_EXEMPT, per sqwkd D1).
 Last activity: 2026-11-19. 03-03 unified.
 
 Progress:
 - Milestone: [███████░░░] 73%
 - Milestone: Phases 1-2 done; Phase 3 in progress
-- Phase 3: [██████░░░░] 3 of 5 plans
+- Phase 3: [████████░░] 4 of 5 plans
 
 ## Loop Position
 
 ```
 PLAN ──▶ APPLY ──▶ UNIFY
-  ✓        ✓        ✓     [03-03 loop closed]
+  ✓        ✓        ✓     [03-04 loop closed]
 ```
 
 ## Accumulated Context
@@ -62,6 +62,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - (resolved 2026-11-18) Timezone: operator "V0.2 and build it now". It's a later phase of v0.2, using a self-maintained country→region→override table of IANA zones, no polygons.
 
 ### Blockers/Concerns
+- OPEN (Phase 1, found in 03-04): identity iso_country stays NASR's retired "AN" for TNCE (AP0019780) and TNCM (AP0019781), although OurAirports and tz placement give BQ and SX. Tz is unaffected (both America/Puerto_Rico); the identity column needs a Phase 1 decision before release.
 - DO NOT MERGE feat/airport-identity to main except via docs/RELEASE-RUNBOOK.md (after Phase 3, operator-confirmed): merging switches CI to schema 3
 - Process: from 01-02 on, the plan goes to the operator for approval and then the audit runs (sqwkd routing, 2026-11-18). 01-01 ran under "V0.2 and build it now", with the audit skipped.
 - RELEASE GATE: no schema-3 release before the Phase 2 backfill (it would re-mint ids)
@@ -71,9 +72,9 @@ PLAN ──▶ APPLY ──▶ UNIFY
 ## Session Continuity
 
 Last session: 2026-11-19
-Stopped at: 03-03 loop closed
-Next action: /paul:apply 03-04 (approved)
-Resume file: .paul/phases/03-iana-timezones/03-03-SUMMARY.md
+Stopped at: 03-04 loop closed
+Next action: /paul:plan 03-05
+Resume file: .paul/phases/03-iana-timezones/03-04-SUMMARY.md
 
 ---
 *STATE.md — Updated after every significant action*

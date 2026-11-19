@@ -108,3 +108,9 @@ date = "2026-11-19"
 action = "unify"
 plan = "03-03"
 note = "AU, BR, RU, ID placed from statutes and tzdata; none in the tz gate. zone_regions.csv (CA MX BR AU ID RU mapped) caught RU-SA, RU-SAK. Placed 24,894, unplaced 2,332; build sha256 05e6892a...; sqwkd OK"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "03-04"
+note = "26 multi-zone countries + XK + AN placed from zone1970/tzdata; zone_regions maps every multi-zone country (US, AQ exempt); gate prints US lines only; placed 26,425, unplaced 801; build sha256 2418b7a5...; sqwkd OK after Labuan/TNCM/CY fixes"
