@@ -92,6 +92,13 @@ class Rules:
                     raise TzRulesError(f"{where}: cite a source")
                 if any(not r.startswith(f"{country}-") for r in regions):
                     raise TzRulesError(f"{where}: regions must be ISO 3166-2")
+                shared = [c for c, found in self.zones.items()
+                          if c != country and zone in found]
+                if not regions and not shared:
+                    # Only a zone zone1970.tab also lists for another country
+                    # (Simferopol: RU and UA, covering UA-43) may cover none
+                    # of this country's regions.
+                    raise TzRulesError(f"{where}: regions must be ISO 3166-2")
                 mapped = self.zone_regions.setdefault(country, {})
                 if zone in mapped:
                     raise TzRulesError(f"{where}: listed twice")

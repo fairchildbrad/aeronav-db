@@ -197,3 +197,11 @@ def test_zone_regions_map_is_checked_once_a_country_has_rows(tmp_path):
 def test_zone_regions_refusals(tmp_path, zone_regions, extra, message):
     with pytest.raises(tz.TzRulesError, match=message):
         make(tmp_path, GOOD + extra, zone_regions=zone_regions)
+
+
+def test_only_a_shared_zone_may_cover_no_region(tmp_path):
+    no_regions = MX_MAP.replace("Banderas,MX-NAY,", "Banderas,,")
+    with pytest.raises(tz.TzRulesError, match="ISO 3166-2"):
+        make(tmp_path, GOOD, zone_regions=no_regions)
+    # FR,MC share Europe/Paris in TAB; a shared zone may map to no FR region.
+    make(tmp_path, GOOD, zone_regions=MX_MAP + "FR,Europe/Paris,,covers Monaco only\n")
