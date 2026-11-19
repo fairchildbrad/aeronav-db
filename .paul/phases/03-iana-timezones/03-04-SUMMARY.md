@@ -117,7 +117,7 @@ TNCE and TNCM (NASR "AN") now place. Checked on tz5: placement_inputs gives BQ (
 
 ## Deviations
 1. **D1:** the US exemption (above).
-2. **D2:** UZ reverses the Q2 ruling (above). sqwkd is telling the operator.
+2. **D2:** UZ reverses the Q2 ruling (above). Confirmed by the operator, verbatim via sqwkd 2026-11-19: "Yes to both questions".
 3. **tzdata-only citations:** no national statute was fetched for any 03-04 country; SOURCES.md says so.
 4. **PF:** Légifrance returned 403; it wasn't worked around.
 5. **CY:** the 03-01 ISO-coded partial rows were removed (above). Every note that relies on OurAirports' CY codes now says the numbering differs from ISO 3166-2:CY.
