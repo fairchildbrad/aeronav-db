@@ -31,6 +31,9 @@ BT,*,*,Asia/Thimphu,single-zone country (zone1970.tab)
 BW,*,*,Africa/Maputo,single-zone country (zone1970.tab)
 BY,*,*,Europe/Minsk,single-zone country (zone1970.tab)
 BZ,*,*,America/Belize,single-zone country (zone1970.tab)
+CA,CA-AB,*,America/Edmonton,"zone1970.tab Edmonton 'CST - AB, BC(E), NT(E), SK(W)' names Alberta whole; tzdata 2026f northamerica names no exception in this province (Lloydminster, on the AB/SK line, follows Edmonton)"
+CA,CA-MB,*,America/Winnipeg,"zone1970.tab Winnipeg 'EST - Manitoba, ON (northwest)' names Manitoba whole; tzdata 2026f northamerica names no exception in this province (2026 year-round -05 change is in the zone)"
+CA,CA-NB,*,America/Moncton,zone1970.tab Moncton 'Atlantic - New Brunswick' names it whole; tzdata 2026f northamerica names no exception in this province
 CA,CA-ON,*,SPLIT,partial_regions.csv; placed by OurAirports municipality rows (03-02 O1-O4)
 CA,CA-ON,ATIKOKAN,America/Panama,"tzdata 2026f northamerica, Ontario commentary under Zone America/Toronto, names Atikokan: year-round EST; anomaly beats the Time Act rule (O3); name-cited"
 CA,CA-ON,ATTAWAPISKAT,America/Toronto,"Ontario Time Act RSO 1990 c T.9 s.2(1), east of 90W; CGNDB FOBRK,FAECJ at 82.425-82.425W (2 entries), east of the 85W cut-off (O1); not an anomaly in tzdata 2026f northamerica northamerica; rule-cited"
@@ -83,6 +86,7 @@ CA,CA-ON,TRENTON,America/Toronto,"Ontario Time Act RSO 1990 c T.9 s.2(1), east o
 CA,CA-ON,WAWA,America/Toronto,"Ontario Time Act RSO 1990 c T.9 s.2(1), east of 90W; CGNDB FDGDZ at 84.774W, east of the 85W cut-off (O1); not an anomaly in tzdata 2026f northamerica northamerica; rule-cited"
 CA,CA-ON,WIARTON,America/Toronto,"Ontario Time Act RSO 1990 c T.9 s.2(1), east of 90W; CGNDB FDDMR at 81.140W, east of the 85W cut-off (O1); not an anomaly in tzdata 2026f northamerica northamerica; rule-cited"
 CA,CA-ON,WINDSOR,America/Toronto,"Ontario Time Act RSO 1990 c T.9 s.2(1), east of 90W; CGNDB FDEGT at 82.993W, east of the 85W cut-off (O1); not an anomaly in tzdata 2026f northamerica northamerica; rule-cited"
+CA,CA-PE,*,America/Halifax,"zone1970.tab Halifax 'Atlantic - NS (most areas), PE' names PE whole; tzdata 2026f northamerica names no exception in this province"
 CC,*,*,Asia/Yangon,single-zone country (zone1970.tab)
 CF,*,*,Africa/Lagos,single-zone country (zone1970.tab)
 CG,*,*,Africa/Lagos,single-zone country (zone1970.tab)
