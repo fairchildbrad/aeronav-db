@@ -17,7 +17,7 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 
 Milestone: v0.2 Airport identity & history
 Phase: 2 of 3 (History backfill + first schema-3 release), planning
-Plan: 02-02 complete (02-02-SUMMARY.md); CI chaining prepared on the branch, nothing published
+Plan: 02-03 and 03-01 PLANs drafted, out for review (sqwkd, cv-aviation); 02-02 complete
 Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
 Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
 
