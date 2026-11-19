@@ -1,6 +1,6 @@
 """Replay archived history into a seed file the first schema-3 release chains from.
 
-    python -m aeronav_db.backfill --from 2020-03-26 --to 2026-10-01 \\
+    python -m aeronav_db.backfill --from 2017-10-12 --to 2026-10-01 \\
         --cache ~/.cache/aeronav-backfill --out seed.sqlite3
 
 Every NASR cycle in the archive, oldest first, plus the OurAirports
@@ -29,6 +29,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+import zipfile
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -81,8 +82,14 @@ def _get(url: str, headers: dict[str, str] | None = None) -> bytes:
             with urllib.request.urlopen(request, timeout=300) as response:  # noqa: S310
                 return response.read()
         except urllib.error.HTTPError as error:
-            if error.code < 500 or attempt == nasr_archive.RETRIES - 1:
+            retryable = error.code >= 500 or error.code == 429
+            if not retryable or attempt == nasr_archive.RETRIES - 1:
                 raise
+            if error.code == 429:  # the Internet Archive's rate limit
+                after = error.headers.get("Retry-After") if error.headers else None
+                wait = int(after) if after and after.isdigit() else 0
+                time.sleep(max(wait, WAYBACK_BACKOFF * (attempt + 1)))
+                continue
         except (urllib.error.URLError, TimeoutError):
             if attempt == nasr_archive.RETRIES - 1:
                 raise
@@ -99,6 +106,9 @@ WAYBACK_CDX = (
     "&filter=statuscode:200&fl=timestamp,digest,length&output=json"
 )
 WAYBACK_RAW = "https://web.archive.org/web/{timestamp}id_/{url}"
+# Seconds: the pause before each Archive download, and the 429 backoff step.
+WAYBACK_PAUSE = 60
+WAYBACK_BACKOFF = 300
 
 
 def wayback_captures(url: str) -> list[dict[str, str]]:
@@ -164,7 +174,22 @@ def nasr_cycle(cache: Path, cycle: str) -> dict | None:
             meta_path.write_text(json.dumps({"missing": True, "url": url}))
             return None
         provenance = wayback
-        fmt, rows, raw = nasr_archive.apt_rows(wayback["fetch_url"])
+        # One whole download, not range reads: the Archive rate-limits many
+        # small requests. Every member's CRC is tested before parsing.
+        local = cache / "wayback" / f"{cycle}.zip"
+        local.parent.mkdir(parents=True, exist_ok=True)
+        time.sleep(WAYBACK_PAUSE)
+        data = _get(wayback["fetch_url"])
+        provenance["zip_sha256"] = hashlib.sha256(data).hexdigest()
+        local.write_bytes(data)
+        try:
+            with zipfile.ZipFile(local) as archive:
+                bad = archive.testzip()
+            if bad is not None:
+                raise BackfillError(f"{cycle}: CRC error in {bad} (Wayback copy)")
+            fmt, rows, raw = nasr_archive.apt_rows(local)
+        finally:
+            local.unlink()
     blank = nasr_archive.legacy_blank_status(raw) if fmt == "a" else []
     with gzip.open(rows_path, "wt", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=nasr_archive.APT_COLUMNS,
@@ -367,7 +392,7 @@ def write_seed(path: Path, state: identity.IdentityState, meta: dict[str, str]) 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Replay archived airport history.")
-    parser.add_argument("--from", dest="start", default="2020-03-26")
+    parser.add_argument("--from", dest="start", default="2017-10-12")
     parser.add_argument("--to", dest="end", required=True)
     parser.add_argument("--cache", required=True)
     parser.add_argument("--out", required=True)

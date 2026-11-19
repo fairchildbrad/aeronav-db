@@ -26,7 +26,8 @@ def legacy_line(site="19562.*A", ftype="AIRPORT", lid="PDT", state="OR",
                          ("name", name), ("lat_seconds", lat), ("lon_seconds", lon),
                          ("status", status), ("icao", icao)):
         put(field, value)
-    return "".join(line).rstrip()
+    width = na.LEGACY_APT_RECORD_LENGTH
+    return "".join(line).ljust(width)[:width]
 
 
 def subscription(tmp_path, fmt, apt_text):

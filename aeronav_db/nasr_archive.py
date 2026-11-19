@@ -1,6 +1,7 @@
 """Read airport records out of any archived NASR 28-day subscription.
 
-The archive goes back to 2020-03-26 (earlier cycles return 404) and has
+The FAA archive goes back to 2020-03-26 (earlier cycles return 404; backfill
+falls back to the Internet Archive's copies of the same files) and has
 changed shape twice:
 
 * format a: fixed-width text only (``APT.txt``), no ``CSV_Data/``;

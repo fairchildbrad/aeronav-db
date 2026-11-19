@@ -16,8 +16,8 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 ## Current Position
 
 Milestone: v0.2 Airport identity & history
-Phase: 2 of 3 (History backfill + first schema-3 release), planning
-Plan: 02-03 and 03-01 PLANs drafted, out for review (sqwkd, cv-aviation); 02-02 complete
+Phase: 3 of 3 (IANA timezones), applying 03-01
+Plan: 02-03 complete (history from 2017-10-12, seed e92fa5fe…, unpublished); 03-01 reviewed, next to apply
 Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
 Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
 

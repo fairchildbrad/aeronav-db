@@ -84,3 +84,9 @@ action = "unify"
 phase = 2
 plan = "02-02"
 at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "02-03"
+note = "History back to 2017-10-12 via Internet Archive copies of FAA NASR files; seed e92fa5fe... reproduced and re-pinned, unpublished"

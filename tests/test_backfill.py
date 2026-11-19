@@ -124,15 +124,24 @@ def test_no_capture_means_missing(monkeypatch):
 def test_faa_404_falls_back_to_wayback_and_records_provenance(monkeypatch, tmp_path):
     import io
     import urllib.error
+    import zipfile
 
     def apt_rows(url):
-        if "web.archive.org" not in url:
+        if str(url).startswith("https://"):
             raise urllib.error.HTTPError(url, 404, "nf", {}, io.BytesIO())
         return "a", [apt("1.", "A01")], b"raw"
 
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w") as z:
+        z.writestr("APT.txt", "x")
+
+    def get(url, headers=None):
+        return buffer.getvalue() if "id_/" in url else CDX
+
     monkeypatch.setattr(backfill.nasr_archive, "apt_rows", apt_rows)
     monkeypatch.setattr(backfill.nasr_archive, "legacy_blank_status", lambda raw: [])
-    monkeypatch.setattr(backfill, "_get", lambda url, headers=None: CDX)
+    monkeypatch.setattr(backfill, "_get", get)
+    monkeypatch.setattr(backfill.time, "sleep", lambda s: None)
     meta = backfill.nasr_cycle(tmp_path, "2019-09-12")
     assert meta["source"] == "wayback" and meta["capture"] == "20210325204726"
     again = backfill.nasr_cycle(tmp_path, "2019-09-12")

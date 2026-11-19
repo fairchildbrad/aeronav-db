@@ -12,7 +12,7 @@ relatedTo: [02-02-PLAN.md]
 Let N be the cycle of the first schema-3 release, and N-1 the cycle 28 days before it.
 
 1. **Re-run the seed to N-1.** From a warm cache this takes about 6 minutes:
-   `python -m aeronav_db.backfill --from 2020-03-26 --to N-1 --cache CACHE --out seed.sqlite3`
+   `python -m aeronav_db.backfill --from 2017-10-12 --to N-1 --cache CACHE --out seed.sqlite3`
    Run it a second time. The two seeds' sha256 must be identical.
 2. **Pin the seed.** In `identity/seed.json`, set `cycle` = N-1, `sha256` = the seed hash, and `url` = `…/releases/download/identity-seed-N-1/seed.sqlite3`. Leave `published` false for now.
 3. **Dry run.** `python -m aeronav_db.chain previous --cycle N --out prev --seed-path seed.sqlite3`, then build N with `--previous-db prev/previous.sqlite3`, then `verify --previous`. All three must exit 0.

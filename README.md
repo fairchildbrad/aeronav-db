@@ -278,13 +278,19 @@ What the file guarantees, and `verify` enforces:
 ### Where the history comes from
 
 The history is replayed, cycle by cycle, through the same engine the weekly
-build uses (`python -m aeronav_db.backfill`). It starts at the earliest cycle in
-the FAA's NASR archive, 2020-03-26, and reads all three formats the archive has
-used: fixed-width text, per-subject CSV and single CSV. OurAirports history
+build uses (`python -m aeronav_db.backfill`). It starts at 2017-10-12 and reads
+all three formats the FAA has used: fixed-width text, per-subject CSV and single
+CSV. The FAA serves its NASR archive from 2020-03-26 on. The 32 earlier cycles,
+2017-10-12 to 2020-02-27, are the FAA's own files as preserved by the Internet
+Archive's Wayback Machine. The Archive is only the carrier: on 2020-03-26, which
+both still serve, the two copies are byte-identical, and every Archive file
+must pass its zip CRC checks and the fixed-width layout check. The next cycle
+back, 2017-09-14, was never captured. OurAirports history
 comes from its public git mirror, which starts on 2021-11-02. So
 `history_start` is the first NASR cycle, and `history_start_ourairports` is the
 first cycle with non-US data. `backfill_sources` records, for every cycle, the
-sha256 of the exact FAA file parsed and the OurAirports commit, so any id can be
+sha256 of the exact FAA file parsed, whether it came from the FAA or the
+Archive (with the capture timestamp), and the OurAirports commit, so any id can be
 traced to the bytes that created it.
 
 ### The chained build
