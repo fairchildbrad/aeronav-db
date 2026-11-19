@@ -17,7 +17,14 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 
 Milestone: v0.2 Airport identity & history
 Phase: 3 of 3 (IANA timezones), 03-01 unified
-Plan: 03-02 APPLY in progress (sqwkd OK + M1, C1-C3; cv-aviation OK + notes). Task 1 done f769497; MX done 9f3f5a6 (102/102 placed). CA blocked: Ontario Time Act is a pure 90°W meridian rule but observed time in NW Ontario differs; asked sqwkd 2026-11-19 (proposal: rule-cited ON rows only east of 85°W, vendor tzdata northamerica for named anomalies). Operator 2026-11-19: "Finish all of the plan-03 before release". Release runbook not started
+Plan: 03-02 APPLY in progress. Task 1 f769497; MX 9f3f5a6 (102/102). sqwkd OK'd the CA-ON approach with O1-O4 (in plan); tzdata northamerica vendored 4d125b6.
+  CA-ON next steps:
+  - Anomalies named in northamerica (lines ~1750-1770): Big Trout Lake area → America/Winnipeg (E of 90W); Upsala area → America/Toronto (W of 90W); Atikokan → America/Panama; Pickle Lake + Mishkeegogamang → America/Panama. Fort Severn NOT named → NULL (O2).
+  - Get each anomaly's longitude from a named gazetteer (not memory) for the O1 margin; Big Trout Lake ~89.9W expected, so 85W holds if confirmed.
+  - Rule-cited Toronto rows only east of 85W; anomalies name-cited (O3); the rest of NW Ontario's scheduled airports → unplaced_by_design.csv (O4).
+  - Also Ontario Reg. 333/26: west of 90W becomes UTC-5 all year from 2026-11-01 (tzdata 2026f, Manitoba model).
+  - Then the other provinces with the same pattern; then build, verify, gate, SUMMARY. Q2 (CFS) is with the operator.
+Operator 2026-11-19: "Finish all of the plan-03 before release". Release runbook not started
 Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
 Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
 
