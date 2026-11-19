@@ -33,3 +33,8 @@ https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_cs
 
 ## BC government release 2026AG0013-000209
 https://news.gov.bc.ca/releases/2026AG0013-000209 (fetched 2026-11-19): permanent Pacific time from 2026; names the northeastern places on year-round UTC-7 and Fort Ware (Kwadacha) as an exception.
+
+## BC Interpretation Act s.26 and CGNDB (BC)
+- RSBC 1996 c 238 s.26: "Pacific Time" is UTC-7; a reference to time in BC is Pacific Time. https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/96238_01 (fetched 2026-11-19)
+- CGNDB BC: https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_csv_eng/cgn_bc_csv_eng.zip, sha256 `08653acac0eec1141cbd996259a1ba1ee55d820b7675e269b55502a9cad20524`. The land district in each record's Location field is used.
+- D1 membership lists: RDEK and RDCK sites returned no membership list on their home pages; RDKB and CSRD return 403 to automated fetch (not bypassed). Cranbrook, Castlegar, Trail and Revelstoke stay NULL until an official list is read.
