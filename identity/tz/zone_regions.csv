@@ -34,3 +34,19 @@ MX,America/Mazatlan,MX-BCS MX-NAY MX-SIN,"zone1970.tab 'Baja California Sur, Nay
 MX,America/Bahia_Banderas,MX-NAY,"zone1970.tab 'Bahía de Banderas'; regions from the cited rules.csv rows (03-02, statutes in SOURCES.md)"
 MX,America/Hermosillo,MX-SON,"zone1970.tab 'Sonora'; regions from the cited rules.csv rows (03-02, statutes in SOURCES.md)"
 MX,America/Tijuana,MX-BCN,"zone1970.tab 'Baja California'; regions from the cited rules.csv rows (03-02, statutes in SOURCES.md)"
+BR,America/Noronha,BR-PE,zone1970.tab 'Atlantic islands'; tzdata 2026f southamerica zone heading
+BR,America/Belem,BR-AP BR-PA,"zone1970.tab 'Pará (east), Amapá'; tzdata 2026f southamerica zone heading"
+BR,America/Fortaleza,BR-MA BR-PI BR-CE BR-RN BR-PB,"zone1970.tab 'Brazil (northeast: MA, PI, CE, RN, PB)'; tzdata 2026f southamerica zone heading"
+BR,America/Recife,BR-PE,zone1970.tab 'Pernambuco'; tzdata 2026f southamerica zone heading
+BR,America/Araguaina,BR-TO,zone1970.tab 'Tocantins'; tzdata 2026f southamerica zone heading
+BR,America/Maceio,BR-AL BR-SE,"zone1970.tab 'Alagoas, Sergipe'; tzdata 2026f southamerica zone heading"
+BR,America/Bahia,BR-BA,zone1970.tab 'Bahia'; tzdata 2026f southamerica zone heading
+BR,America/Sao_Paulo,BR-GO BR-DF BR-MG BR-ES BR-RJ BR-SP BR-PR BR-SC BR-RS,"zone1970.tab 'Brazil (southeast: GO, DF, MG, ES, RJ, SP, PR, SC, RS)'; tzdata 2026f southamerica zone heading"
+BR,America/Campo_Grande,BR-MS,zone1970.tab 'Mato Grosso do Sul'; tzdata 2026f southamerica zone heading
+BR,America/Cuiaba,BR-MT,zone1970.tab 'Mato Grosso'; tzdata 2026f southamerica zone heading
+BR,America/Santarem,BR-PA,zone1970.tab 'Pará (west)'; tzdata 2026f southamerica zone heading
+BR,America/Porto_Velho,BR-RO,zone1970.tab 'Rondônia'; tzdata 2026f southamerica zone heading
+BR,America/Boa_Vista,BR-RR,zone1970.tab 'Roraima'; tzdata 2026f southamerica zone heading
+BR,America/Manaus,BR-AM,zone1970.tab 'Amazonas (east)'; tzdata 2026f southamerica zone heading
+BR,America/Eirunepe,BR-AM,zone1970.tab 'Amazonas (west)'; tzdata 2026f southamerica zone heading
+BR,America/Rio_Branco,BR-AC,zone1970.tab 'Acre'; tzdata 2026f southamerica zone heading

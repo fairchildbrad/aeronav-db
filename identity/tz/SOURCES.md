@@ -71,3 +71,6 @@ RSY 2002 c125 s.33; OIC 2020/125 (UTC-7 year-round) returned 403 at yukon.ca and
 
 ## tzdata australasia, southamerica, europe, asia, backward
 Vendored from the same tzdata2026f.tar.gz (sha256 above) for 03-03: named anomalies and zone histories for AU, BR, RU and ID; `backward` for link names (e.g. Australia/Canberra).
+
+## Brazil: Decreto 2.784/1913, Lei 11.662/2008, Lei 12.876/2013
+planalto.gov.br resets connections from the automated client (2026-11-19); not worked around. Cited via tzdata 2026f `southamerica`, which quotes Lei 11.662/2008, gives each zone's state list, names east/west Pará and Amazonas places, and gives the Tabatinga-Porto Acre great-circle line (Lei 12.876/2013) as the Amazonas division. Deviation: no statute text or hash.
