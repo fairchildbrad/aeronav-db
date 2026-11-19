@@ -246,6 +246,12 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
 CANARY_TZ = {
     "KDJT": "America/New_York", "PHNL": "Pacific/Honolulu",
     "KELP": "America/Denver", "PANC": "America/Anchorage",
+    # 03-02 AC-4 and AC-5: Mexico and Canada placed from cited rules.
+    "MMUN": "America/Cancun", "MMMX": "America/Mexico_City",
+    "MMSD": "America/Mazatlan", "MMMZ": "America/Mazatlan",
+    "MMOX": "America/Mexico_City", "MMQT": "America/Mexico_City",
+    "CYYC": "America/Edmonton", "CYYZ": "America/Toronto",
+    "CYVR": "America/Vancouver", "CYHZ": "America/Halifax",
 }
 
 
