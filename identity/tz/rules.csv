@@ -34,6 +34,12 @@ BZ,*,*,America/Belize,single-zone country (zone1970.tab)
 CA,CA-AB,*,America/Edmonton,"zone1970.tab Edmonton 'CST - AB, BC(E), NT(E), SK(W)' names Alberta whole; tzdata 2026f northamerica names no exception in this province (Lloydminster, on the AB/SK line, follows Edmonton)"
 CA,CA-MB,*,America/Winnipeg,"zone1970.tab Winnipeg 'EST - Manitoba, ON (northwest)' names Manitoba whole; tzdata 2026f northamerica names no exception in this province (2026 year-round -05 change is in the zone)"
 CA,CA-NB,*,America/Moncton,zone1970.tab Moncton 'Atlantic - New Brunswick' names it whole; tzdata 2026f northamerica names no exception in this province
+CA,CA-NS,*,SPLIT,"partial_regions.csv; placed by OurAirports municipality rows (sqwkd NS option (a), 2026-11-19)"
+CA,CA-NS,DIGBY,America/Halifax,"zone1970.tab Halifax 'Atlantic - NS (most areas), PE'; CGNDB CAJOA in Digby County (mainland); name-cited"
+CA,CA-NS,GREENWOOD,America/Halifax,"zone1970.tab Halifax 'Atlantic - NS (most areas), PE'; CGNDB CAORH (Kings), CBVJT (Halifax), CAORG (Pictou): all mainland counties; name-cited"
+CA,CA-NS,HALIFAX,America/Halifax,"zone1970.tab Halifax 'Atlantic - NS (most areas), PE'; CGNDB CBUCG, CAPHL in Halifax County (mainland, W of the Strait of Canso); name-cited"
+CA,CA-NS,SYDNEY,America/Glace_Bay,"zone1970.tab Glace_Bay 'Atlantic - NS (Cape Breton)'; CGNDB CBLGX in Cape Breton County (Cape Breton Island = Cape Breton, Inverness, Richmond, Victoria counties); name-cited"
+CA,CA-NS,YARMOUTH,America/Halifax,"zone1970.tab Halifax 'Atlantic - NS (most areas), PE'; CGNDB CBPIB in Yarmouth County (mainland); name-cited"
 CA,CA-ON,*,SPLIT,partial_regions.csv; placed by OurAirports municipality rows (03-02 O1-O4)
 CA,CA-ON,ATIKOKAN,America/Panama,"tzdata 2026f northamerica, Ontario commentary under Zone America/Toronto, names Atikokan: year-round EST; anomaly beats the Time Act rule (O3); name-cited"
 CA,CA-ON,ATTAWAPISKAT,America/Toronto,"Ontario Time Act RSO 1990 c T.9 s.2(1), east of 90W; CGNDB FOBRK,FAECJ at 82.425-82.425W (2 entries), east of the 85W cut-off (O1); not an anomaly in tzdata 2026f northamerica northamerica; rule-cited"

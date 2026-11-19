@@ -27,3 +27,9 @@ R.S.O. 1990, c. T.9, s. 2(1)-(2): east of 90°W Eastern, west Central; no named 
 Canadian Geographical Names Database, Ontario CSV (Natural Resources Canada, Open Government Licence - Canada). Used only as evidence of a place's longitude in notes; no rows are copied.
 - URL: https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_csv_eng/cgn_on_csv_eng.zip (Last-Modified 2026-11-18), sha256 `bfee1cc93e6caf31db377045bb076bce8809d26cc9793aa08bd8b15d4fa112bc`
 - O1 margin: easternmost anomaly named in northamerica is the Big Trout Lake area (lake FAIIZ at 90.007W; "extending east of 90°W"). Others: Pickle Lake FDZLA 90.140W, Mishkeegogamang FOBRY 90.229W, Upsala FCZHV 90.498W, Atikokan FAEBC 91.622W. Margin to 85.5W ≈ 4.5°, so the 85W cut-off holds.
+
+## CGNDB (Nova Scotia)
+https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_csv_eng/cgn_ns_csv_eng.zip, sha256 `86d8094a9a27ca970d3c7637feb44bdacb60dc1946e9d57dd0b31b13d6231c47`. The county in each record's Location field decides island vs mainland. Port Hawkesbury (on the strait) and Sable Island (no record) stay NULL. America/Glace_Bay and America/Halifax differ only before 1972.
+
+## BC government release 2026AG0013-000209
+https://news.gov.bc.ca/releases/2026AG0013-000209 (fetched 2026-11-19): permanent Pacific time from 2026; names the northeastern places on year-round UTC-7 and Fort Ware (Kwadacha) as an exception.
