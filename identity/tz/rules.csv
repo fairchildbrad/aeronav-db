@@ -134,6 +134,57 @@ MT,*,*,Europe/Malta,single-zone country (zone1970.tab)
 MU,*,*,Indian/Mauritius,single-zone country (zone1970.tab)
 MV,*,*,Indian/Maldives,single-zone country (zone1970.tab)
 MW,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+MX,MX-AGU,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-BCN,*,America/Tijuana,LHHEUM art. 3 fr. III (Zona Noroeste: Baja California); LHHEUM art. 5 fr. III (seasonal time); zone1970.tab Tijuana 'Baja California'
+MX,MX-BCS,*,America/Mazatlan,"LHHEUM art. 3 fr. II (Zona Pacífico names the state); zone1970.tab Mazatlan 'Baja California Sur, ..., Sinaloa'"
+MX,MX-CAM,*,America/Merida,"LHHEUM art. 3 fr. I (Zona Centro); zone1970.tab Merida 'Campeche, Yucatán'"
+MX,MX-CHH,*,SPLIT,partial_regions.csv; placed by OurAirports municipality rows citing LHHEUM art. 3/5
+MX,MX-CHH,BOCOYNA,America/Chihuahua,"LHHEUM art. 3 fr. I residual; municipio Bocoyna checked against LHHEUM art. 5 fr. II and III lists, not named; rule-cited"
+MX,MX-CHH,CHIHUAHUA,America/Chihuahua,"LHHEUM art. 3 fr. I residual; municipio Chihuahua checked against LHHEUM art. 5 fr. II and III lists, not named; rule-cited"
+MX,MX-CHH,CIUDAD JUÁREZ,America/Ciudad_Juarez,LHHEUM art. 5 fr. III names municipio Juárez (Ciudad Juárez is its seat); name-cited
+MX,MX-CHH,NUEVO CASAS GRANDES,America/Chihuahua,"LHHEUM art. 3 fr. I residual; municipio Nuevo Casas Grandes checked against LHHEUM art. 5 fr. II and III lists, not named; rule-cited"
+MX,MX-CHP,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-CMX,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-COA,*,SPLIT,partial_regions.csv; placed by OurAirports municipality rows citing LHHEUM art. 3/5
+MX,MX-COA,CIUDAD ACUÑA,America/Matamoros,LHHEUM art. 5 fr. I names municipio Acuña; name-cited
+MX,MX-COA,MONCLOVA,America/Monterrey,"LHHEUM art. 3 fr. I residual; Monclova checked against LHHEUM art. 5 fr. I list, not named (MMIO sits in Ramos Arizpe, also not named); rule-cited"
+MX,MX-COA,PIEDRAS NEGRAS,America/Matamoros,LHHEUM art. 5 fr. I names municipio Piedras Negras; name-cited
+MX,MX-COA,SALTILLO,America/Monterrey,"LHHEUM art. 3 fr. I residual; Saltillo checked against LHHEUM art. 5 fr. I list, not named (MMIO sits in Ramos Arizpe, also not named); rule-cited"
+MX,MX-COA,TORREÓN,America/Monterrey,"LHHEUM art. 3 fr. I residual; Torreón checked against LHHEUM art. 5 fr. I list, not named (MMIO sits in Ramos Arizpe, also not named); rule-cited"
+MX,MX-COL,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-DIF,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico' (MX-DIF: OurAirports' pre-2017 code for CMX)"
+MX,MX-DUR,*,America/Monterrey,LHHEUM art. 3 fr. I (Zona Centro); zone1970.tab Monterrey 'Durango; ...'
+MX,MX-GRO,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-GUA,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-HID,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-JAL,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-MEX,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-MIC,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-MOR,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-NAY,*,SPLIT,partial_regions.csv; placed by OurAirports municipality rows citing LHHEUM art. 3/5
+MX,MX-NAY,BAHÍA DE BANDERAS,America/Bahia_Banderas,LHHEUM art. 3 fr. II names municipio Bahía de Banderas (Zona Centro); name-cited
+MX,MX-NAY,TEPIC,America/Mazatlan,LHHEUM art. 3 fr. II: Nayarit except Bahía de Banderas; Tepic not excepted; rule-cited
+MX,MX-NLE,*,SPLIT,partial_regions.csv; placed by OurAirports municipality rows citing LHHEUM art. 3/5
+MX,MX-NLE,MONTERREY,America/Monterrey,LHHEUM art. 3 fr. I residual; LHHEUM art. 5 fr. I names only Anáhuac in Nuevo León (MMMY: Apodaca; MMAN: San Nicolás de los Garza); rule-cited
+MX,MX-OAX,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-PUE,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-QUE,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-ROO,*,America/Cancun,LHHEUM art. 3 fr. IV (Zona Sureste: Quintana Roo); zone1970.tab Cancun 'Quintana Roo'
+MX,MX-SIN,*,America/Mazatlan,"LHHEUM art. 3 fr. II (Zona Pacífico names the state); zone1970.tab Mazatlan 'Baja California Sur, ..., Sinaloa'"
+MX,MX-SLP,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-SON,*,America/Hermosillo,LHHEUM art. 3 fr. II (Zona Pacífico names Sonora); not a northern-border DST municipality (art. 5); zone1970.tab Hermosillo 'Sonora'
+MX,MX-TAB,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-TAM,*,SPLIT,partial_regions.csv; placed by OurAirports municipality rows citing LHHEUM art. 3/5
+MX,MX-TAM,CIUDAD MADERO,America/Monterrey,"LHHEUM art. 3 fr. I residual; municipio Tampico (MMTM) checked against LHHEUM art. 5 fr. I list, not named; rule-cited"
+MX,MX-TAM,CIUDAD MANTE,America/Monterrey,"LHHEUM art. 3 fr. I residual; municipio El Mante checked against LHHEUM art. 5 fr. I list, not named; rule-cited"
+MX,MX-TAM,CIUDAD VICTORIA,America/Monterrey,"LHHEUM art. 3 fr. I residual; municipio Victoria checked against LHHEUM art. 5 fr. I list, not named; rule-cited"
+MX,MX-TAM,MATAMOROS,America/Matamoros,LHHEUM art. 5 fr. I names municipio Matamoros; name-cited
+MX,MX-TAM,NUEVO LAREDO,America/Matamoros,LHHEUM art. 5 fr. I names municipio Nuevo Laredo; name-cited
+MX,MX-TAM,REYNOSA,America/Matamoros,LHHEUM art. 5 fr. I names municipio Reynosa; name-cited
+MX,MX-TLA,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-VER,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
+MX,MX-YUC,*,America/Merida,"LHHEUM art. 3 fr. I (Zona Centro); zone1970.tab Merida 'Campeche, Yucatán'"
+MX,MX-ZAC,*,America/Mexico_City,"LHHEUM art. 3 fr. I (Zona Centro, residual: 'la mayor parte del territorio nacional'); state not named in fr. II-IV or art. 5; zone1970.tab Mexico_City 'Central Mexico'"
 MZ,*,*,Africa/Maputo,single-zone country (zone1970.tab)
 NA,*,*,Africa/Windhoek,single-zone country (zone1970.tab)
 NC,*,*,Pacific/Noumea,single-zone country (zone1970.tab)
