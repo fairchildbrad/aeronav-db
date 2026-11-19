@@ -2195,3 +2195,427 @@ YT,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
 ZA,*,*,Africa/Johannesburg,single-zone country (zone1970.tab)
 ZM,*,*,Africa/Maputo,single-zone country (zone1970.tab)
 ZW,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+AR,AR-A,,America/Argentina/Salta,"03-04: zone1970.tab 'Salta (SA, LP, NQ, RN)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-B,,America/Argentina/Buenos_Aires,"03-04: zone1970.tab 'Buenos Aires (BA, CF)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-C,,America/Argentina/Buenos_Aires,"03-04: zone1970.tab 'Buenos Aires (BA, CF)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-D,,America/Argentina/San_Luis,03-04: zone1970.tab 'San Luis (SL)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,AR-E,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-F,,America/Argentina/La_Rioja,03-04: zone1970.tab 'La Rioja (LR)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,AR-G,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-H,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-J,,America/Argentina/San_Juan,03-04: zone1970.tab 'San Juan (SJ)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,AR-K,,America/Argentina/Catamarca,"03-04: zone1970.tab 'Catamarca (CT), Chubut (CH)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-L,,America/Argentina/Salta,"03-04: zone1970.tab 'Salta (SA, LP, NQ, RN)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-M,,America/Argentina/Mendoza,03-04: zone1970.tab 'Mendoza (MZ)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,AR-N,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-P,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-Q,,America/Argentina/Salta,"03-04: zone1970.tab 'Salta (SA, LP, NQ, RN)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-R,,America/Argentina/Salta,"03-04: zone1970.tab 'Salta (SA, LP, NQ, RN)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-S,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-T,,America/Argentina/Tucuman,03-04: zone1970.tab 'Tucumán (TM)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,AR-U,,America/Argentina/Catamarca,"03-04: zone1970.tab 'Catamarca (CT), Chubut (CH)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-V,,America/Argentina/Ushuaia,03-04: zone1970.tab 'Tierra del Fuego (TF)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,AR-W,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-X,,America/Argentina/Cordoba,"03-04: zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,AR-Y,,America/Argentina/Jujuy,03-04: zone1970.tab 'Jujuy (JY)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,AR-Z,,America/Argentina/Rio_Gallegos,03-04: zone1970.tab 'Santa Cruz (SC)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+CL,CL-AI,,America/Coyhaique,03-04: zone1970.tab 'Aysén Region'
+CL,CL-AN,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-AP,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-AR,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-AT,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-BI,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-CO,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-LI,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-LL,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-LR,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-MA,,America/Punta_Arenas,03-04: zone1970.tab 'Magallanes Region'
+CL,CL-ML,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-NB,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-RM,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-TA,,America/Santiago,"03-04: zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,CL-VS,,SPLIT,03-04: partial_regions.csv (America/Santiago / Pacific/Easter)
+CN,CN-11,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-12,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-13,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-14,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-15,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-21,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-22,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-23,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-31,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-32,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-33,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-34,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-35,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-36,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-37,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-41,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-42,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-43,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-44,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-45,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-46,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-50,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-51,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-52,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-53,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-54,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-61,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-62,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-63,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-64,,Asia/Shanghai,"03-04: tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; zone1970.tab Asia/Shanghai 'Beijing Time'"
+CN,CN-65,,SPLIT,03-04: partial_regions.csv (Asia/Shanghai / Asia/Urumqi)
+CY,CY-01,,SPLIT,03-04: partial_regions.csv (Asia/Nicosia / Asia/Famagusta)
+CY,CY-02,,SPLIT,03-04: partial_regions.csv (Asia/Nicosia / Asia/Famagusta)
+CY,CY-03,,SPLIT,03-04: partial_regions.csv (Asia/Nicosia / Asia/Famagusta)
+CY,CY-04,,Asia/Nicosia,"03-04: zone1970.tab 'most of Cyprus'; OurAirports CY-04 is Larnaca District (LCLK), south of the line"
+CY,CY-05,,Asia/Nicosia,03-04: zone1970.tab 'most of Cyprus'; districts per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+CY,CY-06,,Asia/Nicosia,03-04: zone1970.tab 'most of Cyprus'; districts per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-BE,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-BR,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-BW,,SPLIT,03-04: partial_regions.csv (Europe/Berlin / Europe/Zurich)
+DE,DE-BY,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-HB,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-HE,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-HH,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-MV,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-NI,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-NW,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-RP,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-SH,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-SL,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-SN,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-ST,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,DE-TH,,Europe/Berlin,03-04: zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-25,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-26,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-A,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-B,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-C,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-D,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-E,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-F,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-G,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-H,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-I,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-L,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-M,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-N,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-O,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-P,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-R,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-S,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-T,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-U,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-W,,Pacific/Galapagos,03-04: zone1970.tab 'Galápagos Islands'
+EC,EC-X,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-Y,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,EC-Z,,America/Guayaquil,03-04: zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+ES,ES-AN,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-AR,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-AS,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-CB,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-CE,,Africa/Ceuta,"03-04: zone1970.tab 'Ceuta, Melilla'"
+ES,ES-CL,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-CM,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-CN,,Atlantic/Canary,03-04: zone1970.tab 'Canary Islands'
+ES,ES-CT,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-EX,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-GA,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-IB,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-MC,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-MD,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-ML,,Africa/Ceuta,"03-04: zone1970.tab 'Ceuta, Melilla'"
+ES,ES-NC,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-PV,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-RI,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,ES-VC,,Europe/Madrid,"03-04: zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+FM,FM-KSA,,Pacific/Kosrae,03-04: zone1970.tab 'Kosrae'
+FM,FM-PNI,,Pacific/Guadalcanal,"03-04: zone1970.tab 'Pohnpei' (SB,FM)"
+FM,FM-TRK,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM)"
+FM,FM-YAP,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM)"
+GL,GL-AV,,SPLIT,03-04: partial_regions.csv (America/Nuuk / America/Thule)
+GL,GL-KU,,America/Nuuk,03-04: zone1970.tab 'most of Greenland'
+GL,GL-NE,,SPLIT,03-04: partial_regions.csv (America/Nuuk / America/Danmarkshavn)
+GL,GL-QA,,America/Nuuk,03-04: zone1970.tab 'most of Greenland'
+GL,GL-QK,,America/Nuuk,03-04: zone1970.tab 'most of Greenland'
+GL,GL-SE,,SPLIT,03-04: partial_regions.csv (America/Nuuk / America/Scoresbysund)
+KI,KI-G,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake' (KI,MH,TV,UM,WF)"
+KI,KI-L,,Pacific/Kiritimati,03-04: zone1970.tab 'Line Islands'
+KI,KI-P,,Pacific/Kanton,03-04: zone1970.tab 'Phoenix Islands'
+KZ,KZ-ABA,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-AKM,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-AKT,,Asia/Aqtobe,"03-04: tzdata 2026f asia 'Aqtöbe (aka Aktobe, formerly Aktyubinsk) (KZ-15)'"
+KZ,KZ-ALA,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-ALM,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-AST,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-ATY,,Asia/Atyrau,03-04: zone1970.tab 'Atyraū/Atirau/Gur’yev'
+KZ,KZ-JET,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-KAR,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-KUS,,Asia/Qostanay,"03-04: tzdata 2026f asia 'Qostanay (aka Kostanay, Kustanay) (KZ-39)'"
+KZ,KZ-KZY,,Asia/Qyzylorda,"03-04: tzdata 2026f asia 'Qyzylorda (aka Kyzylorda, Kizilorda, Kzyl-Orda, etc.) (KZ-43)'"
+KZ,KZ-MAN,,Asia/Aqtau,03-04: tzdata 2026f asia 'Mangghystaū (KZ-47)'
+KZ,KZ-PAV,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-SEV,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-SHY,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-ULY,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-VOS,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-YUZ,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,KZ-ZAP,,Asia/Oral,03-04: zone1970.tab 'West Kazakhstan'
+KZ,KZ-ZHA,,Asia/Almaty,"03-04: tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+MH,MH-ALK,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-ALL,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-ARN,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-AUR,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-BIK,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-EBO,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-ENI,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-JAB,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-JAL,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-KIL,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-KWA,,Pacific/Kwajalein,03-04: zone1970.tab 'Kwajalein'
+MH,MH-LAE,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-LIB,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-LIK,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-MAJ,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-MAL,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-MEJ,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-MIL,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-NMK,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-NMU,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-RON,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-UJA,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-UJL,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-UTI,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-WTJ,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,MH-WTN,,Pacific/Tarawa,"03-04: zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MN,MN-035,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-037,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-039,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-041,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-043,,Asia/Hovd,"03-04: zone1970.tab 'Bayan-Ölgii, Hovd, Uvs'; tzdata 2026f asia (Pinto 2024-06-23) records a second configuration adding Govi-Altai (065) and Zavkhan (057)"
+MN,MN-046,,Asia/Hovd,"03-04: zone1970.tab 'Bayan-Ölgii, Hovd, Uvs'; tzdata 2026f asia (Pinto 2024-06-23) records a second configuration adding Govi-Altai (065) and Zavkhan (057)"
+MN,MN-047,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-049,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-051,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-053,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-055,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-057,,SPLIT,03-04: partial_regions.csv (Asia/Hovd / Asia/Ulaanbaatar)
+MN,MN-059,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-061,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-063,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-064,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-065,,SPLIT,03-04: partial_regions.csv (Asia/Hovd / Asia/Ulaanbaatar)
+MN,MN-067,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-069,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-071,,Asia/Hovd,"03-04: zone1970.tab 'Bayan-Ölgii, Hovd, Uvs'; tzdata 2026f asia (Pinto 2024-06-23) records a second configuration adding Govi-Altai (065) and Zavkhan (057)"
+MN,MN-073,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MN,MN-1,,Asia/Ulaanbaatar,03-04: zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MY,MY-01,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-02,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-03,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-04,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-05,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-06,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-07,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-08,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-09,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-10,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-11,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-12,,Asia/Kuching,"03-04: zone1970.tab 'Sabah, Sarawak' (MY,BN); Labuan (MY-15) is not named"
+MY,MY-13,,Asia/Kuching,"03-04: zone1970.tab 'Sabah, Sarawak' (MY,BN); Labuan (MY-15) is not named"
+MY,MY-14,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,MY-16,,Asia/Singapore,"03-04: zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+NZ,NZ-AUK,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-BOP,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-CAN,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-GIS,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-HKB,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-MBH,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-MWT,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-NSN,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-NTL,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-OTA,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-STL,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-TAS,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-TKI,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-WGN,,SPLIT,03-04: partial_regions.csv (Pacific/Auckland / Pacific/Chatham)
+NZ,NZ-WKO,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,NZ-WTC,,Pacific/Auckland,"03-04: zone1970.tab 'New Zealand time' (NZ,AQ)"
+PT,PT-01,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-02,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-03,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-04,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-05,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-06,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-07,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-08,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-09,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-10,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-11,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-12,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-13,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-14,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-15,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-16,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-17,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-18,,Europe/Lisbon,03-04: zone1970.tab 'Portugal (mainland)'
+PT,PT-20,,Atlantic/Azores,03-04: zone1970.tab 'Azores'
+PT,PT-30,,Atlantic/Madeira,03-04: zone1970.tab 'Madeira Islands'
+UA,UA-05,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-07,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-09,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-12,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-14,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-18,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-19,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-21,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-23,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-26,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-30,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-32,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-35,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-40,,Europe/Simferopol,"03-04: zone1970.tab 'Crimea' (RU,UA); Crimea (UA-43) and Sevastopol (UA-40); records the clock observed, no position on sovereignty (03-02 Q1)"
+UA,UA-43,,Europe/Simferopol,"03-04: zone1970.tab 'Crimea' (RU,UA); Crimea (UA-43) and Sevastopol (UA-40); records the clock observed, no position on sovereignty (03-02 Q1)"
+UA,UA-46,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-48,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-51,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-53,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-59,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-61,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-63,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-65,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-68,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-71,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-74,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,UA-77,,Europe/Kyiv,03-04: zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+PG,PG-CPK,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-CPM,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-EBR,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-EHG,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-EPW,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-ESW,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-GPK,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-HLA,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-JWK,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-MBA,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-MPL,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-MPM,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-MRL,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-NCD,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-NIK,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-NPP,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-NSB,,Pacific/Bougainville,03-04: zone1970.tab 'Bougainville'
+PG,PG-SAN,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-SHM,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-WBK,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-WHM,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,PG-WPD,,Pacific/Port_Moresby,"03-04: zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+GL,GL-AV,PITUFFIK,America/Thule,BGTL: zone1970.tab America/Thule 'Thule/Pituffik'
+GL,GL-SE,NUUK,America/Nuuk,BGGH: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+DE,DE-BW,STUTTGART,Europe/Berlin,"EDDS: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,MANNHEIM,Europe/Berlin,"EDFM: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,FRIEDRICHSHAFEN,Europe/Berlin,"EDNY: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,RHEINMÜNSTER,Europe/Berlin,"EDSB: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,DONAUESCHINGEN,Europe/Berlin,"EDTD: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,LAHR/SCHWARZWALD,Europe/Berlin,"EDTL: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,SCHWÄBISCH HALL,Europe/Berlin,"EDTY: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,LAUPHEIM,Europe/Berlin,"ETHL: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+DE,DE-BW,NIEDERSTETTEN,Europe/Berlin,"ETHN: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+NZ,NZ-WGN,TE ONE,Pacific/Chatham,NZCI Te One: Chatham Islands; zone1970.tab Pacific/Chatham 'Chatham Islands'
+NZ,NZ-WGN,MASTERTON,Pacific/Auckland,NZMS: North Island; zone1970.tab Pacific/Auckland 'New Zealand time' (residual)
+NZ,NZ-WGN,WELLINGTON,Pacific/Auckland,NZWN: North Island; zone1970.tab Pacific/Auckland 'New Zealand time' (residual)
+CL,CL-VS,ISLA DE PASCUA,Pacific/Easter,SCIP: zone1970.tab Pacific/Easter 'Easter Island'
+CL,CL-VS,VIÑA DEL MAR,America/Santiago,SCVM: mainland Valparaíso; zone1970.tab America/Santiago 'most of Chile' (residual)
+CL,CL-VS,LOS ANDES,America/Santiago,SCAN: mainland Valparaíso; zone1970.tab America/Santiago 'most of Chile' (residual)
+CL,CL-VS,SAN FELIPE,America/Santiago,SCSF: mainland Valparaíso; zone1970.tab America/Santiago 'most of Chile' (residual)
+GL,GL-AV,ILULISSAT,America/Nuuk,BGJN: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,UUMMANNAQ,America/Nuuk,BGUQ: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,UPERNAVIK,America/Nuuk,BGUK: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-SE,KULUSUK,America/Nuuk,BGKK: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-AV,QAANAAQ,America/Nuuk,BGQQ: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+CL,CL-VS,VIÑA DEL MAR,America/Santiago,SCRD: mainland Valparaíso; zone1970.tab America/Santiago 'most of Chile' (residual)
+GL,GL-AV,ILIMANAQ,America/Nuuk,BGIL: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-SE,TASIILAQ,America/Nuuk,BGAM: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-AV,AAPPILATTOQ,America/Nuuk,BGAG: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,KANGERSUATSIAQ,America/Nuuk,BGKS: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,KULLORSUAQ,America/Nuuk,BGKQ: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,NUUSSUAQ,America/Nuuk,BGNU: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,QEQERTAQ,America/Nuuk,BGQE: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,UKKUSISSAT,America/Nuuk,BGUT: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,UUMMANNAQ,America/Nuuk,BGUM: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,INNARSUIT,America/Nuuk,BGIN: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-SE,ISORTOQ,America/Nuuk,BGIS: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-SE,ITTOQQORTOORMIIT,America/Scoresbysund,BGSC: zone1970.tab America/Scoresbysund 'Scoresbysund/Ittoqqortoormiit'
+GL,GL-SE,KUUMMIUT,America/Nuuk,BGKM: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-AV,NIAQORNAT,America/Nuuk,BGNT: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-SE,PAAMIUT,America/Nuuk,BGPT: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-AV,SAVISSIVIK,America/Nuuk,BGSV: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,SIORAPALUK,America/Nuuk,BGSI: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,TASIUSAQ,America/Nuuk,BGTA: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-SE,TINITEQILAAQ,America/Nuuk,BGTN: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-AV,IKERASAK,America/Nuuk,BGIA: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,ILLORSUIT,America/Nuuk,BGLL: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,NUUGAATSIAQ,America/Nuuk,BGNQ: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-AV,SAATTUT,America/Nuuk,BGST: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Pituffik (S2)
+GL,GL-SE,SERMILIGAAQ,America/Nuuk,BGSG: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-SE,ARSUK,America/Nuuk,BGAR: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+GL,GL-SE,KANGILINNGUIT,America/Nuuk,BGGD: zone1970.tab America/Nuuk 'most of Greenland' (residual); outside a 0.5° box around Ittoqqortoormiit (S2)
+DE,DE-BW,MENGEN,Europe/Berlin,"EDTM: zone1970.tab Europe/Berlin 'most of Germany' (residual); Büsingen am Hochrhein, the only Europe/Zurich place, has no airport"
+GL,GL-NE,DANMARKSHAVN,America/Danmarkshavn,"BGDH: zone1970.tab America/Danmarkshavn 'National Park (east coast)', named for Danmarkshavn"
+CD,CD-HK,LUBUMBASHI,Africa/Maputo,"FZQA: tzdata 2026f backward link Africa/Lubumbashi → Africa/Maputo; africa '# Democratic Republic of the Congo (eastern)' (name-cited only, 03-04 Q2)"
+CD,CD-KN,,Africa/Lagos,Kinshasa (city-province): tzdata 2026f backward link Africa/Kinshasa → Africa/Lagos; africa '# Democratic Republic of the Congo (western)' (03-04 Q2)
+MY,MY-15,,Asia/Kuching,"Labuan: tzdata 2026f asia heading '# Malaysia (eastern)' over Asia/Kuching ('Sabah & Sarawak'; zone1970 'Sabah, Sarawak'); Labuan is in East Malaysia, off Sabah, and shares its history (R1)"
+UZ,UZ-AN,,Asia/Tashkent,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> moving side"
+UZ,UZ-JI,,Asia/Tashkent,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> moving side"
+UZ,UZ-NG,,Asia/Tashkent,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> moving side"
+UZ,UZ-SI,,Asia/Tashkent,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> moving side"
+UZ,UZ-TK,,Asia/Tashkent,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> moving side"
+UZ,UZ-TO,,Asia/Tashkent,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> moving side"
+UZ,UZ-FA,,Asia/Tashkent,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> moving side"
+UZ,UZ-BU,,Asia/Samarkand,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> other territories"
+UZ,UZ-NW,,Asia/Samarkand,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> other territories"
+UZ,UZ-QA,,Asia/Samarkand,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> other territories"
+UZ,UZ-QR,,Asia/Samarkand,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> other territories"
+UZ,UZ-SA,,Asia/Samarkand,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> other territories"
+UZ,UZ-SU,,Asia/Samarkand,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> other territories"
+UZ,UZ-XO,,Asia/Samarkand,"tzdata 2026f asia, USSR 1991 transition list cited from Izvestia No. 68, 1991-03-20: 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards. Other territories were to not move clocks.' tzdata adds: 'Apparently there were last minute changes.'; the changes it names are for Kazakhstan, Nenets, Komi and Kaliningrad, none for the Uzbek SSR. R1: the list settles the 1991-03-31 step, which matches Asia/Tashkent's 6:00->5:00 on that date while Asia/Samarkand shows no break; 1930-1991 the zones stay one hour apart, so a region on the moving side carries Tashkent's history (03-04 D2, sqwkd) -> other territories"
+CD,CD-BC,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-BU,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-EQ,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-HC,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-HK,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-HL,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-HU,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-IT,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-KC,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-KE,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-KG,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-KL,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-KS,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-LO,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-LU,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-MA,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-MN,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-MO,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-NK,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-NU,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-SA,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-SK,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-SU,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-TA,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-TO,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+CD,CD-TU,,SPLIT,"03-04 Q2: tzdata names only Kinshasa (west) and Lubumbashi (east); no official provincial list found, so places are name-cited only"
+VN,VN-NW,,SPLIT,"03-04 Q2: tzdata states no north/south boundary for Asia/Bangkok vs Asia/Ho_Chi_Minh (only 'South Vietnam (after 1954)'), so places are name-cited only"
+VN,VN-NE,,SPLIT,"03-04 Q2: tzdata states no north/south boundary for Asia/Bangkok vs Asia/Ho_Chi_Minh (only 'South Vietnam (after 1954)'), so places are name-cited only"
+VN,VN-RRD,,SPLIT,"03-04 Q2: tzdata states no north/south boundary for Asia/Bangkok vs Asia/Ho_Chi_Minh (only 'South Vietnam (after 1954)'), so places are name-cited only"
+VN,VN-SCC,,SPLIT,"03-04 Q2: tzdata states no north/south boundary for Asia/Bangkok vs Asia/Ho_Chi_Minh (only 'South Vietnam (after 1954)'), so places are name-cited only"
+VN,VN-CH,,SPLIT,"03-04 Q2: tzdata states no north/south boundary for Asia/Bangkok vs Asia/Ho_Chi_Minh (only 'South Vietnam (after 1954)'), so places are name-cited only"
+VN,VN-SE,,SPLIT,"03-04 Q2: tzdata states no north/south boundary for Asia/Bangkok vs Asia/Ho_Chi_Minh (only 'South Vietnam (after 1954)'), so places are name-cited only"
+VN,VN-SW,,SPLIT,"03-04 Q2: tzdata states no north/south boundary for Asia/Bangkok vs Asia/Ho_Chi_Minh (only 'South Vietnam (after 1954)'), so places are name-cited only"
+VN,VN-SE,HO CHI MINH CITY,Asia/Ho_Chi_Minh,"zone1970.tab Asia/Ho_Chi_Minh 'south Vietnam', named for Ho Chi Minh City (Saigon)"
+PF,PF-TG,,SPLIT,03-04 Q4: OurAirports' TG is 'Tuamotus & Gambier'; only Gambier is named by tzdata
+KZ,KZ-BAY,,SPLIT,Baikonur city is not in tzdata 2026f asia's Kazakhstan lists (leased to Russia)
+CY,CY-XX,,SPLIT,"OurAirports CY-XX is the UK Sovereign Base Areas, not a Cyprus district; no source places it here"
+VN,VN-NC,,SPLIT,03-04: partial_regions.csv (Asia/Bangkok / Asia/Ho_Chi_Minh); tzdata states no boundary (Q2)

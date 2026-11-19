@@ -228,3 +228,8 @@ def test_only_a_zone_mapped_elsewhere_may_cover_no_region(tmp_path):
     # ...MC must map it to one of its regions.
     make(tmp_path, GOOD, zone_regions=fr + "MC,Europe/Paris,MC-MO,law\n")
     # TF has no ISO 3166-2 subdivisions, so its rows may be empty (FULL_MAP).
+
+
+def test_zone_regions_exemptions_are_exactly_us_and_aq():
+    # 03-04 D1 (sqwkd): US (county rules, 03-01) and AQ (NULL by design) only.
+    assert set(tz.ZONE_REGIONS_EXEMPT) == {"US", "AQ"}

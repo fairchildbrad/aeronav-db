@@ -18,8 +18,6 @@ CA,CA-SK,America/Regina America/Swift_Current America/Edmonton,Regina: SK (most 
 CA,CA-YT,America/Whitehorse America/Dawson,Whitehorse: Yukon (east); Dawson: Yukon (west)
 CL,CL-*,America/Santiago,"Santiago: most of Chile (regions other than Aysén, Magallanes and Easter Island)"
 CN,CN-65,Asia/Shanghai Asia/Urumqi,Shanghai: Beijing Time; Urumqi: Xinjiang Time (both in use in Xinjiang)
-CY,CY-01,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus (Nicosia district spans both)
-CY,CY-04,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus (Famagusta district spans both)
 DE,DE-BW,Europe/Berlin Europe/Zurich,Berlin: most of Germany; Zurich: Büsingen
 GL,GL-AV,America/Nuuk America/Thule,Nuuk: most of Greenland; Thule: Thule/Pituffik
 GL,GL-SE,America/Nuuk America/Scoresbysund,Nuuk: most of Greenland; Scoresbysund: Scoresbysund/Ittoqqortoormiit

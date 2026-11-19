@@ -145,7 +145,7 @@ MH,Pacific/Kwajalein,MH-KWA,zone1970.tab 'Kwajalein'
 MN,Asia/Hovd,MN-071 MN-043 MN-046 MN-057 MN-065,"zone1970.tab 'Bayan-Ölgii, Hovd, Uvs'; tzdata 2026f asia (Pinto 2024-06-23) records a second configuration adding Govi-Altai (065) and Zavkhan (057)"
 MN,Asia/Ulaanbaatar,MN-035 MN-037 MN-039 MN-041 MN-047 MN-049 MN-051 MN-053 MN-055 MN-057 MN-059 MN-061 MN-063 MN-064 MN-065 MN-067 MN-069 MN-073 MN-1,zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
 MY,Asia/Singapore,MY-01 MY-02 MY-03 MY-04 MY-05 MY-06 MY-07 MY-08 MY-09 MY-10 MY-11 MY-14 MY-16,"zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
-MY,Asia/Kuching,MY-12 MY-13,"zone1970.tab 'Sabah, Sarawak' (MY,BN); Labuan (MY-15) is not named"
+MY,Asia/Kuching,MY-12 MY-13 MY-15,"zone1970.tab 'Sabah, Sarawak' (MY,BN); Labuan (MY-15) via tzdata 2026f asia heading '# Malaysia (eastern)' (R1)"
 NZ,Pacific/Auckland,NZ-AUK NZ-BOP NZ-CAN NZ-GIS NZ-HKB NZ-MBH NZ-MWT NZ-NSN NZ-NTL NZ-OTA NZ-STL NZ-TAS NZ-TKI NZ-WGN NZ-WKO NZ-WTC,"zone1970.tab 'New Zealand time' (NZ,AQ)"
 NZ,Pacific/Chatham,NZ-WGN,"zone1970.tab 'Chatham Islands'; OurAirports files Chatham Islands (NZCI, Te One) under NZ-WGN, not ISO NZ-CIT"
 PF,Pacific/Tahiti,PF-LI,zone1970.tab 'Society Islands'; the Leeward Islands (LI) are part of the Society Islands; Windward Islands airports carry no region (PF-U-A)

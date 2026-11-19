@@ -262,6 +262,17 @@ CANARY_TZ = {
     "UHWW": "Asia/Vladivostok", "UEEE": "Asia/Yakutsk",
     "UHPP": "Asia/Kamchatka", "WIII": "Asia/Jakarta",
     "WADD": "Asia/Makassar", "WAJJ": "Asia/Jayapura", "WIOO": "Asia/Pontianak",
+    # 03-04: the other multi-zone countries, Kosovo and the AN successors.
+    "SAEZ": "America/Argentina/Buenos_Aires", "SAWH": "America/Argentina/Ushuaia",
+    "SCEL": "America/Santiago", "SCIP": "Pacific/Easter",
+    "ZBAA": "Asia/Shanghai", "ZWWW": "Asia/Shanghai", "EDDF": "Europe/Berlin",
+    "LEMD": "Europe/Madrid", "GCLP": "Atlantic/Canary", "LPPT": "Europe/Lisbon",
+    "LPPD": "Atlantic/Azores", "LPMA": "Atlantic/Madeira",
+    "NZAA": "Pacific/Auckland", "NZCI": "Pacific/Chatham", "BGGH": "America/Nuuk",
+    "NTAA": "Pacific/Tahiti", "AYPY": "Pacific/Port_Moresby",
+    "WMKK": "Asia/Singapore", "WBGG": "Asia/Kuching", "UKBB": "Europe/Kyiv",
+    "UAAA": "Asia/Almaty", "ZMCK": "Asia/Ulaanbaatar", "SEGS": "Pacific/Galapagos",
+    "BKPR": "Europe/Belgrade", "TNCM": "America/Puerto_Rico",
 }
 
 

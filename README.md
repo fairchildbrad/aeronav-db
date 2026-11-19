@@ -328,6 +328,13 @@ note cites the conflicting statute. These rows are Labrador (America/Goose_Bay
 and America/Halifax, where the Standard Time Act says Newfoundland time)
 and Eucla, Cocklebiddy and Madura (Australia/Eucla, where Western Australia's
 Standard Time Act 2005 s.4 says Western Australian time).
+Where tzdata documents a clock kept without stating its legal basis, the
+zone follows tzdata and the note takes no position on sovereignty: Crimea and
+Sevastopol (Europe/Simferopol), Ercan in northern Cyprus (Asia/Famagusta) and
+Ramallah (Asia/Hebron). Xinjiang is the inverse case: the aviation and legal
+clock is chosen over a documented unofficial local clock. Xinjiang airports
+are on Asia/Shanghai, because tzdata records that planes run on Beijing time,
+and not on Asia/Urumqi.
 `identity/tz/unplaced_by_design.csv` lists the scheduled-service airports that
 no official source places.
 

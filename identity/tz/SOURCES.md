@@ -96,3 +96,9 @@ Not fetched; cited via tzdata 2026f `europe`, which lists by ISO code the subjec
   - Feature NORIOCOMP 'Rio Xingu' (CORIO 42_0), clipped to the IBGE malhas v3 Pará outline (sha256 `94f9a7e7f1e659b0e98f8d1221af859adbdb815be051994fd73f9a8703df5467`) by point-in-polygon on every 5th vertex.
   - Result: longitude 52.921°W to 51.617°W.
   - The SAD69 datum offset is negligible. The reader was a one-off scratch tool.
+
+## 03-04: the other multi-zone countries
+- tzdata 2026f `africa`, vendored from the same tzdata2026f.tar.gz (sha256 above), for the DRC headings and links.
+- OurAirports `regions.csv` (public domain, GitHub data mirror, fetched 2026-11-19, sha256 `9220d6582b804cfdec8432e5bb21456699c9df8969bf5d8886beb62ff0b1318b`): used only to match region codes to names in zone_regions.csv; not vendored.
+- Citations are zone1970.tab and the vendored tzdata files (tzdata-only). No national statute was fetched for these countries.
+- French Polynesia: Décret 2017-292 art. 5 (Légifrance search result) keeps the 1978/1979 decrees for French Polynesia until local rules exist. Décret 79-896 was not fetched: Légifrance returned HTTP 403, which was not worked around. The Tuamotu and Austral airports are in unplaced_by_design.
