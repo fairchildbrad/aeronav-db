@@ -88,3 +88,6 @@ planalto.gov.br resets connections from the automated client (2026-11-19); not w
 
 ## Indonesia: Keputusan Presiden 41/1987
 https://peraturan.bpk.go.id/Download/54711/KEPPRES%20NO%2041%20TH%201987.pdf (fetched 2026-11-19), sha256 `85ba57544fdf0f9cb47e309ca30ca251359d60d81d17046ef890905fee9194f0`. Pasal 1(2) puts all Sumatra provinces, all Java and Madura provinces, Kalimantan Barat and Kalimantan Tengah on WIB; Kalimantan Timur, Kalimantan Selatan, Bali, NTB, NTT, Timor Timur and all Sulawesi provinces on WITA; Maluku and Irian Jaya on WIT. In force 1988-01-01. A province formed later on Sumatra, Java or Sulawesi is covered directly by the "Seluruh ..." wording. Provinces formed later elsewhere wait on the derived-province ruling: BPK's search returns 403, so their founding laws (UU) could not be read.
+
+## Russia: Federal Law 107-FZ
+Not fetched; cited via tzdata 2026f `europe`, which lists by ISO code the subjects each zone covers, and the Sakha districts (deviation, tzdata-only). Sakha towns are placed only where a zone is named for the town (Yakutsk, Khandyga, Ust-Nera, Srednekolymsk). Other scheduled Sakha airports are in unplaced_by_design, because no town-to-district source was fetched.

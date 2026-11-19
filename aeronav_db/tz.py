@@ -90,7 +90,7 @@ class Rules:
                     raise TzRulesError(f"{where}: not a {country} zone in zone1970.tab")
                 if not (row.get("source") or "").strip():
                     raise TzRulesError(f"{where}: cite a source")
-                if not regions or any(not r.startswith(f"{country}-") for r in regions):
+                if any(not r.startswith(f"{country}-") for r in regions):
                     raise TzRulesError(f"{where}: regions must be ISO 3166-2")
                 mapped = self.zone_regions.setdefault(country, {})
                 if zone in mapped:

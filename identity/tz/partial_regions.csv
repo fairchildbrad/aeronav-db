@@ -32,3 +32,5 @@ MX,MX-NLE,America/Monterrey America/Matamoros,"Monterrey: Coahuila, Nuevo León,
 MX,MX-TAM,America/Monterrey America/Matamoros,"Monterrey: Coahuila, Nuevo León, Tamaulipas (most areas); Matamoros: (US border)"
 PG,PG-*,Pacific/Port_Moresby,"Port_Moresby: Papua New Guinea (most areas) (all provinces except Bougainville, PG-NSB)"
 UA,UA-*,Europe/Kyiv,"Kyiv: most of Ukraine (all regions except Crimea, UA-43)"
+RU,RU-SA,Asia/Yakutsk Asia/Vladivostok Asia/Khandyga Asia/Ust-Nera Asia/Srednekolymsk,"tzdata 2026f europe: each zone 'covers ... parts of (14, RU-SA) Sakha (Yakutia) Republic'; zone1970.tab Khandyga 'Tomponsky, Ust-Maysky', Ust-Nera 'Oymyakonsky', Srednekolymsk 'Sakha (E), N Kuril Is' (03-03 AC-2)"
+RU,RU-SAK,Asia/Sakhalin Asia/Srednekolymsk,"tzdata 2026f europe: Asia/Sakhalin covers RU-SAK 'with the exception of 65-11 Severo-Kurilsky District'; zone1970.tab Srednekolymsk 'Sakha (E), N Kuril Is' (03-03 AC-2)"

@@ -67,3 +67,30 @@ ID,Asia/Jakarta,ID-AC ID-SU ID-SB ID-RI ID-JA ID-SS ID-BE ID-LA ID-BB ID-KR ID-J
 ID,Asia/Pontianak,ID-KB ID-KT,"Keppres 41/1987 Pasal 1(2) (derived provinces by 1987 parent); zone1970.tab 'Borneo (west, central)'"
 ID,Asia/Makassar,ID-KI ID-KS ID-KU ID-BA ID-NB ID-NT ID-SA ID-ST ID-SN ID-SG ID-GO ID-SR,"Keppres 41/1987 Pasal 1(2) (derived provinces by 1987 parent); zone1970.tab 'Borneo (east, south), Sulawesi/Celebes, Bali, Nusa Tengarra, Timor (west)'"
 ID,Asia/Jayapura,ID-MA ID-MU ID-PA ID-PB ID-PD ID-PS ID-PT ID-PP,"Keppres 41/1987 Pasal 1(2) (derived provinces by 1987 parent); zone1970.tab 'New Guinea (West Papua / Irian Jaya), Malukus/Moluccas'"
+RU,Europe/Kaliningrad,RU-KGD,tzdata 2026f europe 'Europe/Kaliningrad covers' list; zone1970.tab 'MSK-01 - Kaliningrad'
+RU,Europe/Moscow,RU-AD RU-ARK RU-BEL RU-BRY RU-CE RU-CU RU-DA RU-IN RU-IVA RU-KB RU-KC RU-KDA RU-KL RU-KLU RU-KO RU-KOS RU-KR RU-KRS RU-LEN RU-LIP RU-ME RU-MO RU-MOS RU-MOW RU-MUR RU-NEN RU-NGR RU-NIZ RU-ORL RU-PNZ RU-PSK RU-ROS RU-RYA RU-SE RU-SMO RU-SPE RU-STA RU-TA RU-TAM RU-TUL RU-TVE RU-VLA RU-VLG RU-VOR RU-YAR,tzdata 2026f europe 'Europe/Moscow covers' list; zone1970.tab 'MSK+00 - Moscow area'
+RU,Europe/Simferopol,,"zone1970.tab lists Simferopol under RU and UA; it covers Crimea, ISO 3166-2 UA-43, so no RU region (placed for UA in 03-04, Q1)"
+RU,Europe/Kirov,RU-KIR,tzdata 2026f europe 'Europe/Kirov covers' list; zone1970.tab 'MSK+00 - Kirov'
+RU,Europe/Volgograd,RU-VGG,tzdata 2026f europe 'Europe/Volgograd covers' list; zone1970.tab 'MSK+00 - Volgograd'
+RU,Europe/Astrakhan,RU-AST,tzdata 2026f europe 'Europe/Astrakhan covers' list; zone1970.tab 'MSK+01 - Astrakhan'
+RU,Europe/Saratov,RU-SAR,tzdata 2026f europe 'Europe/Saratov covers' list; zone1970.tab 'MSK+01 - Saratov'
+RU,Europe/Ulyanovsk,RU-ULY,tzdata 2026f europe 'Europe/Ulyanovsk covers' list; zone1970.tab 'MSK+01 - Ulyanovsk'
+RU,Europe/Samara,RU-SAM RU-UD,"tzdata 2026f europe 'Europe/Samara covers' list; zone1970.tab 'MSK+01 - Samara, Udmurtia'"
+RU,Asia/Yekaterinburg,RU-BA RU-CHE RU-KGN RU-KHM RU-ORE RU-PER RU-SVE RU-TYU RU-YAN,tzdata 2026f europe 'Asia/Yekaterinburg covers' list; zone1970.tab 'MSK+02 - Urals'
+RU,Asia/Omsk,RU-OMS,tzdata 2026f europe 'Asia/Omsk covers' list; zone1970.tab 'MSK+03 - Omsk'
+RU,Asia/Novosibirsk,RU-NVS,tzdata 2026f europe 'Asia/Novosibirsk covers' list; zone1970.tab 'MSK+04 - Novosibirsk'
+RU,Asia/Barnaul,RU-AL RU-ALT,tzdata 2026f europe 'Asia/Barnaul covers' list; zone1970.tab 'MSK+04 - Altai'
+RU,Asia/Tomsk,RU-TOM,tzdata 2026f europe 'Asia/Tomsk covers' list; zone1970.tab 'MSK+04 - Tomsk'
+RU,Asia/Novokuznetsk,RU-KEM,tzdata 2026f europe 'Asia/Novokuznetsk covers' list; zone1970.tab 'MSK+04 - Kemerovo'
+RU,Asia/Krasnoyarsk,RU-KK RU-KYA RU-TY,tzdata 2026f europe 'Asia/Krasnoyarsk covers' list; zone1970.tab 'MSK+04 - Krasnoyarsk area'
+RU,Asia/Irkutsk,RU-BU RU-IRK,"tzdata 2026f europe 'Asia/Irkutsk covers' list; zone1970.tab 'MSK+05 - Irkutsk, Buryatia'"
+RU,Asia/Chita,RU-ZAB,tzdata 2026f europe 'Asia/Chita covers' list; zone1970.tab 'MSK+06 - Zabaykalsky'
+RU,Asia/Yakutsk,RU-AMU RU-SA,"tzdata 2026f europe 'Asia/Yakutsk covers' list; zone1970.tab 'MSK+06 - Lena River'; 'parts of (14, RU-SA)'"
+RU,Asia/Khandyga,RU-SA,"tzdata 2026f europe 'Asia/Khandyga covers' list; zone1970.tab 'MSK+06 - Tomponsky, Ust-Maysky'; 'parts of (14, RU-SA)'"
+RU,Asia/Vladivostok,RU-KHA RU-PRI RU-SA RU-YEV,"tzdata 2026f europe 'Asia/Vladivostok covers' list; zone1970.tab 'MSK+07 - Amur River'; 'parts of (14, RU-SA)'"
+RU,Asia/Ust-Nera,RU-SA,tzdata 2026f europe 'Asia/Ust-Nera covers' list; zone1970.tab 'MSK+07 - Oymyakonsky'; tzdata 2026f europe: 14-22 Oymyakonsky District of RU-SA
+RU,Asia/Magadan,RU-MAG,tzdata 2026f europe 'Asia/Magadan covers' list; zone1970.tab 'MSK+08 - Magadan'
+RU,Asia/Sakhalin,RU-SAK,tzdata 2026f europe 'Asia/Sakhalin covers' list; zone1970.tab 'MSK+08 - Sakhalin Island'
+RU,Asia/Srednekolymsk,RU-SA RU-SAK,"tzdata 2026f europe 'Asia/Srednekolymsk covers' list; zone1970.tab 'MSK+08 - Sakha (E), N Kuril Is'; 'parts of (14, RU-SA)' and '(65, RU-SAK)'"
+RU,Asia/Kamchatka,RU-KAM,tzdata 2026f europe 'Asia/Kamchatka covers' list; zone1970.tab 'MSK+09 - Kamchatka'
+RU,Asia/Anadyr,RU-CHU,tzdata 2026f europe 'Asia/Anadyr covers' list; zone1970.tab 'MSK+09 - Bering Sea'
