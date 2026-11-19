@@ -59,6 +59,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - 2026-11-19 03-01 apply notes: tz columns already in IDENTITY_SCHEMA (build.py:158); add tz_unplaced. Region inputs: NASR APT_BASE.csv STATE_CODE + COUNTY_NAME (build.py:1076 has nasr["APT_BASE.csv"]), OurAirports iso_region. Identity dataclass identity.py:95; dump_state identity.py:640. Vendor zone1970.tab (host tzdata 2026f) to identity/tz/. Send cv-aviation the DDL delta when done.
 
 ### Deferred Issues
+- (open, after 03-05; cv-aviation 2026-11-19, 7d7ca8b) 3,171 historic US airports have tz NULL (no_region), including logbook stations IGX (Horace Williams, Chapel Hill NC; 13 legs 2005-2014) and NC47 (2012). Proposal: retired airports in a single-zone state take that state's rule via the NASR state. Not a gate item; needs its own plan and review.
 - (resolved 2026-11-18) Timezone: operator "V0.2 and build it now". It's a later phase of v0.2, using a self-maintained country→region→override table of IANA zones, no polygons.
 
 ### Blockers/Concerns
