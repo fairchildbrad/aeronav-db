@@ -235,8 +235,12 @@ def placement_inputs(
             return state, None, None
         if country == "US" and state:
             return "US", f"US-{state}", county
-        if country:
+        oa_country = ((ourairports_row or {}).get("iso_country") or "").strip().upper()
+        if country and country != oa_country:
             return country, None, None
+        # NASR lists some foreign airports (e.g. Canada) without an ISO region;
+        # when OurAirports agrees on the country, its region and municipality
+        # place the airport (03-02).
     if ourairports_row is not None:
         country = (ourairports_row.get("iso_country") or "").strip().upper() or None
         region = (ourairports_row.get("iso_region") or "").strip().upper() or None

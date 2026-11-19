@@ -98,6 +98,11 @@ def test_placement_inputs():
     us_oa = {"iso_country": "US", "iso_region": "US-TX", "municipality": "El Paso"}
     assert tz.placement_inputs(None, us_oa) == ("US", "US-TX", None)
     assert tz.placement_inputs(nasr, oa)[0] == "US"
+    ca = {"COUNTRY_CODE": "CA", "STATE_CODE": "BC", "COUNTY_NAME": ""}
+    ca_oa = {"iso_country": "CA", "iso_region": "CA-BC", "municipality": "Abbotsford"}
+    assert tz.placement_inputs(ca, ca_oa) == ("CA", "CA-BC", "ABBOTSFORD")
+    assert tz.placement_inputs(ca, None) == ("CA", None, None)
+    assert tz.placement_inputs(ca, oa) == ("CA", None, None)  # countries disagree
 
 
 def test_the_committed_rules_load_and_tzdata_is_pinned():
