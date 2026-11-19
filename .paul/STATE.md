@@ -23,7 +23,7 @@ Plan: 03-03 unified 2026-11-19 (.paul/phases/03-iana-timezones/03-03-SUMMARY.md)
   Scratch tools add: scripts/{au_rows,xingu}.py.
   Optional: Rosstat OKTMO for the 20 Sakha airports. Q2 (ERSA/AIPs as a check) is the operator's decision.
 Operator 2026-11-19: "Finish all of the plan-03 before release". The release runbook is not started.
-Status: Loop closed for 03-03. Next: /paul:plan 03-04 (the other 26 multi-zone countries + carried R2 AC), reviewed by sqwkd and cv-aviation before APPLY.
+Status: 03-04 PLAN approved 2026-11-19 by cv-aviation and sqwkd (rulings recorded in the plan: Q1 Xinjiang → Shanghai via overrides; Q2 name-cited only for CD/UZ, VN Bến Hải only if tzdata states it; Q3 Crimea precedent, PS per-place; Q4 timeboxed PF search). Next: APPLY 03-04, Task 1 (tz.py load check + AN placement fix).
 Last activity: 2026-11-19. 03-03 unified.
 
 Progress:
@@ -72,7 +72,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 Last session: 2026-11-19
 Stopped at: 03-03 loop closed
-Next action: /paul:plan 03-04 → sqwkd + cv-aviation review → APPLY
+Next action: /paul:apply 03-04 (approved)
 Resume file: .paul/phases/03-iana-timezones/03-03-SUMMARY.md
 
 ---
