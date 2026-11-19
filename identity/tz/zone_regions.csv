@@ -63,3 +63,7 @@ AU,Australia/Darwin,AU-NT,zone1970.tab 'Northern Territory'
 AU,Australia/Perth,AU-WA,zone1970.tab 'Western Australia (most areas)'
 AU,Australia/Eucla,AU-WA,zone1970.tab 'Western Australia (Eucla)'
 AU,Asia/Tokyo,AU-WA,zone1970.tab 'Eyre Bird Observatory'
+ID,Asia/Jakarta,ID-AC ID-SU ID-SB ID-RI ID-JA ID-SS ID-BE ID-LA ID-BB ID-KR ID-JK ID-JB ID-JT ID-YO ID-JI ID-BT,"Keppres 41/1987 Pasal 1(2) (derived provinces by 1987 parent); zone1970.tab 'Java, Sumatra'"
+ID,Asia/Pontianak,ID-KB ID-KT,"Keppres 41/1987 Pasal 1(2) (derived provinces by 1987 parent); zone1970.tab 'Borneo (west, central)'"
+ID,Asia/Makassar,ID-KI ID-KS ID-KU ID-BA ID-NB ID-NT ID-SA ID-ST ID-SN ID-SG ID-GO ID-SR,"Keppres 41/1987 Pasal 1(2) (derived provinces by 1987 parent); zone1970.tab 'Borneo (east, south), Sulawesi/Celebes, Bali, Nusa Tengarra, Timor (west)'"
+ID,Asia/Jayapura,ID-MA ID-MU ID-PA ID-PB ID-PD ID-PS ID-PT ID-PP,"Keppres 41/1987 Pasal 1(2) (derived provinces by 1987 parent); zone1970.tab 'New Guinea (West Papua / Irian Jaya), Malukus/Moluccas'"
