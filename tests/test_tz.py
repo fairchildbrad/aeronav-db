@@ -90,3 +90,9 @@ def test_the_committed_rules_load_and_tzdata_is_pinned():
     assert tz.tzdata_version() == "2026f"
     assert rules.resolve("A", "US", "US-AZ", "NAVAJO")[2] == "no_county_match"
     assert rules.resolve("A", "US", "US-AZ", "MARICOPA")[0] == "America/Phoenix"
+
+
+def test_a_cited_conflict_leaves_the_airport_unplaced(tmp_path):
+    rules = make(tmp_path, GOOD, "AP0000007,,source_conflict: CS prints UTC-6\n")
+    assert rules.resolve("AP0000007", "US", "US-NY", None) == (
+        None, None, "source_conflict")

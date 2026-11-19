@@ -16,8 +16,8 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 ## Current Position
 
 Milestone: v0.2 Airport identity & history
-Phase: 3 of 3 (IANA timezones), applying 03-01
-Plan: 02-03 complete (history from 2017-10-12, seed e92fa5fe…, unpublished); 03-01 reviewed, next to apply
+Phase: 3 of 3 (IANA timezones), 03-01 unified
+Plan: 03-01 complete (tz; 23,053/27,226 placed, none guessed). Milestone v0.2 build work done; first release awaits operator via RELEASE-RUNBOOK
 Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
 Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
 
@@ -50,6 +50,8 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - 2026-11-18: Sticky OurAirports↔NASR attachment adopted. Operator, verbatim: "Agree with our airports record matching.  Proceed with phase 2"
 
 - 2026-11-19: tz stays on airport_identity only; no airports.tz. cv-aviation: "airport_identity is enough for Aviation". cv-core: "(a). Core needs no tz on `airports`, because core never reads your tables."
+
+- 2026-11-19 03-01 apply notes: tz columns already in IDENTITY_SCHEMA (build.py:158); add tz_unplaced. Region inputs: NASR APT_BASE.csv STATE_CODE + COUNTY_NAME (build.py:1076 has nasr["APT_BASE.csv"]), OurAirports iso_region. Identity dataclass identity.py:95; dump_state identity.py:640. Vendor zone1970.tab (host tzdata 2026f) to identity/tz/. Send cv-aviation the DDL delta when done.
 
 ### Deferred Issues
 - (resolved 2026-11-18) Timezone: operator "V0.2 and build it now". It's a later phase of v0.2, using a self-maintained country→region→override table of IANA zones, no polygons.

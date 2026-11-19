@@ -90,3 +90,9 @@ date = "2026-11-19"
 action = "unify"
 plan = "02-03"
 note = "History back to 2017-10-12 via Internet Archive copies of FAA NASR files; seed e92fa5fe... reproduced and re-pinned, unpublished"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "03-01"
+note = "IANA tz from pinned tzdata 2026f rules; Chart Supplement 2026-10-29: 4,462 match, 8 cited source_conflict unplaced; non-US multi-zone countries NULL"

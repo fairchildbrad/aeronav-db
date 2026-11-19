@@ -293,6 +293,25 @@ sha256 of the exact FAA file parsed, whether it came from the FAA or the
 Archive (with the capture timestamp), and the OurAirports commit, so any id can be
 traced to the bytes that created it.
 
+### Time zones
+
+`airport_identity.tz` is the airport's IANA zone (for example
+`America/Chicago`). Consumers compute local time and historical offsets from
+the zone with their own tz library. `tz_basis` says which rule placed it:
+`override`, `county`, `region` or `country`. Nothing is guessed. When the rules
+cannot place an airport, `tz` and `tz_basis` are NULL and `tz_unplaced` gives
+the reason: `multi_zone_country`, `no_region`, `no_county_match`, `no_rule` or
+`source_conflict` (two authoritative sources disagree; the override cites both).
+
+The rules live in `identity/tz/` as plain CSV. They are checked against a
+vendored `zone1970.tab` whose tzdata version is pinned in `TZDATA_VERSION`, so
+every runner resolves identically. The version is recorded in the metadata
+(`tzdata_version`), and the manifest's `tz` block counts placed and unplaced
+present airports. A country-wide rule is refused for any country with more than
+one zone. US states that span zones are placed county by county, and the result
+is checked against the offsets printed in the FAA Chart Supplement. Multi-zone
+countries outside the US stay unplaced until a cited region rule is added.
+
 ### The chained build
 
 Each file is built from the cycle's sources **and the previous cycle's file**,

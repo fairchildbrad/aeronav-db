@@ -1,1 +1,9 @@
 airport_id,tz,source
+AP0003776,,source_conflict: C64: Chart Supplement 2026-10-29 prints UTC-7(-6DT) p. NW 44; county rule gives Clearwater County ID (Pacific)
+AP0005160,,source_conflict: I20: Chart Supplement 2026-10-29 prints UTC-6(-5DT) p. EC 132; county rule gives Knox County IN (America/Indiana/Vincennes per tzdata)
+AP0005308,,source_conflict: 01L: Chart Supplement 2026-10-29 prints UTC-5(-4DT) p. EC (Bass Lake); county rule gives Starke County IN (America/Indiana/Knox per tzdata)
+AP0009280,,source_conflict: M35: Chart Supplement 2026-10-29 prints UTC-8(-7DT) p. NW 140; county rule gives Montana (wholly Mountain)
+AP0009447,,source_conflict: 1V2: Chart Supplement 2026-10-29 prints UTC-6(-5DT) p. NC 303; county rule gives Grant County NE (Mountain per 49 CFR 71.8 as applied here)
+AP0011646,,source_conflict: 4E8: Chart Supplement 2026-10-29 prints UTC-6(-5DT) p. NC 354; county rule gives Stark County ND (Mountain)
+AP0014377,,source_conflict: 7Q7: Chart Supplement 2026-10-29 prints UTC-7(-6DT) p. NC 393; county rule gives Mellette County SD (Central)
+AP0020310,,source_conflict: I45: Chart Supplement 2026-10-29 prints UTC-7(-6DT) p. NW 90; county rule gives Lewis County ID (Pacific)

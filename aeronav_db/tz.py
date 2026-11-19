@@ -1,7 +1,8 @@
 """Per-airport IANA time zone from a hand-maintained rules table.
 
     identity/tz/rules.csv      iso_country, region, county, tz, note
-    identity/tz/overrides.csv  airport_id, tz, source
+    identity/tz/overrides.csv  airport_id, tz, source (empty tz = sources
+                               conflict; the airport stays unplaced)
     identity/tz/zone1970.tab   vendored from tzdata (TZDATA_VERSION beside it)
 
 The most specific rule wins: override, then (country, region, county), then
@@ -28,7 +29,10 @@ ANY = "*"
 # ISO 3166 (and zone1970.tab) treat them as countries.
 US_TERRITORIES = {"PR", "VI", "GU", "AS", "MP"}
 PARTIAL_WORDS = ("most", "except", "part")
-UNPLACED = ("multi_zone_country", "no_region", "no_county_match", "no_rule")
+UNPLACED = (
+    "multi_zone_country", "no_region", "no_county_match", "no_rule",
+    "source_conflict",
+)
 
 
 class TzRulesError(Exception):
@@ -119,7 +123,10 @@ class Rules:
         tz = row["tz"].strip()
         if not (row.get("source") or "").strip():
             raise TzRulesError(f"overrides.csv {airport_id}: no source cited")
-        if not any(tz in zones for zones in self.zones.values()):
+        if tz == "":
+            # A cited conflict between sources: the airport stays unplaced.
+            pass
+        elif not any(tz in zones for zones in self.zones.values()):
             raise TzRulesError(f"overrides.csv {airport_id}: {tz} not in zone1970.tab")
         if airport_id in self.overrides and self.overrides[airport_id] != tz:
             raise TzRulesError(f"overrides.csv {airport_id}: conflicting overrides")
@@ -143,7 +150,10 @@ class Rules:
     ) -> tuple[str | None, str | None, str | None]:
         """(tz, tz_basis, tz_unplaced)."""
         if airport_id.upper() in self.overrides:
-            return self.overrides[airport_id.upper()], "override", None
+            zone = self.overrides[airport_id.upper()]
+            if zone == "":
+                return None, None, "source_conflict"
+            return zone, "override", None
         country = (country or "").upper()
         region = (region or "").upper()
         county = (county or "").upper()
