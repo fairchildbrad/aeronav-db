@@ -17,7 +17,7 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 
 Milestone: v0.2 Airport identity & history
 Phase: 3 of 3 (IANA timezones), 03-01 unified
-Plan: 03-01 complete (tz; 23,053/27,226 placed, none guessed). Milestone v0.2 build work done; first release awaits operator via RELEASE-RUNBOOK
+Plan: 03-02 drafted 2026-11-19 (Phase 3 gate, MX, CA); awaiting sqwkd and cv-aviation review. Operator 2026-11-19: "Finish all of the plan-03 before release". Release runbook not started
 Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
 Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
 

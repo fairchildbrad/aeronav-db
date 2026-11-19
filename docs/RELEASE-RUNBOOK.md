@@ -11,6 +11,8 @@ relatedTo: [02-02-PLAN.md]
 
 Let N be the cycle of the first schema-3 release, and N-1 the cycle 28 days before it.
 
+**Gate:** Phase 3 must be done first. Operator, 2026-11-19, verbatim: "Finish all of the plan-03 before release". `python -m aeronav_db.tz gate` passes on the build (03-02 AC-1). AIRAC cycles that pass during Phase 3 work (2026-11-26, 2026-12-24, …) need no action, since nothing is published. N is whichever cycle the release targets, and step 1 always re-runs the seed to *that* N-1. The local seed pinned at 2026-10-01 is not reused.
+
 1. **Re-run the seed to N-1.** From a warm cache this takes about 6 minutes:
    `python -m aeronav_db.backfill --from 2017-10-12 --to N-1 --cache CACHE --out seed.sqlite3`
    Run it a second time. The two seeds' sha256 must be identical.

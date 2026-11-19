@@ -43,7 +43,11 @@ Phases: 0 of 3 complete
 ### Phase 3: IANA timezones
 **Goal:** add an airport tz column from a hand-maintained country→region→override CSV, validated against tzdata zone1970.tab and the US Chart Supplement offsets.
 - [x] 03-01: rules engine, pinned tzdata, US by county, Chart Supplement check
-- [ ] 03-02 (candidate, operator's call): cited region rules for Mexico, then Canada. cv-aviation 2026-11-19: the operator's APA legs use CUN 24, MEX 4, SJD 4, MZT 2 (MX) and YYZ 4, YVR 2, YYC 2 (CA). AU/BR/CN/RU are not in the logbook.
+**Operator, 2026-11-19 (routed by sqwkd), verbatim:** "Finish all of the plan-03 before release". Phase 3 done is the release gate, defined in 03-02 AC-1 (proposed, under review).
+- [ ] 03-02: gate and mechanism (per-region partial guard, municipality key), then MX and CA. cv-aviation's APA legs: CUN 24, MEX 4, SJD 4, MZT 2; YYZ 4, YVR 2, YYC 2. Plan drafted 2026-11-19, under review
+- [ ] 03-03: AU, BR, RU, ID
+- [ ] 03-04: the other 26 multi-zone countries (AQ NULL by design)
+- [ ] 03-05: US scheduled-service remainder via the Chart Supplement; closing gate run
 **cv-aviation requirement:** tz is never guessed. tz_basis 'country' is allowed only for single-zone countries. An airport in a multi-zone country that the region/override rules can't place gets tz NULL.
 
 ---
