@@ -102,3 +102,9 @@ date = "2026-11-19"
 action = "unify"
 plan = "03-02"
 note = "Gate tooling + per-region guard + municipality key; MX 102/102 and CA placed from cited statutes (CA scheduled: 242 placed, 33 unplaced_by_design, 0 unlisted); CFS 2020-11-23 check 340 match / 10 listed mismatches; AC-3a lint 6 flags (1 fixed, 5 confirmed)"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "03-03"
+note = "AU, BR, RU, ID placed from statutes and tzdata; none in the tz gate. zone_regions.csv (CA MX BR AU ID RU mapped) caught RU-SA, RU-SAK. Placed 24,894, unplaced 2,332; build sha256 05e6892a...; sqwkd OK"

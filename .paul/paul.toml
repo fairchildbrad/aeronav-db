@@ -18,7 +18,7 @@ phases = 3
 number = 3
 name = "IANA timezones"
 status = "in_progress"
-plans_completed = 2
+plans_completed = 3
 
 [loop]
 position = "IDLE"
@@ -27,6 +27,6 @@ position = "IDLE"
 groom = true
 
 [stats]
-total_plans = 9
+total_plans = 10
 total_phases = 0
 last_activity = "2026-11-19T00:00:00Z"

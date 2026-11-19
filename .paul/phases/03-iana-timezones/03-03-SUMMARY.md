@@ -2,7 +2,7 @@
 phase: 03-iana-timezones
 plan: 03
 type: summary
-status: draft
+status: complete
 description: "Australia, Brazil, Russia and Indonesia placed from their statutes and tzdata, so none of them appears in the tz gate; the partial-region list now enforces itself through zone_regions.csv."
 about: "aeronav-db"
 tags: [timezone, iana, australia, brazil, russia, indonesia]
@@ -11,7 +11,7 @@ relatedTo: [03-03-PLAN.md, 03-02-SUMMARY.md]
 
 # 03-03 Summary: Australia, Brazil, Russia, Indonesia
 
-DRAFT for sqwkd's check before unify.
+Checked by sqwkd 2026-11-19, verbatim: "sqwkd check of 03-03: OK. Unify." Router verification on the build of record (sha256 05e6892a…) reproduced the placed/unplaced counts per country and 176 passing tests.
 
 ## Build (AC-1, AC-7)
 2026-10-29 was built from the pinned seed (e92fa5fe…) with NASR, OurAirports and navaids 2026-10-29.
@@ -67,6 +67,7 @@ unplaced_by_design additions:
   - **PA:**
     - The Xingu spans 52.921°W–51.617°W in Pará, measured from the ANA rivers shapefile clipped to the IBGE Pará outline. Altamira and São Félix do Xingu fall inside, so the sanity check passed.
     - Placement: east of 51.117°W → Belem (4 airports); west of 53.421°W → Santarem (Itaituba).
+    - **Subsampling bound:** the range comes from a point-in-polygon test on every 5th river vertex, so the true extremes may lie slightly outside 52.921°W–51.617°W. The nearest placed airports lie well outside the 0.5° margins, so subsampling cannot change a placement. Only Almeirim and Breves are near-ambiguous, and both are unplaced on other grounds (north of the Amazon; Marajó).
   - **R1:** Santarem and Belem have been identical since 2008-06-24, not 2013 as the plan said (corrected per O2).
 - **RU (73e9548, 2a695ec):**
   - Region rules come from tzdata europe's "Zone X covers" subject lists, which give ISO codes.
@@ -83,7 +84,7 @@ unplaced_by_design additions:
 - 03-03 has no statutory meridians; the Amazonas and Xingu placements are airport-keyed overrides.
 
 ## Observed clock over statute (L4)
-Eucla, Cocklebiddy and Madura (Australia/Eucla, against the WA Standard Time Act 2005 s.4) join Labrador. The README list is updated at unify.
+Eucla, Cocklebiddy and Madura (Australia/Eucla, against the WA Standard Time Act 2005 s.4) join Labrador in the README list (updated at unify).
 
 ## Independent check
 None for AU, BR, RU or ID. Q2 (ERSA and the AIPs as check-only) is with the operator.

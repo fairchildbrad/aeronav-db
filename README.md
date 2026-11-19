@@ -325,7 +325,9 @@ closes.
 `tz` records the clock people actually keep. Where tzdata states that practice
 differs from the statute, the zone follows the observed clock. Each such row's
 note cites the conflicting statute. These rows are Labrador (America/Goose_Bay
-and America/Halifax, where the Standard Time Act says Newfoundland time).
+and America/Halifax, where the Standard Time Act says Newfoundland time)
+and Eucla, Cocklebiddy and Madura (Australia/Eucla, where Western Australia's
+Standard Time Act 2005 s.4 says Western Australian time).
 `identity/tz/unplaced_by_design.csv` lists the scheduled-service airports that
 no official source places.
 
