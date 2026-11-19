@@ -252,6 +252,16 @@ CANARY_TZ = {
     "MMOX": "America/Mexico_City", "MMQT": "America/Mexico_City",
     "CYYC": "America/Edmonton", "CYYZ": "America/Toronto",
     "CYVR": "America/Vancouver", "CYHZ": "America/Halifax",
+    # 03-03: Australia, Brazil, Russia, Indonesia.
+    "YSSY": "Australia/Sydney", "YBBN": "Australia/Brisbane",
+    "YPPH": "Australia/Perth", "YPAD": "Australia/Adelaide",
+    "YBHI": "Australia/Broken_Hill", "SBGR": "America/Sao_Paulo",
+    "SBEG": "America/Manaus", "SBBE": "America/Belem",
+    "SBRB": "America/Rio_Branco", "SBFN": "America/Noronha",
+    "UUEE": "Europe/Moscow", "UNNT": "Asia/Novosibirsk",
+    "UHWW": "Asia/Vladivostok", "UEEE": "Asia/Yakutsk",
+    "UHPP": "Asia/Kamchatka", "WIII": "Asia/Jakarta",
+    "WADD": "Asia/Makassar", "WAJJ": "Asia/Jayapura", "WIOO": "Asia/Pontianak",
 }
 
 
