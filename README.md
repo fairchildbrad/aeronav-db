@@ -312,6 +312,23 @@ one zone. US states that span zones are placed county by county, and the result
 is checked against the offsets printed in the FAA Chart Supplement. Multi-zone
 countries outside the US stay unplaced until a cited region rule is added.
 
+Outside the US the `county` key is OurAirports' `municipality`, upper-cased.
+Each such row cites a statute, a gazetteer entry or tzdata for that name.
+`municipality` is free text, though, and is often the city an airport serves
+rather than the place it stands in. Near a zone line, a municipality row can
+therefore **misplace** an airport instead of leaving it NULL. The guard is the
+AC-3a lint. It flags any airport more than 1° of longitude outside the
+gazetteer positions its row cites, and any airport within 0.5° of a statutory
+boundary meridian. Each flag is confirmed, fixed or set NULL before a plan
+closes.
+
+`tz` records the clock people actually keep. Where tzdata states that practice
+differs from the statute, the zone follows the observed clock. Each such row's
+note cites the conflicting statute. These rows are Labrador (America/Goose_Bay
+and America/Halifax, where the Standard Time Act says Newfoundland time).
+`identity/tz/unplaced_by_design.csv` lists the scheduled-service airports that
+no official source places.
+
 ### The chained build
 
 Each file is built from the cycle's sources **and the previous cycle's file**,
