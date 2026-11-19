@@ -156,7 +156,8 @@ CREATE TABLE airport_identity (
     in_current_cycle INTEGER NOT NULL,
     match_basis      TEXT NOT NULL,
     tz               TEXT,
-    tz_basis         TEXT
+    tz_basis         TEXT,
+    tz_unplaced      TEXT
 );
 
 CREATE TABLE airport_codes (
@@ -911,6 +912,7 @@ def write_database(
     boundary_points: list[tuple],
     metadata: dict[str, str],
     identity_state=None,
+    timezones: dict[str, tuple] | None = None,
 ) -> None:
     """Write a fresh database at ``path``. ``airports`` rows carry their
     airport_id last; ``identity_state`` (an identity.IdentityState) fills the
@@ -926,6 +928,12 @@ def write_database(
         connection.executescript(SCHEMA)
         if identity_state is not None:
             dump_state(connection, identity_state)
+        if timezones:
+            connection.executemany(
+                "UPDATE airport_identity SET tz = ?, tz_basis = ?, tz_unplaced = ? "
+                "WHERE airport_id = ?",
+                [(*value, airport_id) for airport_id, value in timezones.items()],
+            )
         connection.executemany(
             "INSERT INTO airports "
             "(code, lat, lon, name, kind, code_type, source, airport_id) "
@@ -1019,6 +1027,11 @@ def write_manifest(
         },
         "sources": metadata["sources"],
         "history_start": metadata.get("history_start", ""),
+        "tz": {
+            "tzdata_version": metadata.get("tzdata_version", ""),
+            "placed": int(metadata.get("tz_placed", 0)),
+            "unplaced": int(metadata.get("tz_unplaced", 0)),
+        },
         "previous": {
             "cycle": metadata.get("previous_cycle", ""),
             "sha256": metadata.get("previous_db_sha256", ""),
@@ -1042,7 +1055,7 @@ def build(
     previous_db: Path | None = None,
     bootstrap: bool = False,
 ) -> dict[str, object]:
-    from aeronav_db import identity
+    from aeronav_db import identity, tz
 
     resolved_cycle = cycle or latest_available_cycle().isoformat()
     # The chain input is checked before any source is read: a wrong PREV
@@ -1081,6 +1094,14 @@ def build(
         + identity.ourairports_observations(ourairports_rows),
     )
     airports = assign_airport_ids(keyed_airports, state)
+    timezones = assign_timezones(
+        state, nasr["APT_BASE.csv"], ourairports_rows, previous_db
+    )
+    present = {
+        i.airport_id for i in state.identities.values()
+        if i.last_seen_cycle == state.last_cycle
+    }
+    placed = sum(1 for k in present if timezones[k][0] is not None)
     navaids = build_navaids(nasr["NAV_BASE.csv"], ourairports_navaid_rows)
     fixes = build_fixes(nasr["FIX_BASE.csv"])
     # US airways name US navaids, so they are resolved against the NASR layer
@@ -1112,6 +1133,9 @@ def build(
         "history_start": previous_meta.get("history_start", resolved_cycle),
         "previous_cycle": previous_meta.get("airac_cycle", ""),
         "previous_db_sha256": previous_sha,
+        "tzdata_version": tz.tzdata_version(),
+        "tz_placed": str(placed),
+        "tz_unplaced": str(len(present) - placed),
     }
 
     # Written beside the output and renamed into place only once the identity
@@ -1129,6 +1153,7 @@ def build(
         boundary_points,
         metadata,
         state,
+        timezones,
     )
     problems = _check_staged(staging, previous_db)
     if problems:
@@ -1156,6 +1181,58 @@ def build(
 
 class BuildError(Exception):
     """The build refused to produce a file. The message says why."""
+
+
+def assign_timezones(
+    state, nasr_rows: list[dict[str, str]], ourairports_rows: list[dict[str, str]],
+    previous_db: str | Path | None, rules=None,
+) -> dict[str, tuple]:
+    """{airport_id: (tz, tz_basis, tz_unplaced)} for every identity.
+
+    Present airports are placed from this cycle's source rows (NASR wins).
+    An absent airport keeps the value the previous file gave it; one with no
+    previous value is placed from its stored country alone."""
+    from aeronav_db import identity, tz
+
+    rules = rules or tz.Rules.load()
+    index = identity.current_key_index(state)
+    nasr_by_id: dict[str, dict[str, str]] = {}
+    for row in nasr_rows:
+        airport_id = index.get(nasr_source_key(row))
+        if airport_id:
+            nasr_by_id.setdefault(airport_id, row)
+    oa_by_id: dict[str, dict[str, str]] = {}
+    for row in ourairports_rows:
+        airport_id = index.get(ourairports_source_key(row))
+        if airport_id:
+            oa_by_id.setdefault(airport_id, row)
+    previous: dict[str, tuple] = {}
+    if previous_db:
+        connection = sqlite3.connect(f"file:{previous_db}?mode=ro", uri=True)
+        try:
+            columns = {r[1] for r in connection.execute(
+                "PRAGMA table_info(airport_identity)")}
+            if "tz_unplaced" in columns:
+                previous = {
+                    r[0]: tuple(r[1:]) for r in connection.execute(
+                        "SELECT airport_id, tz, tz_basis, tz_unplaced "
+                        "FROM airport_identity "
+                        "WHERE tz IS NOT NULL OR tz_unplaced IS NOT NULL")
+                }
+        finally:
+            connection.close()
+    out: dict[str, tuple] = {}
+    for airport_id, ident in state.identities.items():
+        nasr_row, oa_row = nasr_by_id.get(airport_id), oa_by_id.get(airport_id)
+        if nasr_row is None and oa_row is None:
+            if airport_id in previous:
+                out[airport_id] = previous[airport_id]
+                continue
+            inputs = (ident.iso_country, None, None)
+        else:
+            inputs = tz.placement_inputs(nasr_row, oa_row)
+        out[airport_id] = rules.resolve(airport_id, *inputs)
+    return out
 
 
 def assign_airport_ids(keyed_airports: list[tuple], state) -> list[tuple]:

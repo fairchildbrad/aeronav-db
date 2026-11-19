@@ -237,7 +237,89 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
             "canary identity: IATA DJT/PBI and ICAO KDJT/KPBI do not resolve "
             f"to one airport_id on {cycle}: {holders}"
         )
+    if metadata.get("tzdata_version"):
+        problems.extend(check_timezones(connection, cycle))
     return problems
+
+
+# ICAO code -> the zone it must resolve to, in any build that places zones.
+CANARY_TZ = {
+    "KDJT": "America/New_York", "PHNL": "Pacific/Honolulu",
+    "KELP": "America/Denver", "PANC": "America/Anchorage",
+}
+
+
+def check_timezones(connection: sqlite3.Connection, cycle: str) -> list[str]:
+    """tz invariants, checked against the vendored zone1970.tab."""
+    from aeronav_db import tz as tzmod
+
+    problems: list[str] = []
+    zones, _ = tzmod.load_zone_tab(tzmod.TZ_DIR / "zone1970.tab")
+    known = {z for found in zones.values() for z in found}
+    single_zone_of = {found[0]: c for c, found in zones.items() if len(found) == 1}
+    rows = connection.execute(
+        "SELECT airport_id, tz, tz_basis, tz_unplaced, iso_country "
+        "FROM airport_identity"
+    ).fetchall()
+    for airport_id, zone, basis, unplaced, country in rows:
+        if zone is not None and zone not in known:
+            problems.append(f"{airport_id}: tz {zone} is not in zone1970.tab")
+        if (zone is None) != (basis is None):
+            problems.append(f"{airport_id}: tz and tz_basis disagree on NULL")
+        if (zone is None) != (unplaced is not None):
+            problems.append(
+                f"{airport_id}: tz_unplaced must be set exactly when tz is NULL"
+            )
+        if unplaced is not None and unplaced not in tzmod.UNPLACED:
+            problems.append(f"{airport_id}: unknown tz_unplaced {unplaced!r}")
+        if basis == "country" and not single_zone_of.get(zone):
+            # NASR files PR, VI, GU, AS and MP under US; their zone is placed
+            # as the territory's, so the check is on the zone, not iso_country.
+            problems.append(f"{airport_id}: country-basis {zone} is no single-zone "
+                            f"country's zone ({country})")
+    for code, expected in CANARY_TZ.items():
+        holders = _held_on(connection, "icao", code, cycle)
+        found = {
+            row[0] for row in connection.execute(
+                f"SELECT tz FROM airport_identity WHERE airport_id IN "  # noqa: S608
+                f"({','.join('?' * len(holders))})", sorted(holders))
+        } if holders else set()
+        if found != {expected}:
+            problems.append(
+                f"canary tz: {code} resolves to {found}, expected {expected}"
+            )
+    more = [f"... {len(problems) - 50} more"] if len(problems) > 50 else []
+    return problems[:50] + more
+
+
+def timezone_notes(path: Path, previous: Path | None = None) -> list[str]:
+    """Coverage of present airports, and the change in unplaced since PREV."""
+    def counts(p: Path) -> tuple[int, int, list]:
+        connection = sqlite3.connect(f"file:{p}?mode=ro", uri=True)
+        try:
+            columns = {r[1] for r in connection.execute(
+                "PRAGMA table_info(airport_identity)")}
+            if "tz_unplaced" not in columns:
+                return 0, 0, []
+            placed, unplaced = connection.execute(
+                "SELECT SUM(tz IS NOT NULL), SUM(tz IS NULL) FROM airport_identity "
+                "WHERE in_current_cycle = 1").fetchone()
+            top = connection.execute(
+                "SELECT iso_country, COUNT(*) FROM airport_identity "
+                "WHERE in_current_cycle = 1 AND tz IS NULL GROUP BY 1 "
+                "ORDER BY 2 DESC, 1 LIMIT 10").fetchall()
+            return placed or 0, unplaced or 0, top
+        finally:
+            connection.close()
+
+    placed, unplaced, top = counts(path)
+    notes = [f"time zones: {placed} present airports placed, {unplaced} unplaced"]
+    if top:
+        notes.append("unplaced by country: " + ", ".join(f"{c} {n}" for c, n in top))
+    if previous is not None:
+        was = counts(previous)[1]
+        notes.append(f"unplaced change since previous file: {unplaced - was:+d}")
+    return notes
 
 
 def _held_on(connection: sqlite3.Connection, scheme: str, code: str, day: str):
@@ -612,6 +694,10 @@ def main(argv: list[str] | None = None) -> int:
         problems.extend(verify_chain(Path(args.path), Path(args.previous)))
     for note in identity_notes(Path(args.path)) if Path(args.path).exists() else []:
         print(note)
+    if Path(args.path).exists():
+        previous_path = Path(args.previous) if args.previous else None
+        for note in timezone_notes(Path(args.path), previous_path):
+            print(note)
     if problems:
         print("VERIFICATION FAILED")
         for problem in problems:

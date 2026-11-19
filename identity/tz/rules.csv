@@ -1,0 +1,1393 @@
+iso_country,region,county,tz,note
+AD,*,*,Europe/Andorra,single-zone country (zone1970.tab)
+AE,*,*,Asia/Dubai,single-zone country (zone1970.tab)
+AF,*,*,Asia/Kabul,single-zone country (zone1970.tab)
+AG,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+AI,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+AL,*,*,Europe/Tirane,single-zone country (zone1970.tab)
+AM,*,*,Asia/Yerevan,single-zone country (zone1970.tab)
+AO,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+AS,*,*,Pacific/Pago_Pago,single-zone country (zone1970.tab)
+AT,*,*,Europe/Vienna,single-zone country (zone1970.tab)
+AW,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+AX,*,*,Europe/Helsinki,single-zone country (zone1970.tab)
+AZ,*,*,Asia/Baku,single-zone country (zone1970.tab)
+BA,*,*,Europe/Belgrade,single-zone country (zone1970.tab)
+BB,*,*,America/Barbados,single-zone country (zone1970.tab)
+BD,*,*,Asia/Dhaka,single-zone country (zone1970.tab)
+BE,*,*,Europe/Brussels,single-zone country (zone1970.tab)
+BF,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+BG,*,*,Europe/Sofia,single-zone country (zone1970.tab)
+BH,*,*,Asia/Qatar,single-zone country (zone1970.tab)
+BI,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+BJ,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+BL,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+BM,*,*,Atlantic/Bermuda,single-zone country (zone1970.tab)
+BN,*,*,Asia/Kuching,single-zone country (zone1970.tab)
+BO,*,*,America/La_Paz,single-zone country (zone1970.tab)
+BQ,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+BS,*,*,America/Toronto,single-zone country (zone1970.tab)
+BT,*,*,Asia/Thimphu,single-zone country (zone1970.tab)
+BW,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+BY,*,*,Europe/Minsk,single-zone country (zone1970.tab)
+BZ,*,*,America/Belize,single-zone country (zone1970.tab)
+CC,*,*,Asia/Yangon,single-zone country (zone1970.tab)
+CF,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+CG,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+CH,*,*,Europe/Zurich,single-zone country (zone1970.tab)
+CI,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+CK,*,*,Pacific/Rarotonga,single-zone country (zone1970.tab)
+CM,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+CO,*,*,America/Bogota,single-zone country (zone1970.tab)
+CR,*,*,America/Costa_Rica,single-zone country (zone1970.tab)
+CU,*,*,America/Havana,single-zone country (zone1970.tab)
+CV,*,*,Atlantic/Cape_Verde,single-zone country (zone1970.tab)
+CW,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+CX,*,*,Asia/Bangkok,single-zone country (zone1970.tab)
+CZ,*,*,Europe/Prague,single-zone country (zone1970.tab)
+DJ,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+DK,*,*,Europe/Berlin,single-zone country (zone1970.tab)
+DM,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+DO,*,*,America/Santo_Domingo,single-zone country (zone1970.tab)
+DZ,*,*,Africa/Algiers,single-zone country (zone1970.tab)
+EE,*,*,Europe/Tallinn,single-zone country (zone1970.tab)
+EG,*,*,Africa/Cairo,single-zone country (zone1970.tab)
+EH,*,*,Africa/El_Aaiun,single-zone country (zone1970.tab)
+ER,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+ET,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+FI,*,*,Europe/Helsinki,single-zone country (zone1970.tab)
+FJ,*,*,Pacific/Fiji,single-zone country (zone1970.tab)
+FK,*,*,Atlantic/Stanley,single-zone country (zone1970.tab)
+FO,*,*,Atlantic/Faroe,single-zone country (zone1970.tab)
+FR,*,*,Europe/Paris,single-zone country (zone1970.tab)
+GA,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+GB,*,*,Europe/London,single-zone country (zone1970.tab)
+GD,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+GE,*,*,Asia/Tbilisi,single-zone country (zone1970.tab)
+GF,*,*,America/Cayenne,single-zone country (zone1970.tab)
+GG,*,*,Europe/London,single-zone country (zone1970.tab)
+GH,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+GI,*,*,Europe/Gibraltar,single-zone country (zone1970.tab)
+GM,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+GN,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+GP,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+GQ,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+GR,*,*,Europe/Athens,single-zone country (zone1970.tab)
+GS,*,*,Atlantic/South_Georgia,single-zone country (zone1970.tab)
+GT,*,*,America/Guatemala,single-zone country (zone1970.tab)
+GU,*,*,Pacific/Guam,single-zone country (zone1970.tab)
+GW,*,*,Africa/Bissau,single-zone country (zone1970.tab)
+GY,*,*,America/Guyana,single-zone country (zone1970.tab)
+HK,*,*,Asia/Hong_Kong,single-zone country (zone1970.tab)
+HN,*,*,America/Tegucigalpa,single-zone country (zone1970.tab)
+HR,*,*,Europe/Belgrade,single-zone country (zone1970.tab)
+HT,*,*,America/Port-au-Prince,single-zone country (zone1970.tab)
+HU,*,*,Europe/Budapest,single-zone country (zone1970.tab)
+IE,*,*,Europe/Dublin,single-zone country (zone1970.tab)
+IL,*,*,Asia/Jerusalem,single-zone country (zone1970.tab)
+IM,*,*,Europe/London,single-zone country (zone1970.tab)
+IN,*,*,Asia/Kolkata,single-zone country (zone1970.tab)
+IO,*,*,Indian/Chagos,single-zone country (zone1970.tab)
+IQ,*,*,Asia/Baghdad,single-zone country (zone1970.tab)
+IR,*,*,Asia/Tehran,single-zone country (zone1970.tab)
+IS,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+IT,*,*,Europe/Rome,single-zone country (zone1970.tab)
+JE,*,*,Europe/London,single-zone country (zone1970.tab)
+JM,*,*,America/Jamaica,single-zone country (zone1970.tab)
+JO,*,*,Asia/Amman,single-zone country (zone1970.tab)
+JP,*,*,Asia/Tokyo,single-zone country (zone1970.tab)
+KE,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+KG,*,*,Asia/Bishkek,single-zone country (zone1970.tab)
+KH,*,*,Asia/Bangkok,single-zone country (zone1970.tab)
+KM,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+KN,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+KP,*,*,Asia/Pyongyang,single-zone country (zone1970.tab)
+KR,*,*,Asia/Seoul,single-zone country (zone1970.tab)
+KW,*,*,Asia/Riyadh,single-zone country (zone1970.tab)
+KY,*,*,America/Panama,single-zone country (zone1970.tab)
+LA,*,*,Asia/Bangkok,single-zone country (zone1970.tab)
+LB,*,*,Asia/Beirut,single-zone country (zone1970.tab)
+LC,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+LI,*,*,Europe/Zurich,single-zone country (zone1970.tab)
+LK,*,*,Asia/Colombo,single-zone country (zone1970.tab)
+LR,*,*,Africa/Monrovia,single-zone country (zone1970.tab)
+LS,*,*,Africa/Johannesburg,single-zone country (zone1970.tab)
+LT,*,*,Europe/Vilnius,single-zone country (zone1970.tab)
+LU,*,*,Europe/Brussels,single-zone country (zone1970.tab)
+LV,*,*,Europe/Riga,single-zone country (zone1970.tab)
+LY,*,*,Africa/Tripoli,single-zone country (zone1970.tab)
+MA,*,*,Africa/Casablanca,single-zone country (zone1970.tab)
+MC,*,*,Europe/Paris,single-zone country (zone1970.tab)
+MD,*,*,Europe/Chisinau,single-zone country (zone1970.tab)
+ME,*,*,Europe/Belgrade,single-zone country (zone1970.tab)
+MF,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+MG,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+MK,*,*,Europe/Belgrade,single-zone country (zone1970.tab)
+ML,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+MM,*,*,Asia/Yangon,single-zone country (zone1970.tab)
+MO,*,*,Asia/Macau,single-zone country (zone1970.tab)
+MP,*,*,Pacific/Guam,single-zone country (zone1970.tab)
+MQ,*,*,America/Martinique,single-zone country (zone1970.tab)
+MR,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+MS,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+MT,*,*,Europe/Malta,single-zone country (zone1970.tab)
+MU,*,*,Indian/Mauritius,single-zone country (zone1970.tab)
+MV,*,*,Indian/Maldives,single-zone country (zone1970.tab)
+MW,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+MZ,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+NA,*,*,Africa/Windhoek,single-zone country (zone1970.tab)
+NC,*,*,Pacific/Noumea,single-zone country (zone1970.tab)
+NE,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+NF,*,*,Pacific/Norfolk,single-zone country (zone1970.tab)
+NG,*,*,Africa/Lagos,single-zone country (zone1970.tab)
+NI,*,*,America/Managua,single-zone country (zone1970.tab)
+NL,*,*,Europe/Brussels,single-zone country (zone1970.tab)
+NO,*,*,Europe/Berlin,single-zone country (zone1970.tab)
+NP,*,*,Asia/Kathmandu,single-zone country (zone1970.tab)
+NR,*,*,Pacific/Nauru,single-zone country (zone1970.tab)
+NU,*,*,Pacific/Niue,single-zone country (zone1970.tab)
+OM,*,*,Asia/Dubai,single-zone country (zone1970.tab)
+PA,*,*,America/Panama,single-zone country (zone1970.tab)
+PE,*,*,America/Lima,single-zone country (zone1970.tab)
+PH,*,*,Asia/Manila,single-zone country (zone1970.tab)
+PK,*,*,Asia/Karachi,single-zone country (zone1970.tab)
+PL,*,*,Europe/Warsaw,single-zone country (zone1970.tab)
+PM,*,*,America/Miquelon,single-zone country (zone1970.tab)
+PN,*,*,Pacific/Pitcairn,single-zone country (zone1970.tab)
+PR,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+PW,*,*,Pacific/Palau,single-zone country (zone1970.tab)
+PY,*,*,America/Asuncion,single-zone country (zone1970.tab)
+QA,*,*,Asia/Qatar,single-zone country (zone1970.tab)
+RE,*,*,Asia/Dubai,single-zone country (zone1970.tab)
+RO,*,*,Europe/Bucharest,single-zone country (zone1970.tab)
+RS,*,*,Europe/Belgrade,single-zone country (zone1970.tab)
+RW,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+SA,*,*,Asia/Riyadh,single-zone country (zone1970.tab)
+SB,*,*,Pacific/Guadalcanal,single-zone country (zone1970.tab)
+SC,*,*,Asia/Dubai,single-zone country (zone1970.tab)
+SD,*,*,Africa/Khartoum,single-zone country (zone1970.tab)
+SE,*,*,Europe/Berlin,single-zone country (zone1970.tab)
+SG,*,*,Asia/Singapore,single-zone country (zone1970.tab)
+SH,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+SI,*,*,Europe/Belgrade,single-zone country (zone1970.tab)
+SJ,*,*,Europe/Berlin,single-zone country (zone1970.tab)
+SK,*,*,Europe/Prague,single-zone country (zone1970.tab)
+SL,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+SM,*,*,Europe/Rome,single-zone country (zone1970.tab)
+SN,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+SO,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+SR,*,*,America/Paramaribo,single-zone country (zone1970.tab)
+SS,*,*,Africa/Juba,single-zone country (zone1970.tab)
+ST,*,*,Africa/Sao_Tome,single-zone country (zone1970.tab)
+SV,*,*,America/El_Salvador,single-zone country (zone1970.tab)
+SX,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+SY,*,*,Asia/Damascus,single-zone country (zone1970.tab)
+SZ,*,*,Africa/Johannesburg,single-zone country (zone1970.tab)
+TC,*,*,America/Grand_Turk,single-zone country (zone1970.tab)
+TD,*,*,Africa/Ndjamena,single-zone country (zone1970.tab)
+TG,*,*,Africa/Abidjan,single-zone country (zone1970.tab)
+TH,*,*,Asia/Bangkok,single-zone country (zone1970.tab)
+TJ,*,*,Asia/Dushanbe,single-zone country (zone1970.tab)
+TK,*,*,Pacific/Fakaofo,single-zone country (zone1970.tab)
+TL,*,*,Asia/Dili,single-zone country (zone1970.tab)
+TM,*,*,Asia/Ashgabat,single-zone country (zone1970.tab)
+TN,*,*,Africa/Tunis,single-zone country (zone1970.tab)
+TO,*,*,Pacific/Tongatapu,single-zone country (zone1970.tab)
+TR,*,*,Europe/Istanbul,single-zone country (zone1970.tab)
+TT,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+TV,*,*,Pacific/Tarawa,single-zone country (zone1970.tab)
+TW,*,*,Asia/Taipei,single-zone country (zone1970.tab)
+TZ,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+UG,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+US,US-AK,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-AK,ALEUTIANS EAST,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,ANCHORAGE,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,BARROW,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,BETHEL,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,BRISTOL BAY,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,CORDOVA-MCCARTHY,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,DENALI,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,DILLINGHAM,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,FAIRBANKS NORTH STAR,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,JUNEAU,America/Juneau,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,KENAI PENINSULA,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,KENAI-COOK INLET,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,KOBUK,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,KODIAK ISLAND,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,KUSILVAK,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,KUSKOKWIM,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,LAKE AND PENINSULA,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,MATANUSKA-SUSITNA,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,NOME,America/Nome,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,NORTH SLOPE,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,NORTHWEST ARCTIC,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,SEWARD,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,SITKA,America/Sitka,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,SOUTHEAST FAIRBANKS,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,UPPER YUKON,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,VALDEZ-CHITNA-WHITIE,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,VALDEZ-CORDOVA,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,YAKUTAT,America/Yakutat,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AK,YUKON-KOYUKUK,America/Anchorage,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AL,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-AR,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-AZ,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-AZ,COCHISE,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,GILA,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,GRAHAM,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,GREENLEE,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,LA PAZ,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,MARICOPA,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,MOHAVE,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,PIMA,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,PINAL,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,SANTA CRUZ,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,YAVAPAI,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-AZ,YUMA,America/Phoenix,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-CA,*,America/Los_Angeles,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-CO,*,America/Denver,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-CT,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-DC,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-DE,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-FL,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-FL,ALACHUA,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,BAKER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,BAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,BRADFORD,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,BREVARD,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,BROWARD,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,CALHOUN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,CHARLOTTE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,CITRUS,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,CLAY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,COLLIER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,COLUMBIA,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,DADE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,DE SOTO,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,DIXIE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,DUVAL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,ESCAMBIA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,FLAGLER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,FRANKLIN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,GADSDEN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,GILCHRIST,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,GLADES,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,HAMILTON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,HARDEE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,HENDRY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,HERNANDO,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,HIGHLANDS,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,HILLSBOROUGH,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,HOLMES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,INDIAN RIVER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,JACKSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,JEFFERSON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,LAFAYETTE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,LAKE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,LEE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,LEON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,LEVY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,MADISON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,MANATEE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,MARION,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,MARTIN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,MIAMI-DADE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,MONROE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,NASSAU,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,OKALOOSA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,OKEECHOBEE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,ORANGE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,OSCEOLA,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,PALM BEACH,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,PASCO,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,PINELLAS,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,POLK,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,PUTNAM,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,SANTA ROSA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,SARASOTA,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,SEMINOLE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,ST JOHNS,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,ST LUCIE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,SUMTER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,SUWANNEE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,TAYLOR,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,UNION,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,VOLUSIA,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,WAKULLA,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,WALTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-FL,WASHINGTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-GA,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-HI,*,Pacific/Honolulu,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-IA,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-ID,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-ID,ADA,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,ADAMS,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BANNOCK,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BEAR LAKE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BENEWAH,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BINGHAM,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BLAINE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BOISE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BONNER,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BONNEVILLE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BOUNDARY,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,BUTTE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,CAMAS,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,CANYON,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,CARIBOU,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,CASSIA,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,CLARK,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,CLEARWATER,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,CUSTER,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,ELMORE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,FRANKLIN,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,FREMONT,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,GEM,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,GOODING,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,JEFFERSON,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,JEROME,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,KOOTENAI,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,LATAH,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,LEMHI,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,LEWIS,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,LINCOLN,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,MADISON,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,MINIDOKA,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,NEZ PERCE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,ONEIDA,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,OWYHEE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,PAYETTE,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,POWER,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,SHOSHONE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,TETON,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,TWIN FALLS,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,VALLEY,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ID,WASHINGTON,America/Boise,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IL,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-IN,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-IN,ADAMS,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,ALLEN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,BARTHOLOMEW,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,BENTON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,BLACKFORD,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,BOONE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,BROWN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,CARROLL,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,CASS,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,CLARK,America/Kentucky/Louisville,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,CLAY,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,CLINTON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,CRAWFORD,America/Indiana/Marengo,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,DAVIESS,America/Indiana/Vincennes,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,DE KALB,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,DEARBORN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,DECATUR,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,DELAWARE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,DUBOIS,America/Indiana/Vincennes,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,ELKHART,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,FAYETTE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,FLOYD,America/Kentucky/Louisville,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,FOUNTAIN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,FRANKLIN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,FULTON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,GIBSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,GRANT,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,GREENE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,HAMILTON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,HANCOCK,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,HARRISON,America/Kentucky/Louisville,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,HENDRICKS,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,HENRY,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,HOWARD,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,HUNTINGTON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,JACKSON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,JASPER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,JAY,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,JEFFERSON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,JENNINGS,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,JOHNSON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,KNOX,America/Indiana/Vincennes,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,KOSCIUSKO,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,LA PORTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,LAGRANGE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,LAKE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,LAWRENCE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MADISON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MARION,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MARSHALL,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MARTIN,America/Indiana/Vincennes,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MIAMI,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MONROE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MONTGOMERY,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,MORGAN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,NEWTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,NOBLE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,OHIO,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,ORANGE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,OWEN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,PARKE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,PERRY,America/Indiana/Tell_City,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,PIKE,America/Indiana/Petersburg,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,PORTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,POSEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,PULASKI,America/Indiana/Winamac,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,PUTNAM,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,RANDOLPH,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,RIPLEY,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,RUSH,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,SCOTT,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,SHELBY,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,SPENCER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,ST JOSEPH,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,STARKE,America/Indiana/Knox,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,STEUBEN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,SULLIVAN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,SWITZERLAND,America/Indiana/Vevay,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,TIPPECANOE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,TIPTON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,UNION,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,VANDERBURGH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,VERMILLION,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,VIGO,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WABASH,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WARREN,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WARRICK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WASHINGTON,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WAYNE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WELLS,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WHITE,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-IN,WHITLEY,America/Indiana/Indianapolis,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-KS,ALLEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,ANDERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,ATCHISON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,BARBER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,BARTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,BOURBON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,BROWN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,BUTLER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CHASE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CHAUTAUQUA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CHEROKEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CHEYENNE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CLARK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CLAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CLOUD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,COFFEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,COMANCHE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,COWLEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,CRAWFORD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,DECATUR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,DICKINSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,DONIPHAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,DOUGLAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,EDWARDS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,ELK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,ELLIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,ELLSWORTH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,FINNEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,FORD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,FRANKLIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,GEARY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,GOVE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,GRAHAM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,GRANT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,GRAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,GREELEY,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,GREENWOOD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,HAMILTON,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,HARPER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,HARVEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,HASKELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,HODGEMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,JACKSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,JEFFERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,JEWELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,JOHNSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,KEARNY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,KINGMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,KIOWA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,LABETTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,LANE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,LEAVENWORTH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,LINCOLN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,LINN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,LOGAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,LYON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MARION,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MARSHALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MC PHERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MEADE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MIAMI,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MITCHELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MONTGOMERY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MORRIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,MORTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,NEMAHA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,NEOSHO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,NESS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,NORTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,OSAGE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,OSBORNE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,OTTAWA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,PAWNEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,PHILLIPS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,POTTAWATOMIE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,PRATT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,RAWLINS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,RENO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,REPUBLIC,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,RICE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,RILEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,ROOKS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,RUSH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,RUSSELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SALINE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SCOTT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SEDGWICK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SEWARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SHAWNEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SHERIDAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SHERMAN,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SMITH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,STAFFORD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,STANTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,STEVENS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,SUMNER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,THOMAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,TREGO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,WABAUNSEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,WALLACE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,WASHINGTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,WICHITA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,WILSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,WOODSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KS,WYANDOTTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-KY,ADAIR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,ALLEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,ANDERSON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BALLARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BARREN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BELL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BOONE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BOURBON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BOYD,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BOYLE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BREATHITT,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BRECKINRIDGE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BULLITT,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,BUTLER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CALDWELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CALLOWAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CAMPBELL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CARLISLE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CARROLL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CARTER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CASEY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CHRISTIAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CLARK,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CLAY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CLINTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CRITTENDEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,CUMBERLAND,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,DAVIESS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,EDMONSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,ESTILL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,FAYETTE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,FLEMING,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,FLOYD,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,FRANKLIN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,FULTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,GALLATIN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,GARRARD,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,GRANT,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,GRAVES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,GRAYSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,GREEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,GREENUP,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HANCOCK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HARDIN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HARLAN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HARRISON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HART,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HENDERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HENRY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HICKMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,HOPKINS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,JEFFERSON,America/Kentucky/Louisville,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,JESSAMINE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,JOHNSON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,KENTON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,KNOX,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LARUE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LAUREL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LESLIE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LETCHER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LINCOLN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LIVINGSTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LOGAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,LYON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MADISON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MARION,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MARSHALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MARTIN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MASON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MC CRACKEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MC CREARY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MC LEAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MCCRACKEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MCLEAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MERCER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,METCALFE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MONROE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MONTGOMERY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MORGAN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,MUHLENBERG,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,NELSON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,NICHOLAS,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,OHIO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,OLDHAM,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,OWEN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,PENDLETON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,PERRY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,PIKE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,POWELL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,PULASKI,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,ROCKCASTLE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,ROWAN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,RUSSELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,SCOTT,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,SHELBY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,SIMPSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,SPENCER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,TAYLOR,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,TODD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,TRIGG,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,UNION,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,WARREN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,WASHINGTON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,WAYNE,America/Kentucky/Monticello,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,WEBSTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,WHITLEY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-KY,WOODFORD,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-LA,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-MA,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-MD,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-ME,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-MI,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-MI,ALCONA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ALGER,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ALLEGAN,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ALPENA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ANTRIM,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ARENAC,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,BARAGA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,BARRY,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,BAY,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,BENZIE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,BERRIEN,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,BRANCH,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CALHOUN,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CASS,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CHARLEVOIX,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CHEBOYGAN,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CHIPPEWA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CLARE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CLINTON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,CRAWFORD,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,DELTA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,DICKINSON,America/Menominee,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,EATON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,EMMET,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,GENESEE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,GLADWIN,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,GOGEBIC,America/Menominee,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,GRAND TRAVERSE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,GRATIOT,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,HILLSDALE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,HOUGHTON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,HURON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,INGHAM,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,IONIA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,IOSCO,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,IRON,America/Menominee,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ISABELLA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,JACKSON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,KALAMAZOO,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,KALKASKA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,KENT,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,KEWEENAW,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,LAKE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,LAPEER,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,LEELANAU,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,LENAWEE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,LIVINGSTON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,LUCE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MACKINAC,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MACOMB,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MANISTEE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MARQUETTE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MASON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MECOSTA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MENOMINEE,America/Menominee,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MIDLAND,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MISSAUKEE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MONROE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MONTCALM,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MONTMORENCY,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,MUSKEGON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,NEWAYGO,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,OAKLAND,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,OCEANA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,OGEMAW,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ONTONAGON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,OSCEOLA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,OSCODA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,OTSEGO,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,OTTAWA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,PRESQUE ISLE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ROSCOMMON,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,SAGINAW,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,SANILAC,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,SCHOOLCRAFT,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,SHIAWASSEE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ST CLAIR,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,ST JOSEPH,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,TUSCOLA,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,VAN BUREN,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,WASHTENAW,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,WAYNE,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MI,WEXFORD,America/Detroit,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-MN,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-MO,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-MS,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-MT,*,America/Denver,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-NC,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-ND,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-ND,ADAMS,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,BARNES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,BENSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,BILLINGS,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,BOTTINEAU,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,BOWMAN,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,BURKE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,BURLEIGH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,CASS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,CAVALIER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,DICKEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,DIVIDE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,EDDY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,EMMONS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,FOSTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,GOLDEN VALLEY,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,GRAND FORKS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,GRANT,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,GRIGGS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,HETTINGER,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,KIDDER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,LA MOURE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,LOGAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,MC HENRY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,MC INTOSH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,MC LEAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,MERCER,America/North_Dakota/Beulah,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,MORTON,America/North_Dakota/New_Salem,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,MOUNTRAIL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,NELSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,OLIVER,America/North_Dakota/Center,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,PEMBINA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,PIERCE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,RAMSEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,RANSOM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,RENVILLE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,RICHLAND,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,ROLETTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,SARGENT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,SHERIDAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,SIOUX,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,SLOPE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,STARK,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,STEELE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,STUTSMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,TOWNER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,TRAILL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,WALSH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,WARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,WELLS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-ND,WILLIAMS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-NE,ADAMS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,ANTELOPE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,ARTHUR,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BANNER,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BLAINE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BOONE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BOX BUTTE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BOYD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BROWN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BUFFALO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BURT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,BUTLER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,CASS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,CEDAR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,CHASE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,CHEYENNE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,CLAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,CUSTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,DAKOTA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,DAWES,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,DAWSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,DEUEL,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,DODGE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,DOUGLAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,DUNDY,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,FILLMORE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,FRANKLIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,FRONTIER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,FURNAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,GAGE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,GARDEN,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,GARFIELD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,GOSPER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,GRANT,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,GREELEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,HALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,HAMILTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,HARLAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,HAYES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,HITCHCOCK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,HOLT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,HOOKER,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,JEFFERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,JOHNSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,KEARNEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,KEITH,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,KIMBALL,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,KNOX,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,LANCASTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,LINCOLN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,LOGAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,MADISON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,MC PHERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,MERRICK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,MORRILL,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,NANCE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,NEMAHA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,NUCKOLLS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,OTOE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,PAWNEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,PERKINS,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,PHELPS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,PLATTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,RED WILLOW,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,RICHARDSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,ROCK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SALINE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SARPY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SAUNDERS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SCOTTS BLUFF,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SEWARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SHERIDAN,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SHERMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,SIOUX,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,STANTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,THAYER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,THOMAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,THURSTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,VALLEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,WASHINGTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,WAYNE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,WEBSTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,WHEELER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NE,YORK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NH,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-NJ,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-NM,*,America/Denver,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-NV,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-NV,CARSON CITY,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,CHURCHILL,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,CLARK,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,DOUGLAS,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,ESMERALDA,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,EUREKA,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,HUMBOLDT,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,LANDER,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,LINCOLN,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,LYON,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,MINERAL,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,NYE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,PERSHING,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,SAN BERNARDINO,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,WASHOE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NV,WHITE PINE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-NY,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-OH,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-OK,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-OR,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-OR,BAKER,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,BENTON,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,CLACKAMAS,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,CLATSOP,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,COLUMBIA,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,COOS,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,CROOK,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,CURRY,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,DESCHUTES,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,DOUGLAS,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,GILLIAM,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,GRANT,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,HARNEY,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,HOOD RIVER,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,JACKSON,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,JEFFERSON,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,JOSEPHINE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,KLAMATH,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,KLICKITAT,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,LAKE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,LANE,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,LINCOLN,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,LINN,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,MARION,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,MORROW,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,MULTNOMAH,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,POLK,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,SHERMAN,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,TILLAMOOK,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,UMATILLA,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,UNION,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,WALLOWA,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,WASCO,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,WASHINGTON,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,WHEELER,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-OR,YAMHILL,America/Los_Angeles,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-PA,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-RI,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-SC,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-SD,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-SD,AURORA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,BEADLE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,BENNETT,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,BON HOMME,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,BROOKINGS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,BROWN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,BRULE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,BUTTE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,CAMPBELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,CHARLES MIX,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,CLARK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,CLAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,CODINGTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,CORSON,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,CUSTER,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,DAVISON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,DAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,DEUEL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,DEWEY,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,DOUGLAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,EDMUNDS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,FALL RIVER,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,FAULK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,GRANT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,GREGORY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,HAAKON,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,HAND,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,HARDING,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,HUGHES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,HUTCHINSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,HYDE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,JACKSON,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,JERAULD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,JONES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,KINGSBURY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,LAKE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,LAWRENCE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,LINCOLN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,LYMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,MARSHALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,MC PHERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,MEADE,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,MELLETTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,MINER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,MINNEHAHA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,MOODY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,OGLALA LAKOTA,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,PENNINGTON,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,PERKINS,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,POTTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,ROBERTS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,SANBORN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,SHANNON,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,SPINK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,SULLY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,TODD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,TRIPP,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,TURNER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,UNION,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,WALWORTH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,YANKTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-SD,ZIEBACH,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-TN,ANDERSON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,BEDFORD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,BENTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,BLEDSOE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,BLOUNT,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,BRADLEY,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,CAMPBELL,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,CARROLL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,CARTER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,CHEATHAM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,CLAIBORNE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,COCKE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,COFFEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,CUMBERLAND,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,DAVIDSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,DE KALB,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,DECATUR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,DICKSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,DYER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,FAYETTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,FENTRESS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,FRANKLIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,GIBSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,GILES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,GRAINGER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,GREENE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,GRUNDY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HAMBLEN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HAMILTON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HANCOCK,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HARDEMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HARDIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HAWKINS,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HAYWOOD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HENDERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HENRY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HICKMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HOUSTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,HUMPHREYS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,JACKSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,JEFFERSON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,JOHNSON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,KNOX,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,LAKE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,LAUDERDALE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,LAWRENCE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,LEWIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,LINCOLN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,LOUDON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MACON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MADISON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MARION,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MARSHALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MAURY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MC MINN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MC NAIRY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MCMINN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MEIGS,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MONROE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MONTGOMERY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MOORE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,MORGAN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,OBION,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,OVERTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,PERRY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,POLK,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,PUTNAM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,RHEA,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,ROANE,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,ROBERTSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,RUTHERFORD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,SCOTT,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,SEQUATCHIE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,SEVIER,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,SHELBY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,SMITH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,STEWART,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,SULLIVAN,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,SUMNER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,TIPTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,UNICOI,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,UNION,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,VAN BUREN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,WARREN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,WASHINGTON,America/New_York,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,WAYNE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,WEAKLEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,WHITE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,WILLIAMSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TN,WILSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,*,SPLIT,split state: placed by county; unlisted or split counties stay NULL
+US,US-TX,ANDERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ANDREWS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ANGELINA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ARANSAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ARCHER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ARMSTRONG,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ATASCOSA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,AUSTIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BAILEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BANDERA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BASTROP,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BAYLOR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BEXAR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BLANCO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BOSQUE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BOWIE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BRAZORIA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BRAZOS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BREWSTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BRISCOE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BROOKS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BROWN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BURLESON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,BURNET,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CALDWELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CALHOUN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CALLAHAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CAMERON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CAMP,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CARSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CASS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CASTRO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CHAMBERS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CHEROKEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CHILDRESS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CIMARRON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CLAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COCHRAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COLEMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COLLIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COLLINGSWORTH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COLORADO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COMAL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COMANCHE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COOKE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CORYELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,COTTLE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CRANE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CROCKETT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CROSBY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,CULBERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DALLAM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DALLAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DAWSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DE WITT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DEAF SMITH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DELTA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DENTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DICKENS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DIMMIT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DONLEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,DUVAL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,EASTLAND,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ECTOR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,EDWARDS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,EL PASO,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ELLIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ERATH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FALLS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FANNIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FAYETTE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FISHER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FLOYD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FOARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FORT BEND,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FRANKLIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FREESTONE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,FRIO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GAINES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GALVESTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GARZA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GILLESPIE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GLASSCOCK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GOLIAD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GONZALES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GRAY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GRAYSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GREGG,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GRIMES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,GUADALUPE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HALE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HAMILTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HANSFORD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HARDEMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HARDIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HARRIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HARRISON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HARTLEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HASKELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HAYS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HEMPHILL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HENDERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HIDALGO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HILL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HOCKLEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HOOD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HOPKINS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HOUSTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HOWARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HUDSPETH,America/Denver,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HUNT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,HUTCHINSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,IRION,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JACK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JACKSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JASPER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JEFF DAVIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JEFFERSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JIM HOGG,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JIM WELLS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JOHNSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,JONES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KARNES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KAUFMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KENDALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KENEDY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KENT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KERR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KIMBLE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KING,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KINNEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KLEBERG,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,KNOX,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LA SALLE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LAMAR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LAMB,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LAMPASAS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LAVACA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LEE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LEON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LIBERTY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LIMESTONE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LIPSCOMB,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LIVE OAK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LLANO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LUBBOCK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,LYNN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MADISON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MARION,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MARTIN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MASON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MATAGORDA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MAVERICK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MC CULLOCH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MC LENNAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MC MULLEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MEDINA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MENARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MIDLAND,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MILAM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MILLS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MITCHELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MONTAGUE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MONTGOMERY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MOORE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MORRIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,MOTLEY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,NACOGDOCHES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,NAVARRO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,NEWTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,NOLAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,NUECES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,OCHILTREE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,OLDHAM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ORANGE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,PALO PINTO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,PANOLA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,PARKER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,PARMER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,PECOS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,POLK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,POTTER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,PRESIDIO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,RAINS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,RANDALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,REAGAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,REAL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,RED RIVER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,REEVES,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,REFUGIO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ROBERTS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ROBERTSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ROCKWALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,RUNNELS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,RUSK,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SABINE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SAN AUGUSTINE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SAN JACINTO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SAN PATRICIO,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SAN SABA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SCHLEICHER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SCURRY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SHACKELFORD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SHELBY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SHERMAN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SMITH,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SOMERVELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,STARR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,STEPHENS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,STERLING,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,STONEWALL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SUTTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,SWISHER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TARRANT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TAYLOR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TERRELL,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TERRY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,THROCKMORTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TITUS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TOM GREEN,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TRAVIS,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TRINITY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,TYLER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,UPSHUR,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,UPTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,UVALDE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,VAL VERDE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,VAN ZANDT,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,VICTORIA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WALKER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WALLER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WARD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WASHINGTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WEBB,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WHARTON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WHEELER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WICHITA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WILBARGER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WILLACY,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WILLIAMSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WILSON,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WINKLER,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WISE,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,WOOD,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,YOAKUM,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,YOUNG,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ZAPATA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-TX,ZAVALA,America/Chicago,county zone per 49 CFR 71 / tzdata zone comments; Chart Supplement sample AC-5
+US,US-UT,*,America/Denver,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-VA,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-VT,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-WA,*,America/Los_Angeles,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-WI,*,America/Chicago,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-WV,*,America/New_York,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+US,US-WY,*,America/Denver,state wholly in one zone (49 CFR 71; tzdata); Chart Supplement sample AC-5
+UY,*,*,America/Montevideo,single-zone country (zone1970.tab)
+VA,*,*,Europe/Rome,single-zone country (zone1970.tab)
+VC,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+VE,*,*,America/Caracas,single-zone country (zone1970.tab)
+VG,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+VI,*,*,America/Puerto_Rico,single-zone country (zone1970.tab)
+VU,*,*,Pacific/Efate,single-zone country (zone1970.tab)
+WF,*,*,Pacific/Tarawa,single-zone country (zone1970.tab)
+WS,*,*,Pacific/Apia,single-zone country (zone1970.tab)
+YE,*,*,Asia/Riyadh,single-zone country (zone1970.tab)
+YT,*,*,Africa/Nairobi,single-zone country (zone1970.tab)
+ZA,*,*,Africa/Johannesburg,single-zone country (zone1970.tab)
+ZM,*,*,Africa/Maputo,single-zone country (zone1970.tab)
+ZW,*,*,Africa/Maputo,single-zone country (zone1970.tab)
