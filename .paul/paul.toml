@@ -15,20 +15,18 @@ status = "in_progress"
 phases = 3
 
 [phase]
-number = 2
-name = "History backfill + first schema-3 release"
-status = "planning"
+number = 3
+name = "IANA timezones"
+status = "in_progress"
 plans_completed = 2
 
 [loop]
-position = "UNIFY"
-plan = "02-02"
-plan_path = "phases/02-history-backfill/02-02-PLAN.md"
+position = "IDLE"
 
 [satellite]
 groom = true
 
 [stats]
-total_plans = 4
+total_plans = 9
 total_phases = 0
-last_activity = "2026-11-18T00:00:00Z"
+last_activity = "2026-11-19T00:00:00Z"

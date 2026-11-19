@@ -16,30 +16,32 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 ## Current Position
 
 Milestone: v0.2 Airport identity & history
-Phase: 3 of 3 (IANA timezones), 03-01 unified
-Plan: 03-02 APPLY in progress. Task 1 f769497; MX 9f3f5a6 (102/102). sqwkd OK'd the CA-ON approach with O1-O4 (in plan); tzdata northamerica vendored 4d125b6.
-  CANADA COMPLETE 8b401f4 (pending sqwkd gate check). NL 3b0381e/ae2977e/8ef141a (sqwkd L1-L4: observed clock over statute only where tzdata addresses the legal position; Labrador CD 1010+1011 Goose_Bay, Wabush Halifax, SE corner 3 + Churchill Falls UBD). SK ac78dad (S1-S4; CYNL override). NU/NT/YT 241b887 (SOR/2001-182; NT residual Edmonton via tzdata quote of R-090-2026; YT 138W per CO 1967/59; Arctic Bay UBD). BC Salt Spring 8b401f4. CA present 504: placed 410 (county 313, region 93, override 4); unplaced: no_county_match 84, no OurAirports row 10. Scheduled 275: placed 242, unplaced_by_design 33 (ON 28, NL 4, NU 1), not listed 0. CFS (2020-11-23 edition, offsets on 2021-01-15/07-15): 340 match, 10 mismatch (9 YT print UTC-8(7), Yukon's 2020-11-01 change not yet in that edition; CBX5 Tungsten prints UTC-8 no DST vs Edmonton), 71 in CFS unplaced (not placed from it), 73 not in CFS. L4 README + SUMMARY lists still to write; deviations: AB MB NB PE NT YT tzdata-only citations, NU DST from tzdata.
-  2026-11-19 operator, verbatim: "Record this legal document and attempt to access the Canada flight supplement". QC DONE f36e8f5: Legal Time Act CQLR c T-5.1 (operator PDF, sha256 0292d9da…, citation+hash only in SOURCES.md) s.1 west of 63W + all MRC Minganie Eastern, s.2 east of 63W AST (DST only Îles + Listuguj). 54 rule-cited (CGNDB populated/admin places + airport west of 63.5W), Natashquan + Baie-Johan-Beetz name-cited via CGNDB Location MRC Minganie (SGC CD 2498 merges Minganie+LGSL, cannot confirm). YUL YQB CYNA placed. Pending (scheduled, no single-side CGNDB match): CYGL La Grande Rivière, CYIF St-Augustin (name also in Laurentides/Maria-Chapdelaine), CZEM Eastmain River — sqwkd 2026-11-19: "OK. Write the overrides, with the conditions below." DONE as overrides.csv rows (Act section, coords, distance ≥0.5° from 63W, not-Minganie record, O3; CYIF also cites tzdata). CFS rerun: 264 match, 0 mismatch, 157 unplaced. sqwkd on CFS: SUMMARY gives edition 2020-11-23 + age caveat, the two comparison dates, and that the unplaced-in-CFS airports were NOT placed from it (check, not source). CFS (Q2 now allowed by operator): current 2026-10-29 eCFS is paid (products.navcanada.ca, $16.50/region subscription) — not purchased; NAV CANADA hosts free older eCFS at navcanada.ca/en/ecfs_0{1,2,3,4,5,7}_en.pdf (pages dated 2020-11-23, Last-Modified 2021-04-26; 06 404s; covers all provinces/territories). Check only, nothing stored: scratch scripts/cfs_compare.py compares printed std/DST offsets with resolved zone offsets on 2021-01-15/07-15. Run at f36e8f5: 1556 CFS entries; CA present: 261 match, 0 mismatch, 160 in CFS but unplaced, 73 not in CFS. Rerun after each province; SUMMARY records edition, counts, mismatched airport_ids only.
-  CA-ON DONE a61a80d; AB MB NB PE DONE 5e87d0c (tzdata-only citations: SUMMARY deviation). NS: sqwkd OK'd option (a) 2026-11-19 — rows quote zone1970 comment ('NS (Cape Breton)'/'NS (most areas)') + CGNDB records placing the place on that side of the Strait of Canso (~61.4W, 0.5° margin); ambiguous → NULL; SUMMARY: Glace_Bay and Halifax differ only before 1972. NS DONE a9bfdc8 (CGNDB county decides island side). BC DONE (except D1 lists: Cranbrook/Castlegar/Trail/Revelstoke NULL pending official membership lists; RDKB+CSRD 403). Remaining: NL SK NU NT YT; QC rest (Act 403: operator asked via sqwkd for option (a); until then only tzdata-named QC rows — Îles-de-la-Madeleine, Listuguj → Halifax, east of Natashquan → Puerto_Rico; YUL/YQB pending, NOT unplaced_by_design; if Act text supplied store only citation + sha256) NL SK NU NT YT. D1: SGC 2021 structure CSV (sha 55f6eb91…, scratch sgc/) gives CD membership: Cranbrook 5901022 (E Kootenay), Castlegar 5903045 (C Kootenay), Trail 5905014 (Kootenay Boundary), Revelstoke 5939019 (Columbia-Shuswap); no CSD type (attribute file 403). D1 DONE 2f3f709 (sqwkd accepted CGNDB generic term City/Town/Village/District Municipality as CSD type; SUMMARY must confirm each airport lies in the same CD). QC tzdata-named rows DONE 2f3f709; rest of QC pending operator (Act text). BC: Interpretation Act s.26 (Pacific Time = UTC-7, all BC); CGNDB BC Location = land district only; land-district cut-off APPROVED by sqwkd 2026-11-19 with D1 (in plan) (rule-cited Vancouver only outside Kootenay+Peace River LDs; inside, name-cited only; Chetwynd/Hudson's Hope/Taylor/Tumbler Ridge NULL). bc.zip sha 08653aca…; scratch cgn/. QC: tzdata names Îles-de-la-Madeleine + Listuguj → Halifax (citing Legal Time Act CQLR c T-5.1), east of Natashquan → Puerto_Rico; legisquebec.gouv.qc.ca returns 403 (CloudFront) to automated fetch — not bypassed; without the Act text C2 forbids rule-cited QC rows. Options: operator supplies the Act text/PDF, or QC name-cited only. Next: NL SK NU NT YT. BC notes (northamerica ~2130-2205): BC year-round -07 from 2026 (news.gov.bc.ca 2026AG0013-000209); RDEK + CSRD Area A + Town of Golden → America/Edmonton (year-round -06); Creston → Phoenix; Dawson Cr/Ft St John → Dawson_Creek; Ft Nelson → Fort_Nelson. BC release news.gov.bc.ca 2026AG0013-000209 (fetched; scratch calaw/bc_news.html) names NE BC on year-round UTC-7: Dawson Creek, Fort St. John, Fort Nelson (+Northern Rockies RM), Chetwynd, Hudson's Hope, Taylor, Tumbler Ridge; Fort Ware (Kwadacha) exception = Pacific; SE BC = East Kootenay and Golden region. Statute: Interpretation Amendment Act 2019 (not yet fetched). Need RDEK member list source, same O1-O3 pattern; scripts in scratchpad cgn/. Old notes:
-  - Anomalies named in northamerica (lines ~1750-1770): Big Trout Lake area → America/Winnipeg (E of 90W); Upsala area → America/Toronto (W of 90W); Atikokan → America/Panama; Pickle Lake + Mishkeegogamang → America/Panama. Fort Severn NOT named → NULL (O2).
-  - Get each anomaly's longitude from a named gazetteer (not memory) for the O1 margin; Big Trout Lake ~89.9W expected, so 85W holds if confirmed.
-  - Rule-cited Toronto rows only east of 85W; anomalies name-cited (O3); the rest of NW Ontario's scheduled airports → unplaced_by_design.csv (O4).
-  - Also Ontario Reg. 333/26: west of 90W becomes UTC-5 all year from 2026-11-01 (tzdata 2026f, Manitoba model).
-  - Then the other provinces with the same pattern; then build, verify, gate, SUMMARY. Q2 (CFS) is with the operator.
-Operator 2026-11-19: "Finish all of the plan-03 before release". Release runbook not started
-Status: PLAN created; apply+unify pre-approved by operator once both reviewers OK ("have both sqwkd and cv-aviation review it.  If they are okay with it, apply and unify are approved next")
-Last activity: 2026-11-18. 02-01 applied + unified; 86-cycle backfill reproducible
+Phase: 3 of 3 (IANA timezones). 03-01 and 03-02 unified; 03-03 to 03-05 remain.
+Plan: 03-02 unified 2026-11-19 (.paul/phases/03-iana-timezones/03-02-SUMMARY.md). The sqwkd check was passed, with rulings: D1 same-CD option (a); Tungsten and the 9 YT CFS mismatches stay placed and are listed; Saltspring normalisation OK; 35 rows with no gazetteer coordinate accepted.
+  Build of record: scratchpad tz3b/navigation.sqlite3, sha256 59c06c87…, from seed b0303/seed-run1.sqlite3 (e92fa5fe…), dl/nasr-2026-10-29.zip, dl/oa-2026-10-29.csv, dl/navaids.csv. Placed 23,565, unplaced 3,661. tz gate exit 1: only 03-03/04/05 countries fail (AN AR AU BR CD CL CN CY DE EC ES FM GL ID KI KZ MH MN MY NZ PF PG PT RU US UZ VN XK).
+  Patterns carried into 03-03+:
+    - statute + vendored tzdata anomalies (O3) + 0.5° margin (O1/C3);
+    - statutory residual where a current statute gives one clock (BC s.26, SK, NT);
+    - named-place S2 box;
+    - L1 observed clock over statute only where tzdata addresses the legal position (L4: README + SUMMARY list; Crimea goes there in 03-04);
+    - airport-keyed overrides applying a statute's rule;
+    - AC-3a lint (scratch scripts/lint.py) and CFS-style independent checks used as a check, never a source;
+    - blocked fetches (403 or landing page) are never bypassed and are listed as deviations.
+  Scratch tools: scripts/{hextext,html2txt,cfs_compare,lint,qc_rows,sk_rows,nu_rows,ytnt_rows,terr_plan}.py; cgn/*.zip (CGNDB), sgc/structure.csv.
+Operator 2026-11-19: "Finish all of the plan-03 before release". The release runbook is not started.
+Status: Loop closed for 03-02. Next: /paul:plan 03-03 (AU, BR, RU, ID), reviewed by sqwkd and cv-aviation before APPLY.
+Last activity: 2026-11-19. 03-02 unified.
 
 Progress:
-- Milestone: [███░░░░░░░] 33%
-- Milestone: Phase 1 of 3 done
-- Phase 1: [██████████] 100%
+- Milestone: [███████░░░] 73%
+- Milestone: Phases 1-2 done; Phase 3 in progress
+- Phase 3: [████░░░░░░] 2 of 5 plans
 
 ## Loop Position
 
 ```
 PLAN ──▶ APPLY ──▶ UNIFY
-  ✓        ✓        ✓     [01-02 loop closed]
+  ✓        ✓        ✓     [03-02 loop closed]
 ```
 
 ## Accumulated Context
@@ -74,10 +76,10 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 ## Session Continuity
 
-Last session: 2026-11-07
-Stopped at: 01-02 loop closed; SUMMARY sent to sqwkd
-Next action: /paul:plan 02-03 (older source search), then Phase 3 timezones; first release via docs/RELEASE-RUNBOOK.md (operator-confirmed)
-Resume file: .paul/phases/02-history-backfill/02-02-SUMMARY.md
+Last session: 2026-11-19
+Stopped at: 03-02 loop closed
+Next action: /paul:plan 03-03 (AU, BR, RU, ID) → sqwkd + cv-aviation review → APPLY
+Resume file: .paul/phases/03-iana-timezones/03-02-SUMMARY.md
 
 ---
 *STATE.md — Updated after every significant action*
