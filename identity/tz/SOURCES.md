@@ -38,3 +38,8 @@ https://news.gov.bc.ca/releases/2026AG0013-000209 (fetched 2026-11-19): permanen
 - RSBC 1996 c 238 s.26: "Pacific Time" is UTC-7; a reference to time in BC is Pacific Time. https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/96238_01 (fetched 2026-11-19)
 - CGNDB BC: https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_csv_eng/cgn_bc_csv_eng.zip, sha256 `08653acac0eec1141cbd996259a1ba1ee55d820b7675e269b55502a9cad20524`. The land district in each record's Location field is used.
 - D1 membership lists: RDEK and RDCK sites returned no membership list on their home pages; RDKB and CSRD return 403 to automated fetch (not bypassed). Cranbrook, Castlegar, Trail and Revelstoke stay NULL until an official list is read.
+
+## StatCan SGC 2021 and CGNDB (QC)
+- SGC 2021 structure CSV: https://www.statcan.gc.ca/en/statistical-programs/document/sgc-cgt-2021-structure-eng.csv, sha256 `55f6eb915415b4aa911c6fce3cbaced641c4ed9af023bebc414b2929721a62d2`. Gives district (CD) membership for D1; CSD type comes from the CGNDB generic term (sqwkd 2026-11-19: City, Town, Village, District Municipality only).
+- CGNDB QC: https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_csv_eng/cgn_qc_csv_eng.zip, sha256 `b0314109acbac6abc9b6726a72c78f385aa9a722f4f45b168379e92c8c1d78f3`.
+- The Legal Time Act (CQLR c T-5.1) at legisquebec.gouv.qc.ca returns 403 to automated fetch; the operator has been asked for the text.
