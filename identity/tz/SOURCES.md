@@ -42,4 +42,12 @@ https://news.gov.bc.ca/releases/2026AG0013-000209 (fetched 2026-11-19): permanen
 ## StatCan SGC 2021 and CGNDB (QC)
 - SGC 2021 structure CSV: https://www.statcan.gc.ca/en/statistical-programs/document/sgc-cgt-2021-structure-eng.csv, sha256 `55f6eb915415b4aa911c6fce3cbaced641c4ed9af023bebc414b2929721a62d2`. Gives district (CD) membership for D1; CSD type comes from the CGNDB generic term (sqwkd 2026-11-19: City, Town, Village, District Municipality only).
 - CGNDB QC: https://ftp.cartes.canada.ca/pub/nrcan_rncan/vector/geobase_cgn_toponyme/prov_csv_eng/cgn_qc_csv_eng.zip, sha256 `b0314109acbac6abc9b6726a72c78f385aa9a722f4f45b168379e92c8c1d78f3`.
-- The Legal Time Act (CQLR c T-5.1) at legisquebec.gouv.qc.ca returns 403 to automated fetch; the operator has been asked for the text.
+- The Legal Time Act (CQLR c T-5.1) at legisquebec.gouv.qc.ca returns 403 to automated fetch; the operator supplied the text instead (2026-11-19).
+
+## Quebec Legal Time Act
+CQLR c T-5.1 (2006, c. 39), English consolidation "Updated to October 15, 2026", © Québec Official Publisher, PDF supplied by the operator 2026-11-19. Not public domain, so only the citation and hash are kept; no text is vendored.
+- sha256 `0292d9dada4f05f2fea051be116bc98be0a6f56edac4d12321540d32f89e7205` (T-5.1.pdf, 91.5 KB)
+- s.1: west of 63°W is Eastern time (with DST); s.1 also applies to all of MRC Minganie.
+- s.2: east of 63°W and the Listuguj reserve are Atlantic time; DST only in the Îles-de-la-Madeleine and Listuguj, so the rest is AST all year (America/Puerto_Rico).
+- Rows: rule-cited when every matching CGNDB populated place or administrative area and the airport lie west of 63.5°W (0.5° margin, as O1); name-cited by MRC when the municipality's CGNDB record gives Location MRC Minganie (Natashquan, Baie-Johan-Beetz). SGC 2021 merges Minganie and Le Golfe-du-Saint-Laurent into CD 2498, so it cannot confirm MRC membership; CGNDB's Location field (source: Commission de toponymie) is the only membership source.
+- Agrees with tzdata 2026f northamerica (Quebec commentary): Îles-de-la-Madeleine and Listuguj on America/Halifax, east of Natashquan on America/Puerto_Rico.
