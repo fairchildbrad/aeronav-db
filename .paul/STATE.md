@@ -18,7 +18,7 @@ See: .paul/PROJECT.md (updated 2026-11-07)
 Milestone: v0.2 Airport identity & history
 Phase: 3 of 3 (IANA timezones), 03-01 unified
 Plan: 03-02 APPLY in progress. Task 1 f769497; MX 9f3f5a6 (102/102). sqwkd OK'd the CA-ON approach with O1-O4 (in plan); tzdata northamerica vendored 4d125b6.
-  CA-ON DONE (see git log); remaining: BC QC NL NS SK NU NT YT (split) + AB MB NB PE (region rules), same O1-O3 pattern; scripts in scratchpad cgn/. Old notes:
+  CA-ON DONE a61a80d; AB MB NB PE DONE 5e87d0c (tzdata-only citations: SUMMARY deviation). NS: asked sqwkd 2026-11-19 (Cape Breton/Glace_Bay is a new cut-off kind; proposed (a) name-cited by CGNDB island side). Remaining: BC QC NL SK NU NT YT, same O1-O3 pattern; scripts in scratchpad cgn/. Old notes:
   - Anomalies named in northamerica (lines ~1750-1770): Big Trout Lake area → America/Winnipeg (E of 90W); Upsala area → America/Toronto (W of 90W); Atikokan → America/Panama; Pickle Lake + Mishkeegogamang → America/Panama. Fort Severn NOT named → NULL (O2).
   - Get each anomaly's longitude from a named gazetteer (not memory) for the O1 margin; Big Trout Lake ~89.9W expected, so 85W holds if confirmed.
   - Rule-cited Toronto rows only east of 85W; anomalies name-cited (O3); the rest of NW Ontario's scheduled airports → unplaced_by_design.csv (O4).
