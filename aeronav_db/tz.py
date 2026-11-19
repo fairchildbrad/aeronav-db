@@ -32,6 +32,17 @@ ANY = "*"
 # ISO 3166 (and zone1970.tab) treat them as countries.
 US_TERRITORIES = {"PR", "VI", "GU", "AS", "MP"}
 PARTIAL_WORDS = ("most", "except", "part")
+# NASR COUNTRY_CODE values that are not current ISO 3166-1 codes, and the ISO
+# codes that replaced them. Measured 2026-11-18 over the 2026-07-09 and
+# 2026-10-29 cycles: 'AN' (Netherlands Antilles, dissolved 2010) is the only
+# one (TNCE, TNCM); OurAirports files those fields under BQ and SX.
+NASR_LEGACY_COUNTRIES = {"AN": frozenset({"BQ", "CW", "SX"})}
+# Multi-zone countries that need no zone_regions.csv rows (03-04 AC-2): AQ is
+# NULL by design; US is placed by county rules (03-01), and _load_partial
+# exempts it for the same reason.
+ZONE_REGIONS_EXEMPT = ("US", "AQ")
+# Countries with no ISO 3166-2 subdivisions: their zones may map to no region.
+NO_SUBDIVISIONS = ("TF",)
 UNPLACED = (
     "multi_zone_country", "no_region", "no_county_match", "no_rule",
     "source_conflict",
@@ -92,18 +103,25 @@ class Rules:
                     raise TzRulesError(f"{where}: cite a source")
                 if any(not r.startswith(f"{country}-") for r in regions):
                     raise TzRulesError(f"{where}: regions must be ISO 3166-2")
-                shared = [c for c, found in self.zones.items()
-                          if c != country and zone in found]
-                if not regions and not shared:
-                    # Only a zone zone1970.tab also lists for another country
-                    # (Simferopol: RU and UA, covering UA-43) may cover none
-                    # of this country's regions.
-                    raise TzRulesError(f"{where}: regions must be ISO 3166-2")
                 mapped = self.zone_regions.setdefault(country, {})
                 if zone in mapped:
                     raise TzRulesError(f"{where}: listed twice")
                 mapped[zone] = regions
         for country, mapped in self.zone_regions.items():
+            for zone, regions in mapped.items():
+                if regions or country in NO_SUBDIVISIONS:
+                    continue
+                # 03-03 R2, as carried to 03-04: "a zone with no rows for
+                # country X is allowed only if zone_regions maps it to a
+                # region of another country listed for it in zone1970"
+                # (Simferopol: RU, covering UA-43).
+                elsewhere = [c for c, other in self.zone_regions.items()
+                             if c != country and other.get(zone)
+                             and zone in self.zones.get(c, [])]
+                if not elsewhere:
+                    raise TzRulesError(
+                        f"zone_regions.csv {(country, zone)}: regions must be "
+                        "ISO 3166-2, or another listed country must map the zone")
             missing = sorted(set(self.zones[country]) - set(mapped))
             if missing:
                 raise TzRulesError(
@@ -117,6 +135,11 @@ class Rules:
                     raise TzRulesError(
                         f"partial_regions.csv: {region} is covered by {sorted(found)} "
                         "(zone_regions.csv); list it as partial")
+        unmapped = sorted(c for c, found in self.zones.items()
+                          if len(found) > 1 and c not in self.zone_regions
+                          and c not in ZONE_REGIONS_EXEMPT)
+        if unmapped:
+            raise TzRulesError(f"zone_regions.csv: no rows for {unmapped}")
 
     def _check_zone_regions(self) -> None:
         for (country, region, _county), tz in self.rules.items():
@@ -298,6 +321,8 @@ def placement_inputs(
         if country == "US" and state:
             return "US", f"US-{state}", county
         oa_country = ((ourairports_row or {}).get("iso_country") or "").strip().upper()
+        if oa_country in NASR_LEGACY_COUNTRIES.get(country or "", ()):
+            country = oa_country  # e.g. NASR 'AN' for an OurAirports SX field
         if country and country != oa_country:
             return country, None, None
         # NASR lists some foreign airports (e.g. Canada) without an ISO region;

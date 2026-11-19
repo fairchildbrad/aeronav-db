@@ -94,3 +94,77 @@ RU,Asia/Sakhalin,RU-SAK,tzdata 2026f europe 'Asia/Sakhalin covers' list; zone197
 RU,Asia/Srednekolymsk,RU-SA RU-SAK,"tzdata 2026f europe 'Asia/Srednekolymsk covers' list; zone1970.tab 'MSK+08 - Sakha (E), N Kuril Is'; 'parts of (14, RU-SA)' and '(65, RU-SAK)'"
 RU,Asia/Kamchatka,RU-KAM,tzdata 2026f europe 'Asia/Kamchatka covers' list; zone1970.tab 'MSK+09 - Kamchatka'
 RU,Asia/Anadyr,RU-CHU,tzdata 2026f europe 'Asia/Anadyr covers' list; zone1970.tab 'MSK+09 - Bering Sea'
+AR,America/Argentina/Buenos_Aires,AR-B AR-C,"zone1970.tab 'Buenos Aires (BA, CF)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,America/Argentina/Cordoba,AR-X AR-H AR-W AR-E AR-P AR-N AR-G AR-S,"zone1970.tab 'most areas: CB, CC, CN, ER, FM, MN, SE, SF'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,America/Argentina/Salta,AR-A AR-L AR-Q AR-R,"zone1970.tab 'Salta (SA, LP, NQ, RN)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,America/Argentina/Jujuy,AR-Y,zone1970.tab 'Jujuy (JY)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,America/Argentina/Tucuman,AR-T,zone1970.tab 'Tucumán (TM)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,America/Argentina/Catamarca,AR-K AR-U,"zone1970.tab 'Catamarca (CT), Chubut (CH)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+AR,America/Argentina/La_Rioja,AR-F,zone1970.tab 'La Rioja (LR)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,America/Argentina/San_Juan,AR-J,zone1970.tab 'San Juan (SJ)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,America/Argentina/Mendoza,AR-M,zone1970.tab 'Mendoza (MZ)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,America/Argentina/San_Luis,AR-D,zone1970.tab 'San Luis (SL)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,America/Argentina/Rio_Gallegos,AR-Z,zone1970.tab 'Santa Cruz (SC)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+AR,America/Argentina/Ushuaia,AR-V,zone1970.tab 'Tierra del Fuego (TF)'; province abbreviations matched to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+CD,Africa/Lagos,CD-KN,zone1970.tab 'West Africa Time'; tzdata 2026f africa '# Democratic Republic of the Congo (western)' and backward link Africa/Kinshasa; only Kinshasa is named (03-04 Q2: no residual)
+CD,Africa/Maputo,CD-HK,zone1970.tab 'Central Africa Time'; tzdata 2026f africa '# Democratic Republic of the Congo (eastern)' and backward link Africa/Lubumbashi (Haut-Katanga); only Lubumbashi is named (03-04 Q2: no residual)
+CL,America/Santiago,CL-AN CL-AP CL-AR CL-AT CL-BI CL-CO CL-LI CL-LL CL-LR CL-ML CL-NB CL-RM CL-TA CL-VS,"zone1970.tab 'most of Chile'; regions other than Aysén, Magallanes and Easter Island (Valparaíso, VS, mainland)"
+CL,America/Coyhaique,CL-AI,zone1970.tab 'Aysén Region'
+CL,America/Punta_Arenas,CL-MA,zone1970.tab 'Magallanes Region'
+CL,Pacific/Easter,CL-VS,zone1970.tab 'Easter Island'; Easter Island is part of Valparaíso Region (VS)
+CN,Asia/Shanghai,CN-11 CN-12 CN-13 CN-14 CN-15 CN-21 CN-22 CN-23 CN-31 CN-32 CN-33 CN-34 CN-35 CN-36 CN-37 CN-41 CN-42 CN-43 CN-44 CN-45 CN-46 CN-50 CN-51 CN-52 CN-53 CN-54 CN-61 CN-62 CN-63 CN-64 CN-65,"tzdata 2026f asia 'Beijing time, used throughout China; represented by Shanghai.'; OurAirports CN-71/91/92 excluded (TW, HK, MO are separate zone1970 countries)"
+CN,Asia/Urumqi,CN-65,"zone1970.tab 'Xinjiang Time'; tzdata 2026f asia 'Xinjiang time, used by many in western China'"
+CY,Asia/Nicosia,CY-01 CY-02 CY-03 CY-04 CY-05 CY-06,zone1970.tab 'most of Cyprus'; districts per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+CY,Asia/Famagusta,CY-01 CY-02 CY-03,"zone1970.tab 'Northern Cyprus'; the north lies in Kyrenia, Nicosia and Famagusta districts (Ercan, LCEN, is filed CY-02); no position on sovereignty (03-04 Q3)"
+DE,Europe/Berlin,DE-BE DE-BR DE-BW DE-BY DE-HB DE-HE DE-HH DE-MV DE-NI DE-NW DE-RP DE-SH DE-SL DE-SN DE-ST DE-TH,zone1970.tab 'most of Germany'; Länder per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+DE,Europe/Zurich,DE-BW,"zone1970.tab 'Büsingen' (CH,DE,LI); Büsingen am Hochrhein is in Baden-Württemberg"
+EC,America/Guayaquil,EC-25 EC-26 EC-A EC-B EC-C EC-D EC-E EC-F EC-G EC-H EC-I EC-L EC-M EC-N EC-O EC-P EC-R EC-S EC-T EC-U EC-X EC-Y EC-Z,zone1970.tab 'Ecuador (mainland)'; provinces other than Galápagos per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+EC,Pacific/Galapagos,EC-W,zone1970.tab 'Galápagos Islands'
+ES,Europe/Madrid,ES-AN ES-AR ES-AS ES-CB ES-CL ES-CM ES-CT ES-EX ES-GA ES-IB ES-MC ES-MD ES-NC ES-PV ES-RI ES-VC,"zone1970.tab 'Spain (mainland)'; communities other than Ceuta, Melilla and the Canaries"
+ES,Africa/Ceuta,ES-CE ES-ML,"zone1970.tab 'Ceuta, Melilla'"
+ES,Atlantic/Canary,ES-CN,zone1970.tab 'Canary Islands'
+FM,Pacific/Port_Moresby,FM-TRK FM-YAP,"zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM)"
+FM,Pacific/Guadalcanal,FM-PNI,"zone1970.tab 'Pohnpei' (SB,FM)"
+FM,Pacific/Kosrae,FM-KSA,zone1970.tab 'Kosrae'
+GL,America/Nuuk,GL-AV GL-KU GL-NE GL-QA GL-QK GL-SE,zone1970.tab 'most of Greenland'
+GL,America/Thule,GL-AV,zone1970.tab 'Thule/Pituffik'; Pituffik (BGTL) is filed GL-AV
+GL,America/Scoresbysund,GL-SE,zone1970.tab 'Scoresbysund/Ittoqqortoormiit'; Ittoqqortoormiit (BGSC) is filed GL-SE
+GL,America/Danmarkshavn,GL-NE,zone1970.tab 'National Park (east coast)'; Danmarkshavn (BGDH) is filed GL-NE
+KI,Pacific/Tarawa,KI-G,"zone1970.tab 'Gilberts, Marshalls, Wake' (KI,MH,TV,UM,WF)"
+KI,Pacific/Kanton,KI-P,zone1970.tab 'Phoenix Islands'
+KI,Pacific/Kiritimati,KI-L,zone1970.tab 'Line Islands'
+KZ,Asia/Almaty,KZ-ABA KZ-AKM KZ-ALM KZ-ALA KZ-AST KZ-VOS KZ-ZHA KZ-JET KZ-KAR KZ-SEV KZ-PAV KZ-SHY KZ-YUZ KZ-ULY,"tzdata 2026f asia Almaty: 'This includes Abai/Abay (ISO 3166-2 code KZ-10), Aqmola/Akmola (KZ-11), Almaty (KZ-19), Almaty city (KZ-75), Astana city (KZ-71), East Kazakhstan (KZ-63), Jambyl/Zhambyl (KZ-31), Jetisu/Zhetysu (KZ-33), Karaganda (KZ-35), North Kazakhstan (KZ-59), Pavlodar (KZ-55), Shymkent city (KZ-79), Turkistan (KZ-61), and Ulytau (KZ-62).' matched by name to ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)"
+KZ,Asia/Qyzylorda,KZ-KZY,"tzdata 2026f asia 'Qyzylorda (aka Kyzylorda, Kizilorda, Kzyl-Orda, etc.) (KZ-43)'"
+KZ,Asia/Qostanay,KZ-KUS,"tzdata 2026f asia 'Qostanay (aka Kostanay, Kustanay) (KZ-39)'"
+KZ,Asia/Aqtobe,KZ-AKT,"tzdata 2026f asia 'Aqtöbe (aka Aktobe, formerly Aktyubinsk) (KZ-15)'"
+KZ,Asia/Aqtau,KZ-MAN,tzdata 2026f asia 'Mangghystaū (KZ-47)'
+KZ,Asia/Atyrau,KZ-ATY,zone1970.tab 'Atyraū/Atirau/Gur’yev'
+KZ,Asia/Oral,KZ-ZAP,zone1970.tab 'West Kazakhstan'
+MH,Pacific/Tarawa,MH-ALK MH-ALL MH-ARN MH-AUR MH-BIK MH-EBO MH-ENI MH-JAB MH-JAL MH-KIL MH-LAE MH-LIB MH-LIK MH-MAJ MH-MAL MH-MEJ MH-MIL MH-NMK MH-NMU MH-RON MH-UJA MH-UJL MH-UTI MH-WTJ MH-WTN,"zone1970.tab 'Gilberts, Marshalls, Wake'; tzdata 2026f australasia Marshall Is: 'See Pacific/Tarawa for most locations.'"
+MH,Pacific/Kwajalein,MH-KWA,zone1970.tab 'Kwajalein'
+MN,Asia/Hovd,MN-071 MN-043 MN-046 MN-057 MN-065,"zone1970.tab 'Bayan-Ölgii, Hovd, Uvs'; tzdata 2026f asia (Pinto 2024-06-23) records a second configuration adding Govi-Altai (065) and Zavkhan (057)"
+MN,Asia/Ulaanbaatar,MN-035 MN-037 MN-039 MN-041 MN-047 MN-049 MN-051 MN-053 MN-055 MN-057 MN-059 MN-061 MN-063 MN-064 MN-065 MN-067 MN-069 MN-073 MN-1,zone1970.tab 'most of Mongolia'; Govi-Altai and Zavkhan per the first configuration tzdata records
+MY,Asia/Singapore,MY-01 MY-02 MY-03 MY-04 MY-05 MY-06 MY-07 MY-08 MY-09 MY-10 MY-11 MY-14 MY-16,"zone1970.tab 'peninsular Malaysia, Concordia' (SG,AQ,MY)"
+MY,Asia/Kuching,MY-12 MY-13,"zone1970.tab 'Sabah, Sarawak' (MY,BN); Labuan (MY-15) is not named"
+NZ,Pacific/Auckland,NZ-AUK NZ-BOP NZ-CAN NZ-GIS NZ-HKB NZ-MBH NZ-MWT NZ-NSN NZ-NTL NZ-OTA NZ-STL NZ-TAS NZ-TKI NZ-WGN NZ-WKO NZ-WTC,"zone1970.tab 'New Zealand time' (NZ,AQ)"
+NZ,Pacific/Chatham,NZ-WGN,"zone1970.tab 'Chatham Islands'; OurAirports files Chatham Islands (NZCI, Te One) under NZ-WGN, not ISO NZ-CIT"
+PF,Pacific/Tahiti,PF-LI,zone1970.tab 'Society Islands'; the Leeward Islands (LI) are part of the Society Islands; Windward Islands airports carry no region (PF-U-A)
+PF,Pacific/Marquesas,PF-MI,zone1970.tab 'Marquesas Islands'
+PF,Pacific/Gambier,PF-TG,"zone1970.tab 'Gambier Islands'; OurAirports' TG is 'Tuamotus & Gambier'; the Tuamotus are not named by tzdata (03-04 Q4), so TG gets no region rule"
+PS,Asia/Gaza,PS-DEB PS-GZA PS-KYS PS-NGZ PS-RFH,zone1970.tab 'Gaza Strip'; governorates per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…)
+PS,Asia/Hebron,PS-BTH PS-JEM PS-JEN PS-JRH PS-NBS PS-QQA PS-RBH PS-SLT PS-TBS PS-TKM,zone1970.tab 'West Bank'; governorates per ISO codes as filed by OurAirports regions.csv 2026-10-29 (sha256 9220d658…); no position on sovereignty (03-04 Q3)
+PT,Europe/Lisbon,PT-01 PT-02 PT-03 PT-04 PT-05 PT-06 PT-07 PT-08 PT-09 PT-10 PT-11 PT-12 PT-13 PT-14 PT-15 PT-16 PT-17 PT-18,zone1970.tab 'Portugal (mainland)'
+PT,Atlantic/Azores,PT-20,zone1970.tab 'Azores'
+PT,Atlantic/Madeira,PT-30,zone1970.tab 'Madeira Islands'
+UA,Europe/Kyiv,UA-05 UA-07 UA-09 UA-12 UA-14 UA-18 UA-19 UA-21 UA-23 UA-26 UA-30 UA-32 UA-35 UA-46 UA-48 UA-51 UA-53 UA-59 UA-61 UA-63 UA-65 UA-68 UA-71 UA-74 UA-77,zone1970.tab 'most of Ukraine'; oblasts other than Crimea and Sevastopol
+UA,Europe/Simferopol,UA-43 UA-40,"zone1970.tab 'Crimea' (RU,UA); Crimea (UA-43) and Sevastopol (UA-40); records the clock observed, no position on sovereignty (03-02 Q1)"
+UZ,Asia/Tashkent,UZ-AN UZ-JI UZ-NG UZ-SI UZ-TK UZ-TO UZ-FA,"tzdata 2026f asia (USSR 1991-03-31 decree): 'Andijan, Jizzakh, Namangan, Sirdarya, Tashkent, Fergana oblasts of the Uzbek SSR were to move clocks 1 hour backwards', matching Asia/Tashkent's 6:00 → 5:00 on 1991-03-31 (R1 history)"
+UZ,Asia/Samarkand,UZ-BU UZ-NW UZ-QA UZ-QR UZ-SA UZ-SU UZ-XO,"tzdata 2026f asia (same decree): 'Other territories were to not move clocks', matching Asia/Samarkand's unbroken 5:00 RussiaAsia line (R1 history)"
+VN,Asia/Bangkok,VN-NW VN-NE VN-RRD VN-NC,"zone1970.tab 'north Vietnam' (TH,CX,KH,LA,VN); OurAirports' VN regions are its own, not ISO 3166-2"
+VN,Asia/Ho_Chi_Minh,VN-NC VN-SCC VN-CH VN-SE VN-SW,zone1970.tab 'south Vietnam'; North Central (NC) spans the 1954–75 line
+UM,Pacific/Pago_Pago,UM-71,"zone1970.tab 'Midway' (AS,UM)"
+UM,Pacific/Tarawa,UM-79,"zone1970.tab 'Gilberts, Marshalls, Wake'"
+TF,Asia/Dubai,,"zone1970.tab 'Crozet' (AE,OM,RE,SC,TF); TF has no ISO 3166-2 subdivisions"
+TF,Indian/Maldives,,"zone1970.tab 'Kerguelen, St Paul I, Amsterdam I' (MV,TF); TF has no ISO 3166-2 subdivisions"
+PG,Pacific/Port_Moresby,PG-CPK PG-CPM PG-EBR PG-EHG PG-EPW PG-ESW PG-GPK PG-HLA PG-JWK PG-MBA PG-MPL PG-MPM PG-MRL PG-NCD PG-NIK PG-NPP PG-SAN PG-SHM PG-WBK PG-WHM PG-WPD,"zone1970.tab 'Papua New Guinea (most areas), Chuuk, Yap' (PG,AQ,FM); provinces other than Bougainville per OurAirports regions.csv 2026-10-29"
+PG,Pacific/Bougainville,PG-NSB,zone1970.tab 'Bougainville'

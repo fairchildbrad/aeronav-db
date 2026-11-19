@@ -43,17 +43,13 @@ from aeronav_db.build import (
     nasr_source_key,
     ourairports_source_key,
 )
+from aeronav_db.tz import NASR_LEGACY_COUNTRIES  # retired NASR codes → ISO
 
 ID_RE = re.compile(r"^AP\d{7}$")
 # A corrected NASR site number is accepted as the same field only when the FAA
 # identifier is unchanged and the reference point has barely moved.
 SITE_CORRECTION_NM = 1.0
 SCHEMES = ("faa", "icao", "iata")
-# NASR COUNTRY_CODE values that are not current ISO 3166-1 codes, and the ISO
-# codes that replaced them. Measured 2026-11-18 over the 2026-07-09 and
-# 2026-10-29 cycles: 'AN' (Netherlands Antilles, dissolved 2010) is the only
-# one (TNCE, TNCM); OurAirports files those fields under BQ and SX.
-NASR_LEGACY_COUNTRIES = {"AN": frozenset({"BQ", "CW", "SX"})}
 
 
 def format_id(number: int) -> str:

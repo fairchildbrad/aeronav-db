@@ -19,6 +19,8 @@ TAB = (
     "DE\t+4742+00841\tEurope/Busingen\tBusingen\n"
     "FR,MC\t+4852+00220\tEurope/Paris\n"
     "PR,AG\t+182806-0660622\tAmerica/Puerto_Rico\n"
+    "AE,TF\t+2518+05518\tAsia/Dubai\tCrozet\n"
+    "MV,TF\t+0410+07330\tIndian/Maldives\tKerguelen\n"
 )
 
 
@@ -28,7 +30,21 @@ PARTIAL = (
 )
 
 
-def make(tmp_path, rules, overrides="", partial=PARTIAL, zone_regions=None):
+MX_MAP = (
+    "MX,America/Mexico_City,MX-CMX MX-NAY,law\n"
+    "MX,America/Mazatlan,MX-SIN MX-NAY,law\n"
+    "MX,America/Bahia_Banderas,MX-NAY,law\n"
+)
+OTHER_MAP = (
+    "DE,Europe/Berlin,DE-BW DE-BY,law\n"
+    "DE,Europe/Busingen,DE-BW,law\n"
+    "TF,Asia/Dubai,,no ISO 3166-2 subdivisions\n"
+    "TF,Indian/Maldives,,no ISO 3166-2 subdivisions\n"
+)
+FULL_MAP = MX_MAP + OTHER_MAP
+
+
+def make(tmp_path, rules, overrides="", partial=PARTIAL, zone_regions=FULL_MAP):
     (tmp_path / "zone1970.tab").write_text(TAB)
     if zone_regions is not None:
         (tmp_path / "zone_regions.csv").write_text(
@@ -106,6 +122,11 @@ def test_placement_inputs():
     assert tz.placement_inputs(ca, ca_oa) == ("CA", "CA-BC", "ABBOTSFORD")
     assert tz.placement_inputs(ca, None) == ("CA", None, None)
     assert tz.placement_inputs(ca, oa) == ("CA", None, None)  # countries disagree
+    # NASR's retired 'AN' takes OurAirports' ISO successor (03-04 AC-3).
+    an = {"COUNTRY_CODE": "AN", "STATE_CODE": "", "COUNTY_NAME": ""}
+    sx = {"iso_country": "SX", "iso_region": "SX-U-A", "municipality": "Sint Maarten"}
+    assert tz.placement_inputs(an, sx) == ("SX", None, "SINT MAARTEN")
+    assert tz.placement_inputs(an, oa) == ("AN", None, None)
 
 
 def test_the_committed_rules_load_and_tzdata_is_pinned():
@@ -146,7 +167,8 @@ def test_partial_list_is_complete_and_well_formed(tmp_path, partial, message):
 def test_a_country_level_qualifier_is_exempted_with_a_quote(tmp_path):
     partial = PARTIAL.replace("DE,DE-BW,Europe/Berlin Europe/Busingen,",
                               "DE,DE-*,Europe/Berlin,")
-    make(tmp_path, GOOD, partial=partial)
+    make(tmp_path, GOOD, partial=partial,
+         zone_regions=FULL_MAP.replace("Berlin,DE-BW DE-BY", "Berlin,DE-BY"))
 
 
 def test_gate(tmp_path):
@@ -173,35 +195,36 @@ def test_gate(tmp_path):
     assert tz.gate(str(db), str(oa), tmp_path)[0]
 
 
-MX_MAP = (
-    "MX,America/Mexico_City,MX-CMX MX-NAY,law\n"
-    "MX,America/Mazatlan,MX-SIN MX-NAY,law\n"
-    "MX,America/Bahia_Banderas,MX-NAY,law\n"
-)
-
-
-def test_zone_regions_map_is_checked_once_a_country_has_rows(tmp_path):
-    rules = make(tmp_path, GOOD + "MX,MX-SIN,*,America/Mazatlan,law\n",
-                 zone_regions=MX_MAP)
+def test_zone_regions_map_is_checked(tmp_path):
+    rules = make(tmp_path, GOOD + "MX,MX-SIN,*,America/Mazatlan,law\n")
     assert rules.zone_regions["MX"]["America/Mazatlan"] == {"MX-SIN", "MX-NAY"}
 
 
 @pytest.mark.parametrize("zone_regions, extra, message", [
-    (MX_MAP.replace("MX,America/Bahia_Banderas,MX-NAY,law\n", ""), "",
+    (FULL_MAP.replace("MX,America/Bahia_Banderas,MX-NAY,law\n", ""), "",
      "is mapped, but not"),
-    (MX_MAP + "MX,America/Mazatlan,MX-SON,law\n", "", "listed twice"),
-    (MX_MAP.replace("MX-CMX MX-NAY", "MX-CMX MX-SIN"), "", "MX-SIN is covered"),
-    (MX_MAP.replace(",law\n", ",\n", 1), "", "cite a source"),
-    (MX_MAP, "MX,MX-SIN,*,America/Mexico_City,law\n", "does not give"),
+    (FULL_MAP + "MX,America/Mazatlan,MX-SON,law\n", "", "listed twice"),
+    (FULL_MAP.replace("MX-CMX MX-NAY", "MX-CMX MX-SIN"), "", "MX-SIN is covered"),
+    (FULL_MAP.replace(",law\n", ",\n", 1), "", "cite a source"),
+    (FULL_MAP, "MX,MX-SIN,*,America/Mexico_City,law\n", "does not give"),
+    (MX_MAP, "", r"no rows for \['DE', 'TF'\]"),  # every multi-zone country
 ])
 def test_zone_regions_refusals(tmp_path, zone_regions, extra, message):
     with pytest.raises(tz.TzRulesError, match=message):
         make(tmp_path, GOOD + extra, zone_regions=zone_regions)
 
 
-def test_only_a_shared_zone_may_cover_no_region(tmp_path):
-    no_regions = MX_MAP.replace("Banderas,MX-NAY,", "Banderas,,")
-    with pytest.raises(tz.TzRulesError, match="ISO 3166-2"):
+def test_only_a_zone_mapped_elsewhere_may_cover_no_region(tmp_path):
+    # 03-03 R2, carried to 03-04: "a zone with no rows for country X is
+    # allowed only if zone_regions maps it to a region of another country
+    # listed for it in zone1970".
+    no_regions = FULL_MAP.replace("Banderas,MX-NAY,", "Banderas,,")
+    with pytest.raises(tz.TzRulesError, match="another listed country"):
         make(tmp_path, GOOD, zone_regions=no_regions)
-    # FR,MC share Europe/Paris in TAB; a shared zone may map to no FR region.
-    make(tmp_path, GOOD, zone_regions=MX_MAP + "FR,Europe/Paris,,covers Monaco only\n")
+    # FR,MC share Europe/Paris in TAB, but listing alone is not enough...
+    fr = FULL_MAP + "FR,Europe/Paris,,covers Monaco only\n"
+    with pytest.raises(tz.TzRulesError, match="another listed country"):
+        make(tmp_path, GOOD, zone_regions=fr)
+    # ...MC must map it to one of its regions.
+    make(tmp_path, GOOD, zone_regions=fr + "MC,Europe/Paris,MC-MO,law\n")
+    # TF has no ISO 3166-2 subdivisions, so its rows may be empty (FULL_MAP).

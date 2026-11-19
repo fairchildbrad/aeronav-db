@@ -22,7 +22,7 @@ CY,CY-01,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Norther
 CY,CY-04,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus (Famagusta district spans both)
 DE,DE-BW,Europe/Berlin Europe/Zurich,Berlin: most of Germany; Zurich: Büsingen
 GL,GL-AV,America/Nuuk America/Thule,Nuuk: most of Greenland; Thule: Thule/Pituffik
-GL,GL-SM,America/Nuuk America/Scoresbysund,Nuuk: most of Greenland; Scoresbysund: Scoresbysund/Ittoqqortoormiit
+GL,GL-SE,America/Nuuk America/Scoresbysund,Nuuk: most of Greenland; Scoresbysund: Scoresbysund/Ittoqqortoormiit
 KZ,KZ-*,Asia/Almaty,Almaty: most of Kazakhstan (regions other than those named for the western zones)
 MN,MN-*,Asia/Ulaanbaatar,"Ulaanbaatar: most of Mongolia (aimags other than Bayan-Ölgii, Hovd, Uvs)"
 MX,MX-CHH,America/Chihuahua America/Ciudad_Juarez America/Ojinaga,Chihuahua: Chihuahua (most areas); Ciudad_Juarez: (US border - west); Ojinaga: (US border - east)
@@ -34,3 +34,12 @@ PG,PG-*,Pacific/Port_Moresby,"Port_Moresby: Papua New Guinea (most areas) (all p
 UA,UA-*,Europe/Kyiv,"Kyiv: most of Ukraine (all regions except Crimea, UA-43)"
 RU,RU-SA,Asia/Yakutsk Asia/Vladivostok Asia/Khandyga Asia/Ust-Nera Asia/Srednekolymsk,"tzdata 2026f europe: each zone 'covers ... parts of (14, RU-SA) Sakha (Yakutia) Republic'; zone1970.tab Khandyga 'Tomponsky, Ust-Maysky', Ust-Nera 'Oymyakonsky', Srednekolymsk 'Sakha (E), N Kuril Is' (03-03 AC-2)"
 RU,RU-SAK,Asia/Sakhalin Asia/Srednekolymsk,"tzdata 2026f europe: Asia/Sakhalin covers RU-SAK 'with the exception of 65-11 Severo-Kurilsky District'; zone1970.tab Srednekolymsk 'Sakha (E), N Kuril Is' (03-03 AC-2)"
+CL,CL-VS,America/Santiago Pacific/Easter,Santiago: most of Chile; Easter: Easter Island (part of Valparaíso Region)
+CY,CY-01,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus
+CY,CY-02,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus
+CY,CY-03,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus
+GL,GL-NE,America/Nuuk America/Danmarkshavn,Nuuk: most of Greenland; Danmarkshavn: National Park (east coast)
+MN,MN-057,Asia/Ulaanbaatar Asia/Hovd,Hovd: Bayan-Ölgii, Hovd, Uvs; tzdata asia records a second configuration adding Zavkhan
+MN,MN-065,Asia/Ulaanbaatar Asia/Hovd,Hovd: Bayan-Ölgii, Hovd, Uvs; tzdata asia records a second configuration adding Govi-Altai
+NZ,NZ-WGN,Pacific/Auckland Pacific/Chatham,Auckland: New Zealand time; Chatham: Chatham Islands (OurAirports files NZCI under NZ-WGN)
+VN,VN-NC,Asia/Bangkok Asia/Ho_Chi_Minh,Bangkok: north Vietnam; Ho_Chi_Minh: south Vietnam (North Central spans the 1954-75 line)
