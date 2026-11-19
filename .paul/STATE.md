@@ -29,6 +29,26 @@ Plan: 03-02 unified 2026-11-19 (.paul/phases/03-iana-timezones/03-02-SUMMARY.md)
     - blocked fetches (403 or landing page) are never bypassed and are listed as deviations.
   Scratch tools: scripts/{hextext,html2txt,cfs_compare,lint,qc_rows,sk_rows,nu_rows,ytnt_rows,terr_plan}.py; cgn/*.zip (CGNDB), sgc/structure.csv.
 Operator 2026-11-19: "Finish all of the plan-03 before release". The release runbook is not started.
+03-03 APPLY in progress (sqwkd + cv-aviation OK). Done: AC-2 zone_regions 29654aa; BR 0c37247.
+  Progress at 73e9548:
+    - AU done (4f6bf77, 16b042f; Proserpine S2 mainland exception).
+    - ID done (de4e26b, 16b042f; derived provinces per sqwkd's territory ruling; UU numbers identification-only, from pasal.id).
+    - RU done (73e9548; 20 Sakha scheduled airports in UBD; RU-SA and RU-SAK caught by the zone_regions check).
+    - BR rules done (0c37247).
+  Remaining:
+    - BR AM via IBGE seat coordinates (Tabatinga and Porto Acre), with Tabatinga to UBD.
+    - BR PA via the Xingu's range in PA (IBGE BC250 or ANA), else option (b).
+    - Then: canaries (YSSY YBBN YPPH YPAD YBHI SBGR SBEG SBBE SBRB SBFN UUEE UNNT UHWW UEEE UHPP WIII WADD WAJJ WIOO), the build from the seed (tz3b inputs), verify, gate, AC-3a lint, CFS-like check (none: Q2 with the operator), README L4 (add Eucla), SUMMARY, unify.
+  SUMMARY must also record:
+    - AC-2's check is opt-in per mapped country (CA MX BR AU ID RU mapped); it caught RU-SA and RU-SAK; the other 26 countries are mapped in 03-04.
+    - Deviations: tzdata-only citations for VIC, NT, NSW (403), QLD (PDF not extractable), TAS, BR (planalto reset) and RU (107-FZ not fetched).
+  SUMMARY Deviations must record:
+    - planalto.gov.br resets the automated client. One browser-UA curl was made; its output was deleted unused and nothing was derived from it.
+    - One WebFetch read of Lei 12.876; its content was not used for any row.
+  sqwkd: "don't repeat it". BR citations rest on tzdata southamerica unless the operator supplies the laws.
+  BR open items:
+    - AM, option (c): IBGE seat coordinates for Tabatinga and Porto Acre; 0.5° from the great-circle segment; Tabatinga goes to UBD.
+    - PA, option (a): Xingu longitude range in PA from IBGE BC250 or ANA hydrography; places north of the Amazon NULL unless named; if no fetchable source, option (b).
 Status: Loop closed for 03-02. Next: /paul:plan 03-03 (AU, BR, RU, ID), reviewed by sqwkd and cv-aviation before APPLY.
 Last activity: 2026-11-19. 03-02 unified.
 
