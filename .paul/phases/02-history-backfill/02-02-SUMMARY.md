@@ -33,7 +33,7 @@ relatedTo: [02-02-PLAN.md, 02-02-AUDIT.md, 02-01-SUMMARY.md]
 |----|--------|----------|
 | AC-1 resolution | PASS | Tests; dry run B1 and B2 |
 | AC-2 refusals | PASS | Tests; dry run A1, B3, B4 and B5 |
-| AC-3 workflow | PASS | YAML parses (system PyYAML); the build job's steps in order: Install, Test, Resolve the previous file, Build, Verify, Checksum, Summarize, Publish. **actionlint was not run**: not installed, and fetching it with uvx was denied by the permission classifier |
+| AC-3 workflow | PASS | YAML parses (system PyYAML); the build job's steps in order: Install, Test, Resolve the previous file, Build, Verify, Checksum, Summarize, Publish. actionlint was not run during apply (not installed; the uvx fetch was denied). **Resolved afterwards, 2026-11-19:** sqwkd ran actionlint v1.7.12 on 67420c8 at the operator's direct request ("Download and use actionlint", relayed by sqwkd); no findings, exit 0. The shellcheck pass over `run:` scripts was skipped (shellcheck not installed) |
 | AC-4 seed pin | PASS | test_the_pin_matches_the_local_seed_when_present |
 | AC-5 dry run | PASS | Below |
 | AC-6 one-hop lineage | PASS | test_a_swapped_database_with_an_edited_manifest_fails_lineage; dry run B5 |
@@ -64,7 +64,7 @@ I also ran `gh api repos/:owner/:repo/releases` and `gh repo view` (read) during
 ## Deviations
 - Added the pre-publish re-check of the existing tag, alongside sqwkd's concurrency group: concurrency queues runs, and the re-check stops a queued second run from replacing N.
 - The unpublished-seed guard lives in chain.py, not as a separate workflow step, so CI fails with the runbook message instead of a 404.
-- actionlint was not run (see AC-3).
+- actionlint was not run during apply. Operator-directed resolution, 2026-11-19: sqwkd downloaded actionlint v1.7.12 from the rhysd/actionlint release (sha256 checked against checksums.txt) and ran `actionlint -color=false .github/workflows/*.yml` on 67420c8: no findings, exit 0. Not covered: shellcheck of `run:` scripts.
 
 ## Next
 - 02-03: search for an older public-domain source (before 2020-03-26).
