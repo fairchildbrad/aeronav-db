@@ -92,3 +92,7 @@ https://peraturan.bpk.go.id/Download/54711/KEPPRES%20NO%2041%20TH%201987.pdf (fe
 ## Russia: Federal Law 107-FZ
 Not fetched; cited via tzdata 2026f `europe`, which lists by ISO code the subjects each zone covers, and the Sakha districts (deviation, tzdata-only). Sakha towns are placed only where a zone is named for the town (Yakutsk, Khandyga, Ust-Nera, Srednekolymsk). Other scheduled Sakha airports are in unplaced_by_design, because no town-to-district source was fetched.
 - IBGE malhas API v3 metadata (federal open data, Lei 9.610 art. 8), giving the Tabatinga (1304062) and Porto Acre (1200807) centroids, which serve as the endpoints of the Amazonas line. sha256 `0c8f127d30d393eb5d0c4a17263f1f92bc611fbc85db763c2489715166c94c36` and `e785d0491bd0b452e5fef95e2508fd51d435595f6fbc17fee53eb38792ce6637`. These are centroids, not seats (the API publishes no seat position).
+- Pará's Xingu division: ANA GEOFT_BHO_REF_RIO.zip (SNIRH record a01764d3-4742-4f7d-b867-01bf544dde6d), sha256 `92545bb455eff034acd39d8a3a8967df15baf727b1a0ab4902852851a49855fc`.
+  - Feature NORIOCOMP 'Rio Xingu' (CORIO 42_0), clipped to the IBGE malhas v3 Pará outline (sha256 `94f9a7e7f1e659b0e98f8d1221af859adbdb815be051994fd73f9a8703df5467`) by point-in-polygon on every 5th vertex.
+  - Result: longitude 52.921°W to 51.617°W.
+  - The SAD69 datum offset is negligible. The reader was a one-off scratch tool.
