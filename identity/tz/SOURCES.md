@@ -59,3 +59,12 @@ RSNL 1990 c S-23 (am. 2006 c31, 2011 c6), https://assembly.nl.ca/Legislation/sr/
 ## Saskatchewan Time Act, 2026
 Bill 58 (30th Legislature, 2nd session), https://docs.legassembly.sk.ca/legdocs/Bills/30L2S/Bill30-58.pdf (fetched 2026-11-19, sha256 `4c288edf072161e780174abfefff086802dfc75c1d1c77550f7d926f6c488039`); in force 2026-10-30 (government release of that date; tzdata cites OIC 438/2026). s.4: central standard time (UTC-6) in Saskatchewan, which includes Lloydminster (s.2, s.3(2)), subject to s.5 time option areas prescribed by regulation. https://www.saskatchewan.ca/en/government/municipal-administration/tools-guides-and-resources/saskatchewan-time-system (fetched 2026-11-19): "There are currently no time option areas in Saskatchewan."
 - CGNDB SK: cgn_sk_csv_eng.zip, sha256 `f1749cf9d8cc547e4cbae054023214a57e9e11402e54adee49621542832b523d`. Swift Current City HAPKT (50.288N 107.794W) is the S2 centre.
+
+## Nunavut: SOR/2001-182
+Proclamation establishing three different time zones in Nunavut (Interpretation Act s.35(1)), https://laws.justice.gc.ca/eng/regulations/SOR-2001-182/FullText.html (current to 2026-10-29, fetched 2026-11-19, page sha256 `08c54722dbd7ad1f05e9a7134a2505c7559e5702c87cee65cad05f42cbcaebd0`): (a) east of 85°W and Southampton Island EST; (b) 85°W-102°W except Southampton and Kitikmeot CST; (c) west of 102°W and all of Kitikmeot MST. Territorial Time Zone Regulations R-033-2021 (DST) returned 403 at nunavutlegislation.ca; DST from tzdata (deviation). CGNDB NU sha256 `1bd555b78ae595fe3dc48d9fcd27f89887f4bc4e856cd48e3ecaef688abc22d9`; Kitikmeot = SGC 2021 CD 6208.
+
+## Northwest Territories: R-090-2026
+NWT Time Regulations R-090-2026 (UTC-6 year-round, in force 2026-08-21). justice.gov.nt.ca served an HTML landing page instead of the PDF (not worked around); cited via tzdata 2026f northamerica (Eggert 2026-08-21) and the GNWT release (deviation, with AB MB NB PE). CGNDB NT sha256 `544a322e7780058fd4ba3a70fce0d1b947212fe6c218d093927ba2d9e619ce72`.
+
+## Yukon: Interpretation Act and OIC 2020/125
+RSY 2002 c125 s.33; OIC 2020/125 (UTC-7 year-round) returned 403 at yukon.ca and laws.yukon.ca; cited via tzdata's quote (deviation). Zone split: Commissioner's Order 1967/59 (138°W) as quoted verbatim in tzdata. CGNDB YT sha256 `ef8cfc441ab5940b840e093e81741bbd13977e0f39c64954a5f8f72a65bcc5c5`.
