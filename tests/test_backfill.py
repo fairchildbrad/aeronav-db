@@ -91,3 +91,49 @@ def test_cycles_must_step_by_28_days():
     assert backfill.cycles(C[0], C[2]) == C[:3]
     with pytest.raises(backfill.BackfillError):
         backfill.cycles(C[0], "2020-05-22")
+
+
+# --- Internet Archive fallback (02-03) -------------------------------------------
+
+CDX = (b'[["timestamp","digest","length"],'
+       b'["20201029194455","AAA","1"],["20210325204726","BBB","1"]]')
+
+
+def test_wayback_source_takes_the_newest_capture_and_lists_digests(monkeypatch):
+    monkeypatch.setattr(backfill, "_get", lambda url, headers=None: CDX)
+    found = backfill.wayback_source("https://nfdc.faa.gov/x.zip")
+    assert found["capture"] == "20210325204726"
+    assert found["fetch_url"] == (
+        "https://web.archive.org/web/20210325204726id_/https://nfdc.faa.gov/x.zip"
+    )
+    assert found["digests"] == ["AAA", "BBB"] and found["captures"] == 2
+
+
+def test_wayback_offline_page_is_retried_not_parsed(monkeypatch):
+    answers = iter([b"<html>Temporarily Offline</html>", CDX])
+    monkeypatch.setattr(backfill, "_get", lambda url, headers=None: next(answers))
+    monkeypatch.setattr(backfill.time, "sleep", lambda s: None)
+    assert backfill.wayback_source("u")["capture"] == "20210325204726"
+
+
+def test_no_capture_means_missing(monkeypatch):
+    monkeypatch.setattr(backfill, "_get", lambda url, headers=None: b"[]")
+    assert backfill.wayback_source("u") is None
+
+
+def test_faa_404_falls_back_to_wayback_and_records_provenance(monkeypatch, tmp_path):
+    import io
+    import urllib.error
+
+    def apt_rows(url):
+        if "web.archive.org" not in url:
+            raise urllib.error.HTTPError(url, 404, "nf", {}, io.BytesIO())
+        return "a", [apt("1.", "A01")], b"raw"
+
+    monkeypatch.setattr(backfill.nasr_archive, "apt_rows", apt_rows)
+    monkeypatch.setattr(backfill.nasr_archive, "legacy_blank_status", lambda raw: [])
+    monkeypatch.setattr(backfill, "_get", lambda url, headers=None: CDX)
+    meta = backfill.nasr_cycle(tmp_path, "2019-09-12")
+    assert meta["source"] == "wayback" and meta["capture"] == "20210325204726"
+    again = backfill.nasr_cycle(tmp_path, "2019-09-12")
+    assert again["source"] == "wayback" and len(again["rows"]) == 1

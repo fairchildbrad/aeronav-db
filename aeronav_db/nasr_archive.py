@@ -201,14 +201,24 @@ def _field(line: str, name: str) -> str:
     return line[start - 1 : start - 1 + length].strip()
 
 
+# Every format-a APT record is this long (apt_rf.txt). A file whose records
+# differ has another layout and is refused rather than parsed by guesswork.
+LEGACY_APT_RECORD_LENGTH = 1529
+
+
 def legacy_apt_rows(raw: bytes) -> list[dict[str, str]]:
     """APT records as APT_BASE-shaped rows. A record with a blank status is
     left out, as the FAA's own CSV extract leaves it out (2022-12-29: CZBB,
     the only one); ``legacy_blank_status`` counts them for the report."""
     rows = []
-    for line in raw.decode("latin-1").splitlines():
+    for number, line in enumerate(raw.decode("latin-1").splitlines(), 1):
         if not line.startswith("APT"):
             continue
+        if len(line) != LEGACY_APT_RECORD_LENGTH:
+            raise ValueError(
+                f"APT.txt line {number}: record length {len(line)}, expected "
+                f"{LEGACY_APT_RECORD_LENGTH}; the layout differs"
+            )
         if not _field(line, "status"):
             continue
         state, county_state = _field(line, "state"), _field(line, "county_state")

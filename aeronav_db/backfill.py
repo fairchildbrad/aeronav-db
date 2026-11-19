@@ -90,6 +90,52 @@ def _get(url: str, headers: dict[str, str] | None = None) -> bytes:
     raise AssertionError("unreachable")
 
 
+# --- Internet Archive fallback -----------------------------------------------
+# The FAA serves 28-day files from 2020-03-26 on. Earlier cycles survive as
+# Wayback captures of the same FAA URL; the bytes are the FAA's (checked on the
+# 2020-03-26 overlap, which both serve). The Archive is only the carrier.
+WAYBACK_CDX = (
+    "https://web.archive.org/cdx/search/cdx?url={url}"
+    "&filter=statuscode:200&fl=timestamp,digest,length&output=json"
+)
+WAYBACK_RAW = "https://web.archive.org/web/{timestamp}id_/{url}"
+
+
+def wayback_captures(url: str) -> list[dict[str, str]]:
+    """200 captures of exactly ``url``, oldest first. The Archive answers
+    'Temporarily Offline' with an HTML page, which is retried, never parsed."""
+    for attempt in range(nasr_archive.RETRIES):
+        body = _get(WAYBACK_CDX.format(url=url))
+        try:
+            table = json.loads(body) if body.strip() else []
+        except json.JSONDecodeError:
+            if attempt == nasr_archive.RETRIES - 1:
+                raise BackfillError(f"Wayback CDX unavailable for {url}") from None
+            time.sleep(30 * (attempt + 1))
+            continue
+        if not table:
+            return []
+        header, *rows = table
+        return [dict(zip(header, row)) for row in rows]
+    raise AssertionError("unreachable")
+
+
+def wayback_source(url: str) -> dict | None:
+    """The newest capture, plus every distinct digest seen (an FAA re-post
+    shows as more than one)."""
+    captures = wayback_captures(url)
+    if not captures:
+        return None
+    newest = captures[-1]
+    return {
+        "source": "wayback",
+        "capture": newest["timestamp"],
+        "fetch_url": WAYBACK_RAW.format(timestamp=newest["timestamp"], url=url),
+        "digests": sorted({c["digest"] for c in captures}),
+        "captures": len(captures),
+    }
+
+
 # --- Cache ---------------------------------------------------------------------
 
 
@@ -107,13 +153,18 @@ def nasr_cycle(cache: Path, cycle: str) -> dict | None:
         return meta
     meta_path.parent.mkdir(parents=True, exist_ok=True)
     url = NASR_URL_TEMPLATE.format(cycle=cycle)
+    provenance: dict = {"source": "faa"}
     try:
         fmt, rows, raw = nasr_archive.apt_rows(url)
     except urllib.error.HTTPError as error:
-        if error.code == 404:
+        if error.code != 404:
+            raise
+        wayback = wayback_source(url)
+        if wayback is None:
             meta_path.write_text(json.dumps({"missing": True, "url": url}))
             return None
-        raise
+        provenance = wayback
+        fmt, rows, raw = nasr_archive.apt_rows(wayback["fetch_url"])
     blank = nasr_archive.legacy_blank_status(raw) if fmt == "a" else []
     with gzip.open(rows_path, "wt", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=nasr_archive.APT_COLUMNS,
@@ -121,7 +172,7 @@ def nasr_cycle(cache: Path, cycle: str) -> dict | None:
         writer.writeheader()
         writer.writerows(rows)
     meta = {"format": fmt, "sha256": hashlib.sha256(raw).hexdigest(), "url": url,
-            "blank_status": blank}
+            "blank_status": blank, **provenance}
     meta_path.write_text(json.dumps(meta, indent=1))
     meta["rows"] = rows
     return meta
@@ -260,7 +311,10 @@ def replay(cache: Path, start: str, end: str, *, log=print) -> tuple:
         })
         sources.append({"cycle": cycle, "nasr_url": nasr["url"],
                         "nasr_sha256": nasr["sha256"], "nasr_format": nasr["format"],
-                        "ourairports_commit": snapshot[0] if snapshot else None})
+                        "ourairports_commit": snapshot[0] if snapshot else None,
+                        "nasr_carrier": nasr.get("source", "faa"),
+                        **({"wayback_capture": nasr["capture"]}
+                           if nasr.get("source") == "wayback" else {})})
         log(f"{cycle}: fmt {nasr['format']} rows {nasr_count} minted {minted} "
             f"closed {closed} aliases {len(state.aliases)} iata_shared "
             f"{len(iata_shared)}")
@@ -288,7 +342,10 @@ def write_seed(path: Path, state: identity.IdentityState, meta: dict[str, str]) 
             "airport_id_next": str(state.next_id),
             "previous_cycle": "",
             "previous_db_sha256": "",
-            "sources": "FAA NASR archive; OurAirports git history",
+            "sources": (
+                "FAA NASR archive (and FAA NASR files preserved by the "
+                "Internet Archive); OurAirports git history"
+            ),
             "licence": LICENCE,
             "disclaimer": DISCLAIMER,
             "generator": "aeronav_db.backfill",

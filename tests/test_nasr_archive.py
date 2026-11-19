@@ -93,3 +93,11 @@ def test_an_archive_without_airport_data_is_an_error(tmp_path):
         archive.writestr("README.txt", "x")
     with pytest.raises(ValueError, match="APT.txt"):
         na.apt_rows(path)
+
+
+def test_a_legacy_record_of_another_length_is_refused():
+    import pytest as _pytest
+
+    from aeronav_db import nasr_archive as na
+    with _pytest.raises(ValueError, match="layout differs"):
+        na.legacy_apt_rows(b"APT" + b" " * 100 + b"\n")
