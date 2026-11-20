@@ -2,7 +2,7 @@
 phase: 03-iana-timezones
 plan: 05
 type: summary
-status: awaiting-sqwkd-check
+status: complete
 description: "US remainder placed or listed by airport, the Pacific-island inputs fixed to UM, and Alaska placed from 49 CFR Part 71 and tzdata named places; the closing tz gate on the seed build passes."
 about: "aeronav-db"
 tags: [timezone, iana, alaska, arizona, pacific, part-71, gate]
@@ -12,6 +12,8 @@ relatedTo: [03-05-PLAN.md, 03-04-SUMMARY.md]
 # 03-05 Summary: US remainder and the closing gate
 
 Applied by Codex (worktree /workspace/aeronav-db-codex, two passes). aeronav-db reviewed every hunk, re-ran every check below and committed 72182d9. All numbers below are aeronav-db's own measurements.
+
+Checked by sqwkd 2026-11-20, verbatim: "sqwkd check of 03-05 (SUMMARY 35212d8, code 72182d9): OK on (a), (b) and (c). Unify, merge locally, then hand over." sqwkd re-verified the sha256, the gate and verify --previous, and the US arithmetic. sqwkd confirmed the Sitka quote (northamerica:607) as R1 evidence: America/Sitka has no 1980 Yukon interval, and America/Juneau has one. sqwkd accepted the deviations. The L-type questions become a follow-up and don't block 03-05.
 
 ## Closing gate (AC-1, AC-6)
 - **Build:** 2026-10-29 from the seed b0303/seed-run1.sqlite3 (e92fa5fe…), with the cached NASR, OurAirports and navaids 2026-10-29 inputs. Output: scratchpad tz8/navigation.sqlite3, sha256 `61d4979b0c5168ae497fa32cedf3670a5b469bd749cf2fbb1cd0dab01c27d212`. It is byte-identical to Codex's tz7 build. Manifest sha256 d094cc27….

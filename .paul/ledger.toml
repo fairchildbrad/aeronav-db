@@ -114,3 +114,9 @@ date = "2026-11-19"
 action = "unify"
 plan = "03-04"
 note = "26 multi-zone countries + XK + AN placed from zone1970/tzdata; zone_regions maps every multi-zone country (US, AQ exempt); gate prints US lines only; placed 26,425, unplaced 801; build sha256 2418b7a5...; sqwkd OK after Labuan/TNCM/CY fixes"
+
+[[entry]]
+date = "2026-11-20"
+action = "unify"
+plan = "03-05"
+note = "US remainder: QW/QM/XL → UM inputs (Wake, Midway placed; Palmyra NULL); Alaska by 49 CFR 71.11/71.12 and tzdata named places; 55 scheduled listed by design; gate PASS; placed 26,434, unplaced 792; build sha256 61d4979b...; sqwkd OK. Phase 3 complete."
