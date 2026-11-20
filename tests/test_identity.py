@@ -463,3 +463,15 @@ def test_a_local_code_pair_stays_inside_the_country_gate():
     same = run((C1, [ca, lid(oa("624", iata="YAA", country="CA"), "CAJ4")]))[0]
     other = run((C1, [ca, lid(oa("624", iata="YAA", country="BS"), "CAJ4")]))[0]
     assert (len(same.identities), len(other.identities)) == (1, 2)
+
+
+def test_an_out_of_gate_code_collision_does_not_block_a_local_code_pair():
+    """Bar Ten AZ: OA IATA GCT equals FAA GCT at Guthrie County, Iowa; the
+    row still pairs with NASR 1Z1 through local_code (sqwkd R-e ruling)."""
+    iowa = nasr("2.", "GCT", lat=41.687, lon=-94.435)
+    bar_ten = nasr("00823.6", "1Z1", lat=36.257, lon=-113.231)
+    row = lid(oa("8774", iata="GCT", lat=36.258, lon=-113.231), "1Z1")
+    state = run((C1, [iowa, bar_ten, row]))[0]
+    assert len(state.identities) == 2
+    paired = [i for i in state.identities.values() if i.ourairports_id == "8774"]
+    assert [i.nasr_site_no for i in paired] == ["00823.6"]

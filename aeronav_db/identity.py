@@ -276,7 +276,13 @@ def _group(
     unpaired: list[Observation] = []
     for row in ourairports:
         partner = None
-        shares = [c for _, code in row.codes for c in by_code.get(code.upper(), [])]
+        # A shared code counts only when its NASR holder passes the gate with
+        # the row (sqwkd 01-04 R-e ruling): OA IATA 'GCT' at Bar Ten AZ is not
+        # evidence about FAA 'GCT' in Iowa.
+        shares = [
+            c for _, code in row.codes for c in by_code.get(code.upper(), [])
+            if _in_gate(row, c.nasr)  # type: ignore[arg-type]
+        ]
         for candidate in shares:
             if _can_pair(row, candidate):
                 partner = candidate
