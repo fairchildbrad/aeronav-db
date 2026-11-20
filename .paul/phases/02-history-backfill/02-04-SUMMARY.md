@@ -15,6 +15,9 @@ about: "aeronav-db"
 - **sqwkd, verbatim 2026-11-20:** "make it a SEPARATE plan, 02-04, with review before APPLY."
 - **Approval, verbatim:** "02-04 PLAN (7bda1a3) APPROVED for APPLY, on the conditions below." The census ran before any guard code (condition 1).
 
+## Check
+sqwkd, verbatim 2026-11-20: "02-04 VERIFIED. OK to UNIFY, then resume 01-04 as you described." sqwkd re-checked the sha256 and `cmp` of the seed, the `cmp` of the report, and that b76d1b2 touches only nasr_archive.py and its test.
+
 ## Result
 
 | AC | Result |
