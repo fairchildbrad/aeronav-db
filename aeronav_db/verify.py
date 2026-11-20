@@ -282,7 +282,7 @@ CANARY_TZ = {
 
 CANARY_TZ_NULL = {
     "AP0000448": "no_county_match",  # Page: jurisdiction not established
-    "AP0024208": "no_county_match",  # Hyder: legal/observed clock question
+    "AP0019046": "no_county_match",  # Hyder: legal/observed clock question
     "AP0019409": "no_county_match",  # Unalaska: east of the meridian
     "AP0009599": "no_county_match",  # Elko city history is not named
     "AP0019547": "no_region",  # Palmyra has no sourced history
@@ -294,6 +294,17 @@ def check_timezones(connection: sqlite3.Connection, cycle: str) -> list[str]:
     from aeronav_db import tz as tzmod
 
     problems: list[str] = []
+    # 01-04: an airport listed as unplaced by design is never placed; a
+    # merge or re-key must not turn a documented NULL into a placed value.
+    listed = sorted(tzmod.load_unplaced_by_design())
+    if listed:
+        placed = [r[0] for r in connection.execute(
+            "SELECT airport_id FROM airport_identity WHERE tz IS NOT NULL "
+            f"AND airport_id IN ({','.join('?' * len(listed))})",  # noqa: S608
+            listed)]
+        if placed:
+            problems.append(f"unplaced_by_design lists {len(placed)} placed "
+                            f"airports: {', '.join(placed[:10])}")
     zones, _ = tzmod.load_zone_tab(tzmod.TZ_DIR / "zone1970.tab")
     known = {z for found in zones.values() for z in found}
     single_zone_of = {found[0]: c for c, found in zones.items() if len(found) == 1}
