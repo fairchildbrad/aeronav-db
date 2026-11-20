@@ -32,7 +32,7 @@ Phases: 0 of 3 complete
 - [x] 01-01: aeronav_db/identity.py, a pure engine (match, mint, intervals, aliases) with tests
 - [x] 01-02: wire into build/schema/verify, add the --previous-db chain input, send the DDL to cv-aviation, update the README
 - [x] 01-03: the retired NASR country AN → ISO successor or NULL (release blocker). Unified 2026-11-20
-- [ ] 01-04: pair OurAirports with NASR through the FAA LID (local_code); one field, one id (release blocker)
+- [x] 01-04: pair OurAirports with NASR through the FAA LID (local_code); one field, one id; renumbered (operator "Renumber now"), tz re-keyed. Unified 2026-11-20
 
 ### Phase 2: History backfill + first schema-3 release
 **Goal:** run the chain from the oldest reachable NASR archive (≥2021-12) to the current cycle, paired with OurAirports git snapshots; look for a source older than that; publish the first schema-3 release; switch CI to chain from the prior release.
