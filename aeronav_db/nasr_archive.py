@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import csv
 import io
+import re
 import time
 import urllib.error
 import urllib.request
@@ -157,7 +158,7 @@ def apt_rows(source: str | Path) -> tuple[str, list[dict[str, str]], bytes]:
     fmt = archive_format(archive)
     if fmt == "a":
         raw = _member(archive, "APT.txt")
-        return fmt, legacy_apt_rows(raw), raw
+        return fmt, legacy_apt_rows(raw, legacy_record_length(archive)), raw
     rows, raw = _csv_apt_rows(archive, fmt)
     return fmt, rows, raw
 
@@ -202,12 +203,60 @@ def _field(line: str, name: str) -> str:
     return line[start - 1 : start - 1 + length].strip()
 
 
-# Every format-a APT record is this long (apt_rf.txt). A file whose records
-# differ has another layout and is refused rather than parsed by guesswork.
-LEGACY_APT_RECORD_LENGTH = 1529
+# The name apt_rf.txt gives each LEGACY_FIELDS entry. Every format-a archive
+# carries its own layout in Layout_Data/apt_rf.txt; the records are checked
+# against it, never against a hard-coded length (02-04: 2017-10-12 to
+# 2021-04-22 state 1529, 2021-05-20 to 2022-10-06 state 1531, with these
+# fields unmoved). Additional_Data/ may hold the NEXT cycle's layout and is
+# never read.
+LEGACY_FIELD_NAMES = {
+    "record": "RECORD TYPE INDICATOR.",
+    "site": "LANDING FACILITY SITE NUMBER",
+    "type": "LANDING FACILITY TYPE",
+    "lid": "LOCATION IDENTIFIER",
+    "state": "ASSOCIATED STATE POST OFFICE CODE",
+    "county_state": "ASSOCIATED COUNTY'S STATE (POST OFFICE CODE)",
+    "name": "OFFICIAL FACILITY NAME",
+    "lat_seconds": "AIRPORT REFERENCE POINT LATITUDE (SECONDS)",
+    "lon_seconds": "AIRPORT REFERENCE POINT LONGITUDE (SECONDS)",
+    "status": "AIRPORT STATUS CODE",
+    "icao": "ICAO IDENTIFIER",
+}
+LEGACY_LAYOUT_MEMBER = "layout_data/apt_rf.txt"
+_LAYOUT_LINE = re.compile(r"^\s*L\s+AN\s+(\d{4})\s+(\d{5})\s+\S+\s+(.*?)\s*$")
 
 
-def legacy_apt_rows(raw: bytes) -> list[dict[str, str]]:
+def legacy_record_length(archive: zipfile.ZipFile) -> int:
+    """The APT record length this archive's own Layout_Data/apt_rf.txt
+    states, after checking that every field we read sits where it says.
+    Anything else is refused: a layout we have not verified is not parsed."""
+    members = [n for n in archive.namelist() if n.lower() == LEGACY_LAYOUT_MEMBER]
+    if len(members) != 1:
+        raise ValueError(
+            f"format a without exactly one Layout_Data/apt_rf.txt: {members}; "
+            "the layout cannot be checked"
+        )
+    text = archive.read(members[0]).decode("latin-1")
+    stated = re.search(r"RECORD LENGTH:\s*(\d+)", text)
+    if stated is None:
+        raise ValueError("apt_rf.txt states no RECORD LENGTH; the layout differs")
+    positions: dict[tuple[int, int], str] = {}
+    for line in text.splitlines():
+        match = _LAYOUT_LINE.match(line)
+        if match:
+            positions.setdefault(
+                (int(match.group(2)), int(match.group(1))), match.group(3))
+    for field, (start, length) in LEGACY_FIELDS.items():
+        found = positions.get((start, length))
+        if found != LEGACY_FIELD_NAMES[field]:
+            raise ValueError(
+                f"apt_rf.txt has {found!r} at {start}/{length}, expected "
+                f"{LEGACY_FIELD_NAMES[field]!r}; the layout differs"
+            )
+    return int(stated.group(1))
+
+
+def legacy_apt_rows(raw: bytes, record_length: int) -> list[dict[str, str]]:
     """APT records as APT_BASE-shaped rows. A record with a blank status is
     left out, as the FAA's own CSV extract leaves it out (2022-12-29: CZBB,
     the only one); ``legacy_blank_status`` counts them for the report."""
@@ -215,10 +264,10 @@ def legacy_apt_rows(raw: bytes) -> list[dict[str, str]]:
     for number, line in enumerate(raw.decode("latin-1").splitlines(), 1):
         if not line.startswith("APT"):
             continue
-        if len(line) != LEGACY_APT_RECORD_LENGTH:
+        if len(line) != record_length:
             raise ValueError(
                 f"APT.txt line {number}: record length {len(line)}, expected "
-                f"{LEGACY_APT_RECORD_LENGTH}; the layout differs"
+                f"{record_length} (apt_rf.txt); the layout differs"
             )
         if not _field(line, "status"):
             continue

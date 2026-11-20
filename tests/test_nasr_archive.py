@@ -15,7 +15,7 @@ CSV_HEADER = ",".join(na.APT_COLUMNS)
 
 def legacy_line(site="19562.*A", ftype="AIRPORT", lid="PDT", state="OR",
                 county_state="OR", name="EASTERN OREGON RGNL", lat="164501.4440N",
-                lon="427836.1270W", status="O", icao="KPDT") -> str:
+                lon="427836.1270W", status="O", icao="KPDT", width=1529) -> str:
     line = [" "] * 1300
     def put(field, value):
         start, length = na.LEGACY_FIELDS[field]
@@ -26,14 +26,25 @@ def legacy_line(site="19562.*A", ftype="AIRPORT", lid="PDT", state="OR",
                          ("name", name), ("lat_seconds", lat), ("lon_seconds", lon),
                          ("status", status), ("icao", icao)):
         put(field, value)
-    width = na.LEGACY_APT_RECORD_LENGTH
     return "".join(line).ljust(width)[:width]
 
 
-def subscription(tmp_path, fmt, apt_text):
+def layout(width=1529, moved=None, stated=None):
+    """An apt_rf.txt in the FAA's shape: one line per field."""
+    lines = [f"RECORD LENGTH: {stated or width}"]
+    for field, (start, length) in na.LEGACY_FIELDS.items():
+        if field == moved:
+            start += 2
+        lines.append(f"    L AN {length:04d} {start:05d}  N/A     "
+                     f"{na.LEGACY_FIELD_NAMES[field]}")
+    return "\n".join(lines) + "\n"
+
+
+def subscription(tmp_path, fmt, apt_text, rf=None):
     path = tmp_path / f"{fmt}.zip"
     with zipfile.ZipFile(path, "w") as archive:
-        archive.writestr("Layout_Data/apt_rf.txt", "layout")
+        if rf is not False:
+            archive.writestr("Layout_Data/apt_rf.txt", rf or layout())
         if fmt == "a":
             archive.writestr("APT.txt", apt_text)
             return path
@@ -97,8 +108,35 @@ def test_an_archive_without_airport_data_is_an_error(tmp_path):
 
 
 def test_a_legacy_record_of_another_length_is_refused():
-    import pytest as _pytest
+    with pytest.raises(ValueError, match="layout differs"):
+        na.legacy_apt_rows(b"APT" + b" " * 100 + b"\n", 1529)
 
-    from aeronav_db import nasr_archive as na
-    with _pytest.raises(ValueError, match="layout differs"):
-        na.legacy_apt_rows(b"APT" + b" " * 100 + b"\n")
+
+def test_a_1531_layout_with_unmoved_fields_is_accepted(tmp_path):
+    """2021-05-20 to 2022-10-06: 1531-character records, fields unmoved."""
+    path = subscription(tmp_path, "a", legacy_line(width=1531) + "\r\n",
+                        rf=layout(1531))
+    fmt, rows, _ = na.apt_rows(path)
+    assert (fmt, [r["ARPT_ID"] for r in rows]) == ("a", ["PDT"])
+
+
+@pytest.mark.parametrize("rf", [
+    layout(moved="lid"),              # a field we read has moved
+    layout(1529, stated=1531),        # stated length differs from the records
+    False,                            # no Layout_Data/apt_rf.txt
+    "no record length line\n",
+])
+def test_an_unverified_legacy_layout_is_refused(tmp_path, rf):
+    path = subscription(tmp_path, "a", legacy_line() + "\r\n", rf=rf)
+    with pytest.raises(ValueError, match="layout"):
+        na.apt_rows(path)
+
+
+def test_an_advance_layout_in_additional_data_is_never_read(tmp_path):
+    """2021-04-22 also carries Additional_Data/Eff_20210520/...: 1531."""
+    path = subscription(tmp_path, "a", legacy_line() + "\r\n")
+    with zipfile.ZipFile(path, "a") as archive:
+        archive.writestr("Additional_Data/Eff_20210520/apt_rf_eff20210520.txt",
+                         layout(1531))
+        archive.writestr("Additional_Data/apt_rf.txt", layout(1531))
+    assert [r["ARPT_ID"] for r in na.apt_rows(path)[1]] == ["PDT"]
