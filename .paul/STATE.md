@@ -40,6 +40,12 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 **2026-11-20 (later):** 01-03 (AN fix) applied in 24bb50f. The build is 79f705b7…, its diff against tz8 is exactly AP0019780 AN→BQ and AP0019781 AN→SX, verify --previous 0 and gate PASS; awaiting sqwkd's check before UNIFY. NEW RELEASE BLOCKER, 01-04 (sqwkd "ACCEPTED as a release blocker"): OA rows that share no IATA/ICAO code with their NASR record get a second airport_id (239 current pairs, e.g. Jackpot 06U/KPT, Hyder 4Z7/WHD). The 01-04 PLAN has its census done, and sqwkd has the R-d uniqueness question. Order (sqwkd): 01-03 UNIFY → 01-04 review/APPLY/UNIFY with a full seed re-run (the backfill cache is gone, so it is a fresh download) → L-type plan rebuilt from the post-01-04 build → 03-06 AIP/ERSA (draft c6e0ce3) APPLY on the post-01-04 build. Reproduced 2026-10-29 inputs: NASR zip sha 538c8219…, OA commit 61129867339d.
 
+**2026-11-20 (end of session):** 01-03, 02-04 and 01-04 are unified, all sqwkd-verified.
+- **New baseline (scratchpad /tmp/claude-1001/-workspace-aeronav-db/9ccaaa38-18b0-4ea3-996c-3b3cef0eb5b0/scratchpad):** seed bf/seed-run2.sqlite3 be416100…; 2026-10-29 build b0104r/navigation.sqlite3 b8b96f28…; id map b0104/airport_id_map.csv cf450fd2…, which sqwkd relays to cv-aviation. Warm backfill cache: bf/cache-repro.
+- **Gate:** present 26986, placed 26318, NULL 668.
+- **Next:** the L-type plan, built on b8b96f28 (Hyder AP0019046; Jackpot AP0009620; Prince of Wales ×9; KENV). It probably needs a mechanism that forces NULL while keeping the reason (deferred). Then the 03-06 AIP/ERSA check on the same build (sqwkd review pending). Then the operator-confirmed runbook. Runbook step 1 now works from a cold cache (02-04).
+- **Ids:** every id in the schema3 candidate is superseded; docs keep their historic ids.
+
 ## Accumulated Context
 
 ### Decisions
