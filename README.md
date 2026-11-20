@@ -274,6 +274,11 @@ What the file guarantees, and `verify` enforces:
   survives; the other keeps its history and gets one `airport_aliases` row
   pointing at the survivor. An alias never points at another alias.
 - `match_basis` records how the identity was matched in its most recent cycle.
+- **One field, one id.** An OurAirports row joins the NASR record of the same
+  field through a shared ICAO or IATA code, or else through the FAA identifier
+  OurAirports carries in `local_code`. A `local_code` pair needs exactly one
+  candidate on each side among those in the same country within 25 nm, and it
+  never moves a row away from the NASR site it was already paired with.
 - `iso_country` is ISO 3166-1 alpha-2, except `XK` (Kosovo, user-assigned, as
   OurAirports uses it). NASR still files TNCE and TNCM under the retired `AN`
   (Netherlands Antilles); a retired NASR code is replaced by the successor the
