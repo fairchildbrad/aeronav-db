@@ -42,6 +42,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 ### Decisions
 - 2026-11-19: Operator, verbatim (relayed by sqwkd): "Yes to both questions". (1) Q2 of 03-03: official AIPs and Australia's ERSA may be read as an independent check only, never as a placement source; only free, no-login publications; no fetch workarounds or User-Agent change; nothing stored, not even printed offsets; record the edition, number checked, match count and airport_ids of mismatches; fix each mismatch or set it NULL from a cited non-AIP source. Running the checks for AU, BR, RU, ID and the 03-04 countries needs its own plan (not 03-05). (2) The UZ reversal (03-04 D2, the 1991 decree list as R1 evidence) is confirmed.
+- 2026-11-20: Operator, verbatim, on merging feat/airport-identity into main: "Verify with sqwkd then merge and commit", then "Once phase 3 closes". So the merge to main happens only after Phase 3 closes (03-05 unified, gate exit 0). The Phase 1 AN release blocker is separate and still open. This does not cover push, tag, release or seed upload; each of those still needs the operator's confirmation.
 - id width: AP + 7 digits ("AP0000123"). Operator, verbatim, relayed by sqwkd 2026-11-18, answering "6 or 7": "7"
 - airport_id is minted text with a prefix ("AP000123"), case-insensitive, never renamed; aliases resolve in one hop (cv-aviation, 2026-11-07)
 - Code intervals carry `effective_date` set to the cycle date (operator)
