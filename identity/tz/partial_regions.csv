@@ -1,0 +1,43 @@
+iso_country,region,zones,tzdata_quote
+AR,AR-*,America/Argentina/Cordoba,"Cordoba: most areas: CB, CC, CN, ER, FM, MN, SE, SF (provinces listed whole; 'most' refers to the country)"
+AU,AU-NSW,Australia/Sydney Australia/Broken_Hill Australia/Lord_Howe,Sydney: New South Wales (most areas); Broken_Hill: New South Wales (Yancowinna); Lord_Howe: Lord Howe Island
+AU,AU-QLD,Australia/Brisbane Australia/Lindeman,Brisbane: Queensland (most areas); Lindeman: Queensland (Whitsunday Islands)
+AU,AU-TAS,Australia/Hobart Antarctica/Macquarie,Hobart: Tasmania; Macquarie: Macquarie Island
+AU,AU-WA,Australia/Perth Australia/Eucla Asia/Tokyo,Perth: Western Australia (most areas); Eucla: Western Australia (Eucla); Tokyo: Eyre Bird Observatory
+BR,BR-AM,America/Manaus America/Eirunepe,Manaus: Amazonas (east); Eirunepe: Amazonas (west)
+BR,BR-PA,America/Belem America/Santarem,"Belem: Pará (east), Amapá; Santarem: Pará (west)"
+BR,BR-PE,America/Recife America/Noronha,Recife: Pernambuco; Noronha: Atlantic islands
+CA,CA-BC,America/Vancouver America/Dawson_Creek America/Fort_Nelson America/Edmonton America/Phoenix,"Vancouver: MST - BC (most areas); Dawson_Creek: BC (Dawson Cr, Ft St John); Fort_Nelson: BC (Ft Nelson); Edmonton: BC(E); Phoenix: Creston BC"
+CA,CA-NL,America/St_Johns America/Goose_Bay America/Halifax,"St_Johns: Newfoundland, Labrador (SE); Goose_Bay: Labrador (most areas); Halifax: northamerica 'west Labrador, Nova Scotia, Prince Edward I,' (line 1489)"
+CA,CA-NS,America/Halifax America/Glace_Bay,"Halifax: NS (most areas), PE; Glace_Bay: NS (Cape Breton)"
+CA,CA-NT,America/Edmonton America/Inuvik,Edmonton: NT(E); Inuvik: NT (west)
+CA,CA-NU,America/Iqaluit America/Resolute America/Rankin_Inlet America/Cambridge_Bay America/Panama,Iqaluit: NU (most areas); Resolute; Rankin_Inlet: NU (central); Cambridge_Bay: NU (west); Panama: NU (Coral H)
+CA,CA-ON,America/Toronto America/Winnipeg America/Panama,Toronto: ON & QC (most areas); Winnipeg: ON (northwest); Panama: ON (Atikokan)
+CA,CA-QC,America/Toronto America/Puerto_Rico,Toronto: ON & QC (most areas); Puerto_Rico: QC (Lower North Shore)
+CA,CA-SK,America/Regina America/Swift_Current America/Edmonton,Regina: SK (most areas); Swift_Current: SK (midwest); Edmonton: SK(W)
+CA,CA-YT,America/Whitehorse America/Dawson,Whitehorse: Yukon (east); Dawson: Yukon (west)
+CL,CL-*,America/Santiago,"Santiago: most of Chile (regions other than Aysén, Magallanes and Easter Island)"
+CN,CN-65,Asia/Shanghai Asia/Urumqi,Shanghai: Beijing Time; Urumqi: Xinjiang Time (both in use in Xinjiang)
+DE,DE-BW,Europe/Berlin Europe/Zurich,Berlin: most of Germany; Zurich: Büsingen
+GL,GL-AV,America/Nuuk America/Thule,Nuuk: most of Greenland; Thule: Thule/Pituffik
+GL,GL-SE,America/Nuuk America/Scoresbysund,Nuuk: most of Greenland; Scoresbysund: Scoresbysund/Ittoqqortoormiit
+KZ,KZ-*,Asia/Almaty,Almaty: most of Kazakhstan (regions other than those named for the western zones)
+MN,MN-*,Asia/Ulaanbaatar,"Ulaanbaatar: most of Mongolia (aimags other than Bayan-Ölgii, Hovd, Uvs)"
+MX,MX-CHH,America/Chihuahua America/Ciudad_Juarez America/Ojinaga,Chihuahua: Chihuahua (most areas); Ciudad_Juarez: (US border - west); Ojinaga: (US border - east)
+MX,MX-COA,America/Monterrey America/Matamoros,"Monterrey: Coahuila, Nuevo León, Tamaulipas (most areas); Matamoros: (US border)"
+MX,MX-NAY,America/Mazatlan America/Bahia_Banderas,Mazatlan: Nayarit (most areas); Bahia_Banderas: Bahía de Banderas
+MX,MX-NLE,America/Monterrey America/Matamoros,"Monterrey: Coahuila, Nuevo León, Tamaulipas (most areas); Matamoros: (US border)"
+MX,MX-TAM,America/Monterrey America/Matamoros,"Monterrey: Coahuila, Nuevo León, Tamaulipas (most areas); Matamoros: (US border)"
+PG,PG-*,Pacific/Port_Moresby,"Port_Moresby: Papua New Guinea (most areas) (all provinces except Bougainville, PG-NSB)"
+UA,UA-*,Europe/Kyiv,"Kyiv: most of Ukraine (all regions except Crimea, UA-43)"
+RU,RU-SA,Asia/Yakutsk Asia/Vladivostok Asia/Khandyga Asia/Ust-Nera Asia/Srednekolymsk,"tzdata 2026f europe: each zone 'covers ... parts of (14, RU-SA) Sakha (Yakutia) Republic'; zone1970.tab Khandyga 'Tomponsky, Ust-Maysky', Ust-Nera 'Oymyakonsky', Srednekolymsk 'Sakha (E), N Kuril Is' (03-03 AC-2)"
+RU,RU-SAK,Asia/Sakhalin Asia/Srednekolymsk,"tzdata 2026f europe: Asia/Sakhalin covers RU-SAK 'with the exception of 65-11 Severo-Kurilsky District'; zone1970.tab Srednekolymsk 'Sakha (E), N Kuril Is' (03-03 AC-2)"
+CL,CL-VS,America/Santiago Pacific/Easter,Santiago: most of Chile; Easter: Easter Island (part of Valparaíso Region)
+CY,CY-01,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus
+CY,CY-02,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus
+CY,CY-03,Asia/Nicosia Asia/Famagusta,Nicosia: most of Cyprus; Famagusta: Northern Cyprus
+GL,GL-NE,America/Nuuk America/Danmarkshavn,Nuuk: most of Greenland; Danmarkshavn: National Park (east coast)
+MN,MN-057,Asia/Ulaanbaatar Asia/Hovd,Hovd: Bayan-Ölgii, Hovd, Uvs; tzdata asia records a second configuration adding Zavkhan
+MN,MN-065,Asia/Ulaanbaatar Asia/Hovd,Hovd: Bayan-Ölgii, Hovd, Uvs; tzdata asia records a second configuration adding Govi-Altai
+NZ,NZ-WGN,Pacific/Auckland Pacific/Chatham,Auckland: New Zealand time; Chatham: Chatham Islands (OurAirports files NZCI under NZ-WGN)
+VN,VN-NC,Asia/Bangkok Asia/Ho_Chi_Minh,Bangkok: north Vietnam; Ho_Chi_Minh: south Vietnam (North Central spans the 1954-75 line)

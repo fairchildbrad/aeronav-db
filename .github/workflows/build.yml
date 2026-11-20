@@ -18,6 +18,11 @@ on:
         required: false
         default: false
         type: boolean
+      allow_gap:
+        description: "Chain from a previous file that is not the cycle before (records the gap; normally build the missing cycle first)."
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -75,6 +80,12 @@ jobs:
     needs: check
     if: needs.check.outputs.should_build == 'true'
     runs-on: ubuntu-latest
+    # Serialize publishing: two runs for the same cycle must never both
+    # publish it (the second would replace a database a consumer may have
+    # pinned). The workflow-level group above also queues whole runs.
+    concurrency:
+      group: aeronav-release
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
 
@@ -91,13 +102,34 @@ jobs:
           ruff check .
           pytest -q
 
+      # Airport ids and history carry forward from the previous cycle's file:
+      # the newest schema-3 release before this cycle (hash-checked against
+      # its manifest and .sha256, parent hash chained one hop back), or the
+      # pinned seed for the first schema-3 release. Refuses on any mismatch.
+      - name: Resolve the previous file
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -m aeronav_db.chain previous \
+            --cycle "${{ needs.check.outputs.cycle }}" \
+            --repo "${{ github.repository }}" \
+            --out prev \
+            ${{ inputs.allow_gap && '--allow-gap' || '' }}
+          cat prev/previous.json
+
       - name: Build
-        run: python -m aeronav_db.build --cycle "${{ needs.check.outputs.cycle }}"
+        run: |
+          python -m aeronav_db.build \
+            --cycle "${{ needs.check.outputs.cycle }}" \
+            --previous-db prev/previous.sqlite3
 
       # The publish gate. Consumers update themselves unattended, so a broken
-      # build must die here rather than propagate.
+      # build must die here rather than propagate. --previous checks that
+      # history was only extended, never rewritten.
       - name: Verify
-        run: python -m aeronav_db.verify dist/navigation.sqlite3
+        run: |
+          python -m aeronav_db.verify dist/navigation.sqlite3 \
+            --previous prev/previous.sqlite3
 
       - name: Checksum
         working-directory: dist
@@ -129,21 +161,38 @@ jobs:
           print(f"- airways: {c['airways']:,} ({c['airway_points']:,} points)")
           print(f"- boundaries: {c['boundaries']:,} ({c['boundary_points']:,} points)")
           print(f"- schema version: {m['schema_version']}")
-          print(f"- sha256: `{m['database']['sha256']}`\n")
+          print(f"- sha256: `{m['database']['sha256']}`")
+          print(f"- airport history from: {m['history_start']}")
+          print(f"- chained from: {m['previous']['cycle']} (`{m['previous']['sha256']}`)\n")
+          if json.load(open("prev/previous.json"))["source"] == "seed":
+              print("**Schema 3.** Adds permanent airport ids and dated code history "
+                    "(airport_identity, airport_codes, airport_presence, "
+                    "airport_aliases; airports.airport_id). NASR 3-letter "
+                    "identifiers are now code_type `faa`, not `iata`. Check "
+                    "manifest `schema_version` before reading.\n")
           print(f"Sources: {m['sources']}\n")
           print("Stable URLs for consumers:\n")
           print("- `https://github.com/${{ github.repository }}/releases/latest/download/manifest.json`")
           print("- `https://github.com/${{ github.repository }}/releases/latest/download/navigation.sqlite3`")
           PY
           )"
+          # Re-check right before publishing: without force, never replace a
+          # cycle that is already out (a consumer may have pinned its sha).
+          if gh release view "$tag" >/dev/null 2>&1 && [ "${{ inputs.force }}" != "true" ]; then
+            echo "::error::$tag already exists and force is not set; refusing to replace it"
+            exit 1
+          fi
           # Re-releasing the same tag (a forced rebuild) replaces the assets.
           if gh release view "$tag" >/dev/null 2>&1; then
             gh release delete "$tag" --yes --cleanup-tag
           fi
+          # LICENSE ships as an asset because most consumers fetch the release
+          # assets and never see the repo -- the terms have to travel with the data.
           gh release create "$tag" \
             dist/navigation.sqlite3 \
             dist/navigation.sqlite3.sha256 \
             dist/manifest.json \
+            LICENSE \
             --title "AIRAC $cycle" \
             --notes "$notes" \
             --latest

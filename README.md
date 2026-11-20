@@ -7,9 +7,9 @@ compiled into a single SQLite file and rebuilt automatically every AIRAC cycle.
 One file, no API key, no licence to read, works offline.
 
 ```
-airports    35,302 codes   IATA + ICAO + FAA identifiers
+airports    35,305 codes   IATA + ICAO + FAA identifiers
 fixes       70,056         US named fixes / 5-letter name codes
-navaids      1,629         US VOR / VORTAC / NDB / TACAN
+navaids      9,752         worldwide VOR / VORTAC / NDB / DME / TACAN
 airways      1,515         US low/high routes, 19,247 ordered points
 boundaries      54         ARTCC and FIR rings, 2,687 ordered points
 ```
@@ -24,27 +24,76 @@ boundaries      54         ARTCC and FIR rings, 2,687 ordered points
 | Source | Covers | Cadence | Licence |
 |---|---|---|---|
 | [FAA NASR 28-Day Subscription](https://www.faa.gov/air_traffic/flight_info/aeronav/aero_data/NASR_Subscription/) | United States | 28-day AIRAC | US Government work — public domain |
-| [OurAirports](https://ourairports.com/data/) | Worldwide | Nightly | CC0 — public domain |
+| [OurAirports](https://ourairports.com/data/) | Worldwide | Nightly | Dedicated to the public domain by the publisher |
 
 **Merge rule: NASR wins inside US airspace; OurAirports is the global fallback.**
 A national aeronautical information service is authoritative within its own
-jurisdiction, so US airports carry the FAA's own surveyed coordinates, and
-everywhere else falls back to OurAirports — which is also the only one of the two
-carrying IATA codes outside the US.
+jurisdiction, so US airports and navaids carry the FAA's own surveyed
+coordinates, and everywhere else falls back to OurAirports — which is also the
+only one of the two carrying IATA codes outside the US.
+
+For navaids the rule is applied a little harder: OurAirports rows inside US
+jurisdiction are dropped outright rather than merged, because its US layer still
+lists aids the FAA has decommissioned under the VOR MON programme and the NDB
+drawdown, and a dead navaid that resolves is worse than one that is missing.
+Outside that jurisdiction the two layers overlap only where NASR carries a
+Canadian, Bahamian or Mexican border aid, so an OurAirports row is dropped when
+it names a NASR aid standing in roughly the same place. Everything else is kept.
+
+`airports` and `navaids` are the two worldwide tables. `fixes`, `airways` and
+`boundaries` come from NASR alone — OurAirports does not publish them.
+
+**NASR's authority is jurisdictional, not global.** It is the source of truth
+about a US airport; it is not the source of truth about which airport owns a
+globally-assigned IATA code. Those are different claims, and conflating them
+was a real bug: a three-letter FAA local identifier collides with a foreign
+IATA code **512 times** in the 2026-08-06 cycle, and NASR was displacing the
+IATA row every time. `DUB` resolved to DUBOIS MUNI in Pennsylvania rather than
+Dublin, `CPT` to CLEBURNE RGNL in Texas rather than Cape Town, `PUJ` to a field
+in Georgia rather than Punta Cana — 76 of the 512 were large international
+airports.
+
+So NASR displaces an OurAirports row only when the two sit within
+**25 NM** of each other, which is the test for *is this the same field described
+twice* rather than *two airports sharing three letters*. All 1,617 genuine
+same-airport pairs are unaffected and still take the FAA's surveyed
+coordinates. A displaced US field keeps its ICAO identifier (Paulding is
+reachable as `KPUJ`), and the five US fields that have no ICAO id are the whole
+cost of the fix.
 
 Both sources are public domain, so **the compiled database is too**. There is no
 attribution requirement and no copyleft clause to propagate into whatever you
 build on it.
 
+The two sources are not equally airtight, and it is worth knowing which is
+which. NASR is a work of the US Government and uncopyrightable under 17 USC
+§105 — that is about as settled as data provenance gets. OurAirports is a
+publisher's **dedication** of its data to the public domain, not a named
+instrument like CC0, and OurAirports itself aggregates from further sources: it
+credits the discontinued NGA DAFIF alongside community sites and individual
+contributors, without stating their copyright status. DAFIF was a US Government
+work, but NGA withdrew it from public distribution in 2006 after foreign
+aeronautical information services objected to redistribution of their source
+data — so US public-domain status does not settle what those bodies may claim in
+their own jurisdictions. Separately, the EU database right (Directive 96/9/EC)
+protects compilation investment independently of copyright, and coordinates are
+facts that copyright would not reach anyway.
+
+None of that is a reason not to use this database, and relying in good faith on
+an explicit public-domain dedication is a normal position. But if your exposure
+is in the EU or UK, make your own assessment rather than taking this README's
+word for it. Every row records its `source`, so a consumer who wants only the
+US Government layer can filter to `source = 'nasr'` and stand on §105 alone.
+
 ## Using it
 
-Every release publishes three assets at stable "latest" URLs:
+Every release publishes four assets at stable "latest" URLs:
 
 ```bash
 # What is currently published -- cycle, checksum, row counts. ~400 bytes.
 curl -sL https://github.com/fairchildbrad/aeronav-db/releases/latest/download/manifest.json
 
-# The database itself. ~7.6 MB.
+# The database itself. ~10.1 MB.
 curl -sLO https://github.com/fairchildbrad/aeronav-db/releases/latest/download/navigation.sqlite3
 curl -sLO https://github.com/fairchildbrad/aeronav-db/releases/latest/download/navigation.sqlite3.sha256
 sha256sum -c navigation.sqlite3.sha256
@@ -58,18 +107,18 @@ differ.** The manifest is tiny, so a client can check often and download rarely.
 {
   "schema_version": "2",
   "airac_cycle": "2026-08-06",
-  "built_at": "2026-08-13T22:41:07+00:00",
+  "built_at": "2026-08-17T18:48:21+00:00",
   "database": {
     "filename": "navigation.sqlite3",
-    "size_bytes": 9506816,
-    "sha256": "422b3eec..."
+    "size_bytes": 10113024,
+    "sha256": "8a5b1ab2..."
   },
   "counts": {
-    "airports": 35302, "fixes": 70056, "navaids": 1629,
+    "airports": 35305, "fixes": 70056, "navaids": 9752,
     "airways": 1515, "airway_points": 19247,
     "boundaries": 54, "boundary_points": 2687
   },
-  "sources": "FAA NASR 28-Day Subscription (public domain); OurAirports (CC0 public domain)"
+  "sources": "FAA NASR 28-Day Subscription (US Government work, public domain); OurAirports (publisher dedicates to the public domain)"
 }
 ```
 
@@ -82,6 +131,11 @@ SELECT lat, lon, name, source FROM airports WHERE code = 'KDFW';
 -- Named fixes. Identifiers are indexed; they are unique today but the schema
 -- does not assume it, because a future cycle could change that.
 SELECT lat, lon, artcc_low FROM fixes WHERE fix_id = 'BOSOX';
+
+-- Navaids. An identifier can name several aids worldwide, so disambiguate by
+-- position -- here, the nearest 'BIG' to a point over southern England.
+SELECT ident, nav_type, name, lat, lon FROM navaids WHERE ident = 'BIG'
+ORDER BY (lat - 51.3) * (lat - 51.3) + (lon - 0.0) * (lon - 0.0) LIMIT 1;
 
 -- One airway, in order, ready to draw. Points that could not be placed come
 -- back with NULL coordinates rather than being skipped, so a consumer can
@@ -101,7 +155,7 @@ SELECT value FROM metadata WHERE key = 'airac_cycle';
 ### Schema
 
 ```sql
-airports(code PRIMARY KEY, lat, lon, name, kind, code_type, source)
+airports(code PRIMARY KEY, lat, lon, name, kind, code_type, source, airport_id)
 navaids (ident, nav_type, name, lat, lon, frequency, source)   -- indexed on ident
 fixes   (fix_id, lat, lon, use_code, artcc_high, artcc_low, state_code, source)
 
@@ -118,11 +172,32 @@ metadata(key PRIMARY KEY, value)
 ```
 
 `source` is `nasr` or `ourairports` on every row, so a consumer can always tell
-which layer answered. `code_type` is `iata`, `icao`, or `faa`.
+which layer answered. `code_type` is `iata`, `icao`, or `faa`; an FAA
+identifier is `faa` even when it is three letters. `airport_id` is the
+airport's permanent id (next section).
+
+`metadata` carries `licence` and `disclaimer` alongside the cycle and counts, so
+the terms and the not-for-navigation warning travel **inside** the file. A
+consumer that fetched only `navigation.sqlite3` still has them:
+
+```sql
+SELECT value FROM metadata WHERE key IN ('licence', 'disclaimer', 'sources');
+```
+
+The build refuses to publish a database missing either key.
 
 Airports are keyed one row per code, so an airport with both an IATA and an ICAO
 code appears twice with the same coordinates. That makes lookup a primary-key hit
 regardless of which code system the caller has.
+
+`navaids.ident` is **indexed, not unique** — a 2-3 character navaid identifier is
+reused all over the world, and 1,837 of them name more than one aid. `BIG` is a
+VORTAC in Alaska, a VOR/DME outside London, and another in Turkey. A worldwide
+consumer has to disambiguate by position (or by `source`, for US-only work);
+`SELECT ... WHERE ident = ?` returning one row is not something to rely on.
+`nav_type` speaks NASR's vocabulary on both layers, so `VOR/DME` — not
+OurAirports' `VOR-DME` — matches everywhere, and frequencies are MHz for VHF
+aids and kHz for NDBs regardless of which source the row came from.
 
 Airways and boundaries are ordered geometry, so each is two tables: one naming
 the feature, one row per point along it. Read them with `ORDER BY seq`.
@@ -137,12 +212,169 @@ identity too, because one centre publishes a different ring for each stratum.
 `kind` is `ARTCC` for US domestic centres and `FIR`, `CTA/FIR`, `CTA` or `UTA`
 for the international ones.
 
-NASR publishes airway points by name with no coordinates. Resolution against
-`navaids` and `fixes` happens once at build time, because it needs
+NASR publishes airway points by name with no coordinates. Resolution against the
+NASR layer of `navaids` and against `fixes` happens once at build time — the
+worldwide navaids are deliberately kept out of that index, because a US airway
+naming a 3-letter aid must not resolve to a foreign one sharing the identifier.
+It runs at build time because it needs
 disambiguation rules and getting it wrong puts an airway across the wrong part
 of the country. In the current cycle 169 of 19,247 points (0.9%) do not
 resolve; those rows are kept with NULL `lat`/`lon` so the gap is visible rather
 than silently closed.
+
+## Airport identity and history
+
+*Schema 3. Not yet released: the first schema-3 release follows the archive
+backfill, so the ids it carries are the ones history starts from.*
+
+Codes change: Palm Beach went from PBI to DJT, and FAA identifiers are
+reassigned. A stored code says nothing about which airport it meant last year.
+Every airport therefore gets a permanent id: `AP` plus seven digits
+(`AP0003340`). It is compared case-insensitively, it is never renamed, reused or
+removed, and it carries the source keys (NASR site number, OurAirports id) as
+attributes, not as identity.
+
+```sql
+airport_identity(airport_id PK, nasr_site_no, nasr_site_type, ourairports_id,
+                 name, lat, lon, kind, iso_country, source_status,
+                 first_cycle, last_seen_cycle, in_current_cycle, match_basis,
+                 tz, tz_basis)            -- tz columns NULL until the timezone phase
+airport_codes   (airport_id, scheme, code, source, effective_date, valid_to)
+                 -- scheme: faa | icao | iata; valid_to exclusive, NULL = held now
+airport_presence(airport_id, effective_date, valid_to)
+airport_aliases (alias_id PK, airport_id, effective_date, reason)
+```
+
+Which airport did IATA `PBI` mean on 2026-08-01?
+
+```sql
+SELECT COALESCE(a.airport_id, c.airport_id) AS airport_id
+FROM airport_codes c LEFT JOIN airport_aliases a ON a.alias_id = c.airport_id
+WHERE c.scheme = 'iata' AND c.code = 'PBI'
+  AND c.effective_date <= '2026-08-01'
+  AND (c.valid_to IS NULL OR '2026-08-01' < c.valid_to);
+```
+
+What the file guarantees, and `verify` enforces:
+
+- **Append-only history.** A closed interval never changes. A new cycle can only
+  close intervals that are still open, at its own date, and open new ones.
+- **Dates are cycle dates.** `effective_date` is the AIRAC cycle in which a
+  change first appears in the chain, not the day it happened in the world.
+  Nothing before `metadata.history_start` is known.
+- **Absent is not closed.** An airport missing from a cycle gets a gap in
+  `airport_presence` and holds no codes during it; `source_status` changes only
+  when a source says so (NASR CI/CP, OurAirports `closed`). If it comes back,
+  it comes back under the same id.
+- **One holder per FAA or ICAO code at a time.** A build that would give two
+  airports the same open FAA or ICAO code is refused. IATA codes may genuinely
+  repeat worldwide; `verify` reports how many do (0 in the 2026-10-29 data),
+  and a consumer disambiguates by position.
+- **Aliases are one hop.** When two ids turn out to be one airport, the lower
+  survives; the other keeps its history and gets one `airport_aliases` row
+  pointing at the survivor. An alias never points at another alias.
+- `match_basis` records how the identity was matched in its most recent cycle.
+
+### Where the history comes from
+
+The history is replayed, cycle by cycle, through the same engine the weekly
+build uses (`python -m aeronav_db.backfill`). It starts at 2017-10-12 and reads
+all three formats the FAA has used: fixed-width text, per-subject CSV and single
+CSV. The FAA serves its NASR archive from 2020-03-26 on. The 32 earlier cycles,
+2017-10-12 to 2020-02-27, are the FAA's own files as preserved by the Internet
+Archive's Wayback Machine. The Archive is only the carrier: on 2020-03-26, which
+both still serve, the two copies are byte-identical, and every Archive file
+must pass its zip CRC checks and the fixed-width layout check. The next cycle
+back, 2017-09-14, was never captured. OurAirports history
+comes from its public git mirror, which starts on 2021-11-02. So
+`history_start` is the first NASR cycle, and `history_start_ourairports` is the
+first cycle with non-US data. `backfill_sources` records, for every cycle, the
+sha256 of the exact FAA file parsed, whether it came from the FAA or the
+Archive (with the capture timestamp), and the OurAirports commit, so any id can be
+traced to the bytes that created it.
+
+### Time zones
+
+`airport_identity.tz` is the airport's IANA zone (for example
+`America/Chicago`). Consumers compute local time and historical offsets from
+the zone with their own tz library. `tz_basis` says which rule placed it:
+`override`, `county`, `region` or `country`. Nothing is guessed. When the rules
+cannot place an airport, `tz` and `tz_basis` are NULL and `tz_unplaced` gives
+the reason: `multi_zone_country`, `no_region`, `no_county_match`, `no_rule` or
+`source_conflict` (two authoritative sources disagree; the override cites both).
+
+The rules live in `identity/tz/` as plain CSV. They are checked against a
+vendored `zone1970.tab` whose tzdata version is pinned in `TZDATA_VERSION`, so
+every runner resolves identically. The version is recorded in the metadata
+(`tzdata_version`), and the manifest's `tz` block counts placed and unplaced
+present airports. A country-wide rule is refused for any country with more than
+one zone. US states that span zones are placed county by county, and the result
+is checked against the offsets printed in the FAA Chart Supplement. Multi-zone
+countries outside the US stay unplaced until a cited region rule is added.
+
+Outside the US the `county` key is OurAirports' `municipality`, upper-cased.
+Each such row cites a statute, a gazetteer entry or tzdata for that name.
+`municipality` is free text, though, and is often the city an airport serves
+rather than the place it stands in. Near a zone line, a municipality row can
+therefore **misplace** an airport instead of leaving it NULL. The guard is the
+AC-3a lint. It flags any airport more than 1° of longitude outside the
+gazetteer positions its row cites, and any airport within 0.5° of a statutory
+boundary meridian. Each flag is confirmed, fixed or set NULL before a plan
+closes.
+
+`tz` records the clock people actually keep. Where tzdata states that practice
+differs from the statute, the zone follows the observed clock. Each such row's
+note cites the conflicting statute. These rows are Labrador (America/Goose_Bay
+and America/Halifax, where the Standard Time Act says Newfoundland time)
+and Eucla, Cocklebiddy and Madura (Australia/Eucla, where Western Australia's
+Standard Time Act 2005 s.4 says Western Australian time).
+Where tzdata documents a clock kept without stating its legal basis, the
+zone follows tzdata and the note takes no position on sovereignty: Crimea and
+Sevastopol (Europe/Simferopol), Ercan in northern Cyprus (Asia/Famagusta) and
+Ramallah (Asia/Hebron). Xinjiang is the inverse case: the aviation and legal
+clock is chosen over a documented unofficial local clock. Xinjiang airports
+are on Asia/Shanghai, because tzdata records that planes run on Beijing time,
+and not on Asia/Urumqi.
+`identity/tz/unplaced_by_design.csv` lists the scheduled-service airports that
+no official source places.
+NASR's QW, QM and XL state codes keep US as the airport's identity country,
+while time-zone placement uses UM and, when available, the OurAirports UM
+region. Wake and Midway have named tzdata region rules; Palmyra stays NULL.
+US stays exempt from the zone-region completeness map because its cited county
+rules and airport overrides provide the placement control. Scheduled US
+airports without enough jurisdiction or boundary evidence are listed by
+airport in `unplaced_by_design.csv`.
+
+### The chained build
+
+Each file is built from the cycle's sources **and the previous cycle's file**,
+which is where ids and history come from:
+
+```bash
+python -m aeronav_db.build --cycle 2026-10-29 --previous-db prev/navigation.sqlite3
+python -m aeronav_db.verify dist/navigation.sqlite3 --previous prev/navigation.sqlite3
+```
+
+Without `--previous-db` the build refuses, unless `--bootstrap` says to start a
+new history (which mints every id anew). It also refuses a previous file that is
+not schema 3, is not an earlier cycle, fails its own invariants, or is the output
+path itself. The output is written beside the target and renamed into place only
+after the checks pass, so a refused build leaves the old file untouched. Each
+file records `previous_cycle` and `previous_db_sha256`, so its parent can be
+traced.
+
+In CI, `python -m aeronav_db.chain previous --cycle N` picks the previous file:
+the newest schema-3 release before N, or the pinned seed (`identity/seed.json`)
+for the first schema-3 release. A forced rebuild of N therefore chains from
+N-1. The chain step refuses:
+- a hash mismatch;
+- a skipped cycle, unless `allow_gap` is set;
+- a rebuild of N after a newer schema-3 release exists.
+
+**Trust model:** until GitHub immutable releases are enabled, CI trusts a
+release's manifest and its `.sha256` asset. The backstop is the one-hop lineage
+check: the previous file's own parent hash must match the release or seed
+before it.
 
 ## How the automation works
 
@@ -161,9 +393,10 @@ weekly cron ──▶ newest in-force cycle served by FAA?
 **Verification is a gate, not a report.** Consumers update themselves unattended,
 so a broken build must not reach a release. `python -m aeronav_db.verify` refuses
 anything that fails an integrity check, is missing a table, has an implausible
-row count, has lost an entire source layer, or fails a canary lookup — seven
-known airports spanning both layers and both code systems, each checked to be
-within half a degree of where it belongs. A latitude/longitude swap fails it.
+row count, has lost an entire source layer from either merged table, or fails a
+canary lookup — seven known airports spanning both layers and both code systems,
+and three known navaids spanning both layers, each checked to be within half a
+degree of where it belongs. A latitude/longitude swap fails it.
 
 Nothing is committed to the repo by the automation. The database lives only in
 releases, so cloning stays cheap and history stays free of binaries.
@@ -173,8 +406,8 @@ releases, so cloning stays cheap and history stays free of binaries.
 ```bash
 pip install -e ".[dev]"
 
-python -m aeronav_db.build                    # newest in-force cycle
-python -m aeronav_db.build --cycle 2026-08-06
+python -m aeronav_db.build --bootstrap        # newest cycle, new id history
+python -m aeronav_db.build --cycle 2026-08-06 --previous-db prev.sqlite3
 python -m aeronav_db.verify dist/navigation.sqlite3
 ```
 
@@ -183,8 +416,10 @@ cached copy:
 
 ```bash
 python -m aeronav_db.build \
-  --nasr-zip ./28DaySubscription_Effective_2026-07-09.zip \
-  --ourairports-csv ./airports.csv
+  --nasr-zip ./28DaySubscription_Effective_2026-08-06.zip \
+  --ourairports-csv ./airports.csv \
+  --ourairports-navaids-csv ./navaids.csv \
+  --bootstrap
 ```
 
 The build is **deterministic for a given SQLite version** — rows are sorted and
@@ -193,8 +428,8 @@ machine produces a byte-identical file.
 
 It is **not** byte-identical across SQLite versions. The file header records the
 library version that last wrote it, and page layout differs slightly between
-releases: the same data built under SQLite 3.45.1 and 3.53.1 differs in ~17.7 KB
-of a 7.6 MB file while every table matches row for row. So a checksum change
+releases: the same data built under SQLite 3.45.1 and 3.53.1 differed in ~17.7 KB
+of a 7.6 MB build while every table matched row for row. So a checksum change
 means *"this file differs"*, not always *"the data changed"* — if the runner
 image bumps SQLite, one cycle will publish a new checksum for unchanged data and
 consumers will re-download once. Harmless, but worth knowing before you treat

@@ -1,0 +1,32 @@
+name = "aeronav-db"
+version = "0.1.0"
+status = "active"
+path = "aeronav-db"
+tags = []
+
+[paul]
+version = "1.4"
+source = "https://chrisai.cv/skool"
+
+[milestone]
+name = "v0.2 Airport identity & history"
+version = "0.2.0"
+status = "in_progress"
+phases = 3
+
+[phase]
+number = 3
+name = "IANA timezones"
+status = "complete"
+plans_completed = 5
+
+[loop]
+position = "IDLE"
+
+[satellite]
+groom = true
+
+[stats]
+total_plans = 11
+total_phases = 0
+last_activity = "2026-11-20T00:00:00Z"

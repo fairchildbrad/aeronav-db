@@ -6,7 +6,41 @@ import sqlite3
 
 import pytest
 
+from aeronav_db.build import IDENTITY_SCHEMA
+from aeronav_db.identity import IdentityState, Observation, apply_cycle, dump_state
 from aeronav_db.verify import verify_database
+
+CYCLE = "2026-07-09"
+
+
+def observation(source, key, codes, lat, lon, country="US"):
+    nasr = source == "nasr"
+    return Observation(
+        source=source, nasr_site_no=key if nasr else None,
+        nasr_site_type="A" if nasr else None,
+        ourairports_id=None if nasr else key, codes=tuple(codes), lat=lat,
+        lon=lon, name=key, kind="airport", source_status="operational",
+        iso_country=country,
+    )
+
+
+# Minted in NASR site order: AP0000001 is the DJT canary (NASR and OurAirports
+# records of one field, formerly PBI); AP0000002 stands for every filler airport.
+IDENTITY_OBSERVATIONS = [
+    observation("nasr", "1.", [("faa", "FILL")], 40.0, -100.0),
+    observation("nasr", "03555.", [("faa", "DJT"), ("icao", "KDJT")], 26.68, -80.1),
+    observation("ourairports", "3766", [("iata", "DJT"), ("icao", "KDJT")],
+                26.68, -80.1),
+]
+
+
+def identity_metadata(state):
+    return {
+        "airport_id_next": str(state.next_id),
+        "history_start": CYCLE,
+        "previous_cycle": "",
+        "previous_db_sha256": "",
+    }
 
 GOOD_AIRPORTS = [
     ("DFW", 32.897233, -97.037695, "DALLAS-FORT WORTH INTL", "airport", "iata", "nasr"),
@@ -16,6 +50,25 @@ GOOD_AIRPORTS = [
     ("LHR", 51.470748, -0.459909, "Heathrow", "large_airport", "iata", "ourairports"),
     ("EGLL", 51.470748, -0.459909, "Heathrow", "large_airport", "icao", "ourairports"),
     ("SYD", -33.946098, 151.177002, "Sydney", "large_airport", "iata", "ourairports"),
+    # Foreign IATA codes that collide with a US FAA local identifier -- the
+    # class of bug that put Punta Cana in Georgia and Dublin in Pennsylvania.
+    ("PUJ", 18.567093, -68.364558, "Punta Cana", "large_airport", "iata",
+     "ourairports"),
+    ("DUB", 53.421333, -6.270075, "Dublin", "large_airport", "iata", "ourairports"),
+    ("CPT", -33.96480, 18.601700, "Cape Town", "large_airport", "iata", "ourairports"),
+    ("AUH", 24.433001, 54.651100, "Zayed Intl", "large_airport", "iata", "ourairports"),
+]
+
+
+# The canary navaids the gate looks for, one per source layer. `BIG` is here
+# twice on purpose: the same identifier in Alaska and outside London, which is
+# the case a position-based consumer has to survive.
+GOOD_NAVAIDS = [
+    ("CRG", "VORTAC", "CRAIG", 30.338879, -81.513611, "114.5", "nasr"),
+    ("BIG", "VORTAC", "BIG DELTA", 64.0044, -145.716, "114.9", "nasr"),
+    ("BIG", "VOR/DME", "Biggin", 51.3308, 0.034811, "115.1", "ourairports"),
+    ("LAM", "VOR/DME", "Lambourne", 51.646, 0.151666, "115.6", "ourairports"),
+    ("NTM", "VOR/DME", "Nattenheim", 50.0158, 6.531789, "115.3", "ourairports"),
 ]
 
 
@@ -43,6 +96,8 @@ def build_database(
     nasr_filler=13_000,
     ourairports_filler=13_000,
     navaids=1_200,
+    ourairports_navaids=6_000,
+    canary_navaids=None,
     fixes=60_000,
     airways=1_100,
     airway_points=None,
@@ -51,6 +106,7 @@ def build_database(
     boundary_points=None,
     metadata=None,
     size_padding=1_200_000,
+    identity_state=None,
 ):
     connection = sqlite3.connect(path)
     connection.executescript(
@@ -97,7 +153,10 @@ def build_database(
     connection.executemany(
         "INSERT INTO navaids VALUES (?, ?, ?, ?, ?, ?, ?)",
         [(f"V{i}", "VOR", "filler", 40.0, -100.0, "112.3", "nasr")
-         for i in range(navaids)],
+         for i in range(navaids)]
+        + [(f"W{i}", "VOR/DME", "filler", 50.0, 10.0, "112.3", "ourairports")
+           for i in range(ourairports_navaids)]
+        + (GOOD_NAVAIDS if canary_navaids is None else canary_navaids),
     )
     connection.executemany(
         "INSERT INTO fixes VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -164,12 +223,22 @@ def build_database(
         ],
     )
 
+    state = identity_state or apply_cycle(
+        IdentityState.empty(), CYCLE, IDENTITY_OBSERVATIONS
+    )
+    connection.executescript(IDENTITY_SCHEMA)
+    connection.execute("ALTER TABLE airports ADD COLUMN airport_id TEXT")
+    connection.execute("UPDATE airports SET airport_id = 'AP0000002'")
+    dump_state(connection, state)
     connection.executemany(
         "INSERT INTO metadata VALUES (?, ?)",
         (metadata or {
-            "airac_cycle": "2026-07-09",
-            "schema_version": "2",
+            "airac_cycle": state.last_cycle,
+            "schema_version": "3",
             "sources": "FAA NASR; OurAirports",
+            "licence": "Public domain.",
+            "disclaimer": "NOT FOR NAVIGATION.",
+            **identity_metadata(state),
         }).items(),
     )
     if size_padding:
@@ -205,6 +274,8 @@ def test_a_truncated_database_is_reported(tmp_path) -> None:
         nasr_filler=0,
         ourairports_filler=0,
         navaids=0,
+        ourairports_navaids=0,
+        canary_navaids=[],
         fixes=0,
         size_padding=0,
     )
@@ -325,6 +396,23 @@ def test_a_canary_airport_in_the_wrong_place_is_reported(tmp_path) -> None:
     assert any("DFW" in problem for problem in verify_database(database))
 
 
+def test_a_database_without_the_terms_is_rejected(tmp_path) -> None:
+    """The .sqlite3 is fetched on its own, so it is the only place most
+    consumers will ever see the licence or the not-for-navigation warning.
+    A build that stopped writing them must not reach a release."""
+    path = build_database(
+        tmp_path / "no_terms.sqlite3",
+        metadata={
+            "airac_cycle": "2026-08-06",
+            "schema_version": "2",
+            "sources": "FAA NASR; OurAirports",
+        },
+    )
+    problems = verify_database(path)
+    assert any("licence" in p for p in problems)
+    assert any("disclaimer" in p for p in problems)
+
+
 def test_missing_metadata_is_reported(tmp_path) -> None:
     database = build_database(
         tmp_path / "navigation.sqlite3",
@@ -332,3 +420,193 @@ def test_missing_metadata_is_reported(tmp_path) -> None:
     )
 
     assert any("airac_cycle" in problem for problem in verify_database(database))
+
+
+# --- Schema 3: identity guarantees (AC-4, AC-6, AC-7, AC-9) ---------------------
+
+from aeronav_db.verify import check_chain, check_identity  # noqa: E402
+
+C2 = "2026-08-06"
+
+
+def identity_db(state, previous_cycle="", previous_sha="", airports=()):
+    """An in-memory file holding just what the identity checks read."""
+    connection = sqlite3.connect(":memory:")
+    connection.executescript(
+        "CREATE TABLE metadata (key TEXT PRIMARY KEY, value TEXT);"
+        "CREATE TABLE airports (code TEXT, airport_id TEXT);" + IDENTITY_SCHEMA
+    )
+    dump_state(connection, state)
+    connection.executemany("INSERT INTO airports VALUES (?, ?)", airports)
+    meta = identity_metadata(state) | {
+        "airac_cycle": state.last_cycle,
+        "previous_cycle": previous_cycle,
+        "previous_db_sha256": previous_sha,
+    }
+    connection.executemany("INSERT INTO metadata VALUES (?, ?)", meta.items())
+    return connection
+
+
+def first_state():
+    return apply_cycle(IdentityState.empty(), CYCLE, IDENTITY_OBSERVATIONS)
+
+
+def second_state(observations=None):
+    return apply_cycle(first_state(), C2, observations or IDENTITY_OBSERVATIONS)
+
+
+def problems_after(sql, *args, state=None):
+    connection = identity_db(state or first_state())
+    connection.execute(sql, args)
+    return check_identity(connection)[0]
+
+
+def test_identity_invariants_hold_on_a_clean_state():
+    problems, notes = check_identity(identity_db(first_state(),
+                                                 airports=[("DJT", "AP0000001")]))
+    assert problems == []
+    assert notes == ["IATA codes held by more than one present airport: 0"]
+
+
+def test_an_id_outside_the_ap7_shape_is_reported():
+    # CHECK stops a bad airport_identity id at insert; an alias has no CHECK.
+    problems = problems_after(
+        "INSERT INTO airport_aliases VALUES ('AP12', 'AP0000001', ?, 'converged')",
+        CYCLE,
+    )
+    assert any("AP+7" in p for p in problems)
+
+
+def test_a_two_hop_alias_is_reported():
+    connection = identity_db(first_state())
+    connection.executescript(
+        "INSERT INTO airport_aliases VALUES "
+        "('AP0000003', 'AP0000002', '2026-07-09', 'converged'),"
+        "('AP0000002', 'AP0000001', '2026-07-09', 'converged');"
+    )
+    assert any("one hop" in p for p in check_identity(connection)[0])
+
+
+def test_an_airports_row_without_an_identity_is_reported():
+    connection = identity_db(first_state(), airports=[("ZZZ", "AP0000099")])
+    assert any("airports: 1 rows name no" in p for p in check_identity(connection)[0])
+
+
+def test_an_orphan_code_row_is_reported():
+    problems = problems_after(
+        "INSERT INTO airport_codes VALUES ('AP0000077', 'faa', 'ZZZ', 'nasr', ?, NULL)",
+        CYCLE,
+    )
+    assert any("airport_codes: 1 rows name no" in p for p in problems)
+
+
+def test_a_counter_at_or_below_the_highest_id_is_reported():
+    problems = problems_after(
+        "UPDATE metadata SET value = '2' WHERE key = 'airport_id_next'"
+    )
+    assert any("airport_id_next 2" in p for p in problems)
+
+
+def test_in_current_cycle_disagreeing_with_presence_is_reported():
+    problems = problems_after("UPDATE airport_identity SET in_current_cycle = 0")
+    assert any("in_current_cycle" in p for p in problems)
+
+
+def test_an_faa_code_with_two_current_holders_is_reported():
+    problems = problems_after(
+        "INSERT INTO airport_codes VALUES ('AP0000002', 'faa', 'DJT', 'nasr', ?, NULL)",
+        CYCLE,
+    )
+    assert any("faa codes held by more than one airport now" in p for p in problems)
+    assert any("faa codes have overlapping intervals" in p for p in problems)
+
+
+def test_overlapping_closed_icao_intervals_are_reported():
+    problems = problems_after(
+        "INSERT INTO airport_codes VALUES "
+        "('AP0000002', 'icao', 'KDJT', 'nasr', '2026-06-11', ?)",
+        C2,
+        state=second_state(),
+    )
+    assert any("icao codes have overlapping intervals" in p for p in problems)
+
+
+def test_shared_iata_codes_are_counted_not_failed():
+    foreign = observation("ourairports", "99", [("iata", "DJT")], 10.0, 10.0, "XX")
+    state = apply_cycle(IdentityState.empty(), CYCLE, [*IDENTITY_OBSERVATIONS, foreign])
+    problems, notes = check_identity(identity_db(state))
+    assert problems == []
+    assert notes == ["IATA codes held by more than one present airport: 1"]
+
+
+def test_a_skipped_cycle_warns_but_does_not_fail():
+    later = apply_cycle(first_state(), "2026-09-03", IDENTITY_OBSERVATIONS)
+    problems, notes = check_identity(identity_db(later, previous_cycle=CYCLE))
+    assert problems == []
+    assert any("56 days" in n for n in notes)
+
+
+def test_the_djt_canary_is_part_of_the_publish_gate(tmp_path):
+    # The OurAirports row fails to attach (wrong country), so IATA DJT and
+    # ICAO KDJT name two different ids: exactly the regression the canary is for.
+    split = [IDENTITY_OBSERVATIONS[0],
+             observation("nasr", "03555.", [("faa", "DJT"), ("icao", "KDJT")],
+                         26.68, -80.1),
+             observation("ourairports", "3766", [("iata", "DJT")], 26.68, -80.1,
+                         "XX")]
+    state = apply_cycle(IdentityState.empty(), CYCLE, split)
+    database = build_database(tmp_path / "navigation.sqlite3", identity_state=state)
+    assert any("canary identity" in p for p in verify_database(database))
+
+
+# --- verify --previous ---------------------------------------------------------
+
+
+def chain(mutate_sql=None, *args, new_state=None):
+    old = identity_db(first_state())
+    new = identity_db(new_state or second_state(), previous_cycle=CYCLE,
+                      previous_sha="abc")
+    if mutate_sql:
+        new.execute(mutate_sql, args)
+    return check_chain(new, old, "abc")
+
+
+def test_a_clean_chain_passes():
+    assert chain() == []
+
+
+def test_a_missing_previous_id_is_reported():
+    problems = chain("DELETE FROM airport_identity WHERE airport_id = 'AP0000001'")
+    assert any("previous airport ids are missing" in p for p in problems)
+
+
+def test_a_changed_closed_interval_is_reported():
+    gone = second_state([IDENTITY_OBSERVATIONS[0]])  # DJT absent: closes at C2
+    third = apply_cycle(gone, "2026-09-03", [IDENTITY_OBSERVATIONS[0]])
+    old = identity_db(gone)
+    new = identity_db(third, previous_cycle=C2, previous_sha="abc")
+    new.execute("UPDATE airport_codes SET valid_to = '2026-08-20' "
+                "WHERE valid_to = ?", (C2,))
+    problems = check_chain(new, old, "abc")
+    assert any("closed intervals changed or vanished" in p for p in problems)
+
+
+def test_an_open_interval_closed_at_the_wrong_date_is_reported():
+    problems = chain(
+        "UPDATE airport_codes SET valid_to = '2026-07-20' WHERE code = 'FILL'"
+    )
+    assert any("closed at 2026-07-20, not 2026-08-06" in p for p in problems)
+
+
+def test_a_backdated_new_interval_is_reported():
+    problems = chain(
+        "INSERT INTO airport_codes VALUES "
+        "('AP0000001', 'iata', 'FIL', 'ourairports', '2026-06-11', NULL)"
+    )
+    assert any("new intervals not dated" in p for p in problems)
+
+
+def test_a_wrong_parent_checksum_is_reported():
+    old = identity_db(first_state())
+    new = identity_db(second_state(), previous_cycle=CYCLE, previous_sha="abc")
+    assert any("previous_db_sha256" in p for p in check_chain(new, old, "def"))

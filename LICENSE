@@ -29,8 +29,21 @@ not need to cover, the data the code compiles:
 
 * FAA NASR 28-Day Subscription -- a work of the United States Government, in
   the public domain. No licence, royalty, or attribution is required.
-* OurAirports -- released into the public domain under CC0 1.0. Attribution is
+* OurAirports -- the publisher's own wording is "All data is released to the
+  Public Domain, and comes with no guarantee of accuracy or fitness for use."
+  That is a dedication, not a named instrument; this file does not restate it
+  as CC0, because naming a specific licence would assert a stronger and more
+  specific grant than the one OurAirports actually made. Attribution is
   appreciated but not required.
+
+  OurAirports aggregates from further sources -- it credits the discontinued
+  NGA DAFIF, community sites, and individual contributors -- and does not
+  state those sources' own copyright status. So the worldwide layer rests on
+  the publisher's dedication rather than on a chain this project can verify.
+  Users in jurisdictions that recognise database rights distinct from
+  copyright (e.g. EU Directive 96/9/EC) should make their own assessment. The
+  `source` column on every row records which layer it came from, so a consumer
+  who needs only the US Government layer can filter to source = 'nasr'.
 
 The compiled database is therefore public-domain data and carries no
 attribution or copyleft obligation. It is NOT certified for navigation.

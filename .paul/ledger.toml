@@ -1,0 +1,122 @@
+# .paul/ledger.toml — Session history for cost/time attribution
+# Append-only. BASE extracts for usage analytics cross-reference.
+
+[[entry]]
+action = "plan"
+phase = 1
+plan = "01-01"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "unify"
+phase = 1
+plan = "01-01"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "plan"
+phase = 1
+plan = "01-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "audit"
+phase = 1
+plan = "01-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "apply"
+phase = 1
+plan = "01-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "unify"
+phase = 1
+plan = "01-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "plan"
+phase = 2
+plan = "02-01"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "audit"
+phase = 2
+plan = "02-01"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "apply"
+phase = 2
+plan = "02-01"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "unify"
+phase = 2
+plan = "02-01"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "plan"
+phase = 2
+plan = "02-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "audit"
+phase = 2
+plan = "02-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "apply"
+phase = 2
+plan = "02-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+action = "unify"
+phase = 2
+plan = "02-02"
+at = "2026-11-18T00:00:00Z"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "02-03"
+note = "History back to 2017-10-12 via Internet Archive copies of FAA NASR files; seed e92fa5fe... reproduced and re-pinned, unpublished"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "03-01"
+note = "IANA tz from pinned tzdata 2026f rules; Chart Supplement 2026-10-29: 4,462 match, 8 cited source_conflict unplaced; non-US multi-zone countries NULL"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "03-02"
+note = "Gate tooling + per-region guard + municipality key; MX 102/102 and CA placed from cited statutes (CA scheduled: 242 placed, 33 unplaced_by_design, 0 unlisted); CFS 2020-11-23 check 340 match / 10 listed mismatches; AC-3a lint 6 flags (1 fixed, 5 confirmed)"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "03-03"
+note = "AU, BR, RU, ID placed from statutes and tzdata; none in the tz gate. zone_regions.csv (CA MX BR AU ID RU mapped) caught RU-SA, RU-SAK. Placed 24,894, unplaced 2,332; build sha256 05e6892a...; sqwkd OK"
+
+[[entry]]
+date = "2026-11-19"
+action = "unify"
+plan = "03-04"
+note = "26 multi-zone countries + XK + AN placed from zone1970/tzdata; zone_regions maps every multi-zone country (US, AQ exempt); gate prints US lines only; placed 26,425, unplaced 801; build sha256 2418b7a5...; sqwkd OK after Labuan/TNCM/CY fixes"
+
+[[entry]]
+date = "2026-11-20"
+action = "unify"
+plan = "03-05"
+note = "US remainder: QW/QM/XL → UM inputs (Wake, Midway placed; Palmyra NULL); Alaska by 49 CFR 71.11/71.12 and tzdata named places; 55 scheduled listed by design; gate PASS; placed 26,434, unplaced 792; build sha256 61d4979b...; sqwkd OK. Phase 3 complete."
