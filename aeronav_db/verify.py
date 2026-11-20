@@ -227,6 +227,7 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
     problems.extend(_inspect_boundaries(connection))
     identity_problems, _ = check_identity(connection)
     problems.extend(identity_problems)
+    problems.extend(check_retired_countries(connection))
     cycle = metadata.get("airac_cycle", "")
     holders = [
         set().union(*(_held_on(connection, scheme, code, cycle) for code in codes))
@@ -390,6 +391,42 @@ def _held_on(connection: sqlite3.Connection, scheme: str, code: str, day: str):
             (scheme, code, day, day),
         )
     }
+
+
+def retired_country_ids(connection: sqlite3.Connection) -> list[str]:
+    """airport_ids whose iso_country is a retired NASR code (01-03)."""
+    from aeronav_db.tz import NASR_LEGACY_COUNTRIES
+
+    retired = sorted(NASR_LEGACY_COUNTRIES)
+    return [r[0] for r in connection.execute(
+        "SELECT airport_id FROM airport_identity WHERE iso_country IN "
+        f"({','.join('?' * len(retired))}) ORDER BY airport_id",  # noqa: S608
+        retired,
+    )]
+
+
+def check_retired_countries(connection: sqlite3.Connection) -> list[str]:
+    """Output-file check only (01-03 AC-2): a file this code writes never
+    carries a retired NASR country code. An input file (previous cycle,
+    fetched N-1, pinned seed) may, from before the fix; there it is a note."""
+    from aeronav_db.tz import NASR_LEGACY_COUNTRIES
+
+    ids = retired_country_ids(connection)
+    if not ids:
+        return []
+    return [
+        f"{len(ids)} airport_identity rows carry a retired NASR country code "
+        f"({', '.join(sorted(NASR_LEGACY_COUNTRIES))}); iso_country must be its "
+        "ISO successor or NULL"
+    ]
+
+
+def retired_country_note(connection: sqlite3.Connection, label: str) -> str | None:
+    ids = retired_country_ids(connection)
+    if not ids:
+        return None
+    return (f"NOTE: {label} carries {len(ids)} retired NASR country code(s) "
+            f"({', '.join(ids)}); this build rewrites them (01-03)")
 
 
 def check_identity(connection: sqlite3.Connection) -> tuple[list[str], list[str]]:

@@ -274,6 +274,14 @@ What the file guarantees, and `verify` enforces:
   survives; the other keeps its history and gets one `airport_aliases` row
   pointing at the survivor. An alias never points at another alias.
 - `match_basis` records how the identity was matched in its most recent cycle.
+- `iso_country` is ISO 3166-1 alpha-2, except `XK` (Kosovo, user-assigned, as
+  OurAirports uses it). NASR still files TNCE and TNCM under the retired `AN`
+  (Netherlands Antilles); a retired NASR code is replaced by the successor the
+  attached OurAirports row states (`BQ`, `SX`), or left NULL. It is never guessed.
+- **IATA code history begins 2021-11-04** (the first OurAirports snapshot used);
+  nothing is back-dated. An airport's IATA code before that date is unknown, not
+  absent: codes get reassigned (`PBI` → `DJT`), so the earliest interval is not
+  extended backwards.
 
 ### Where the history comes from
 

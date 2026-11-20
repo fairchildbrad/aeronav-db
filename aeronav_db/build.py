@@ -1261,7 +1261,7 @@ def _load_previous(
     """(state, metadata, sha256) of the previous cycle's file, or an empty
     state when bootstrapping. Refuses anything that could fork the ids."""
     from aeronav_db.identity import IdentityState, load_state
-    from aeronav_db.verify import check_identity, sha256_file
+    from aeronav_db.verify import check_identity, retired_country_note, sha256_file
 
     if previous_db is None:
         if not bootstrap:
@@ -1295,6 +1295,9 @@ def _load_previous(
                     "previous database fails its identity invariants:\n  - "
                     + "\n  - ".join(problems)
                 )
+            note = retired_country_note(connection, "--previous-db")
+            if note:
+                print(note, file=sys.stderr)
             state = load_state(connection)
         finally:
             connection.close()
@@ -1308,11 +1311,12 @@ def _load_previous(
 
 
 def _check_staged(staging: Path, previous_db: Path | None) -> list[str]:
-    from aeronav_db.verify import check_identity, verify_chain
+    from aeronav_db.verify import check_identity, check_retired_countries, verify_chain
 
     connection = sqlite3.connect(f"file:{staging}?mode=ro", uri=True)
     try:
         problems, _ = check_identity(connection)
+        problems += check_retired_countries(connection)
     finally:
         connection.close()
     if previous_db is not None:

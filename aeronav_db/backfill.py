@@ -36,7 +36,7 @@ from pathlib import Path
 from aeronav_db import identity, nasr_archive
 from aeronav_db.build import DISCLAIMER, LICENCE, SCHEMA, SCHEMA_VERSION, sha256_of
 from aeronav_db.cycle import BROWSER_USER_AGENT, NASR_URL_TEMPLATE
-from aeronav_db.verify import check_chain, check_identity
+from aeronav_db.verify import check_chain, check_identity, check_retired_countries
 
 CYCLE_DAYS = 28
 ANOMALY_FRACTION = 0.02
@@ -305,6 +305,7 @@ def replay(cache: Path, start: str, end: str, *, log=print) -> tuple:
 
         current_db = _state_db(state, before.last_cycle or "")
         problems, _ = check_identity(current_db)
+        problems += check_retired_countries(current_db)
         if previous_db is not None:
             problems += check_chain(current_db, previous_db, "")
         if problems:
@@ -382,6 +383,7 @@ def write_seed(path: Path, state: identity.IdentityState, meta: dict[str, str]) 
         connection.commit()
         connection.execute("VACUUM")
         problems, _ = check_identity(connection)
+        problems += check_retired_countries(connection)
     finally:
         connection.close()
     if problems:

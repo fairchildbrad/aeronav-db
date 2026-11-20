@@ -610,3 +610,18 @@ def test_a_wrong_parent_checksum_is_reported():
     old = identity_db(first_state())
     new = identity_db(second_state(), previous_cycle=CYCLE, previous_sha="abc")
     assert any("previous_db_sha256" in p for p in check_chain(new, old, "def"))
+
+
+def test_a_retired_nasr_country_code_is_refused():
+    """01-03 AC-2: 'AN' fails the output check; successors, NULL, XK pass;
+    check_identity (also run on input files) never reports it."""
+    from aeronav_db.verify import check_retired_countries
+
+    for country, refused in (("AN", True), ("BQ", False), ("SX", False),
+                             (None, False), ("XK", False)):
+        connection = identity_db(first_state())
+        connection.execute("UPDATE airport_identity SET iso_country = ? "
+                           "WHERE airport_id = 'AP0000001'", (country,))
+        found = check_retired_countries(connection)
+        assert any("retired NASR country" in p for p in found) is refused, country
+        assert not any("retired" in p for p in check_identity(connection)[0])

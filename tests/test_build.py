@@ -691,3 +691,61 @@ def test_manifest_describes_the_database(tmp_path) -> None:
     assert manifest["database"]["size_bytes"] == database.stat().st_size
     assert manifest["counts"]["airports"] == 2
     assert manifest_path.exists()
+
+
+# --- 01-03: a previous file with a retired NASR country code ----------------
+
+
+def _an_previous(tmp_path, monkeypatch, with_oa):
+    """A pre-fix seed: TNCM filed under 'AN' (written past the output check,
+    as e92fa5fe was)."""
+    import dataclasses
+
+    from aeronav_db import backfill
+    from aeronav_db.identity import IdentityState, Observation, apply_cycle
+
+    field = Observation(
+        source="nasr", nasr_site_no="90875.", nasr_site_type="A",
+        ourairports_id=None, codes=(("faa", "TNCM"), ("icao", "TNCM")),
+        lat=18.04, lon=-63.11, name="PRINCESS JULIANA INTL", kind="airport",
+        source_status="operational", iso_country="AN")
+    sx = Observation(
+        source="ourairports", nasr_site_no=None, nasr_site_type=None,
+        ourairports_id="6406", codes=(("iata", "SXM"), ("icao", "TNCM")),
+        lat=18.04, lon=-63.11, name="Princess Juliana", kind="large_airport",
+        source_status="operational", iso_country="SX")
+    state = apply_cycle(IdentityState.empty(), "2026-10-01", [field])
+    (only,) = state.identities
+    state = IdentityState(
+        {only: dataclasses.replace(state.identities[only], iso_country="AN")},
+        state.codes, state.presence, state.aliases, state.next_id, state.last_cycle)
+    monkeypatch.setattr(backfill, "check_retired_countries", lambda c: [])
+    seed = tmp_path / "prev.sqlite3"
+    backfill.write_seed(seed, state, {"history_start": "2026-10-01"})
+    return seed, [field, sx] if with_oa else [field], only
+
+
+def test_a_previous_file_with_an_chains_and_the_output_drops_it(
+    tmp_path, monkeypatch, capsys
+):
+    from aeronav_db.identity import apply_cycle
+    from aeronav_db.verify import check_retired_countries
+
+    for with_oa, expected in ((True, "SX"), (False, None)):
+        seed, observations, airport = _an_previous(tmp_path, monkeypatch, with_oa)
+        state, _, _ = build._load_previous(
+            seed, False, tmp_path / "out.sqlite3", "2026-10-29")
+        assert f"retired NASR country code(s) ({airport})" in capsys.readouterr().err
+        out = apply_cycle(state, "2026-10-29", observations)
+        assert out.identities[airport].iso_country == expected
+        connection = sqlite3.connect(":memory:")
+        connection.executescript(build.SCHEMA)
+        identity.dump_state(connection, out)
+        assert check_retired_countries(connection) == []
+        seed.unlink()
+
+
+def test_the_staged_output_refuses_a_retired_country(tmp_path, monkeypatch):
+    seed, _, _ = _an_previous(tmp_path, monkeypatch, False)
+    problems = build._check_staged(seed, None)
+    assert any("retired NASR country" in p for p in problems)

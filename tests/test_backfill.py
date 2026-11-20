@@ -146,3 +146,41 @@ def test_faa_404_falls_back_to_wayback_and_records_provenance(monkeypatch, tmp_p
     assert meta["source"] == "wayback" and meta["capture"] == "20210325204726"
     again = backfill.nasr_cycle(tmp_path, "2019-09-12")
     assert again["source"] == "wayback" and len(again["rows"]) == 1
+
+
+# --- 01-03: retired NASR country codes ---------------------------------------
+
+
+def _with_an(state):
+    import dataclasses
+
+    from aeronav_db.identity import IdentityState
+    first = sorted(state.identities)[0]
+    identities = dict(state.identities)
+    identities[first] = dataclasses.replace(identities[first], iso_country="AN")
+    return IdentityState(identities, state.codes, state.presence, state.aliases,
+                         state.next_id, state.last_cycle)
+
+
+def test_write_seed_refuses_a_retired_country(tmp_path, monkeypatch):
+    install(monkeypatch, {C[0]: FIELDS})
+    state, meta, _ = backfill.replay(tmp_path, C[0], C[0], log=lambda _: None)
+    seed = tmp_path / "seed.sqlite3"
+    with pytest.raises(backfill.BackfillError, match="retired NASR country"):
+        backfill.write_seed(seed, _with_an(state), meta)
+    assert not seed.exists()
+
+
+def test_replay_refuses_a_cycle_whose_state_carries_a_retired_country(
+    tmp_path, monkeypatch
+):
+    install(monkeypatch, {C[0]: FIELDS, C[1]: FIELDS})
+    real = backfill.identity.apply_cycle
+
+    def apply_cycle(state, date, observations):
+        out = real(state, date, observations)
+        return _with_an(out) if date == C[1] else out
+
+    monkeypatch.setattr(backfill.identity, "apply_cycle", apply_cycle)
+    with pytest.raises(backfill.BackfillError, match="retired NASR country"):
+        backfill.replay(tmp_path, C[0], C[1], log=lambda _: None)

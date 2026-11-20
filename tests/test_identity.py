@@ -291,6 +291,35 @@ def test_nasr_legacy_country_an_matches_its_iso_successors():
     field = dataclasses.replace(nasr("90875.", "TNCM", "TNCM"), iso_country="AN")
     state = run((C1, [field, oa("6406", iata="SXM", icao="TNCM", country="SX")]))[0]
     assert len(state.identities) == 1
+    assert [i.iso_country for i in state.identities.values()] == ["SX"]
+
+
+def test_an_identity_country_follows_the_real_history_in_cycle_order():
+    """01-03 AC-5: NASR-only before OurAirports snapshots (NULL), then the
+    attached SX row (SX), then the OA row absent (SX kept from before)."""
+    field = dataclasses.replace(nasr("90875.", "TNCM", "TNCM"), iso_country="AN")
+    sx = oa("6406", iata="SXM", icao="TNCM", country="SX")
+    states = run((C1, [field]), (C2, [field, sx]), (C3, [field]))
+    assert [[i.iso_country for i in s.identities.values()] for s in states] == [
+        [None], ["SX"], ["SX"]]
+    assert [len(s.identities) for s in states] == [1, 1, 1]
+
+
+def test_a_non_successor_country_never_replaces_a_retired_code():
+    """_can_pair also accepts an OA row filed under a US-jurisdiction country;
+    that row states no AN successor, so the identity country is NULL."""
+    field = dataclasses.replace(nasr("90875.", "TNCM", "TNCM"), iso_country="AN")
+    state = run((C1, [field, oa("6406", iata="SXM", icao="TNCM", country="US")]))[0]
+    assert len(state.identities) == 1
+    assert [i.iso_country for i in state.identities.values()] == [None]
+
+
+def test_a_current_nasr_country_is_written_unchanged():
+    field = dataclasses.replace(nasr("50000.", "CYAM", "CYAM"), iso_country="CA")
+    state = run((C1, [field, oa("1657", iata="YAM", icao="CYAM", country="CA")]))[0]
+    assert [i.iso_country for i in state.identities.values()] == ["CA"]
+    us = run((C1, [nasr("1.", "ABC")]))[0]
+    assert [i.iso_country for i in us.identities.values()] == ["US"]
 
 
 def test_an_ident_derived_icao_yields_to_an_explicit_icao_code():

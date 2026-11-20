@@ -203,6 +203,24 @@ def _can_pair(row: Observation, candidate: _Entity) -> bool:
     )
 
 
+def _identity_country(entity: _Entity, previous: Identity | None) -> str | None:
+    """ISO 3166-1 country for the identity row. A retired NASR code (AN) is
+    never written: it becomes the successor the attached OurAirports row
+    states, else the successor an earlier cycle recorded, else NULL. AN has
+    three successors, so anything else would be a guess (01-03)."""
+    primary = entity.primary
+    successors = NASR_LEGACY_COUNTRIES.get(
+        (entity.nasr.iso_country or "") if entity.nasr is not None else ""
+    )
+    if not successors:
+        return primary.iso_country
+    if entity.ourairports is not None and entity.ourairports.iso_country in successors:
+        return entity.ourairports.iso_country
+    if previous is not None and previous.iso_country in successors:
+        return previous.iso_country
+    return None
+
+
 def _group(
     observations: list[Observation],
     sticky: dict[str, tuple[str, str]] | None = None,
@@ -370,7 +388,7 @@ def apply_cycle(
             lon=primary.lon,
             kind=primary.kind,
             source_status=primary.source_status,
-            iso_country=primary.iso_country,
+            iso_country=_identity_country(entity, previous),
             first_cycle=previous.first_cycle if previous else effective_date,
             last_seen_cycle=effective_date,
             match_basis=basis,
