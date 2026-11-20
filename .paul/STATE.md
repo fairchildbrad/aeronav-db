@@ -38,6 +38,8 @@ PLAN ──▶ APPLY ──▶ UNIFY
   ✓        ✓        ✓     [03-05 loop closed; Phase 3 complete]
 ```
 
+**2026-11-20 (later):** 01-03 (AN fix) applied in 24bb50f. The build is 79f705b7…, its diff against tz8 is exactly AP0019780 AN→BQ and AP0019781 AN→SX, verify --previous 0 and gate PASS; awaiting sqwkd's check before UNIFY. NEW RELEASE BLOCKER, 01-04 (sqwkd "ACCEPTED as a release blocker"): OA rows that share no IATA/ICAO code with their NASR record get a second airport_id (239 current pairs, e.g. Jackpot 06U/KPT, Hyder 4Z7/WHD). The 01-04 PLAN has its census done, and sqwkd has the R-d uniqueness question. Order (sqwkd): 01-03 UNIFY → 01-04 review/APPLY/UNIFY with a full seed re-run (the backfill cache is gone, so it is a fresh download) → L-type plan rebuilt from the post-01-04 build → 03-06 AIP/ERSA (draft c6e0ce3) APPLY on the post-01-04 build. Reproduced 2026-10-29 inputs: NASR zip sha 538c8219…, OA commit 61129867339d.
+
 ## Accumulated Context
 
 ### Decisions
