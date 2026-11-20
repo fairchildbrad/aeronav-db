@@ -16,6 +16,9 @@ about: "aeronav-db"
 - **sqwkd plan review, verbatim:** "sqwkd review of 01-03 PLAN (5749ec2): APPROVED for APPLY, subject to the 4 conditions below." The conditions are folded in at 081c630.
 - **sqwkd deviation ruling, verbatim:** "option 1 APPROVED, with one correction to your list of call sites." The plan was revised at 3b44877.
 
+## Check
+sqwkd, verbatim 2026-11-20: "01-03 VERIFIED, OK to UNIFY." sqwkd re-ran the sha256, the EXCEPT diff against tz8 (airport_identity 2/2 only), verify --previous (exit 0) and verify on tz8 (exit 1, retired-code line). sqwkd did not re-run the gate: no tz column differs, so its counts carry over. The handover file stays as it is. sqwkd will send cv-aviation one value-change note covering both 01-03 and 01-04.
+
 ## Result
 
 | AC | Result |
