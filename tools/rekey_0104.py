@@ -10,78 +10,141 @@ intervals (code, effective_date). Aliases resolve to survivors. Anything not
 single-valued is refused unless named in NAMED. Without --apply only MAP.csv
 is written; --apply also re-keys identity/tz/*.csv and verify.py literals.
 """
-import csv, io, re, sqlite3, sys
-from collections import defaultdict
-T8, NEW, MAP = sys.argv[1], sys.argv[2], sys.argv[3]
-APPLY = "--apply" in sys.argv[4:]
-REPO = __file__.rsplit("/tools/", 1)[0]
-DROP = set("AP0024202 AP0024204 AP0024205 AP0024206 AP0024209 AP0024211 AP0024214 AP0024220 AP0024239 AP0024240 AP0024241 AP0024250 AP0024259 AP0024260 AP0024401 AP0024412 AP0024420 AP0029834 AP0029908".split())
-NAMED = {"AP0029892": "AP0029637", "AP0024177": "AP0019250"}  # PLAN precondition (a)
+
+import csv
+import io
+import re
+import sqlite3
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+# The 19 class-(i) unplaced_by_design rows (01-04-PLAN <ubd_merge_table>).
+DROP = frozenset("""
+    AP0024202 AP0024204 AP0024205 AP0024206 AP0024209 AP0024211 AP0024214
+    AP0024220 AP0024239 AP0024240 AP0024241 AP0024250 AP0024259 AP0024260
+    AP0024401 AP0024412 AP0024420 AP0029834 AP0029908
+""".split())
+# Named special cases (01-04-PLAN precondition (a)).
+NAMED = {"AP0029892": "AP0029637", "AP0024177": "AP0019250"}
+
 
 def load(path):
-    c = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
-    al = dict(c.execute("SELECT alias_id, airport_id FROM airport_aliases"))
-    ids = {r[0]: r[1:] for r in c.execute("SELECT airport_id, nasr_site_no, nasr_site_type, ourairports_id, first_cycle FROM airport_identity")}
+    connection = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    aliases = dict(connection.execute(
+        "SELECT alias_id, airport_id FROM airport_aliases"))
+    ids = {
+        row[0]: row[1:]
+        for row in connection.execute(
+            "SELECT airport_id, nasr_site_no, nasr_site_type, ourairports_id, "
+            "first_cycle FROM airport_identity")
+    }
     iata = defaultdict(set)
-    for a, code, eff in c.execute("SELECT airport_id, code, effective_date FROM airport_codes WHERE scheme='iata'"):
-        iata[a].add((code, eff))
-    return c, al, ids, iata
+    for airport, code, effective in connection.execute(
+        "SELECT airport_id, code, effective_date FROM airport_codes "
+        "WHERE scheme = 'iata'"
+    ):
+        iata[airport].add((code, effective))
+    return aliases, ids, iata
 
-_, oal, o, oiata = load(T8)
-_, nal, n, niata = load(NEW)
-surv = lambda al, a: al.get(a, a)
-by_oa_any = defaultdict(set); by_site = defaultdict(set); by_oa_first = defaultdict(set); by_iata = defaultdict(set)
-for a, (s, t, oa, first) in n.items():
-    if s: by_site[(s, t)].add(surv(nal, a))
-    if oa and not s: by_oa_first[(oa, first)].add(surv(nal, a))
-    if oa: by_oa_any[oa].add(surv(nal, a))
-    for k in niata[a]: by_iata[k].add(surv(nal, a))
-mapping, kinds = {}, {}
-for a, (s, t, oa, first) in o.items():
-    if a in NAMED:
-        mapping[a] = NAMED[a]; continue
-    if s: c = by_site[(s, t)]
-    else:
-        c = by_oa_first.get((oa, first), set()) or by_oa_any.get(oa, set()) or set().union(set(), *(by_iata[k] for k in oiata[a]))
-    if len(c) != 1:
-        sys.exit(f"REFUSED: {a} {o[a]} maps to {sorted(c)}")
-    mapping[a] = next(iter(c))
-# aliases in tz8 map through their survivor
-for a in o:
-    mapping[a] = mapping[a]
-targets = defaultdict(list)
-for a, b in mapping.items():
-    if a not in oal: targets[b].append(a)
-for a, b in mapping.items():
-    if a in oal: kinds[a] = "alias"
-    elif a in NAMED: kinds[a] = "special"
-    elif len(targets[b]) > 1: kinds[a] = "merged"
-    else: kinds[a] = "one_to_one"
 
-def rekey_csv(name, drop=()):
-    path = f"{REPO}/identity/tz/{name}"
-    text = open(path, encoding="utf-8").read()
-    rows = list(csv.reader(io.StringIO(text)))
+def build_map(old_path, new_path):
+    old_aliases, old, old_iata = load(old_path)
+    new_aliases, new, new_iata = load(new_path)
+
+    def survivor(airport):
+        return new_aliases.get(airport, airport)
+
+    by_site, by_oa_first = defaultdict(set), defaultdict(set)
+    by_oa_any, by_iata = defaultdict(set), defaultdict(set)
+    for airport, (site, site_type, oa, first) in new.items():
+        if site:
+            by_site[(site, site_type)].add(survivor(airport))
+        if oa and not site:
+            by_oa_first[(oa, first)].add(survivor(airport))
+        if oa:
+            by_oa_any[oa].add(survivor(airport))
+        for key in new_iata[airport]:
+            by_iata[key].add(survivor(airport))
+
+    mapping = {}
+    for airport, (site, site_type, oa, first) in old.items():
+        if airport in NAMED:
+            mapping[airport] = NAMED[airport]
+            continue
+        if site:
+            found = by_site[(site, site_type)]
+        else:
+            found = (
+                by_oa_first.get((oa, first), set())
+                or by_oa_any.get(oa, set())
+                or set().union(*(by_iata[key] for key in old_iata[airport]))
+            )
+        if len(found) != 1:
+            sys.exit(f"REFUSED: {airport} {old[airport]} maps to {sorted(found)}")
+        mapping[airport] = next(iter(found))
+
+    targets = defaultdict(list)
+    for airport, target in mapping.items():
+        if airport not in old_aliases:
+            targets[target].append(airport)
+    kinds = {}
+    for airport, target in mapping.items():
+        if airport in old_aliases:
+            kinds[airport] = "alias"
+        elif airport in NAMED:
+            kinds[airport] = "special"
+        elif len(targets[target]) > 1:
+            kinds[airport] = "merged"
+        else:
+            kinds[airport] = "one_to_one"
+    return mapping, kinds, targets
+
+
+def rekey_csv(mapping, name, drop=frozenset()):
+    path = REPO / "identity" / "tz" / name
+    rows = list(csv.reader(io.StringIO(path.read_text(encoding="utf-8"))))
     head, body = rows[0], rows[1:]
     out, seen, dropped = [head], {}, []
-    for r in body:
-        if r[0] in drop: dropped.append(r[0]); continue
-        new = mapping[r[0]]
-        if new in seen: sys.exit(f"REFUSED: {name} collision {r[0]} and {seen[new]} -> {new}")
-        seen[new] = r[0]; out.append([new] + r[1:])
-    buf = io.StringIO(); csv.writer(buf, lineterminator="\n").writerows(out)
-    open(path, "w", encoding="utf-8").write(buf.getvalue())
+    for row in body:
+        if row[0] in drop:
+            dropped.append(row[0])
+            continue
+        target = mapping[row[0]]
+        if target in seen:
+            sys.exit(f"REFUSED: {name} collision {row[0]} and {seen[target]} "
+                     f"-> {target}")
+        seen[target] = row[0]
+        out.append([target, *row[1:]])
+    buffer = io.StringIO()
+    csv.writer(buffer, lineterminator="\n").writerows(out)
+    path.write_text(buffer.getvalue(), encoding="utf-8")
     return len(body), len(out) - 1, dropped
 
-if APPLY:
-    print("overrides", rekey_csv("overrides.csv"))
-    print("unplaced_by_design", rekey_csv("unplaced_by_design.csv", DROP))
-    vp = f"{REPO}/aeronav_db/verify.py"; v = open(vp).read()
-    lits = re.findall(r"AP\d{7}", v)
-    open(vp, "w").write(re.sub(r"AP\d{7}", lambda m: mapping[m.group(0)], v))
-    print("verify literals", len(lits), [(x, mapping[x]) for x in lits])
-with open(MAP, "w", newline="") as f:
-    w = csv.writer(f); w.writerow(["old_airport_id", "new_airport_id", "kind"])
-    for a in sorted(mapping): w.writerow([a, mapping[a], kinds[a]])
-from collections import Counter
-print("map", len(mapping), Counter(kinds.values()), "merge targets", sum(1 for v in targets.values() if len(v) > 1))
+
+def main(argv):
+    old_path, new_path, map_path = argv[1], argv[2], argv[3]
+    mapping, kinds, targets = build_map(old_path, new_path)
+    if "--apply" in argv[4:]:
+        print("overrides", rekey_csv(mapping, "overrides.csv"))
+        print("unplaced_by_design",
+              rekey_csv(mapping, "unplaced_by_design.csv", DROP))
+        verify = REPO / "aeronav_db" / "verify.py"
+        text = verify.read_text()
+        literals = re.findall(r"AP\d{7}", text)
+        verify.write_text(
+            re.sub(r"AP\d{7}", lambda m: mapping[m.group(0)], text))
+        print("verify literals", len(literals),
+              [(x, mapping[x]) for x in literals])
+    with open(map_path, "w", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["old_airport_id", "new_airport_id", "kind"])
+        for airport in sorted(mapping):
+            writer.writerow([airport, mapping[airport], kinds[airport]])
+    merges = sum(1 for olds in targets.values() if len(olds) > 1)
+    print("map", len(mapping), Counter(kinds.values()), "merge targets", merges)
+
+
+if __name__ == "__main__":
+    main(sys.argv)
