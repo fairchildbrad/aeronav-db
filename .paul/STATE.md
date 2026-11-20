@@ -67,6 +67,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - (resolved 2026-11-18) Timezone: operator "V0.2 and build it now". It's a later phase of v0.2, using a self-maintained country→region→override table of IANA zones, no polygons.
 
 ### Blockers/Concerns
+- (sqwkd 2026-11-20, confirmed Phase 3 close: main 7b4387f is 91 ahead of origin/main, not pushed; the handover sha256 checks pass.) Agreed order: (1) the Phase 1 AN identity fix, as a release blocker; its plan goes to sqwkd for review before APPLY; (2) the AIP/ERSA check plan; (3) the L-type follow-up. The runbook release steps stay with the operator, one step at a time.
 - PUSH CONSTRAINT (sqwkd 2026-11-20; docs/RELEASE-RUNBOOK.md step 6 comes after step 4): main was merged locally only. Local main must not be pushed before runbook steps 1–5 (seed re-run, pin, dry run, seed upload, published=true). Once main is pushed, the weekly workflow builds schema 3 and needs the published seed.
 - RELEASE BLOCKER (Phase 1, found in 03-04; sqwkd 2026-11-19: "Phase 1 handles it before release, with its own review and verify --previous"): identity iso_country stays NASR's retired "AN" for TNCE (AP0019780) and TNCM (AP0019781), although OurAirports and tz placement give BQ and SX. Tz is unaffected (both America/Puerto_Rico); the identity column needs a Phase 1 decision before release.
 - DO NOT MERGE feat/airport-identity to main except via docs/RELEASE-RUNBOOK.md (after Phase 3, operator-confirmed): merging switches CI to schema 3
