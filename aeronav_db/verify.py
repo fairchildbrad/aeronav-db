@@ -273,6 +273,18 @@ CANARY_TZ = {
     "WMKK": "Asia/Singapore", "WBGG": "Asia/Kuching", "UKBB": "Europe/Kyiv",
     "UAAA": "Asia/Almaty", "ZMCK": "Asia/Ulaanbaatar", "SEGS": "Pacific/Galapagos",
     "BKPR": "Europe/Belgrade", "TNCM": "America/Puerto_Rico",
+    # 03-05: named Alaska/Nevada places and UM placement inputs.
+    "PADK": "America/Adak", "PAAK": "America/Adak",
+    "PAKT": "America/Sitka",
+    "PWAK": "Pacific/Tarawa", "PMDY": "Pacific/Pago_Pago",
+}
+
+CANARY_TZ_NULL = {
+    "AP0000448": "no_county_match",  # Page: jurisdiction not established
+    "AP0024208": "no_county_match",  # Hyder: legal/observed clock question
+    "AP0019409": "no_county_match",  # Unalaska: east of the meridian
+    "AP0009599": "no_county_match",  # Elko city history is not named
+    "AP0019547": "no_region",  # Palmyra has no sourced history
 }
 
 
@@ -314,6 +326,24 @@ def check_timezones(connection: sqlite3.Connection, cycle: str) -> list[str]:
         if found != {expected}:
             problems.append(
                 f"canary tz: {code} resolves to {found}, expected {expected}"
+            )
+    for airport_id, expected in CANARY_TZ_NULL.items():
+        row = connection.execute(
+            "SELECT tz, tz_unplaced FROM airport_identity WHERE airport_id = ?",
+            (airport_id,),
+        ).fetchone()
+        if row != (None, expected):
+            problems.append(
+                f"canary tz: {airport_id} resolves to {row}, expected NULL/{expected}"
+            )
+    for airport_id in ("AP0019547", "AP0019560", "AP0019610"):
+        row = connection.execute(
+            "SELECT iso_country FROM airport_identity WHERE airport_id = ?",
+            (airport_id,),
+        ).fetchone()
+        if row != ("US",):
+            problems.append(
+                f"canary identity: {airport_id} country is {row}, expected US"
             )
     more = [f"... {len(problems) - 50} more"] if len(problems) > 50 else []
     return problems[:50] + more

@@ -2619,3 +2619,5 @@ KZ,KZ-BAY,,SPLIT,Baikonur city is not in tzdata 2026f asia's Kazakhstan lists (l
 CY,CY-XX,,SPLIT,"OurAirports CY-XX is the UK Sovereign Base Areas, not a Cyprus district; no source places it here"
 VN,VN-NC,,SPLIT,03-04: partial_regions.csv (Asia/Bangkok / Asia/Ho_Chi_Minh); tzdata states no boundary (Q2)
 MY,MY-15,,SPLIT,"03-04 (sqwkd): Labuan is not named by zone1970.tab (Kuching: 'Sabah, Sarawak') and tzdata 2026f asia does not state its clock history; no residual"
+UM,UM-79,*,Pacific/Tarawa,"zone1970.tab Pacific/Tarawa: 'Gilberts, Marshalls, Wake'; UM-79 is Wake Island in OurAirports regions.csv; Pacific/Wake is a backward link"
+UM,UM-71,*,Pacific/Pago_Pago,zone1970.tab Pacific/Pago_Pago: 'Midway'; UM-71 is Midway Islands in OurAirports regions.csv; Pacific/Midway is a backward link

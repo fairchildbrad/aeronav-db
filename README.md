@@ -337,6 +337,13 @@ are on Asia/Shanghai, because tzdata records that planes run on Beijing time,
 and not on Asia/Urumqi.
 `identity/tz/unplaced_by_design.csv` lists the scheduled-service airports that
 no official source places.
+NASR's QW, QM and XL state codes keep US as the airport's identity country,
+while time-zone placement uses UM and, when available, the OurAirports UM
+region. Wake and Midway have named tzdata region rules; Palmyra stays NULL.
+US stays exempt from the zone-region completeness map because its cited county
+rules and airport overrides provide the placement control. Scheduled US
+airports without enough jurisdiction or boundary evidence are listed by
+airport in `unplaced_by_design.csv`.
 
 ### The chained build
 

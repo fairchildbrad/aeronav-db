@@ -127,6 +127,14 @@ def test_placement_inputs():
     sx = {"iso_country": "SX", "iso_region": "SX-U-A", "municipality": "Sint Maarten"}
     assert tz.placement_inputs(an, sx) == ("SX", None, "SINT MAARTEN")
     assert tz.placement_inputs(an, oa) == ("AN", None, None)
+    # NASR identity remains US; only the resolver sees UM and OA's region.
+    for state, region in (("QW", "UM-79"), ("QM", "UM-71"), ("XL", "UM-95")):
+        island = {"COUNTRY_CODE": "US", "STATE_CODE": state,
+                  "COUNTY_NAME": "US MISC PACIFIC IS"}
+        um = {"iso_country": "UM", "iso_region": region}
+        assert island["COUNTRY_CODE"] == "US"
+        assert tz.placement_inputs(island, um) == ("UM", region, None)
+        assert tz.placement_inputs(island, us_oa) == ("UM", None, None)
 
 
 def test_the_committed_rules_load_and_tzdata_is_pinned():

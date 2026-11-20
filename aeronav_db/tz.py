@@ -31,6 +31,9 @@ ANY = "*"
 # NASR files US territories under COUNTRY_CODE US with their own STATE_CODE;
 # ISO 3166 (and zone1970.tab) treat them as countries.
 US_TERRITORIES = {"PR", "VI", "GU", "AS", "MP"}
+# NASR's Pacific-island state codes are US for identity, but UM for zone
+# placement.  OurAirports carries the island-specific ISO 3166-2 region.
+US_MINOR_OUTLYING = {"QW", "QM", "XL"}
 PARTIAL_WORDS = ("most", "except", "part")
 # NASR COUNTRY_CODE values that are not current ISO 3166-1 codes, and the ISO
 # codes that replaced them. Measured 2026-11-18 over the 2026-07-09 and
@@ -316,6 +319,14 @@ def placement_inputs(
         country = (nasr_row.get("COUNTRY_CODE") or "").strip().upper() or None
         state = (nasr_row.get("STATE_CODE") or "").strip().upper()
         county = (nasr_row.get("COUNTY_NAME") or "").strip().upper() or None
+        if country == "US" and state in US_MINOR_OUTLYING:
+            oa_country = (
+                (ourairports_row or {}).get("iso_country") or ""
+            ).strip().upper()
+            region = ((ourairports_row or {}).get("iso_region") or "").strip().upper()
+            if oa_country == "UM" and region.startswith("UM-"):
+                return "UM", region, None
+            return "UM", None, None
         if country == "US" and state in US_TERRITORIES:
             return state, None, None
         if country == "US" and state:
