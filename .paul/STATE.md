@@ -58,6 +58,8 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - runbook step 1 (seed re-run; works from a cold cache since 02-04).
 Removing the first candidate needs sqwkd's OK after cv-aviation acknowledges.
 
+**2026-11-21:** cv-aviation ACKNOWLEDGED candidate2 and switched to it (sqwkd relay; their sha256sum -c gave 4/4 OK). The first candidate was MOVED, unchanged, to /workspace/aeronav-db-handover/retired/2026-10-29-schema3-candidate/; its own SHA256SUMS still verify after the move (navigation.sqlite3: OK, manifest.json: OK). Deleting it needs the operator.
+
 ## Accumulated Context
 
 ### Decisions
