@@ -67,6 +67,13 @@ Removing the first candidate needs sqwkd's OK after cv-aviation acknowledges.
 - **Corrected reasoning (sqwkd):** dist/ is gitignored, so this test SKIPS in CI. CI would not have failed. Stopping was still right, because the local suite must be green before a push.
 - **After the fix:** ruff clean; pytest 201 passed. The runbook now says to run the local suite after step 5.
 
+**2026-11-21: FIRST SCHEMA-3 RELEASE DONE (runbook steps 1–8).**
+- **Release:** cycle-2026-11-26, Latest, https://github.com/fairchildbrad/aeronav-db/releases/tag/cycle-2026-11-26. Seed prerelease: identity-seed-2026-10-29 (asset sha256 8768eb4b, equal to the pin).
+- **Push:** main pushed 9b43e1d..3885745. CI run 44929964870: success. Build run https://github.com/fairchildbrad/aeronav-db/actions/runs/44929969740 (dispatch, cycle=2026-11-26): success ("Is there a new cycle?" and "Build, verify, publish").
+- **Published DB:** sha256 ebea09d790b3a9653e9059d2f8c31589d9d82447ec6a63a39822edb21e7026f0. The manifest's previous is {2026-10-29, 8768eb4b}; tz is placed 26348 / unplaced 655 (tzdata 2026f). verify --previous against the local seed passes.
+- **Differs from the local dry run** (7b3265d6) in bytes only. A row-level EXCEPT over every table and the metadata is empty both ways. The SQLite header shows CI wrote it with SQLite 3.46.1 and the dry run used 3.53.1; same page size and page count.
+- **Next:** future weekly runs chain from release N-1. sqwkd tells cv-aviation it can load production.
+
 ## Accumulated Context
 
 ### Decisions
