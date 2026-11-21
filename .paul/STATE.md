@@ -52,6 +52,12 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - Part 2 (the 26 countries from 03-04) is not yet surveyed.
 - Then: predictions before any comparison (dates 2026-01-15 / 2026-07-15). See 03-06-PLAN.md.
 
+**2026-11-21 (hold):** candidate2 is VERIFIED by sqwkd: /workspace/aeronav-db-handover/2026-10-29-schema3-candidate2/ (a9336f52; map cf450fd2), and cv-aviation has been notified. Holding for the operator. Open, all operator-side:
+- merging feat/airport-identity (9251d5f+) into local main (at 7b4387f);
+- push, tag, release;
+- runbook step 1 (seed re-run; works from a cold cache since 02-04).
+Removing the first candidate needs sqwkd's OK after cv-aviation acknowledges.
+
 ## Accumulated Context
 
 ### Decisions
