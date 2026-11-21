@@ -78,6 +78,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - 2026-11-19 03-01 apply notes: tz columns already in IDENTITY_SCHEMA (build.py:158); add tz_unplaced. Region inputs: NASR APT_BASE.csv STATE_CODE + COUNTY_NAME (build.py:1076 has nasr["APT_BASE.csv"]), OurAirports iso_region. Identity dataclass identity.py:95; dump_state identity.py:640. Vendor zone1970.tab (host tzdata 2026f) to identity/tz/. Send cv-aviation the DDL delta when done.
 
 ### Deferred Issues
+- (optional; 03-06 closed 2026-11-21, 0 checked) AIP check second pass (A): URLs only from Eurocontrol AIS-online plus ICAO/national CAA sites; GEN 2.1 (and one AD 2 page) for DE, ES, GL, PF and any confirmed country; predict only where a zone is stated. Re-opens as its own plan only if the operator wants it. sqwkd is offering it, plus ROTAER (BR).
 - (resolved 2026-11-21, 03-07 L4) Prince of Wales ×9 placed as America/Sitka from 44 FR 55556-55557 (1979); the 1980 rescission is still unread (optional).
 - (open; sqwkd 2026-11-20) Hyder AP0019046: admitting a non-tzdata observed-clock source is a policy change, the operator's call; sqwkd is offering it.
 - (open; sqwkd 2026-11-20, during 01-04) No mechanism forces tz NULL while keeping the original reason. unplaced_by_design only marks a NULL as expected; a blank-tz override forces NULL but records tz_unplaced=source_conflict. The L-type plan will probably need one; not built in 01-04.
