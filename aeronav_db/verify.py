@@ -280,6 +280,10 @@ CANARY_TZ = {
     "PWAK": "Pacific/Tarawa", "PMDY": "Pacific/Pago_Pago",
 }
 
+# Airports with no ICAO code, checked by id (03-07: observed Mountain clock at
+# Jackpot, tzdata northamerica:474).
+CANARY_TZ_BY_ID = {"AP0009620": ("America/Denver", "override")}
+
 CANARY_TZ_NULL = {
     "AP0000448": "no_county_match",  # Page: jurisdiction not established
     "AP0019046": "no_county_match",  # Hyder: legal/observed clock question
@@ -338,6 +342,15 @@ def check_timezones(connection: sqlite3.Connection, cycle: str) -> list[str]:
         if found != {expected}:
             problems.append(
                 f"canary tz: {code} resolves to {found}, expected {expected}"
+            )
+    for airport_id, expected in CANARY_TZ_BY_ID.items():
+        row = connection.execute(
+            "SELECT tz, tz_basis FROM airport_identity WHERE airport_id = ?",
+            (airport_id,),
+        ).fetchone()
+        if row != expected:
+            problems.append(
+                f"canary tz: {airport_id} resolves to {row}, expected {expected}"
             )
     for airport_id, expected in CANARY_TZ_NULL.items():
         row = connection.execute(

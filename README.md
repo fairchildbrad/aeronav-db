@@ -338,8 +338,10 @@ closes.
 `tz` records the clock people actually keep. Where tzdata states that practice
 differs from the statute, the zone follows the observed clock. Each such row's
 note cites the conflicting statute. These rows are Labrador (America/Goose_Bay
-and America/Halifax, where the Standard Time Act says Newfoundland time)
-and Eucla, Cocklebiddy and Madura (Australia/Eucla, where Western Australia's
+and America/Halifax, where the Standard Time Act says Newfoundland time),
+Jackpot, Owyhee and Mountain City, Nevada (America/Denver, where 49 CFR 71.9–71.10
+put Nevada outside West Wendover in Pacific time; NASR's city field must name the
+place), and Eucla, Cocklebiddy and Madura (Australia/Eucla, where Western Australia's
 Standard Time Act 2005 s.4 says Western Australian time).
 Where tzdata documents a clock kept without stating its legal basis, the
 zone follows tzdata and the note takes no position on sovereignty: Crimea and
