@@ -46,6 +46,12 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - **Next:** the L-type plan, built on b8b96f28 (Hyder AP0019046; Jackpot AP0009620; Prince of Wales ×9; KENV). It probably needs a mechanism that forces NULL while keeping the reason (deferred). Then the 03-06 AIP/ERSA check on the same build (sqwkd review pending). Then the operator-confirmed runbook. Runbook step 1 now works from a cold cache (02-04).
 - **Ids:** every id in the schema3 candidate is superseded; docs keep their historic ids.
 
+**2026-11-21:** 03-07 unified; base build cb5f2f89… (placed 26322 / NULL 664). 03-06 (AIP/ERSA check) is in APPLY, AC-1 survey:
+- AU, RU, ID: not checked (use terms / captcha / DNS).
+- BR: go, but first confirm the edition from the AMDT 2611A1 PDF's GEN 0 and read the DECEA Política de Uso.
+- Part 2 (the 26 countries from 03-04) is not yet surveyed.
+- Then: predictions before any comparison (dates 2026-01-15 / 2026-07-15). See 03-06-PLAN.md.
+
 ## Accumulated Context
 
 ### Decisions
