@@ -85,6 +85,8 @@ class Observation:
     kind: str | None
     source_status: str
     iso_country: str | None
+    # OurAirports only: the national ident (the FAA LID for US fields), 01-04.
+    local_code: str | None = None
 
 
 @dataclass(frozen=True)
@@ -179,6 +181,22 @@ class _Entity:
         return sorted((s, c, src) for (s, c), src in found.items())
 
 
+def _in_gate(row: Observation, nasr: Observation) -> bool:
+    """Country and distance only: could this OA row and NASR record be one
+    field, regardless of what is already attached."""
+    country = row.iso_country or ""
+    nasr_country = nasr.iso_country or ""
+    same_country = country in NASR_JURISDICTION or (
+        country != ""
+        and (
+            country == nasr_country
+            or country in NASR_LEGACY_COUNTRIES.get(nasr_country, ())
+        )
+    )
+    return same_country and _distance_nm(
+        (row.lat, row.lon), (nasr.lat, nasr.lon)) <= SAME_AIRPORT_NM
+
+
 def _can_pair(row: Observation, candidate: _Entity) -> bool:
     """Country gate and distance for attaching an OurAirports row to a NASR
     record. Inside US jurisdiction any NASR record may be the partner;
@@ -201,6 +219,24 @@ def _can_pair(row: Observation, candidate: _Entity) -> bool:
         )
         <= SAME_AIRPORT_NM
     )
+
+
+def _identity_country(entity: _Entity, previous: Identity | None) -> str | None:
+    """ISO 3166-1 country for the identity row. A retired NASR code (AN) is
+    never written: it becomes the successor the attached OurAirports row
+    states, else the successor an earlier cycle recorded, else NULL. AN has
+    three successors, so anything else would be a guess (01-03)."""
+    primary = entity.primary
+    successors = NASR_LEGACY_COUNTRIES.get(
+        (entity.nasr.iso_country or "") if entity.nasr is not None else ""
+    )
+    if not successors:
+        return primary.iso_country
+    if entity.ourairports is not None and entity.ourairports.iso_country in successors:
+        return entity.ourairports.iso_country
+    if previous is not None and previous.iso_country in successors:
+        return previous.iso_country
+    return None
 
 
 def _group(
@@ -232,9 +268,21 @@ def _group(
             entity
         )
 
+    by_faa: dict[str, list[_Entity]] = defaultdict(list)
+    for entity in entities:
+        for scheme, code in entity.nasr.codes:  # type: ignore[union-attr]
+            if scheme == "faa":
+                by_faa[code.upper()].append(entity)
+    unpaired: list[Observation] = []
     for row in ourairports:
         partner = None
-        shares = [c for _, code in row.codes for c in by_code.get(code.upper(), [])]
+        # A shared code counts only when its NASR holder passes the gate with
+        # the row (sqwkd 01-04 R-e ruling): OA IATA 'GCT' at Bar Ten AZ is not
+        # evidence about FAA 'GCT' in Iowa.
+        shares = [
+            c for _, code in row.codes for c in by_code.get(code.upper(), [])
+            if _in_gate(row, c.nasr)  # type: ignore[arg-type]
+        ]
         for candidate in shares:
             if _can_pair(row, candidate):
                 partner = candidate
@@ -244,6 +292,44 @@ def _group(
             candidate = by_site.get(site) if site else None
             if candidate is not None and _can_pair(row, candidate):
                 partner = candidate
+        if partner is not None:
+            partner.ourairports = row
+        elif shares:
+            entities.append(_Entity(None, row))
+        else:
+            unpaired.append(row)
+
+    # 01-04: the FAA LID OurAirports carries in local_code. One-to-one among
+    # candidates inside the gate (sqwkd R-d ruling): a string collision with
+    # a field the gate excludes is not ambiguity. R-f: a LID never moves an
+    # OA row off the NASR site it was stuck to (a reassigned LID).
+    def lid(row: Observation) -> str:
+        return (row.local_code or "").strip().upper()
+
+    in_gate = {
+        id(row): [n for n in by_faa.get(lid(row), []) if _in_gate(row, n.nasr)]
+        for row in unpaired if lid(row)
+    }
+    rows_for: dict[int, list[Observation]] = defaultdict(list)
+    for row in unpaired:
+        for n in in_gate.get(id(row), []):
+            rows_for[id(n)].append(row)
+    for row in unpaired:
+        found = in_gate.get(id(row), [])
+        partner = found[0] if len(found) == 1 else None
+        if partner is not None and (
+            len(rows_for[id(partner)]) != 1
+            or partner.ourairports is not None
+            or (
+                sticky
+                and sticky.get(row.ourairports_id or "") not in (
+                    None,
+                    (partner.nasr.nasr_site_no or "",  # type: ignore[union-attr]
+                     partner.nasr.nasr_site_type or ""),  # type: ignore[union-attr]
+                )
+            )
+        ):
+            partner = None
         if partner is not None:
             partner.ourairports = row
         else:
@@ -370,7 +456,7 @@ def apply_cycle(
             lon=primary.lon,
             kind=primary.kind,
             source_status=primary.source_status,
-            iso_country=primary.iso_country,
+            iso_country=_identity_country(entity, previous),
             first_cycle=previous.first_cycle if previous else effective_date,
             last_seen_cycle=effective_date,
             match_basis=basis,
@@ -549,6 +635,7 @@ def ourairports_observations(rows: list[dict[str, str]]) -> list[Observation]:
                 kind=airport_type or None,
                 source_status="closed" if airport_type == "closed" else "operational",
                 iso_country=(row.get("iso_country") or "").strip().upper() or None,
+                local_code=(row.get("local_code") or "").strip().upper() or None,
             )
         )
     return observations

@@ -37,7 +37,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 from aeronav_db.nasr_archive import RETRIES
-from aeronav_db.verify import check_identity
+from aeronav_db.verify import check_identity, retired_country_note
 
 TAG_RE = re.compile(r"^cycle-(\d{4}-\d{2}-\d{2})$")
 DEFAULT_REPO = "fairchildbrad/aeronav-db"
@@ -137,6 +137,9 @@ def _metadata(path: Path) -> dict[str, str]:
 def _identity_problems(path: Path) -> list[str]:
     connection = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
     try:
+        note = retired_country_note(connection, str(path))
+        if note:
+            print(note, file=sys.stderr)
         return check_identity(connection)[0]
     finally:
         connection.close()

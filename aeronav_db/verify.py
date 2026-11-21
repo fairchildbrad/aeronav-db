@@ -227,6 +227,7 @@ def _inspect(connection: sqlite3.Connection) -> list[str]:
     problems.extend(_inspect_boundaries(connection))
     identity_problems, _ = check_identity(connection)
     problems.extend(identity_problems)
+    problems.extend(check_retired_countries(connection))
     cycle = metadata.get("airac_cycle", "")
     holders = [
         set().union(*(_held_on(connection, scheme, code, cycle) for code in codes))
@@ -279,9 +280,13 @@ CANARY_TZ = {
     "PWAK": "Pacific/Tarawa", "PMDY": "Pacific/Pago_Pago",
 }
 
+# Airports with no ICAO code, checked by id (03-07: observed Mountain clock at
+# Jackpot, tzdata northamerica:474).
+CANARY_TZ_BY_ID = {"AP0009620": ("America/Denver", "override")}
+
 CANARY_TZ_NULL = {
     "AP0000448": "no_county_match",  # Page: jurisdiction not established
-    "AP0024208": "no_county_match",  # Hyder: legal/observed clock question
+    "AP0019046": "no_county_match",  # Hyder: legal/observed clock question
     "AP0019409": "no_county_match",  # Unalaska: east of the meridian
     "AP0009599": "no_county_match",  # Elko city history is not named
     "AP0019547": "no_region",  # Palmyra has no sourced history
@@ -293,6 +298,17 @@ def check_timezones(connection: sqlite3.Connection, cycle: str) -> list[str]:
     from aeronav_db import tz as tzmod
 
     problems: list[str] = []
+    # 01-04: an airport listed as unplaced by design is never placed; a
+    # merge or re-key must not turn a documented NULL into a placed value.
+    listed = sorted(tzmod.load_unplaced_by_design())
+    if listed:
+        placed = [r[0] for r in connection.execute(
+            "SELECT airport_id FROM airport_identity WHERE tz IS NOT NULL "
+            f"AND airport_id IN ({','.join('?' * len(listed))})",  # noqa: S608
+            listed)]
+        if placed:
+            problems.append(f"unplaced_by_design lists {len(placed)} placed "
+                            f"airports: {', '.join(placed[:10])}")
     zones, _ = tzmod.load_zone_tab(tzmod.TZ_DIR / "zone1970.tab")
     known = {z for found in zones.values() for z in found}
     single_zone_of = {found[0]: c for c, found in zones.items() if len(found) == 1}
@@ -326,6 +342,15 @@ def check_timezones(connection: sqlite3.Connection, cycle: str) -> list[str]:
         if found != {expected}:
             problems.append(
                 f"canary tz: {code} resolves to {found}, expected {expected}"
+            )
+    for airport_id, expected in CANARY_TZ_BY_ID.items():
+        row = connection.execute(
+            "SELECT tz, tz_basis FROM airport_identity WHERE airport_id = ?",
+            (airport_id,),
+        ).fetchone()
+        if row != expected:
+            problems.append(
+                f"canary tz: {airport_id} resolves to {row}, expected {expected}"
             )
     for airport_id, expected in CANARY_TZ_NULL.items():
         row = connection.execute(
@@ -390,6 +415,42 @@ def _held_on(connection: sqlite3.Connection, scheme: str, code: str, day: str):
             (scheme, code, day, day),
         )
     }
+
+
+def retired_country_ids(connection: sqlite3.Connection) -> list[str]:
+    """airport_ids whose iso_country is a retired NASR code (01-03)."""
+    from aeronav_db.tz import NASR_LEGACY_COUNTRIES
+
+    retired = sorted(NASR_LEGACY_COUNTRIES)
+    return [r[0] for r in connection.execute(
+        "SELECT airport_id FROM airport_identity WHERE iso_country IN "
+        f"({','.join('?' * len(retired))}) ORDER BY airport_id",  # noqa: S608
+        retired,
+    )]
+
+
+def check_retired_countries(connection: sqlite3.Connection) -> list[str]:
+    """Output-file check only (01-03 AC-2): a file this code writes never
+    carries a retired NASR country code. An input file (previous cycle,
+    fetched N-1, pinned seed) may, from before the fix; there it is a note."""
+    from aeronav_db.tz import NASR_LEGACY_COUNTRIES
+
+    ids = retired_country_ids(connection)
+    if not ids:
+        return []
+    return [
+        f"{len(ids)} airport_identity rows carry a retired NASR country code "
+        f"({', '.join(sorted(NASR_LEGACY_COUNTRIES))}); iso_country must be its "
+        "ISO successor or NULL"
+    ]
+
+
+def retired_country_note(connection: sqlite3.Connection, label: str) -> str | None:
+    ids = retired_country_ids(connection)
+    if not ids:
+        return None
+    return (f"NOTE: {label} carries {len(ids)} retired NASR country code(s) "
+            f"({', '.join(ids)}); this build rewrites them (01-03)")
 
 
 def check_identity(connection: sqlite3.Connection) -> tuple[list[str], list[str]]:

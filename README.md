@@ -274,6 +274,19 @@ What the file guarantees, and `verify` enforces:
   survives; the other keeps its history and gets one `airport_aliases` row
   pointing at the survivor. An alias never points at another alias.
 - `match_basis` records how the identity was matched in its most recent cycle.
+- **One field, one id.** An OurAirports row joins the NASR record of the same
+  field through a shared ICAO or IATA code, or else through the FAA identifier
+  OurAirports carries in `local_code`. A `local_code` pair needs exactly one
+  candidate on each side among those in the same country within 25 nm, and it
+  never moves a row away from the NASR site it was already paired with.
+- `iso_country` is ISO 3166-1 alpha-2, except `XK` (Kosovo, user-assigned, as
+  OurAirports uses it). NASR still files TNCE and TNCM under the retired `AN`
+  (Netherlands Antilles); a retired NASR code is replaced by the successor the
+  attached OurAirports row states (`BQ`, `SX`), or left NULL. It is never guessed.
+- **IATA code history begins 2021-11-04** (the first OurAirports snapshot used);
+  nothing is back-dated. An airport's IATA code before that date is unknown, not
+  absent: codes get reassigned (`PBI` → `DJT`), so the earliest interval is not
+  extended backwards.
 
 ### Where the history comes from
 
@@ -325,8 +338,10 @@ closes.
 `tz` records the clock people actually keep. Where tzdata states that practice
 differs from the statute, the zone follows the observed clock. Each such row's
 note cites the conflicting statute. These rows are Labrador (America/Goose_Bay
-and America/Halifax, where the Standard Time Act says Newfoundland time)
-and Eucla, Cocklebiddy and Madura (Australia/Eucla, where Western Australia's
+and America/Halifax, where the Standard Time Act says Newfoundland time),
+Jackpot, Owyhee and Mountain City, Nevada (America/Denver, where 49 CFR 71.9–71.10
+put Nevada outside West Wendover in Pacific time; NASR's city field must name the
+place), and Eucla, Cocklebiddy and Madura (Australia/Eucla, where Western Australia's
 Standard Time Act 2005 s.4 says Western Australian time).
 Where tzdata documents a clock kept without stating its legal basis, the
 zone follows tzdata and the note takes no position on sovereignty: Crimea and

@@ -26,4 +26,6 @@ Let N be the cycle of the first schema-3 release, and N-1 the cycle 28 days befo
 7. **Dispatch the workflow for cycle N**, or wait for the cron run. It chains from the seed. The release notes carry the schema-3 migration notice.
 8. **Check the result.** `verify --previous` passed in the run; manifest `previous.sha256` equals the seed pin; cv-aviation has been told.
 
+**Known FAA behaviour (2026-11-21):** nfdc.faa.gov answers HEAD with 503 for every cycle's NASR zip, even when it is posted. Test availability with a ranged GET (`curl -r 0-1023`), which returns 206 application/zip.
+
 **Decide at release time:** whether to enable GitHub immutable releases and tag protection for `cycle-*` and `identity-seed-*`. Until then, chain path (a) trusts each release's manifest plus its `.sha256` asset, with the one-hop lineage check as the backstop.

@@ -291,6 +291,35 @@ def test_nasr_legacy_country_an_matches_its_iso_successors():
     field = dataclasses.replace(nasr("90875.", "TNCM", "TNCM"), iso_country="AN")
     state = run((C1, [field, oa("6406", iata="SXM", icao="TNCM", country="SX")]))[0]
     assert len(state.identities) == 1
+    assert [i.iso_country for i in state.identities.values()] == ["SX"]
+
+
+def test_an_identity_country_follows_the_real_history_in_cycle_order():
+    """01-03 AC-5: NASR-only before OurAirports snapshots (NULL), then the
+    attached SX row (SX), then the OA row absent (SX kept from before)."""
+    field = dataclasses.replace(nasr("90875.", "TNCM", "TNCM"), iso_country="AN")
+    sx = oa("6406", iata="SXM", icao="TNCM", country="SX")
+    states = run((C1, [field]), (C2, [field, sx]), (C3, [field]))
+    assert [[i.iso_country for i in s.identities.values()] for s in states] == [
+        [None], ["SX"], ["SX"]]
+    assert [len(s.identities) for s in states] == [1, 1, 1]
+
+
+def test_a_non_successor_country_never_replaces_a_retired_code():
+    """_can_pair also accepts an OA row filed under a US-jurisdiction country;
+    that row states no AN successor, so the identity country is NULL."""
+    field = dataclasses.replace(nasr("90875.", "TNCM", "TNCM"), iso_country="AN")
+    state = run((C1, [field, oa("6406", iata="SXM", icao="TNCM", country="US")]))[0]
+    assert len(state.identities) == 1
+    assert [i.iso_country for i in state.identities.values()] == [None]
+
+
+def test_a_current_nasr_country_is_written_unchanged():
+    field = dataclasses.replace(nasr("50000.", "CYAM", "CYAM"), iso_country="CA")
+    state = run((C1, [field, oa("1657", iata="YAM", icao="CYAM", country="CA")]))[0]
+    assert [i.iso_country for i in state.identities.values()] == ["CA"]
+    us = run((C1, [nasr("1.", "ABC")]))[0]
+    assert [i.iso_country for i in us.identities.values()] == ["US"]
 
 
 def test_an_ident_derived_icao_yields_to_an_explicit_icao_code():
@@ -357,3 +386,92 @@ def test_a_standalone_ourairports_row_never_takes_a_code_nasr_assigns():
     assert len(s1.identities) == 2
     assert len(lookup(s1, "icao", "KCPF", C1)) == 1
     assert lookup(s1, "icao", "KCPF", C1) == lookup(s1, "faa", "CPF", C1)
+
+
+# --- 01-04: pairing through the FAA LID (OurAirports local_code) -------------
+
+
+def lid(row, code):
+    return dataclasses.replace(row, local_code=code)
+
+
+def test_a_local_code_pairs_a_field_with_no_shared_code():
+    """Jackpot: NASR 06U, OurAirports local_code 06U with IATA KPT only."""
+    state = run((C1, [nasr("13079.25", "06U"), lid(oa("18326", iata="KPT"), "06U")]))[0]
+    assert len(state.identities) == 1
+    (airport,) = state.identities
+    codes = {(c.scheme, c.code) for c in state.codes}
+    assert codes == {("faa", "06U"), ("iata", "KPT")}
+    assert state.identities[airport].ourairports_id == "18326"
+
+
+def test_two_in_gate_rows_with_one_local_code_do_not_pair():
+    state = run((C1, [nasr("1.", "TPO"), lid(oa("1", iata="PTA"), "TPO"),
+                      lid(oa("2", iata="PTB", lat=35.01), "TPO")]))[0]
+    assert len(state.identities) == 3
+
+
+def test_an_out_of_gate_collision_does_not_block_the_pair():
+    """TPO: Port Alsworth AK pairs although a PNG strip shares the string."""
+    png = lid(oa("302534", country="PG", lat=-8.17, lon=146.19), "TPO")
+    state = run((C1, [nasr("1.", "TPO"), lid(oa("25016", iata="PTA"), "TPO"), png]))[0]
+    assert len(state.identities) == 2
+
+
+def test_a_shared_code_partner_wins_over_a_local_code_partner():
+    state = run((C1, [nasr("1.", "AAA", "KAAA"), nasr("2.", "BBB", lat=35.01),
+                      lid(oa("9", iata="AAQ", icao="KAAA"), "BBB")]))[0]
+    by_oa = [i for i in state.identities.values() if i.ourairports_id == "9"]
+    assert [i.nasr_site_no for i in by_oa] == ["1."]
+
+
+def test_a_reassigned_lid_far_away_does_not_pair():
+    a, row = nasr("1.", "XYZ"), lid(oa("7", iata="XYQ"), "XYZ")
+    far_b = nasr("2.", "XYZ", lat=35.7)  # ~42 nm north
+    first, second = run((C1, [a, row]), (C2, [nasr("1.", "XYW"), far_b, row]))
+    assert len(first.identities) == 1
+    held = [i for i in second.identities.values() if i.ourairports_id == "7"]
+    assert [i.nasr_site_no for i in held] == ["1."]
+
+
+def test_a_reassigned_lid_nearby_stays_with_the_sticky_site():
+    a, row = nasr("1.", "XYZ"), lid(oa("7", iata="XYQ"), "XYZ")
+    near_b = nasr("2.", "XYZ", lat=35.1)  # ~6 nm
+    second = run((C1, [a, row]), (C2, [nasr("1.", "XYW"), near_b, row]))[1]
+    held = [i for i in second.identities.values() if i.ourairports_id == "7"]
+    assert [i.nasr_site_no for i in held] == ["1."]
+    assert second.aliases == ()
+
+
+def test_a_reassigned_lid_with_the_old_field_absent_does_not_merge():
+    """Predicted in the PLAN before running (R-f): OA row 1 does not pair
+    with B; A's id carries on via ourairports_id; B keeps its own id; no
+    alias."""
+    a, row = nasr("1.", "XYZ"), lid(oa("7", iata="XYQ"), "XYZ")
+    near_b = nasr("2.", "XYZ", lat=35.1)
+    first, second = run((C1, [a, row]), (C2, [near_b, row]))
+    (a_id,) = first.identities
+    assert second.aliases == ()
+    assert second.identities[a_id].last_seen_cycle == C2
+    assert second.identities[a_id].nasr_site_no == "1."
+    b_ids = [k for k, i in second.identities.items() if i.nasr_site_no == "2."]
+    assert len(b_ids) == 1 and b_ids[0] != a_id
+
+
+def test_a_local_code_pair_stays_inside_the_country_gate():
+    ca = dataclasses.replace(nasr("50000.", "CAJ4"), iso_country="CA")
+    same = run((C1, [ca, lid(oa("624", iata="YAA", country="CA"), "CAJ4")]))[0]
+    other = run((C1, [ca, lid(oa("624", iata="YAA", country="BS"), "CAJ4")]))[0]
+    assert (len(same.identities), len(other.identities)) == (1, 2)
+
+
+def test_an_out_of_gate_code_collision_does_not_block_a_local_code_pair():
+    """Bar Ten AZ: OA IATA GCT equals FAA GCT at Guthrie County, Iowa; the
+    row still pairs with NASR 1Z1 through local_code (sqwkd R-e ruling)."""
+    iowa = nasr("2.", "GCT", lat=41.687, lon=-94.435)
+    bar_ten = nasr("00823.6", "1Z1", lat=36.257, lon=-113.231)
+    row = lid(oa("8774", iata="GCT", lat=36.258, lon=-113.231), "1Z1")
+    state = run((C1, [iowa, bar_ten, row]))[0]
+    assert len(state.identities) == 2
+    paired = [i for i in state.identities.values() if i.ourairports_id == "8774"]
+    assert [i.nasr_site_no for i in paired] == ["00823.6"]
