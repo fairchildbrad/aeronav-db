@@ -21,7 +21,7 @@ Let N be the cycle of the first schema-3 release, and N-1 the cycle 28 days befo
 4. **Upload the seed** as a non-latest prerelease. This is the first outward-facing step:
    `gh release create identity-seed-N-1 seed.sqlite3 seed.sqlite3.report.json --prerelease --latest=false --title "Airport identity seed (N-1)"`
    Confirm that `curl -L <url> | sha256sum` matches the pin.
-5. **Set `published: true`** in `identity/seed.json` and commit it.
+5. **Set `published: true`** in `identity/seed.json` and commit it. Step 5 flips the branch taken by `tests/test_chain_ci.py::test_the_pin_matches_the_local_seed_when_present`, so run the full local suite after step 5 and before step 6's push.
 6. **Merge `feat/airport-identity` to main.** From here the weekly workflow builds schema 3.
 7. **Dispatch the workflow for cycle N**, or wait for the cron run. It chains from the seed. The release notes carry the schema-3 migration notice.
 8. **Check the result.** `verify --previous` passed in the run; manifest `previous.sha256` equals the seed pin; cv-aviation has been told.

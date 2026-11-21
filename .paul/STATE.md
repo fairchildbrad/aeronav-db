@@ -60,6 +60,13 @@ Removing the first candidate needs sqwkd's OK after cv-aviation acknowledges.
 
 **2026-11-21:** cv-aviation ACKNOWLEDGED candidate2 and switched to it (sqwkd relay; their sha256sum -c gave 4/4 OK). The first candidate was MOVED, unchanged, to /workspace/aeronav-db-handover/retired/2026-10-29-schema3-candidate/; its own SHA256SUMS still verify after the move (navigation.sqlite3: OK, manifest.json: OK). Deleting it needs the operator.
 
+**2026-11-21 release:**
+- **Steps 1–5 done.** Seed 8768eb4b. Prerelease https://github.com/fairchildbrad/aeronav-db/releases/tag/identity-seed-2026-10-29; its download sha256 equals the pin. Published=true in 11cd3cc.
+- **Step 6:** main merged locally in 184ad3b.
+- **Step 6a, a release fix and a deviation outside PAUL** (sqwkd ruling): a one-line test correction during release. tests/test_chain_ci.py asserted pin["published"] is False, a pre-release guard that step 5 flips by design. It now checks pin cycle == the local seed's airac_cycle; when published, the url must be the identity-seed-<cycle> asset; otherwise published is False.
+- **Corrected reasoning (sqwkd):** dist/ is gitignored, so this test SKIPS in CI. CI would not have failed. Stopping was still right, because the local suite must be green before a push.
+- **After the fix:** ruff clean; pytest 201 passed. The runbook now says to run the local suite after step 5.
+
 ## Accumulated Context
 
 ### Decisions

@@ -130,4 +130,15 @@ def test_the_pin_matches_the_local_seed_when_present():
     if not local.exists():
         pytest.skip("no local seed")
     assert build.sha256_of(local) == pin["sha256"]
-    assert pin["published"] is False
+    import sqlite3
+    with sqlite3.connect(f"file:{local}?mode=ro", uri=True) as connection:
+        (cycle,) = connection.execute(
+            "SELECT value FROM metadata WHERE key = 'airac_cycle'").fetchone()
+    assert pin["cycle"] == cycle
+    if pin["published"] is True:
+        # After runbook step 5 the pin names the uploaded release asset.
+        assert pin["url"] == (
+            "https://github.com/fairchildbrad/aeronav-db/releases/download/"
+            f"identity-seed-{pin['cycle']}/seed.sqlite3")
+    else:
+        assert pin["published"] is False  # before step 5: not yet uploaded
