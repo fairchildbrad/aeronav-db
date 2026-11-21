@@ -51,6 +51,7 @@ Phases: 0 of 3 complete
 - [x] 03-03: AU, BR, RU, ID. AU 158, BR 126 (+3 unplaced_by_design), RU 129 (+20 Sakha unplaced_by_design), ID 123 scheduled placed, 0 unlisted; zone_regions.csv completes the partial list for mapped countries. Unified 2026-11-19 (03-03-SUMMARY.md)
 - [x] 03-04 (unified 2026-11-19, 03-04-SUMMARY.md): the other 26 multi-zone countries (AQ NULL by design). Carried from 03-03 (sqwkd R2): AC "a zone with no rows for country X is allowed only if zone_regions maps it to a region of another country listed for it in zone1970; test included", due when UA is mapped
 - [x] 03-05: US scheduled-service remainder via the Chart Supplement; closing gate run
+- [x] 03-07: L-type follow-up: Jackpot, Owyhee and Mountain City NV on Mountain (L4); Hyder NULL; West Wendover closed; Prince of Wales deferred. Unified 2026-11-21
 **cv-aviation requirement:** tz is never guessed. tz_basis 'country' is allowed only for single-zone countries. An airport in a multi-zone country that the region/override rules can't place gets tz NULL.
 
 ---
